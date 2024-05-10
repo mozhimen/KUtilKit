@@ -7,3 +7,8 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
+dependencies {
+    api "com.gojuno.koptional:koptional:1.6.0"
+    api "com.gojuno.koptional:koptional-rxjava2-extensions:1.6.0"
+}

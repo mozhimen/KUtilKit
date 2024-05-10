@@ -20,3 +20,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "JUtilKit"
 include ':utilk_kotlin'
+include ':utilk_koptional'

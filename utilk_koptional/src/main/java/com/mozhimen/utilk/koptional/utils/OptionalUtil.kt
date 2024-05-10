@@ -1,4 +1,4 @@
-package com.mozhimen.utilk.gojuno.koptional
+package com.mozhimen.utilk.koptional.utils
 
 import com.gojuno.koptional.None
 import com.gojuno.koptional.Optional
@@ -14,11 +14,11 @@ import io.reactivex.Single
  * @Version 1.0
  */
 fun <T : Any> Maybe<T>.toSingleAsOptional(): Single<Optional<T>> =
-    UtilKOptional.toSingleAsOptional(this)
+    OptionalUtil.toSingleAsOptional(this)
 
 //////////////////////////////////////////////////////
 
-object UtilKOptional {
+object OptionalUtil {
     @JvmStatic
     fun <T : Any> toSingleAsOptional(maybe: Maybe<T>): Single<Optional<T>> =
         maybe.map { it.toOptional() }.toSingle(None)
