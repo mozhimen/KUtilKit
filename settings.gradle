@@ -18,7 +18,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "JUtilKit"
-include ':utilk_kotlin'
+rootProject.name = "KUtilKit"
+include ':utilk_android'
 include ':utilk_koptional'
 include ':utilk_koptional_rxjava2'
