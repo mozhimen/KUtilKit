@@ -22,3 +22,4 @@ rootProject.name = "KUtilKit"
 include ':utilk_android'
 include ':utilk_koptional'
 include ':utilk_koptional_rxjava2'
+include ':utilk_kotlin'
