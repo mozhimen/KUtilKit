@@ -9,7 +9,7 @@ import androidx.collection.SimpleArrayMap
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflect
+import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectJava
 import java.lang.reflect.Array
 
 
@@ -96,7 +96,7 @@ object UtilKAny : IUtilK {
         if (obj.javaClass == String::class.java) return true
         try {
             //只适用于int byte short long boolean char double float
-            val field = UtilKReflect.getField(obj, "TYPE")
+            val field = UtilKReflectJava.getField(obj, "TYPE")
             val clazz = field[null] as Class<*>
             if (clazz.isPrimitive) return true
         } catch (e: IllegalAccessException) {

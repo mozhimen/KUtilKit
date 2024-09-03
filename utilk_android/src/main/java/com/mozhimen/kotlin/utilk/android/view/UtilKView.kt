@@ -11,10 +11,12 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.view.HapticOnTouchCallback
 import com.mozhimen.kotlin.elemk.android.view.cons.CHapticFeedbackConstants
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
+import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.elemk.cons.CPackage
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectKotlin
 
 
 /**
@@ -68,6 +70,9 @@ fun View.applyLayoutParams_ofHeightStatusBar() {
     UtilKView.applyLayoutParams_ofHeightStatusBar(this)
 }
 
+inline fun <reified T : ViewGroup.LayoutParams> View.applyUpdateLayoutParams(block: IExt_Listener<T>) {
+    UtilKView.applyUpdateLayoutParams(this, block)
+}
 //////////////////////////////////////////////////////////////////////////////
 
 fun View.applyBackgroundNull() =
@@ -261,6 +266,15 @@ object UtilKView : BaseUtilK() {
     fun applyLayoutParams_ofHeightStatusBar(view: View) {
         view.layoutParams = view.layoutParams.apply {
             height = UtilKStatusBar.getHeight()
+        }
+    }
+
+    inline fun <reified T : ViewGroup.LayoutParams> applyUpdateLayoutParams(view: View, block: IExt_Listener<T>) {
+        view.layoutParams = (view.layoutParams as? T)?.apply(block) ?: kotlin.run {
+            val width = view.layoutParams?.width ?: 0
+            val height = view.layoutParams?.height ?: 0
+            val lp = ViewGroup.LayoutParams(width, height)
+            UtilKReflectKotlin.newInstance<T>(lp).apply(block)
         }
     }
 

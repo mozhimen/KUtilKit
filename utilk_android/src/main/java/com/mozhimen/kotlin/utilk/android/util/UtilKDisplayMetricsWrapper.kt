@@ -20,10 +20,16 @@ fun Float.dp2px(): Float =
 fun Int.dp2px(): Float =
     UtilKDisplayMetricsWrapper.dp2px(this.toFloat())
 
+fun Number.dp2px(): Float =
+    UtilKDisplayMetricsWrapper.dp2px(this.toFloat())
+
 fun Float.dp2pxI(): Int =
     UtilKDisplayMetricsWrapper.dp2pxI(this)
 
 fun Int.dp2pxI(): Int =
+    UtilKDisplayMetricsWrapper.dp2pxI(this.toFloat())
+
+fun Number.dp2pxI(): Int =
     UtilKDisplayMetricsWrapper.dp2pxI(this.toFloat())
 
 /////////////////////////////////////////////////////////////

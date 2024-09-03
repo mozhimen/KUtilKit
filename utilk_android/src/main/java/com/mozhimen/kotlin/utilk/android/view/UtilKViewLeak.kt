@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflect
+import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectJava
 import com.mozhimen.kotlin.utilk.android.util.e
 
 /**
@@ -33,7 +33,7 @@ object UtilKViewLeak : BaseUtilK() {
     @Throws(Exception::class)
     fun fixLeak_ofDragChild(view: View) {
         try {
-            val fieldMCurrentDragChild = UtilKReflect.getField(view, "mCurrentDragChild")
+            val fieldMCurrentDragChild = UtilKReflectJava.getField(view, "mCurrentDragChild")
             if (!fieldMCurrentDragChild.isAccessible)
                 fieldMCurrentDragChild.isAccessible = true
             val childView = fieldMCurrentDragChild.get(view)

@@ -13,7 +13,7 @@ import java.util.List;
  * @Date 2022/7/20 16:59
  * @Version 1.0
  */
-public class UtilKReflect {
+public class UtilKReflectJava {
 
     public static int getField_ofInt(Object obj, String fieldName) throws NoSuchFieldException, IllegalAccessException {
         return getField(obj, fieldName).getInt(obj);
