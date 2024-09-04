@@ -18,11 +18,11 @@ import java.nio.charset.Charset
  * @Date 2023/8/1 16:31
  * @Version 1.0
  */
-fun String.str2file(strFilePathNameDest: String): File? =
-    UtilKStringFormat.str2file(this, strFilePathNameDest)
+fun String.str2file_use(strFilePathNameDest: String): File? =
+    UtilKStringFormat.str2file_use(this, strFilePathNameDest)
 
-fun String.str2file(fileDest: File): File? =
-    UtilKStringFormat.str2file(this, fileDest)
+fun String.str2file_use(fileDest: File): File? =
+    UtilKStringFormat.str2file_use(this, fileDest)
 
 fun String.str2fileOfFileOutStream(strFilePathName: String, isAppend: Boolean = false): File? =
     UtilKStringFormat.str2fileOfFileOutStream(this, strFilePathName, isAppend)
@@ -45,14 +45,14 @@ object UtilKStringFormat {
      * 文本转文件
      */
     @JvmStatic
-    fun str2file(str: String, strFilePathNameDest: String): File? =
-        str2file(str, strFilePathNameDest.strFilePath2file().apply { createFile() })
+    fun str2file_use(str: String, strFilePathNameDest: String): File? =
+        str2file_use(str, strFilePathNameDest.strFilePath2file().apply { createFile() })
 
     /**
      * 文本转文件
      */
     @JvmStatic
-    fun str2file(str: String, fileDest: File): File? {
+    fun str2file_use(str: String, fileDest: File): File? {
         UtilKFileWrapper.createFile(fileDest)
         try {
             RandomAccessFile(fileDest, "rwd").write_use(str)
