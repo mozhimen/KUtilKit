@@ -152,6 +152,8 @@ object UtilKActivityWrapper : IUtilK {
             e.printStackTrace()
         } catch (e: NoSuchFieldException) {
             e.printStackTrace()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
         return null
     }

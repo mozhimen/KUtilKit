@@ -1,5 +1,7 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import androidx.annotation.RequiresApi
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileDir
 
 /**
@@ -19,6 +21,51 @@ object UtilKStrPath {
             @JvmStatic
             fun getCache(): String =
                 UtilKFileDir.Internal.getCache().absolutePath
+
+            @JvmStatic
+            fun getData(): String =
+                UtilKFileDir.Internal.getData().absolutePath
+
+            @JvmStatic
+            fun getObb(): String =
+                UtilKFileDir.Internal.getObb().absolutePath
+
+            @JvmStatic
+            @RequiresApi(CVersCode.V_21_5_L)
+            fun getCodeCache(): String =
+                UtilKFileDir.Internal.getCodeCache().absolutePath
+
+            @JvmStatic
+            @RequiresApi(CVersCode.V_21_5_L)
+            fun getNoBackupFiles(): String =
+                UtilKFileDir.Internal.getNoBackupFiles().absolutePath
+
+            @JvmStatic
+            fun getFileStream(name: String): String =
+                UtilKFileDir.Internal.getFileStream(name).absolutePath
+
+            /**
+             * 内部使用，外部程序无法访问。主要是 SQLite 数据库的目录
+             */
+            @JvmStatic
+            fun getDatabase(name: String): String =
+                UtilKFileDir.Internal.getDatabase(name).absolutePath
+
+            @JvmStatic
+            fun getPackageCode(): String =
+                UtilKFileDir.Internal.getPackageCode()
+
+            @JvmStatic
+            fun getPackageResource(): String =
+                UtilKFileDir.Internal.getPackageResource()
+
+            @JvmStatic
+            fun getPatch(): String =
+                UtilKFileDir.Internal.getPatch().absolutePath
+
+            @JvmStatic
+            fun getDex2opt(): String =
+                UtilKFileDir.Internal.getDex2opt().absolutePath
         }
 
         object External {
@@ -27,8 +74,8 @@ object UtilKStrPath {
                 UtilKFileDir.External.getCache()?.absolutePath
 
             @JvmStatic
-            fun getFilesRoot(): String =
-                UtilKFileDir.External.getFilesRoot()!!.absolutePath
+            fun getFiles(): String =
+                UtilKFileDir.External.getFiles()!!.absolutePath
 
             @JvmStatic
             fun getEnvStorage(): String =

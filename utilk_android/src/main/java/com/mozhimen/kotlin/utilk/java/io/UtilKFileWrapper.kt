@@ -4,7 +4,6 @@ import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.android.system.UtilKOs
 import com.mozhimen.kotlin.utilk.android.system.UtilKStructStat
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.d
@@ -18,7 +17,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.nio.channels.FileChannel
 import java.util.Vector
-import java.util.zip.GZIPInputStream
 import kotlin.jvm.Throws
 
 /**
@@ -64,8 +62,8 @@ fun File.isFileExist(): Boolean =
 fun File.createFile(): Boolean =
     UtilKFileWrapper.createFile(this)
 
-fun File.copyFile(fileDest: File, isAppend: Boolean = false): File? =
-    UtilKFileWrapper.copyFile(this, fileDest, isAppend)
+fun File.copyFile_use(fileDest: File, isAppend: Boolean = false): File? =
+    UtilKFileWrapper.copyFile_use(this, fileDest, isAppend)
 
 fun File.zipFile(zipFile: File): File? =
     UtilKFileWrapper.zipFile(this, zipFile)
@@ -199,8 +197,10 @@ object UtilKFileWrapper : BaseUtilK() {
     //删除文件
     @JvmStatic
     fun deleteFile(file: File): Boolean =
-        if (!isFileExist(file)) false
-        else file.delete().also { "deleteFile: file ${file.absolutePath} success".d(TAG) }
+        if (!isFileExist(file)) {
+            "deleteFile: file ${file.absolutePath} fail".d(TAG)
+            false
+        } else file.delete().also { "deleteFile: file ${file.absolutePath} success".d(TAG) }
 
     //批量删除
     fun deleteFiles(vararg files: File) {
@@ -210,7 +210,7 @@ object UtilKFileWrapper : BaseUtilK() {
 
     //复制文件
     @JvmStatic
-    fun copyFile(fileSource: File, fileDest: File, isAppend: Boolean = false): File? =
+    fun copyFile_use(fileSource: File, fileDest: File, isAppend: Boolean = false): File? =
         if (!isFileExist(fileSource)) null
         else fileSource.file2fileInputStream()?.inputStream2file_use(fileDest, isAppend)
 
@@ -350,5 +350,7 @@ object UtilKFileWrapper : BaseUtilK() {
         }
         return true.also { UtilKLogWrapper.d(TAG, "deleteFolder: success") }
     }
+
+
 //endregion
 }

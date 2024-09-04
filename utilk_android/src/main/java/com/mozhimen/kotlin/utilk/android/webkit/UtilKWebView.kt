@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.webkit
 import android.content.Context
 import android.webkit.WebView
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileDir
+import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import java.io.File
 
 
@@ -50,7 +51,7 @@ object UtilKWebView {
     fun deleteDatabaseFile_ofWebView(context: Context) {
         val webViewFilesDir = File(context.filesDir, "webview")
         if (webViewFilesDir.exists()) {
-            UtilKFileDir.delete(webViewFilesDir)
+            UtilKFileWrapper.deleteFolder(webViewFilesDir)
         }
     }
 
@@ -63,7 +64,7 @@ object UtilKWebView {
     fun deleteDatabaseFile_ofWebViewCache(context: Context) {
         val webViewFilesDir = File(context.filesDir, "webview")
         if (webViewFilesDir.exists()) {
-            UtilKFileDir.delete(webViewFilesDir)
+            UtilKFileWrapper.deleteFolder(webViewFilesDir)
         }
     }
 }

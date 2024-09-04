@@ -320,7 +320,7 @@ object UtilKStrFile : IUtilK {
      */
     @JvmStatic
     fun copyFile(strFilePathNameSource: String, strFilePathNameDest: String, isAppend: Boolean = false): File? =
-        UtilKFileWrapper.copyFile(strFilePathNameSource.strFilePath2file(), strFilePathNameDest.strFilePath2file(), isAppend)
+        UtilKFileWrapper.copyFile_use(strFilePathNameSource.strFilePath2file(), strFilePathNameDest.strFilePath2file(), isAppend)
 
     /**
      * 压缩文件

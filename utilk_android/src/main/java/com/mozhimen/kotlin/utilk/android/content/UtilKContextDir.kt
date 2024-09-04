@@ -7,7 +7,6 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CEnvironment
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import java.io.File
 
 /**
@@ -97,7 +96,7 @@ object UtilKContextDir {
             UtilKContext.getExternalCacheDir(context)
 
         @JvmStatic
-        fun getFilesRootDir(context: Context): File? =
+        fun getFilesDir(context: Context): File? =
             UtilKContext.getExternalFilesDir(context, null)
 
         //////////////////////////////////////////////////////////////
