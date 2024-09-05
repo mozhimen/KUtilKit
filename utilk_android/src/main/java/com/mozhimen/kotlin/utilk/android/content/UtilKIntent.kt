@@ -50,16 +50,18 @@ object UtilKIntent : IUtilK {
         Intent(context, clazz)
 
     @JvmStatic
+    fun get(action: String, uri: Uri, context: Context, clazz: Class<*>): Intent =
+        Intent(action, uri, context, clazz)
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
     inline fun <reified T> get(context: Context): Intent =
         get(context, T::class.java)
 
     @JvmStatic
     inline fun <reified T> get(context: Context, block: IExt_Listener<Intent>): Intent =
         get(context, T::class.java).apply(block)
-
-    @JvmStatic
-    fun get(action: String, uri: Uri, context: Context, clazz: Class<*>): Intent =
-        Intent(action, uri, context, clazz)
 
     ///////////////////////////////////////////////////////////////////////////////////////
 

@@ -2,6 +2,7 @@ package com.mozhimen.kotlin.elemk.android.cons
 
 import android.Manifest
 import androidx.annotation.RequiresApi
+import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 
 
@@ -256,6 +257,7 @@ object CPermission {
     val PERSISTENT_ACTIVITY = Manifest.permission.PERSISTENT_ACTIVITY
 
     @RequiresApi(CVersCode.V_33_13_TIRAMISU)
+    @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     const val POST_NOTIFICATIONS = Manifest.permission.POST_NOTIFICATIONS
 
     @Deprecated("android.permission.PROCESS_OUTGOING_CALLS")
@@ -276,6 +278,7 @@ object CPermission {
     /**
      * CVersCode.V_23_6_M until CVersCode.V_30_11_R
      */
+    @RequiresPermission(CPermission.READ_EXTERNAL_STORAGE)
     const val READ_EXTERNAL_STORAGE = Manifest.permission.READ_EXTERNAL_STORAGE
 
     @RequiresApi(CVersCode.V_33_13_TIRAMISU)
@@ -346,6 +349,7 @@ object CPermission {
     const val REQUEST_IGNORE_BATTERY_OPTIMIZATIONS = Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
 
     @RequiresApi(CVersCode.V_23_6_M)
+    @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     const val REQUEST_INSTALL_PACKAGES = Manifest.permission.REQUEST_INSTALL_PACKAGES
 
     @RequiresApi(CVersCode.V_31_12_S)
@@ -424,6 +428,8 @@ object CPermission {
     const val WRITE_CALENDAR = Manifest.permission.WRITE_CALENDAR
     const val WRITE_CALL_LOG = Manifest.permission.WRITE_CALL_LOG
     const val WRITE_CONTACTS = Manifest.permission.WRITE_CONTACTS
+
+    @RequiresPermission(CPermission.WRITE_EXTERNAL_STORAGE)
     const val WRITE_EXTERNAL_STORAGE = Manifest.permission.WRITE_EXTERNAL_STORAGE
     const val WRITE_GSERVICES = Manifest.permission.WRITE_GSERVICES
     const val WRITE_SECURE_SETTINGS = Manifest.permission.WRITE_SECURE_SETTINGS
