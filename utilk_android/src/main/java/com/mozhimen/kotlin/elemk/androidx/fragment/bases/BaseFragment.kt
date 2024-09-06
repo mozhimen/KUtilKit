@@ -46,7 +46,7 @@ open class BaseFragment : Fragment(), IUtilK {
     }
 
     override fun onDestroyView() {
-        UtilKLogWrapper.d(TAG, "onDestroyView: ")
+        UtilKLogWrapper.v(TAG, "onDestroyView: ")
         super.onDestroyView()
     }
 

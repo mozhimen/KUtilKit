@@ -6,20 +6,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.mozhimen.kotlin.elemk.android.app.cons.CActivity
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
+import com.mozhimen.kotlin.elemk.commons.IAB_Listener
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 open class InvisibleProxyFragment_ofAndroidx : Fragment(), IUtilK {
-//    companion object {
-//        const val REQUEST_CODE_PROXY = 1001
-//    }
+    companion object {
+        const val REQUEST_CODE_PROXY = 1001
 
-    companion object{
         inline fun <reified T : InvisibleProxyFragment_ofAndroidx> startInvisibleProxyFragment(
             fragmentManager: FragmentManager,
             noinline onAction: IA_Listener<T>,
-            onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+            onResult: Pair<Int, IAB_Listener<Boolean, Intent?>?>? = null,
             onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
         ) {
             val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
@@ -39,16 +38,16 @@ open class InvisibleProxyFragment_ofAndroidx : Fragment(), IUtilK {
 
     ///////////////////////////////////////////////////////////////////////
 
-    protected var _onResultListener: IA_Listener<Intent?>? = null
+    protected var _onResultListener: IAB_Listener<Boolean, Intent?>? = null
     protected var _onResultListenerPermission: IA_Listener<List<String>?>? = null
-    protected var _requestCode = 1001
-    protected var _requestCodePermission = 1001
+    protected var _requestCode = REQUEST_CODE_PROXY
+    protected var _requestCodePermission = REQUEST_CODE_PROXY
 
     ///////////////////////////////////////////////////////////////////////
 
     open fun <T : InvisibleProxyFragment_ofAndroidx> start(
         onAction: (fragment: T) -> Unit,
-        onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+        onResult: Pair<Int, IAB_Listener<Boolean, Intent?>?>? = null,
         onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
     ) {
         onResult?.let {
@@ -69,10 +68,10 @@ open class InvisibleProxyFragment_ofAndroidx : Fragment(), IUtilK {
         super.onActivityResult(requestCode, resultCode, data)
         UtilKLogWrapper.d(TAG, "onActivityResult: requestCode $requestCode, resultCode $resultCode, data $data")
         if (resultCode == CActivity.RESULT_OK && requestCode == _requestCode) {
-            _onResultListener?.invoke(data)
+            _onResultListener?.invoke(true, data)
             return
         }
-        _onResultListener?.invoke(null)
+        _onResultListener?.invoke(false, data)
     }
 
     @Deprecated("Deprecated in Java")
@@ -91,15 +90,13 @@ open class InvisibleProxyFragment_ofAndroidx : Fragment(), IUtilK {
 }
 
 open class InvisibleProxyFragment_ofAndroid : android.app.Fragment(), IUtilK {
-//    companion object {
-//        const val REQUEST_CODE_PROXY = 1001
-//    }
+    companion object {
+        const val REQUEST_CODE_PROXY = 1001
 
-    companion object{
         inline fun <reified T : InvisibleProxyFragment_ofAndroid> startInvisibleProxyFragment(
             fragmentManager: android.app.FragmentManager,
             noinline onAction: IA_Listener<T>,
-            onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+            onResult: Pair<Int, IAB_Listener<Boolean, Intent?>?>? = null,
             onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
         ) {
             val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
@@ -123,16 +120,16 @@ open class InvisibleProxyFragment_ofAndroid : android.app.Fragment(), IUtilK {
 
     ///////////////////////////////////////////////////////////////////////
 
-    protected var _onResultListener: IA_Listener<Intent?>? = null
+    protected var _onResultListener: IAB_Listener<Boolean, Intent?>? = null
     protected var _onResultListenerPermission: IA_Listener<List<String>?>? = null
-    protected var _requestCode = 1001
-    protected var _requestCodePermission = 1001
+    protected var _requestCode = REQUEST_CODE_PROXY
+    protected var _requestCodePermission = REQUEST_CODE_PROXY
 
     ///////////////////////////////////////////////////////////////////////
 
     open fun <T : InvisibleProxyFragment_ofAndroidx> start(
         onAction: (fragment: T) -> Unit,
-        onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+        onResult: Pair<Int, IAB_Listener<Boolean, Intent?>?>? = null,
         onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
     ) {
         onResult?.let {
@@ -153,10 +150,10 @@ open class InvisibleProxyFragment_ofAndroid : android.app.Fragment(), IUtilK {
         super.onActivityResult(requestCode, resultCode, data)
         UtilKLogWrapper.d(TAG, "onActivityResult: requestCode $requestCode, resultCode $resultCode, data $data")
         if (resultCode == CActivity.RESULT_OK && requestCode == _requestCode) {
-            _onResultListener?.invoke(data)
+            _onResultListener?.invoke(true, data)
             return
         }
-        _onResultListener?.invoke(null)
+        _onResultListener?.invoke(false, data)
     }
 
     @Deprecated("Deprecated in Java")

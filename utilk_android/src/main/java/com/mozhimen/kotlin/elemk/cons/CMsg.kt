@@ -17,4 +17,5 @@ object CMsg {
     const val BLANK_STR = "\\t"
     const val PART_LINE_BIAS = "/////////////////////////////////////////////////////////////////////"
     const val PART_LINE_HOR = "----------------------------------------------------------------------"
+    const val TEXT_VIEW_BLANK = "\u3000"
 }
