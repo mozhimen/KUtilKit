@@ -10,56 +10,32 @@ import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
-inline fun <reified T : InvisibleProxyFragment_ofAndroidx> startInvisibleProxyFragment(
-    fragmentManager: FragmentManager,
-    noinline onAction: IA_Listener<T>,
-    onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
-    onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
-) {
-    val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
-    val invisibleProxyFragment: T = if (existedFragment != null) {
-        existedFragment as T
-    } else {
-        val newFragment = T::class.java.getConstructor().newInstance()
-        /**
-         * commitNowAllowingStateLoss(): 这个方法类似于 commitNow()，同样是同步执行的，将事务立即提交并立即执行。与 commitNow() 不同的是，commitNowAllowingStateLoss() 允许在 Activity 状态丢失的情况下提交事务。使用 commitNowAllowingStateLoss() 可以避免在恢复过程中抛出 IllegalStateException 异常。
-         */
-        fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitNowAllowingStateLoss()
-        newFragment
-    }
-    invisibleProxyFragment.start(onAction, onResult, onPermissionResult)
-}
-
-inline fun <reified T : InvisibleProxyFragment_ofAndroid> startInvisibleProxyFragment(
-    fragmentManager: android.app.FragmentManager,
-    noinline onAction: IA_Listener<T>,
-    onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
-    onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
-) {
-    val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
-    val invisibleProxyFragment: T = if (existedFragment != null) {
-        existedFragment as T
-    } else {
-        val newFragment = T::class.java.getConstructor().newInstance()
-        /**
-         * commitNowAllowingStateLoss(): 这个方法类似于 commitNow()，同样是同步执行的，将事务立即提交并立即执行。与 commitNow() 不同的是，commitNowAllowingStateLoss() 允许在 Activity 状态丢失的情况下提交事务。使用 commitNowAllowingStateLoss() 可以避免在恢复过程中抛出 IllegalStateException 异常。
-         */
-        if (UtilKBuildVersion.isAfterV_24_7_N()) {
-            fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitNowAllowingStateLoss()
-        } else {
-            fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitAllowingStateLoss()
-        }
-        newFragment
-    }
-    invisibleProxyFragment.start(onAction, onResult, onPermissionResult)
-}
-
-///////////////////////////////////////////////////////////////////////
-
 open class InvisibleProxyFragment_ofAndroidx : Fragment(), IUtilK {
 //    companion object {
 //        const val REQUEST_CODE_PROXY = 1001
 //    }
+
+    companion object{
+        inline fun <reified T : InvisibleProxyFragment_ofAndroidx> startInvisibleProxyFragment(
+            fragmentManager: FragmentManager,
+            noinline onAction: IA_Listener<T>,
+            onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+            onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
+        ) {
+            val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
+            val invisibleProxyFragment: T = if (existedFragment != null) {
+                existedFragment as T
+            } else {
+                val newFragment = T::class.java.getConstructor().newInstance()
+                /**
+                 * commitNowAllowingStateLoss(): 这个方法类似于 commitNow()，同样是同步执行的，将事务立即提交并立即执行。与 commitNow() 不同的是，commitNowAllowingStateLoss() 允许在 Activity 状态丢失的情况下提交事务。使用 commitNowAllowingStateLoss() 可以避免在恢复过程中抛出 IllegalStateException 异常。
+                 */
+                fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitNowAllowingStateLoss()
+                newFragment
+            }
+            invisibleProxyFragment.start(onAction, onResult, onPermissionResult)
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -118,6 +94,32 @@ open class InvisibleProxyFragment_ofAndroid : android.app.Fragment(), IUtilK {
 //    companion object {
 //        const val REQUEST_CODE_PROXY = 1001
 //    }
+
+    companion object{
+        inline fun <reified T : InvisibleProxyFragment_ofAndroid> startInvisibleProxyFragment(
+            fragmentManager: android.app.FragmentManager,
+            noinline onAction: IA_Listener<T>,
+            onResult: Pair<Int, IA_Listener<Intent?>?>? = null,
+            onPermissionResult: Pair<Int, IA_Listener<List<String>?>?>? = null
+        ) {
+            val existedFragment = fragmentManager.findFragmentByTag("InvisibleProxyFragment>>>>>")
+            val invisibleProxyFragment: T = if (existedFragment != null) {
+                existedFragment as T
+            } else {
+                val newFragment = T::class.java.getConstructor().newInstance()
+                /**
+                 * commitNowAllowingStateLoss(): 这个方法类似于 commitNow()，同样是同步执行的，将事务立即提交并立即执行。与 commitNow() 不同的是，commitNowAllowingStateLoss() 允许在 Activity 状态丢失的情况下提交事务。使用 commitNowAllowingStateLoss() 可以避免在恢复过程中抛出 IllegalStateException 异常。
+                 */
+                if (UtilKBuildVersion.isAfterV_24_7_N()) {
+                    fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitNowAllowingStateLoss()
+                } else {
+                    fragmentManager.beginTransaction().add(newFragment, "InvisibleProxyFragment>>>>>").commitAllowingStateLoss()
+                }
+                newFragment
+            }
+            invisibleProxyFragment.start(onAction, onResult, onPermissionResult)
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////
 

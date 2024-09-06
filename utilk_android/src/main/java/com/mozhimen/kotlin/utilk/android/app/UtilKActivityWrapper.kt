@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment
 import com.mozhimen.kotlin.elemk.android.app.cons.CActivity
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.view.cons.CWindow
+import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.utilk.android.content.UtilKIntent
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKContentView
@@ -41,6 +43,14 @@ fun <V : View> Activity.getDecorView(): V =
 
 fun <A : Annotation> Activity.getAnnotation(annotationClazz: Class<A>): A? =
     UtilKActivityWrapper.getAnnotation(this, annotationClazz)
+
+inline fun <reified T> Activity.getIntent(): Intent =
+    UtilKIntent.get<T>(this)
+
+inline fun <reified T> Activity.getIntent(block: IExt_Listener<Intent>): Intent =
+    UtilKIntent.get<T>(this, block)
+
+/////////////////////////////////////////////////////////////////////////
 
 fun Activity.isFinishingOrDestroyed(): Boolean =
     UtilKActivityWrapper.isFinishingOrDestroyed(this)
@@ -171,6 +181,14 @@ object UtilKActivityWrapper : IUtilK {
     @JvmStatic
     fun <A : Annotation> getAnnotation(activity: Activity, annotationClazz: Class<A>): A? =
         UtilKClazz.getAnnotation(activity.javaClass, annotationClazz)
+
+    @JvmStatic
+    inline fun <reified T> getIntent(activity: Activity): Intent =
+        UtilKIntent.get<T>(activity)
+
+    @JvmStatic
+    inline fun <reified T> getIntent(activity: Activity, block: IExt_Listener<Intent>): Intent =
+        UtilKIntent.get<T>(activity, block)
 
     /////////////////////////////////////////////////////////////////////////
 
