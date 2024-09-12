@@ -23,7 +23,7 @@ object UtilKTitleBar : IUtilK {
      */
     @JvmStatic
     fun getHeight(activity: Activity) =
-        abs(UtilKContentViewWrapper.getViewDrawHeight_ofWin(activity) - UtilKStatusBar.getHeight(activity))
+        abs(UtilKContentViewWrapper.getViewDrawHeight(activity) - UtilKStatusBar.getHeight(activity))
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 

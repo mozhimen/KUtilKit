@@ -10,10 +10,8 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.cons.CPackage
 import com.mozhimen.kotlin.elemk.kotlin.cons.CSuppress
-import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import kotlin.math.abs
 
 /**
  * @ClassName UtilKDecorView
@@ -126,7 +124,7 @@ object UtilKDecorView : BaseUtilK() {
     @JvmStatic
     fun applyFitsSystemWindows(activity: Activity) {
         get(activity).post {
-            UtilKContentView.getChildAt0_ofPac(activity)?.applyFitSystemWindow() ?: "setFitsSystemWindows contentView is null".e(TAG)
+            UtilKContentView.getChildAt0(activity)?.applyFitSystemWindow() ?: "setFitsSystemWindows contentView is null".e(TAG)
         }
     }
 

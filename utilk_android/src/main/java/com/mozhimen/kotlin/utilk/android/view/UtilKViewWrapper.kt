@@ -7,7 +7,6 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Rect
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +21,7 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.e
+import com.mozhimen.kotlin.utilk.androidx.core.UtilKViewCompat
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.UtilKAny
 import com.mozhimen.kotlin.utilk.kotlin.strColor2intColor
@@ -41,6 +41,11 @@ import kotlinx.coroutines.flow.onEach
  */
 fun View.getLocation(): Pair<Int, Int> =
     UtilKViewWrapper.getLocation(this)
+
+//////////////////////////////////////////////////////////////////
+
+fun View.isAttachedToWindow_ofCompat(): Boolean =
+    UtilKViewWrapper.isAttachedToWindow_ofCompat(this)
 
 //////////////////////////////////////////////////////////////////
 
@@ -120,7 +125,6 @@ fun View.applyGoneIf(boolean: Boolean) {
 
 //////////////////////////////////////////////////////////////////
 
-@OApiUse_BaseApplication
 fun View.removeView_ofParent() {
     UtilKViewWrapper.removeView_ofParent(this)
 }
@@ -223,6 +227,7 @@ object UtilKViewWrapper : IUtilK {
     fun isParentMatchClazz(view: View, vararg matches: Class<*>): Boolean =
         getParent_ofClazz(view, *matches) != null
 
+    @JvmStatic
     fun <V : View> isDebounceClickable(view: V, thresholdMillis: Long = 500): Boolean {
         var isClickable = false
         val currentClickTime = System.currentTimeMillis()
@@ -233,6 +238,10 @@ object UtilKViewWrapper : IUtilK {
         }
         return isClickable
     }
+
+    @JvmStatic
+    fun isAttachedToWindow_ofCompat(view: View): Boolean =
+        UtilKViewCompat.isAttachedToWindow(view)
 
     //////////////////////////////////////////////////////////////////
 
@@ -398,13 +407,11 @@ object UtilKViewWrapper : IUtilK {
 
     //从父布局删除View
     @JvmStatic
-    @OApiUse_BaseApplication
-    fun removeView_ofParent(view: View): View {
+    fun removeView_ofParent(view: View) {
         val viewParent: ViewParent? = view.parent
         if (viewParent != null && viewParent is ViewGroup && !UtilKActivityWrapper.isFinishingOrDestroyed(view.context)) {
             UtilKLogWrapper.w(TAG, "removeView_ofParent")
             viewParent.removeView(view)
         }
-        return view
     }
 }

@@ -17,64 +17,58 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 object UtilKContentView : BaseUtilK() {
 
     @JvmStatic
-    fun <V : View> get_ofPac(window: Window): V =
+    fun <V : View> get(window: Window): V =
         UtilKWindow.getContentView_ofPackage(window)
 
     @JvmStatic
-    fun <V : View> get_ofPac(activity: Activity): V =
-        get_ofPac(activity.window)
+    fun <V : View> get(activity: Activity): V =
+        get(activity.window)
 
     @JvmStatic
-    fun <V : View> get_ofWin(window: Window): V =
+    fun <V : View> get_ofWindow(window: Window): V =
         UtilKWindow.getContentView_ofWindow(window)
 
     @JvmStatic
-    fun <V : View> get_ofWin(activity: Activity): V =
-        get_ofWin(activity.window)
+    fun <V : View> get_ofWindow(activity: Activity): V =
+        get_ofWindow(activity.window)
 
     @JvmStatic
-    fun <V : View> get_ofDecor(activity: Activity): V =
+    fun <V : View> get_ofDecorView(activity: Activity): V =
         UtilKDecorView.getContentView(activity)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getAsViewGroup_ofPac(activity: Activity): ViewGroup =
-        get_ofPac(activity.window)
+    fun getAsViewGroup(activity: Activity): ViewGroup =
+        get(activity.window)
 
     @JvmStatic
-    fun getAsViewGroup_ofPac(window: Window): ViewGroup =
-        get_ofPac(window)
+    fun getAsViewGroup(window: Window): ViewGroup =
+        get(window)
 
     @JvmStatic
-    fun getTag_ofPac(window: Window, tag: Int): Any? =
-        get_ofPac<View>(window).getTag(tag)
+    fun getTag(window: Window, tag: Int): Any? =
+        get<View>(window).getTag(tag)
 
     @JvmStatic
-    fun getChildAt0_ofPac(window: Window): View? =
-        getAsViewGroup_ofPac(window).getChildAt(0)
+    fun getChildAt0(window: Window): View? =
+        getAsViewGroup(window).getChildAt(0)
 
     @JvmStatic
-    fun getChildAt0_ofPac(activity: Activity): View? =
-        getChildAt0_ofPac(activity.window)
+    fun getChildAt0(activity: Activity): View? =
+        getChildAt0(activity.window)
 
     @JvmStatic
-    fun getWindowVisibleDisplayFrame_ofPac(window: Window): Rect =
-        getWindowVisibleDisplayFrame_ofPac(window, Rect())
+    fun getWindowVisibleDisplayFrame(window: Window): Rect =
+        getWindowVisibleDisplayFrame(window, Rect())
 
     @JvmStatic
-    fun getWindowVisibleDisplayFrame_ofPac(window: Window, rect: Rect): Rect {
-        UtilKView.getWindowVisibleDisplayFrame(get_ofPac(window), rect)
+    fun getWindowVisibleDisplayFrame(window: Window, rect: Rect): Rect {
+        UtilKView.getWindowVisibleDisplayFrame(get(window), rect)
         return rect
     }
 
     @JvmStatic
-    fun getTop_ofPac(activity: Activity): Int =
-        get_ofPac<View>(activity).top
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    fun getTop_ofWin(activity: Activity): Int =
-        get_ofWin<View>(activity).top
+    fun getTop(activity: Activity): Int =
+        get<View>(activity).top
 }

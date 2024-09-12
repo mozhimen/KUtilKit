@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.elemk.android.view.cons
 import android.view.Window
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
+import com.mozhimen.kotlin.elemk.cons.CPackage
 
 /**
  * @ClassName CWindow
@@ -11,7 +12,10 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
  * @Version 1.0
  */
 object CWindow {
-    const val ID_ANDROID_CONTENT = Window.ID_ANDROID_CONTENT
+    /**
+     * @see CPackage.ANDROID_R_ID_CONTENT
+     */
+    const val ID_ANDROID_CONTENT = Window.ID_ANDROID_CONTENT//推荐使用
     const val FEATURE_NO_TITLE = Window.FEATURE_NO_TITLE
 
     @RequiresApi(CVersCode.V_21_5_L)

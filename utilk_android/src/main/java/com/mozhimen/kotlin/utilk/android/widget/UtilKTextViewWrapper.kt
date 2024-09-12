@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.view.Gravity
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.mozhimen.kotlin.elemk.android.view.annors.AGravity
 import com.mozhimen.kotlin.elemk.android.view.cons.CGravity
@@ -16,6 +17,7 @@ import com.mozhimen.kotlin.utilk.android.text.UtilKInputFilter
 import com.mozhimen.kotlin.utilk.kotlin.obj2str_trim
 import com.mozhimen.kotlin.utilk.kotlin.whether
 import androidx.annotation.IntRange
+import androidx.core.graphics.drawable.toDrawable
 
 /**
  * @ClassName UtilKViewText
@@ -69,8 +71,22 @@ fun TextView.applyFilter_ofLength(inputLength: Int) {
     UtilKTextViewWrapper.applyFilter_ofLength(this, inputLength)
 }
 
-fun TextView.applyCompoundDrawable(drawable: Drawable, @AGravity gravity: Int, boundsSize: Int = 0) {
-    UtilKTextViewWrapper.applyCompoundDrawable(this, drawable, gravity, boundsSize)
+//////////////////////////////////////////////////////////////////////////////////////
+
+fun TextView.applyCompoundDrawables(@DrawableRes intResDrawable: Int, @AGravity gravity: Int, boundsSize: Int = 0) {
+    UtilKTextViewWrapper.applyCompoundDrawables(this, intResDrawable, gravity, boundsSize)
+}
+
+fun TextView.applyCompoundDrawables(@DrawableRes start: Int = 0, @DrawableRes top: Int = 0, @DrawableRes end: Int = 0, @DrawableRes bottom: Int = 0, boundsSize: Int = 0) {
+    UtilKTextViewWrapper.applyCompoundDrawables(this, start, top, end, bottom, boundsSize)
+}
+
+fun TextView.applyCompoundDrawables(drawable: Drawable, @AGravity gravity: Int, boundsSize: Int = 0) {
+    UtilKTextViewWrapper.applyCompoundDrawables(this, drawable, gravity, boundsSize)
+}
+
+fun TextView.applyCompoundDrawables(start: Drawable? = null, top: Drawable? = null, end: Drawable? = null, bottom: Drawable? = null, boundsSize: Int = 0) {
+    UtilKTextViewWrapper.applyCompoundDrawables(this, start, top, end, bottom, boundsSize)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -135,36 +151,44 @@ object UtilKTextViewWrapper {
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun applyCompoundDrawable(textView: TextView, drawable: Drawable, @AGravity gravity: Int, boundsSize: Int = 0) {
+    fun applyCompoundDrawables(textView: TextView, @DrawableRes start: Int = 0, @DrawableRes top: Int = 0, @DrawableRes end: Int = 0, @DrawableRes bottom: Int = 0, boundsSize: Int = 0) {
         if (boundsSize <= 0) {
-            when (gravity) {
-                CGravity.START, CGravity.LEFT ->
-                    textView.setCompoundDrawablesWithIntrinsicBounds(drawable, null, null, null)
-
-                CGravity.TOP ->
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null)
-
-                CGravity.END, CGravity.RIGHT ->
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null, null, drawable, null)
-
-                else ->
-                    textView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, drawable)
-            }
+            textView.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom)
         } else {
-            drawable.setBounds(0, 0, boundsSize, boundsSize)
-            when (gravity) {
-                CGravity.START, CGravity.LEFT ->
-                    textView.setCompoundDrawables(drawable, null, null, null)
+            val drawables = listOfNotNull(start, top, end, bottom).map { if (it != 0) it.toDrawable() else null }.onEach { it?.setBounds(0, 0, boundsSize, boundsSize) }
+            textView.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3])
+        }
+    }
 
-                CGravity.TOP ->
-                    textView.setCompoundDrawables(null, drawable, null, null)
+    @JvmStatic
+    fun applyCompoundDrawables(textView: TextView, @DrawableRes intResDrawable: Int, @AGravity gravity: Int, boundsSize: Int = 0) {
+        when (gravity) {
+            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, top = intResDrawable, boundsSize = boundsSize)
+            CGravity.TOP -> applyCompoundDrawables(textView, top = intResDrawable, boundsSize = boundsSize)
+            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, end = intResDrawable, boundsSize = boundsSize)
+            else -> applyCompoundDrawables(textView, bottom = intResDrawable, boundsSize = boundsSize)
+        }
+    }
 
-                CGravity.END, CGravity.RIGHT ->
-                    textView.setCompoundDrawables(null, null, drawable, null)
-
-                else ->
-                    textView.setCompoundDrawables(null, null, null, drawable)
+    @JvmStatic
+    fun applyCompoundDrawables(textView: TextView, start: Drawable? = null, top: Drawable? = null, end: Drawable? = null, bottom: Drawable? = null, boundsSize: Int = 0) {
+        if (boundsSize <= 0) {
+            textView.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom)
+        } else {
+            listOfNotNull(start, top, end, bottom).forEach {
+                it.setBounds(0, 0, boundsSize, boundsSize)
             }
+            textView.setCompoundDrawables(start, top, end, bottom)
+        }
+    }
+
+    @JvmStatic
+    fun applyCompoundDrawables(textView: TextView, drawable: Drawable, @AGravity gravity: Int, boundsSize: Int = 0) {
+        when (gravity) {
+            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, top = drawable, boundsSize = boundsSize)
+            CGravity.TOP -> applyCompoundDrawables(textView, top = drawable, boundsSize = boundsSize)
+            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, end = drawable, boundsSize = boundsSize)
+            else -> applyCompoundDrawables(textView, bottom = drawable, boundsSize = boundsSize)
         }
     }
 

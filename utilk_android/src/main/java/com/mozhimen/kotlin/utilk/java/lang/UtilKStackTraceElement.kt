@@ -2,7 +2,6 @@ package com.mozhimen.kotlin.utilk.java.lang
 
 import android.text.TextUtils
 import android.util.Log
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.util.logging.Logger
 
@@ -17,7 +16,7 @@ object UtilKStackTraceElement : IUtilK {
 
     @JvmStatic
     fun get(clazz: Class<*>): StackTraceElement? {
-        val stackTrace = UtilKThread.getStackTrace_ofCur()
+        val stackTrace = UtilKThread.getStackTrace_ofCurrent()
         var stackOffset = getOffset(stackTrace, clazz)
         if (stackOffset == -1) {
             stackOffset = getOffset(stackTrace, Logger::class.java)

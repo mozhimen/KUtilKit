@@ -21,6 +21,10 @@ fun ViewGroup.addViewSafe(view: View, width: Int, height: Int) {
     UtilKViewGroup.addViewSafe(this, view, width, height)
 }
 
+fun ViewGroup.addViewSafe(view: View) {
+    UtilKViewGroup.addViewSafe(this, view)
+}
+
 //////////////////////////////////////////////////////////////////////////////////////
 
 object UtilKViewGroup : IUtilK {
@@ -59,6 +63,20 @@ object UtilKViewGroup : IUtilK {
         else if (view.parent is ViewGroup) {
             (view.parent as ViewGroup).removeView(view)
             viewGroup.addView(view, layoutParams)
+        } else {
+            UtilKLogWrapper.e(TAG, "addViewSafe: fail")
+        }
+    }
+
+    @JvmStatic
+    fun addViewSafe(viewGroup: ViewGroup, view: View) {
+        if (view.parent == null)
+            viewGroup.addView(view)
+        else if (view.parent===viewGroup){
+            UtilKLogWrapper.e(TAG, "addViewSafe: view.parent===viewGroup")
+        } else if (view.parent is ViewGroup) {
+            (view.parent as ViewGroup).removeView(view)
+            viewGroup.addView(view)
         } else {
             UtilKLogWrapper.e(TAG, "addViewSafe: fail")
         }

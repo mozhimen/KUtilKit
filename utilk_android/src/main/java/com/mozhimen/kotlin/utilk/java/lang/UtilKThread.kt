@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.mozhimen.kotlin.elemk.commons.ISuspendExt_Listener
 import com.mozhimen.kotlin.elemk.commons.ISuspend_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
+import com.mozhimen.kotlin.utilk.android.os.UtilKHandlerWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKLooper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,22 +22,22 @@ import kotlinx.coroutines.withContext
  */
 object UtilKThread {
     @JvmStatic
-    fun get_ofCur(): Thread =
+    fun get_ofCurrent(): Thread =
         Thread.currentThread()
 
     @JvmStatic
-    fun get_ofMain(): Thread =
+    fun get_ofMainLooper(): Thread =
         UtilKLooper.getThread_ofMain()
 
     /////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getName_ofCur(): String =
-        get_ofCur().name
+    fun getName_ofCurrent(): String =
+        get_ofCurrent().name
 
     @JvmStatic
-    fun getStackTrace_ofCur(): Array<StackTraceElement> =
-        get_ofCur().stackTrace
+    fun getStackTrace_ofCurrent(): Array<StackTraceElement> =
+        get_ofCurrent().stackTrace
 
     /////////////////////////////////////////////////////////
 
@@ -45,9 +46,20 @@ object UtilKThread {
      */
     @JvmStatic
     fun isMainThread(): Boolean =
-        get_ofMain() == get_ofCur()
+        get_ofMainLooper() == get_ofCurrent()
 
     ////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun runOnMainThread(block: I_Listener) {
+        if (isMainThread()) {
+            block.invoke()
+        } else {
+            UtilKHandlerWrapper.post {
+                block.invoke()
+            }
+        }
+    }
 
     @JvmStatic
     fun runOnMainThread(lifecycleOwner: LifecycleOwner, block: ISuspendExt_Listener<CoroutineScope>) {
@@ -67,7 +79,7 @@ object UtilKThread {
 
 
     @JvmStatic
-    suspend fun runOnMainThread(block: ISuspend_Listener) {
+    suspend fun runOnMainThread_ofSuspend(block: ISuspend_Listener) {
         if (isMainThread())
             block.invoke()
         else
@@ -75,7 +87,7 @@ object UtilKThread {
     }
 
     @JvmStatic
-    suspend fun runOnBackThread(block: ISuspend_Listener) {
+    suspend fun runOnBackThread_ofSuspend(block: ISuspend_Listener) {
         if (isMainThread())
             withContext(Dispatchers.IO) { block.invoke() }
         else

@@ -15,13 +15,13 @@ import kotlin.math.abs
 object UtilKContentViewWrapper {
 
     @JvmStatic
-    fun getInvisibleHeight_ofPac(activity: Activity): Int =
-        getInvisibleHeight_ofPac(UtilKWindow.get(activity))
+    fun getInvisibleHeight(activity: Activity): Int =
+        getInvisibleHeight(UtilKWindow.get(activity))
 
     @JvmStatic
-    fun getInvisibleHeight_ofPac(window: Window): Int {
-        val contentView = UtilKContentView.get_ofPac<View>(window)
-        val outRect = UtilKContentView.getWindowVisibleDisplayFrame_ofPac(window)
+    fun getInvisibleHeight(window: Window): Int {
+        val contentView = UtilKContentView.get<View>(window)
+        val outRect = UtilKContentView.getWindowVisibleDisplayFrame(window)
         val delta = abs(contentView.bottom - outRect.bottom)
         return if (delta <= UtilKStatusBar.getHeight() + UtilKNavigationBar.getHeight()) 0
         else delta
@@ -32,14 +32,6 @@ object UtilKContentViewWrapper {
      * 注: 在Activity的回调方法onWindowFocusChanged()执行后,才能得到预期结果
      */
     @JvmStatic
-    fun getViewDrawHeight_ofWin(activity: Activity): Int =
-        UtilKContentView.getTop_ofWin(activity)
-
-    /**
-     * 获取View绘制区域TOP高度
-     * 注: 在Activity的回调方法onWindowFocusChanged()执行后,才能得到预期结果
-     */
-    @JvmStatic
-    fun getViewDrawHeight_ofPac(activity: Activity): Int =
-        UtilKContentView.getTop_ofPac(activity)
+    fun getViewDrawHeight(activity: Activity): Int =
+        UtilKContentView.getTop(activity)
 }

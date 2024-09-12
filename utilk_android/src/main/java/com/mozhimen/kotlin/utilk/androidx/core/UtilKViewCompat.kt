@@ -16,6 +16,12 @@ import com.mozhimen.kotlin.utilk.android.view.UtilKView
  */
 object UtilKViewCompat {
     @JvmStatic
+    fun isAttachedToWindow(view: View): Boolean =
+        ViewCompat.isAttachedToWindow(view)
+
+    ////////////////////////////////////////////////////////////
+
+    @JvmStatic
     fun applyBackground(view: View, background: Drawable) {
         ViewCompat.setBackground(view, background)
     }

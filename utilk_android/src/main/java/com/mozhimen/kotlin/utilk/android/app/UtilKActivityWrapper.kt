@@ -79,14 +79,11 @@ fun Activity.showAlertDialog(strMsg: String, strLabel: String, block: I_Listener
 
 object UtilKActivityWrapper : IUtilK {
     @JvmStatic
-    @OApiUse_BaseApplication
     fun get_ofContext(context: Context): Activity? =
         get_ofContext(context, true).also { UtilKLogWrapper.d(TAG, "get_ofContext: $it") }
 
     //判断context是否是Activity 这里注意一定要再Application中加入StackK并初始化
     @JvmStatic
-    @OApiUse_BaseApplication
-    @OptIn(OApiInit_InApplication::class)
     fun get_ofContext(context: Context, returnTopIfNull: Boolean): Activity? {
         var tempContext = context
         if (tempContext is Activity) return tempContext
@@ -117,7 +114,6 @@ object UtilKActivityWrapper : IUtilK {
     //寻找Activity从Obj
     @JvmStatic
     @OApiUse_BaseApplication
-    @OptIn(OApiInit_InApplication::class)
     fun get_ofObj(obj: Any, returnTopIfNull: Boolean): Activity? {
         var activity: Activity? = null
         when (obj) {
@@ -172,7 +168,7 @@ object UtilKActivityWrapper : IUtilK {
 
     @JvmStatic
     fun <V : View> getContentView(activity: Activity): V =
-        UtilKContentView.get_ofPac(activity)
+        UtilKContentView.get(activity)
 
     @JvmStatic
     fun <V : View> getDecorView(activity: Activity): V =
@@ -218,7 +214,6 @@ object UtilKActivityWrapper : IUtilK {
 
     //判断Activity是否被销毁
     @JvmStatic
-    @OApiUse_BaseApplication
     fun isFinishingOrDestroyed(context: Context): Boolean {
         val activity: Activity? = get_ofContext(context)
         return (if (activity != null) isFinishingOrDestroyed(activity) else true).also { UtilKLogWrapper.d(TAG, "isFinishingOrDestroyed: $it") }

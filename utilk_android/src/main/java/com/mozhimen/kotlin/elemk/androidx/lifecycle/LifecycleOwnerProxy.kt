@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.elemk.androidx.lifecycle
 
+import androidx.annotation.CallSuper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -21,7 +22,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Version 1.0
  */
 @OApiInit_ByLazy
-class LifecycleOwnerProxy : LifecycleOwner, IUtilK {
+open class LifecycleOwnerProxy : LifecycleOwner, IUtilK {
     private var _lifecycleRegistry: LifecycleRegistry? = null
     protected val lifecycleRegistry: LifecycleRegistry
         get() = _lifecycleRegistry ?: LifecycleRegistry(this).also {
@@ -30,32 +31,38 @@ class LifecycleOwnerProxy : LifecycleOwner, IUtilK {
 
     ///////////////////////////////////////////////////////////////////////
 
-    fun onCreate(name: String) {
+    @CallSuper
+    open fun onCreate(name: String) {
         UtilKLogWrapper.v(TAG, "onCreate:  $name")
         lifecycleRegistry.handleLifecycleEventOnCreate()
     }
 
-    fun onStart(name: String) {
+    @CallSuper
+    open fun onStart(name: String) {
         UtilKLogWrapper.v(TAG, "onStart:   $name")
         lifecycleRegistry.handleLifecycleEventOnStart()
     }
 
-    fun onResume(name: String) {
+    @CallSuper
+    open fun onResume(name: String) {
         UtilKLogWrapper.v(TAG, "onResume:  $name")
         lifecycleRegistry.handleLifecycleEventOnResume()
     }
 
-    fun onPause(name: String) {
+    @CallSuper
+    open fun onPause(name: String) {
         UtilKLogWrapper.v(TAG, "onPause:   $name")
         lifecycleRegistry.handleLifecycleEventOnPause()
     }
 
-    fun onStop(name: String) {
+    @CallSuper
+    open fun onStop(name: String) {
         UtilKLogWrapper.v(TAG, "onStop:    $name")
         lifecycleRegistry.handleLifecycleEventOnStop()
     }
 
-    fun onDestroy(name: String) {
+    @CallSuper
+    open fun onDestroy(name: String) {
         UtilKLogWrapper.v(TAG, "onDestroy: $name")
         lifecycleRegistry.handleLifecycleEventOnDestroy()
     }
