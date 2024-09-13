@@ -23,6 +23,10 @@ class SavedStateRegistryOwnerProxy : SavedStateRegistryOwner, LifecycleOwnerProx
     override val savedStateRegistry: SavedStateRegistry
         get() = savedStateRegistryController.savedStateRegistry
 
+    init {
+        savedStateRegistryController.performAttach()
+    }
+
     override fun onCreate(name: String) {
         savedStateRegistryController.performRestore(null)
         super.onCreate(name)
