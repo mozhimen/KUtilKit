@@ -24,10 +24,12 @@ import kotlin.jvm.Throws
  * @Date 2022/2/27 16:35
  * @Version 1.0
  */
+@Throws(ActivityNotFoundException::class)
 fun Context.startContext_throw(intent: Intent) {
     UtilKContextStart.startContext_throw(this, intent)
 }
 
+@Throws(ActivityNotFoundException::class)
 fun Context.startContext_throw(intent: Intent, options: Bundle?) {
     UtilKContextStart.startContext_throw(this, intent, options)
 }
@@ -94,7 +96,6 @@ fun Context.startContext_ofPackageName(strPackageName: String, strActivityName: 
     UtilKContextStart.startContext_ofPackageName(this, strPackageName, strActivityName)
 
 /////////////////////////////////////////////////////////////////////////////////
-
 object UtilKContextStart : BaseUtilK() {
     @JvmStatic
     @Throws(ActivityNotFoundException::class)
@@ -210,6 +211,23 @@ object UtilKContextStart : BaseUtilK() {
     }
 
     @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
+    @Throws(ActivityNotFoundException::class)
+    fun startContext_ofPackageName_throw(context: Context, strPackageName: String): Boolean {
+        val intent = UtilKIntentWrapper.getMainLauncher_ofComponent(context, strPackageName) ?: return false
+        return context.startContext(intent)
+    }
+
+
+    @JvmStatic
     fun startContext_ofPackageName(context: Context, strPackageName: String, strActivityName: String): Boolean =
         context.startContext(UtilKIntentWrapper.getComponent(strPackageName, strActivityName))
+
+    @JvmStatic
+    @Throws(ActivityNotFoundException::class)
+    fun startContext_ofPackageName_throw(context: Context, strPackageName: String, strActivityName: String) {
+        context.startContext_throw(UtilKIntentWrapper.getComponent(strPackageName, strActivityName))
+    }
 }
+

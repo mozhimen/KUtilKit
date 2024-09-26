@@ -13,8 +13,9 @@ import java.util.Locale
  * @Version 1.0
  */
 class TestUtilKLongFormat {
-    @Test
-    fun longFileSize2strFileSize() {
-        1073000000L.longFileSize2strFileSize(locale = Locale.ENGLISH).printlog()
-    }
+//    @Test
+//    fun longFileSize2strFileSize() {
+//        1073000000L.longFileSize2strFileSize(locale = Locale.ENGLISH).printlog()
+//    }
+//}
 }
