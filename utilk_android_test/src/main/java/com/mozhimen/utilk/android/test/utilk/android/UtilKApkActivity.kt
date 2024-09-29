@@ -2,7 +2,7 @@ package com.mozhimen.utilk.android.test.utilk.android
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.wrapper.UtilKApk
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile

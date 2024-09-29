@@ -1,7 +1,7 @@
 package com.mozhimen.utilk.android.test.utilk.android
 
 import android.view.View
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.view.UtilKView
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkAndroidBinding

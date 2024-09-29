@@ -7,7 +7,7 @@ import com.mozhimen.kotlin.utilk.java.io.UtilKFileFormat
 import com.mozhimen.kotlin.utilk.java.io.isFileExist
 import com.mozhimen.kotlin.utilk.java.util.UtilKDateWrapper
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkMd5Binding
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File

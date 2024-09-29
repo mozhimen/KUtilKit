@@ -8,7 +8,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContextDir
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.i
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkContextDirBinding
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
 
 /**
  * @ClassName UtilKContextDirActivity

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.mozhimen.kotlin.utilk.android.widget.showToast
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseBarActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseBarActivityVDB
 import com.mozhimen.utilk.android.test.R
 import com.mozhimen.utilk.android.test.databinding.ActivityElemkBarBinding
 

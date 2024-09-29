@@ -1,7 +1,7 @@
 package com.mozhimen.utilk.android.test.utilk.android
 
 import android.view.View
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkLaunchActivityBinding

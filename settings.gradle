@@ -28,7 +28,7 @@ include ':utilk_android_test'
 include ":SwiftKit"
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
-include ':SwiftKit:mvvmk'
+include ':SwiftKit:bindk'
 include ':SwiftKit:xmlk'
 //ATaskKit
 include ":ATaskKit"

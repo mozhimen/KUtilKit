@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
-import com.mozhimen.mvvmk.bases.activity.databinding.BaseActivityVDBVM
+import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDBVM
 import com.mozhimen.utilk.android.test.databinding.ActivityElemkLifecycleBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
