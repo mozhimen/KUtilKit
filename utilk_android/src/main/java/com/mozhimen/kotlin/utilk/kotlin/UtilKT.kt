@@ -17,9 +17,24 @@ inline fun <T> T?.filterNullable(predicate: IA_BListener<T, Boolean>): T? =
 fun <T> T.t2weakRef(): WeakReference<T> =
     UtilKT.t2weakRef(this)
 
+inline fun <T, R> T.applyTry(block: IA_BListener<T,R>) {
+    UtilKT.applyTry(this,block)
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 object UtilKT {
+
+    @JvmStatic
+    inline fun <T, R> applyTry(obj:T,block: IA_BListener<T,R>) {
+        try {
+            block(obj)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        }
+    }
+
+    ////////////////////////////////////////////////////
 
     //泛型是否为空
     @JvmStatic

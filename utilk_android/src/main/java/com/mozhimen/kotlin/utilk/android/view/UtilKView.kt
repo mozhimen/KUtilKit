@@ -16,7 +16,7 @@ import com.mozhimen.kotlin.elemk.cons.CPackage
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectKotlin
+import com.mozhimen.kotlin.utilk.java.lang.UtilKClass
 
 
 /**
@@ -274,7 +274,7 @@ object UtilKView : BaseUtilK() {
             val width = view.layoutParams?.width ?: 0
             val height = view.layoutParams?.height ?: 0
             val lp = ViewGroup.LayoutParams(width, height)
-            UtilKReflectKotlin.newInstance<T>(lp).apply(block)
+            UtilKClass.newInstance<T>(lp).apply(block)
         }
     }
 

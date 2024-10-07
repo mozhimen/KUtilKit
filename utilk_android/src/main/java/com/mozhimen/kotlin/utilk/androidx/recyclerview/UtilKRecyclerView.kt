@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
@@ -96,9 +97,10 @@ object UtilKRecyclerView : IUtilK {
     fun getFirstVisibleItemPosition(layoutManager: LayoutManager): Int {
         when (layoutManager) {
             //layoutManager is GridLayoutManager
-            is LinearLayoutManager -> return layoutManager.findFirstVisibleItemPosition()
-            is StaggeredGridLayoutManager -> return layoutManager.findFirstVisibleItemPositions(null)[0]
+            is LinearLayoutManager -> return layoutManager.findFirstVisibleItemPosition().also { UtilKLogWrapper.d(TAG, "getFirstVisibleItemPosition: LinearLayoutManager $it") }
+            is StaggeredGridLayoutManager -> return layoutManager.findFirstVisibleItemPositions(null)[0].also { UtilKLogWrapper.d(TAG, "getFirstVisibleItemPosition: StaggeredGridLayoutManager $it") }
         }
+        UtilKLogWrapper.w(TAG, "getFirstVisibleItemPosition: layoutManager $layoutManager")
         return -1
     }
 

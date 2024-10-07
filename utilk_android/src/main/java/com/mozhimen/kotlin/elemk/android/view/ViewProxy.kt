@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -28,8 +27,8 @@ import java.lang.ref.WeakReference
 @Suppress("UNCHECKED_CAST")
 class ViewProxy<T>(private val _viewRef: WeakReference<View>) {
 
-    fun setText(@IdRes intResId: Int, value: CharSequence?): T {
-        _viewRef.get()?.findViewById<TextView>(intResId)?.text = value
+    fun setText(@IdRes intResId: Int, text: CharSequence?): T {
+        _viewRef.get()?.findViewById<TextView>(intResId)?.text = text
         return this as T
     }
 
@@ -73,6 +72,12 @@ class ViewProxy<T>(private val _viewRef: WeakReference<View>) {
         return this as T
     }
 
+    //设置可见
+    fun setVisibility(@IdRes intResId: Int, visible: Int): T {
+        _viewRef.get()?.findViewById<View>(intResId)?.visibility = visible
+        return this as T
+    }
+
     fun setVisibility(@IdRes intResId: Int, isVisible: Boolean): T {
         _viewRef.get()?.findViewById<View>(intResId)?.applyVisibleIfElseInVisible(isVisible)
         return this as T
@@ -80,6 +85,18 @@ class ViewProxy<T>(private val _viewRef: WeakReference<View>) {
 
     fun isEnabled(@IdRes intResId: Int, isEnabled: Boolean): T {
         _viewRef.get()?.findViewById<View>(intResId)?.isEnabled = isEnabled
+        return this as T
+    }
+
+    //设置标签
+    fun setTag(@IdRes intResId: Int, obj: Any): T {
+        _viewRef.get()?.findViewById<View>(intResId)?.tag = obj
+        return this as T
+    } //其他方法可自行扩展
+
+    //设置点击监听
+    fun setOnClickListener(@IdRes intResId: Int, listener: View.OnClickListener): T {
+        _viewRef.get()?.findViewById<View>(intResId)?.setOnClickListener(listener)
         return this as T
     }
 }

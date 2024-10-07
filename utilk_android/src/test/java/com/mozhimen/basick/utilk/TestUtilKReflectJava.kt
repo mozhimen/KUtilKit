@@ -1,6 +1,6 @@
 package com.mozhimen.basick.utilk
 
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectJava
+import com.mozhimen.kotlin.utilk.java.lang.UtilKField
 import com.mozhimen.kotlin.utilk.kotlin.printlog
 import org.junit.Test
 
@@ -15,7 +15,7 @@ class TestUtilKReflectJava {
     @Test
     fun test() {
         val reflectTest = ReflectTest()
-        UtilKReflectJava.getField_ofInt(reflectTest,"field").printlog()
+        UtilKField.getInt(reflectTest,"field").printlog()
     }
 
     class ReflectTest {

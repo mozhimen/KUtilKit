@@ -15,7 +15,7 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKActivity
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.android.util.e
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectJava
+import com.mozhimen.kotlin.utilk.java.lang.UtilKField
 import java.lang.reflect.Field
 
 /**
@@ -200,22 +200,22 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
     fun fixInputLeak_after29(context: Context, tag: String) {
         val inputMethodManager = UtilKInputMethodManager.get(context)
         try {
-            val fieldMCurRootView = UtilKReflectJava.getField(inputMethodManager, "mCurRootView")
+            val fieldMCurRootView = UtilKField.get(inputMethodManager, "mCurRootView")
             if (!fieldMCurRootView.isAccessible)
                 fieldMCurRootView.isAccessible = true
             val mCurRootView = fieldMCurRootView.get(inputMethodManager)
             if (mCurRootView != null) {
-                val fieldMImeFocusController = UtilKReflectJava.getField(mCurRootView, "mImeFocusController")
+                val fieldMImeFocusController = UtilKField.get(mCurRootView, "mImeFocusController")
                 if (!fieldMImeFocusController.isAccessible)
                     fieldMImeFocusController.isAccessible = true
                 val mImeFocusController = fieldMImeFocusController.get(mCurRootView)
                 if (mImeFocusController != null) {
-                    val fieldMNextServedView = UtilKReflectJava.getField(mImeFocusController, "mNextServedView")
+                    val fieldMNextServedView = UtilKField.get(mImeFocusController, "mNextServedView")
                     if (!fieldMNextServedView.isAccessible)
                         fieldMNextServedView.isAccessible = true
                     val mNextServedView = fieldMNextServedView.get(mImeFocusController)
                     if (mNextServedView != null) {
-                        val fieldMParent = UtilKReflectJava.getField(mNextServedView, "mParent")
+                        val fieldMParent = UtilKField.get(mNextServedView, "mParent")
                         if (!fieldMParent.isAccessible)
                             fieldMParent.isAccessible = true
                         val mParent = fieldMParent.get(mNextServedView)
@@ -249,7 +249,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
         var view: Any?
         for (leakView in leakViews) {
             try {
-                fieldLeakView = UtilKReflectJava.getField(inputMethodManager, leakView)
+                fieldLeakView = UtilKField.get(inputMethodManager, leakView)
                 if (!fieldLeakView.isAccessible)
                     fieldLeakView.isAccessible = true
                 view = fieldLeakView.get(inputMethodManager)

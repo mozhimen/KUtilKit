@@ -1,6 +1,5 @@
 package com.mozhimen.basick.utilk
 
-import com.mozhimen.kotlin.utilk.java.lang.UtilKReflectGenericKotlin
 import com.mozhimen.kotlin.utilk.kotlin.printlog
 import org.junit.Test
 
