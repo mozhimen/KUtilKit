@@ -3,7 +3,7 @@ package com.mozhimen.utilk.android.test.utilk.kotlin
 import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.i
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
-import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkStrPathBinding
 
 class UtilKStrPathActivity : BaseActivityVDB<ActivityUtilkStrPathBinding>() {

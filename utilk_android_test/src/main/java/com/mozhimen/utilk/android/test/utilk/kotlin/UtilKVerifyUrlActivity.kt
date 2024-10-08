@@ -1,7 +1,7 @@
 package com.mozhimen.utilk.android.test.utilk.kotlin
 
 import android.os.Bundle
-import com.mozhimen.bindk.bases.activity.databinding.BaseActivityVDB
+import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
 import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexMatch
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkVerifyUrlBinding
