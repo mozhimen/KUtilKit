@@ -35,23 +35,23 @@ fun String.isAssetExists(): Boolean =
 fun String.strAssetName2strFilePathName(strFilePathNameDest: String): String =
     UtilKStrAsset.strAssetName2strFilePathName(this, strFilePathNameDest)
 
-fun String.strAssetName2bytes(): ByteArray =
-    UtilKStrAsset.strAssetName2bytes(this)
+fun String.strAssetName2bytes_use(): ByteArray =
+    UtilKStrAsset.strAssetName2bytes_use(this)
 
 fun String.strAssetName2str_use_ofBufferedReader(): String? =
     UtilKStrAsset.strAssetName2str_use_ofBufferedReader(this)
 
-fun String.strAssetName2str_ofBytes(): String? =
-    UtilKStrAsset.strAssetName2str_ofBytes(this)
+fun String.strAssetName2str_use_ofBytes(): String? =
+    UtilKStrAsset.strAssetName2str_use_ofBytes(this)
 
-fun String.strAssetName2str_ofStream(): String? =
-    UtilKStrAsset.strAssetName2str_ofStream(this)
+fun String.strAssetName2str_use_ofStream(): String? =
+    UtilKStrAsset.strAssetName2str_use_ofStream(this)
 
-fun String.strAssetName2file(strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
-    UtilKStrAsset.strAssetName2file(this, strFilePathNameDest, isAppend, bufferSize, block)
+fun String.strAssetName2file_use(strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
+    UtilKStrAsset.strAssetName2file_use(this, strFilePathNameDest, isAppend, bufferSize, block)
 
-fun String.strAssetName2bitmap(): Bitmap? =
-    UtilKStrAsset.strAssetName2bitmap(this)
+fun String.strAssetName2bitmap_use(): Bitmap? =
+    UtilKStrAsset.strAssetName2bitmap_use(this)
 
 ///////////////////////////////////////////////////////////////////
 
@@ -94,7 +94,7 @@ object UtilKStrAsset : BaseUtilK() {
         else strFilePathNameDest
 
     @JvmStatic
-    fun strAssetName2bytes(strAssetName: String): ByteArray =
+    fun strAssetName2bytes_use(strAssetName: String): ByteArray =
         UtilKAssetManager.open(_context, strAssetName).inputStream2bytes_use()
 
     /**
@@ -109,15 +109,15 @@ object UtilKStrAsset : BaseUtilK() {
      * 获取文本文件内容: txt 最快的方法
      */
     @JvmStatic
-    fun strAssetName2str_ofBytes(strAssetName: String): String? =
+    fun strAssetName2str_use_ofBytes(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
-        else strAssetName2bytes(strAssetName).bytes2str()
+        else strAssetName2bytes_use(strAssetName).bytes2str()
 
     /**
      * 通过路径加载Assets中的文本内容
      */
     @JvmStatic
-    fun strAssetName2str_ofStream(strAssetName: String): String? =
+    fun strAssetName2str_use_ofStream(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
         else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_ofBytes()
 
@@ -125,7 +125,7 @@ object UtilKStrAsset : BaseUtilK() {
      * 从资产拷贝到文件
      */
     @JvmStatic
-    fun strAssetName2file(strAssetName: String, strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
+    fun strAssetName2file_use(strAssetName: String, strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
         if (!isAssetExists(strAssetName)) {
             UtilKLogWrapper.d(TAG, "strAssetName2file: dont exist")
             null
@@ -133,7 +133,7 @@ object UtilKStrAsset : BaseUtilK() {
         else UtilKAssetManager.open(_context, strAssetName).inputStream2file_use(strAssetName.strAssetName2strFilePathName(strFilePathNameDest), isAppend, bufferSize, block)
 
     @JvmStatic
-    fun strAssetName2bitmap(strAssetName: String): Bitmap? =
+    fun strAssetName2bitmap_use(strAssetName: String): Bitmap? =
         if (!isAssetExists(strAssetName)) null
         else UtilKAssetManager.open(_context, strAssetName).inputStream2bitmapAny_use()
 }
