@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import com.mozhimen.basick.helpers.DragAndDropProxy
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.bindk.bases.fragment.databinding.BaseFragmentVDB
+import com.mozhimen.bindk.bases.viewdatabinding.fragment.BaseFragmentVDB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.utilk.android.test.databinding.FragmentElemkGestureBinding

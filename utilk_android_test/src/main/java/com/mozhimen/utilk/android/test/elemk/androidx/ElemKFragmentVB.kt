@@ -2,7 +2,7 @@ package com.mozhimen.utilk.android.test.elemk.androidx
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
-import com.mozhimen.bindk.bases.fragment.databinding.BaseFragmentVDB
+import com.mozhimen.bindk.bases.viewdatabinding.fragment.BaseFragmentVDB
 import com.mozhimen.utilk.android.test.databinding.FragmentElemkFragmentVbBinding
 
 class ElemKFragmentVB : BaseFragmentVDB<FragmentElemkFragmentVbBinding>() {

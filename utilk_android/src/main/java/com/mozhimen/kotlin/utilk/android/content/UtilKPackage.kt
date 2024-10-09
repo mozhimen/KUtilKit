@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.android.content
 
+import android.content.Context
 import android.content.pm.PackageInfo
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
@@ -102,8 +103,8 @@ object UtilKPackage : BaseUtilK() {
      * 系统的下载组件是否可用
      */
     @JvmStatic
-    fun isDownloadComponentEnabled(): Boolean =
-        UtilKPackageManagerWrapper.isDownloadComponentEnabled(_context)
+    fun isDownloadComponentEnabled(context:Context = _context): Boolean =
+        UtilKPackageManagerWrapper.isDownloadComponentEnabled(context)
 
     //////////////////////////////////////////////////////////////////////////////////
 
