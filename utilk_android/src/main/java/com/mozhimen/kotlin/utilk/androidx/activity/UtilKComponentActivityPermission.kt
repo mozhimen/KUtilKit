@@ -21,7 +21,7 @@ object UtilKComponentActivityPermission {
 
     @JvmStatic
     fun launch_ofPOST_NOTIFICATIONS(activityResultLauncher: ActivityResultLauncher<String>) {
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU())
+        if (UtilKBuildVersion.isAfterV_33_13_T())
             activityResultLauncher.launch(CPermission.POST_NOTIFICATIONS)
     }
 }

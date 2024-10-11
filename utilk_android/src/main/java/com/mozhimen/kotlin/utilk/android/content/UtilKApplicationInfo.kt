@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.android.content
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -90,9 +91,18 @@ object UtilKApplicationInfo : IUtilK {
     fun getLabelRes(context: Context): Int =
         get(context).labelRes
 
+    @SuppressLint("ResourceType")
     @JvmStatic
-    fun getLabelResStr(context: Context): String =
-        getLabelRes(context).let { UtilKRes.getString_ofContext(context, it) }
+    fun getLabelResStr(context: Context): String {
+        try {
+            val intResStr:Int = getLabelRes(context)
+            if (intResStr == 0) return ""
+            return UtilKRes.getString_ofContext(context, intResStr)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ""
+        }
+    }
 
     @JvmStatic
     fun getIcon(context: Context): Int =
@@ -155,3 +165,4 @@ object UtilKApplicationInfo : IUtilK {
         }
     }
 }
+

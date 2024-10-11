@@ -20,7 +20,7 @@ class UtilKStrPathActivity : BaseActivityVDB<ActivityUtilkStrPathBinding>() {
         UtilKStrPath.Absolute.Internal.getDex2opt().i()///data/user/0/com.mozhimen.basicktest/app_dex2opt
 
         UtilKStrPath.Absolute.External.getCache()?.i()///storage/emulated/0/Android/data/com.mozhimen.basicktest/cache
-        UtilKStrPath.Absolute.External.getFiles().i()///storage/emulated/0/Android/data/com.mozhimen.basicktest/files
+        UtilKStrPath.Absolute.External.getFiles()?.i()///storage/emulated/0/Android/data/com.mozhimen.basicktest/files
         UtilKStrPath.Absolute.External.getEnvStorage().i()///storage/emulated/0
         UtilKStrPath.Absolute.External.getEnvData().i()///data
         UtilKStrPath.Absolute.External.getEnvStoragePublicDCIM().i()///storage/emulated/0/DCIM

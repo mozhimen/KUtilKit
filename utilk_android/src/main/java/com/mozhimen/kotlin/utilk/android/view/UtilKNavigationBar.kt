@@ -2,12 +2,8 @@ package com.mozhimen.kotlin.utilk.android.view
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.view.View
-import android.view.ViewGroup
-import com.mozhimen.kotlin.elemk.android.view.cons.CGravity
 import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
@@ -16,9 +12,7 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import com.mozhimen.kotlin.utilk.android.content.UtilKResources
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import java.util.*
 
 /**
  * @ClassName UtilKNavBar
@@ -51,7 +45,7 @@ object UtilKNavigationBar : BaseUtilK() {
         val activity: Activity? = UtilKActivityWrapper.get_ofView(view)
         if (activity != null) {
             val usableHeight: Int = UtilKDisplay.getSizeY_ofDef(activity)
-            val realHeight: Int = if (UtilKBuildVersion.isAfterV_17_42_J1()) {
+            val realHeight: Int = if (UtilKBuildVersion.isAfterV_17_42_JBM1()) {
                 UtilKDisplay.getRealSizeY_ofDef(activity) // getRealMetrics is only available with API 17 and +
             } else {
                 try {

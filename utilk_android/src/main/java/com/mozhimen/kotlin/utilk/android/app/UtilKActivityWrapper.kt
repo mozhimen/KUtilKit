@@ -14,7 +14,6 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.view.cons.CWindow
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.OApiInit_InApplication
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntent
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
@@ -227,7 +226,7 @@ object UtilKActivityWrapper : IUtilK {
         // 这里为什么不用 Intent.resolveActivity(intent) != null 来判断呢？
         // 这是因为在 OPPO R7 Plus （Android 5.0）会出现误判，明明没有这个 Activity，却返回了 ComponentName 对象
         val packageManager = context.packageManager
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) {
+        if (UtilKBuildVersion.isAfterV_33_13_T()) {
             return packageManager.queryIntentActivities(intent, PackageManager.ResolveInfoFlags.of(PackageManager.MATCH_DEFAULT_ONLY.toLong())).isNotEmpty()
         }
         return packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isNotEmpty()

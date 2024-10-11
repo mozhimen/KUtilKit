@@ -1,6 +1,5 @@
 package com.mozhimen.kotlin.elemk.android.telephony
 
-import android.os.Build
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
@@ -13,7 +12,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
  * @Version 1.0
  */
 object CTelephonyManager {
-    @RequiresApi(CVersCode.V_25_71_N1)
+    @RequiresApi(CVersCode.V_25_71_NM1)
     const val NETWORK_TYPE_TD_SCDMA = TelephonyManager.NETWORK_TYPE_TD_SCDMA
     const val NETWORK_TYPE_EVDO_A = TelephonyManager.NETWORK_TYPE_EVDO_A
     const val NETWORK_TYPE_UMTS = TelephonyManager.NETWORK_TYPE_UMTS
@@ -26,10 +25,10 @@ object CTelephonyManager {
     const val NETWORK_TYPE_HSPAP = TelephonyManager.NETWORK_TYPE_HSPAP
     const val NETWORK_TYPE_LTE = TelephonyManager.NETWORK_TYPE_LTE
 
-    @RequiresApi(CVersCode.V_25_71_N1)
+    @RequiresApi(CVersCode.V_25_71_NM1)
     const val NETWORK_TYPE_IWLAN = TelephonyManager.NETWORK_TYPE_IWLAN
 
-    @RequiresApi(CVersCode.V_25_71_N1)
+    @RequiresApi(CVersCode.V_25_71_NM1)
     const val NETWORK_TYPE_GSM = TelephonyManager.NETWORK_TYPE_GSM
     const val NETWORK_TYPE_GPRS = TelephonyManager.NETWORK_TYPE_GPRS
     const val NETWORK_TYPE_CDMA = TelephonyManager.NETWORK_TYPE_CDMA

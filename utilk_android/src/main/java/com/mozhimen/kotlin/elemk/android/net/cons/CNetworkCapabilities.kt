@@ -1,7 +1,6 @@
 package com.mozhimen.kotlin.elemk.android.net.cons
 
 import android.net.NetworkCapabilities
-import android.os.Build
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 
@@ -26,7 +25,7 @@ object CNetworkCapabilities {
     const val TRANSPORT_ETHERNET = NetworkCapabilities.TRANSPORT_ETHERNET
 
     //表示此网络使用低功耗传输
-    @RequiresApi(CVersCode.V_27_81_O1)
+    @RequiresApi(CVersCode.V_27_81_OM1)
     const val TRANSPORT_LOWPAN = NetworkCapabilities.TRANSPORT_LOWPAN
 
     @RequiresApi(CVersCode.V_31_12_S)

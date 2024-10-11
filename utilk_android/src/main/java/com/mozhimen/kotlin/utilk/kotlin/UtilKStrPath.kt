@@ -74,8 +74,8 @@ object UtilKStrPath {
                 UtilKFileDir.External.getCache()?.absolutePath
 
             @JvmStatic
-            fun getFiles(): String =
-                UtilKFileDir.External.getFiles()!!.absolutePath
+            fun getFiles(): String? =
+                UtilKFileDir.External.getFiles()?.absolutePath
 
             @JvmStatic
             fun getEnvStorage(): String =

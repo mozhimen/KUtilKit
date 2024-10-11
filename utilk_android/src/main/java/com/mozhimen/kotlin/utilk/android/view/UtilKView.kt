@@ -206,7 +206,7 @@ object UtilKView : BaseUtilK() {
     //设置背景
     @JvmStatic
     fun applyBackground(view: View, background: Drawable?) {
-        if (UtilKBuildVersion.isAfterV_16_41_J())
+        if (UtilKBuildVersion.isAfterV_16_41_JB())
             view.background = background
         else
             view.setBackgroundDrawable(background)

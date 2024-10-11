@@ -21,7 +21,7 @@ class UtilKAppInstallActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val path = "${UtilKStrPath.Absolute.Internal.getCache()}/lelejoy.apk"
-        UtilKStrAsset.strAssetName2file("lelejoy.apk", path)
+        UtilKStrAsset.strAssetName2file_use("lelejoy.apk", path)
         if (path.isFileExist()) {
             UtilKAppInstall.install_ofSilence(path, InstallKReceiver::class.java)
         }

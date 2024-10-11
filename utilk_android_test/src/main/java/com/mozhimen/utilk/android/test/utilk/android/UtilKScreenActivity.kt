@@ -42,7 +42,7 @@ class UtilKScreenActivity : BaseActivityVDB<ActivityUtilkScreenBinding>() {
 
         UtilKLogWrapper.d(TAG, "initData: 获取屏幕方向")
         UtilKLogWrapper.d(TAG, "initData: isOrientationPortrait_ofSysConfig ${UtilKScreen.isOrientationPortrait_ofSysConfig()}")
-        UtilKLogWrapper.d(TAG, "initData: isOrientationPortrait_ofDefDisplay ${UtilKScreen.isOrientationPortrait_ofDefDisplay(this)}")
+        UtilKLogWrapper.d(TAG, "initData: isOrientationPortrait_ofDefDisplay ${UtilKScreen.isOrientationPortrait_ofDefDisplay(this)}")//不准确
         UtilKLogWrapper.d(TAG, "initData: isOrientationPortrait_ofSysMetrics ${UtilKScreen.isOrientationPortrait_ofSysMetrics()}")
     }
 }

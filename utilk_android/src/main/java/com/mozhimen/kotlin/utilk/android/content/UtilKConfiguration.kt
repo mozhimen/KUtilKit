@@ -134,7 +134,7 @@ object UtilKConfiguration {
 
     @JvmStatic
     fun setLocale(configuration: Configuration, locale: Locale) {
-        if (UtilKBuildVersion.isAfterV_17_42_J1()) {
+        if (UtilKBuildVersion.isAfterV_17_42_JBM1()) {
             configuration.setLocale(locale)
         } else {
             configuration.locale = locale

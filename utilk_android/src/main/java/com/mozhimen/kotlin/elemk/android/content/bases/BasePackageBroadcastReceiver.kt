@@ -40,7 +40,7 @@ android:exported="true">
  * @Version 1.0
  */
 @OApiTarget_AtV_25_71_N1
-@TargetApi(CVersCode.V_25_71_N1)
+@TargetApi(CVersCode.V_25_71_NM1)
 @OPermission_QUERY_ALL_PACKAGES
 open class BasePackageBroadcastReceiver : BaseBroadcastReceiver {
 

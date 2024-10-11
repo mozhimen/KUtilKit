@@ -71,4 +71,9 @@ object UtilKWindowManagerWrapper : IUtilK {
         }
         return emptyList()
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun addViewSafe
 }

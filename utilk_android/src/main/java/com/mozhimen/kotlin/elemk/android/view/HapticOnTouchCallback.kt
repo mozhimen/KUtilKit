@@ -20,7 +20,7 @@ class HapticOnTouchCallback : View.OnTouchListener {
             MotionEvent.ACTION_DOWN ->
                 v?.performHapticFeedback(CHapticFeedbackConstants.VIRTUAL_KEY)
             MotionEvent.ACTION_UP ->
-                if (UtilKBuildVersion.isAfterV_27_81_O1()) {
+                if (UtilKBuildVersion.isAfterV_27_81_OM1()) {
                     v?.performHapticFeedback(CHapticFeedbackConstants.VIRTUAL_KEY_RELEASE)
                 }
         }

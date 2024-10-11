@@ -67,7 +67,7 @@ object CWinMgr {
         const val TRANSLUCENT_NAVIGATION = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
         const val LOCAL_FOCUS_MODE = WindowManager.LayoutParams.FLAG_LOCAL_FOCUS_MODE
 
-        @RequiresApi(CVersCode.V_22_51_L1)
+        @RequiresApi(CVersCode.V_22_51_LM1)
         const val LAYOUT_ATTACHED_IN_DECOR = WindowManager.LayoutParams.FLAG_LAYOUT_ATTACHED_IN_DECOR
 
         /**

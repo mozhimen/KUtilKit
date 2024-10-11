@@ -25,20 +25,11 @@
             android:name=".utilk.android.UtilKContentViewActivity"
             android:exported="true"
             android:theme="@style/Theme.KUtilKit">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".utilk.android.UtilKDateFormatActivity"
@@ -167,7 +158,13 @@
             android:exported="false" />
         <activity
             android:name=".utilk.android.UtilKScreenActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".utilk.kotlin.UtilKVerifyUrlActivity"
             android:exported="false" />

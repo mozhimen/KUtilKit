@@ -54,7 +54,7 @@ object UtilKPermission : BaseUtilK() {
 
     @JvmStatic
     fun hasPostNotification(): Boolean =
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU())
+        if (UtilKBuildVersion.isAfterV_33_13_T())
             UtilKNotificationManagerCompat.areNotificationsEnabled().also { UtilKLogWrapper.d(TAG, "hasPostNotification: $it") }
         else true
 

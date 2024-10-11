@@ -73,7 +73,7 @@ object UtilKAny : IUtilK {
         if (obj is SparseIntArray && obj.size() == 0) {
             return true
         }
-        if (UtilKBuildVersion.isAfterV_18_43_J2()) {
+        if (UtilKBuildVersion.isAfterV_18_43_JBM2()) {
             if (obj is SparseLongArray && obj.size() == 0) {
                 return true
             }
@@ -81,7 +81,7 @@ object UtilKAny : IUtilK {
         if (obj is LongSparseArray<*> && obj.size() == 0) {
             return true
         }
-        if (UtilKBuildVersion.isAfterV_16_41_J()) {
+        if (UtilKBuildVersion.isAfterV_16_41_JB()) {
             if (obj is android.util.LongSparseArray<*> && obj.size() == 0) {
                 return true
             }

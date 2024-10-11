@@ -121,13 +121,13 @@ object UtilKDisplay {
     }
 
     @JvmStatic
-    @AUsableApi(CVersCode.V_17_42_J1)
+    @AUsableApi(CVersCode.V_17_42_JBM1)
     @Deprecated("Deprecated in V_17_42_J1")
     fun getRawWidth_ofDef(context: Context): Int =
         (Display::class.java.getMethod("getRawWidth").invoke(get_ofDef(context)) as Int)
 
     @JvmStatic
-    @AUsableApi(CVersCode.V_17_42_J1)
+    @AUsableApi(CVersCode.V_17_42_JBM1)
     @Deprecated("Deprecated in V_17_42_J1")
     fun getRawHeight_ofDef(context: Context): Int =
         (Display::class.java.getMethod("getRawHeight").invoke(get_ofDef(context)) as Int)

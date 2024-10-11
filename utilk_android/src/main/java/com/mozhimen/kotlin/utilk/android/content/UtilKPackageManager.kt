@@ -27,7 +27,6 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 
 
 /**
@@ -113,7 +112,7 @@ object UtilKPackageManager : IUtilK {
         get(context).getInstalledPackages(flags)
 
     @JvmStatic
-    @RequiresApi(CVersCode.V_33_13_TIRAMISU)
+    @RequiresApi(CVersCode.V_33_13_T)
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")
@@ -131,7 +130,7 @@ object UtilKPackageManager : IUtilK {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getInstalledPackages(context: Context): List<PackageInfo> {
         val flags = CPackageManager.GET_ACTIVITIES or CPackageManager.GET_SERVICES
-        val installedPackageInfos: List<PackageInfo> = if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU()) {
+        val installedPackageInfos: List<PackageInfo> = if (UtilKBuildVersion.isAfterV_33_13_T()) {
             getInstalledPackages(context, PackageInfoFlags.of(flags.toLong()))
         } else {
             getInstalledPackages(context, flags)

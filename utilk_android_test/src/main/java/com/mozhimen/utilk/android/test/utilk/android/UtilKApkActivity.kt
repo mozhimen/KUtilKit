@@ -24,7 +24,7 @@ class UtilKApkActivity : BaseActivityVDB<ActivityUtilkApkBinding>() {
         lifecycleScope.launch(Dispatchers.IO) {
             val strPathNameApk = UtilKStrPath.Absolute.Internal.getCache() + "/temp/${UtilKStrFile.getStrFileName_ofNow()}.apk"
             if (!strPathNameApk.isFileExist()) {
-                UtilKStrAsset.strAssetName2file("basicktest-debug.apk", strPathNameApk)
+                UtilKStrAsset.strAssetName2file_use("basicktest-debug.apk", strPathNameApk)
             }
             UtilKApk.printApkInfo(strPathNameApk)
         }

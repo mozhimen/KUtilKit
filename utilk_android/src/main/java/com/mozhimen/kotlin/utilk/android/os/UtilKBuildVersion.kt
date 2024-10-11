@@ -78,9 +78,9 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_6_201_E01)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_7_21_E1)
-    fun isAfterV_7_21_E1(): Boolean =
-        isAfterVersion(CVersCode.V_7_21_E1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_7_21_EM1)
+    fun isAfterV_7_21_EM1(): Boolean =
+        isAfterVersion(CVersCode.V_7_21_EM1)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_8_22_F)
@@ -93,9 +93,9 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_9_23_G)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_10_233_G1)
-    fun isAfterV_10_233_G1(): Boolean =
-        isAfterVersion(CVersCode.V_10_233_G1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_10_233_GM1)
+    fun isAfterV_10_233_GM1(): Boolean =
+        isAfterVersion(CVersCode.V_10_233_GM1)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_11_3_H)
@@ -103,39 +103,39 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_11_3_H)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_12_31_H1)
-    fun isAfterV_12_31_H1(): Boolean =
-        isAfterVersion(CVersCode.V_12_31_H1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_12_31_HM1)
+    fun isAfterV_12_31_HM1(): Boolean =
+        isAfterVersion(CVersCode.V_12_31_HM1)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_13_32_H2)
-    fun isAfterV_13_32_H2(): Boolean =
-        isAfterVersion(CVersCode.V_13_32_H2)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_13_32_HM2)
+    fun isAfterV_13_32_HM2(): Boolean =
+        isAfterVersion(CVersCode.V_13_32_HM2)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_14_4_I)
-    fun isAfterV_14_4_I(): Boolean =
-        isAfterVersion(CVersCode.V_14_4_I)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_14_4_ICS)
+    fun isAfterV_14_4_ICS(): Boolean =
+        isAfterVersion(CVersCode.V_14_4_ICS)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_15_403_I1)
-    fun isAfterV_15_403_I1(): Boolean =
-        isAfterVersion(CVersCode.V_15_403_I1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_15_403_ICS1)
+    fun isAfterV_15_403_ICS1(): Boolean =
+        isAfterVersion(CVersCode.V_15_403_ICS1)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_16_41_J)
-    fun isAfterV_16_41_J(): Boolean =
-        isAfterVersion(CVersCode.V_16_41_J)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_16_41_JB)
+    fun isAfterV_16_41_JB(): Boolean =
+        isAfterVersion(CVersCode.V_16_41_JB)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_17_42_J1)
-    fun isAfterV_17_42_J1(): Boolean =
-        isAfterVersion(CVersCode.V_17_42_J1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_17_42_JBM1)
+    fun isAfterV_17_42_JBM1(): Boolean =
+        isAfterVersion(CVersCode.V_17_42_JBM1)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_18_43_J2)
-    fun isAfterV_18_43_J2(): Boolean =
-        isAfterVersion(CVersCode.V_18_43_J2)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_18_43_JBM2)
+    fun isAfterV_18_43_JBM2(): Boolean =
+        isAfterVersion(CVersCode.V_18_43_JBM2)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_19_44_K)
@@ -153,9 +153,9 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_21_5_L)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_22_51_L1)
-    fun isAfterV_22_51_L1(): Boolean =
-        isAfterVersion(CVersCode.V_22_51_L1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_22_51_LM1)
+    fun isAfterV_22_51_LM1(): Boolean =
+        isAfterVersion(CVersCode.V_22_51_LM1)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_23_6_M)
@@ -168,9 +168,9 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_24_7_N)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_25_71_N1)
-    fun isAfterV_25_71_N1(): Boolean =
-        isAfterVersion(CVersCode.V_25_71_N1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_25_71_NM1)
+    fun isAfterV_25_71_NM1(): Boolean =
+        isAfterVersion(CVersCode.V_25_71_NM1)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_26_8_O)
@@ -178,9 +178,9 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_26_8_O)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_27_81_O1)
-    fun isAfterV_27_81_O1(): Boolean =
-        isAfterVersion(CVersCode.V_27_81_O1)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_27_81_OM1)
+    fun isAfterV_27_81_OM1(): Boolean =
+        isAfterVersion(CVersCode.V_27_81_OM1)
 
     @JvmStatic
     @ChecksSdkIntAtLeast(api = CVersCode.V_28_9_P)
@@ -203,14 +203,19 @@ object UtilKBuildVersion {
         isAfterVersion(CVersCode.V_31_12_S)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_32_12_S_V2)
-    fun isAfterV_32_12_S_V2(): Boolean =
-        isAfterVersion(CVersCode.V_32_12_S_V2)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_32_12_SV2)
+    fun isAfterV_32_12_SV2(): Boolean =
+        isAfterVersion(CVersCode.V_32_12_SV2)
 
     @JvmStatic
-    @ChecksSdkIntAtLeast(api = CVersCode.V_33_13_TIRAMISU)
-    fun isAfterV_33_13_TIRAMISU(): Boolean =
-        isAfterVersion(CVersCode.V_33_13_TIRAMISU)
+    @ChecksSdkIntAtLeast(api = CVersCode.V_33_13_T)
+    fun isAfterV_33_13_T(): Boolean =
+        isAfterVersion(CVersCode.V_33_13_T)
+
+    @JvmStatic
+    @ChecksSdkIntAtLeast(api = CVersCode.V_34_14_UDC)
+    fun isAfterV_34_14_UDC(): Boolean =
+        isAfterVersion(CVersCode.V_34_14_UDC)
 
     ///////////////////////////////////////////////////////////////////////
 
@@ -239,8 +244,8 @@ object UtilKBuildVersion {
         isBeforeVersion(CVersCode.V_6_201_E01)
 
     @JvmStatic
-    fun isBeforeV_7_21_E1(): Boolean =
-        isBeforeVersion(CVersCode.V_7_21_E1)
+    fun isBeforeV_7_21_EM1(): Boolean =
+        isBeforeVersion(CVersCode.V_7_21_EM1)
 
     @JvmStatic
     fun isBeforeV_8_22_F(): Boolean =
@@ -251,40 +256,40 @@ object UtilKBuildVersion {
         isBeforeVersion(CVersCode.V_9_23_G)
 
     @JvmStatic
-    fun isBeforeV_10_233_G1(): Boolean =
-        isBeforeVersion(CVersCode.V_10_233_G1)
+    fun isBeforeV_10_233_GM1(): Boolean =
+        isBeforeVersion(CVersCode.V_10_233_GM1)
 
     @JvmStatic
     fun isBeforeV_11_3_H(): Boolean =
         isBeforeVersion(CVersCode.V_11_3_H)
 
     @JvmStatic
-    fun isBeforeV_12_31_H1(): Boolean =
-        isBeforeVersion(CVersCode.V_12_31_H1)
+    fun isBeforeV_12_31_HM1(): Boolean =
+        isBeforeVersion(CVersCode.V_12_31_HM1)
 
     @JvmStatic
-    fun isBeforeV_13_32_H2(): Boolean =
-        isBeforeVersion(CVersCode.V_13_32_H2)
+    fun isBeforeV_13_32_HM2(): Boolean =
+        isBeforeVersion(CVersCode.V_13_32_HM2)
 
     @JvmStatic
-    fun isBeforeV_14_4_I(): Boolean =
-        isBeforeVersion(CVersCode.V_14_4_I)
+    fun isBeforeV_14_4_ICS(): Boolean =
+        isBeforeVersion(CVersCode.V_14_4_ICS)
 
     @JvmStatic
-    fun isBeforeV_15_403_I1(): Boolean =
-        isBeforeVersion(CVersCode.V_15_403_I1)
+    fun isBeforeV_15_403_ICS1(): Boolean =
+        isBeforeVersion(CVersCode.V_15_403_ICS1)
 
     @JvmStatic
-    fun isBeforeV_16_41_J(): Boolean =
-        isBeforeVersion(CVersCode.V_16_41_J)
+    fun isBeforeV_16_41_JB(): Boolean =
+        isBeforeVersion(CVersCode.V_16_41_JB)
 
     @JvmStatic
-    fun isBeforeV_17_42_J1(): Boolean =
-        isBeforeVersion(CVersCode.V_17_42_J1)
+    fun isBeforeV_17_42_JBM1(): Boolean =
+        isBeforeVersion(CVersCode.V_17_42_JBM1)
 
     @JvmStatic
-    fun isBeforeV_18_43_J2(): Boolean =
-        isBeforeVersion(CVersCode.V_18_43_J2)
+    fun isBeforeV_18_43_JBM2(): Boolean =
+        isBeforeVersion(CVersCode.V_18_43_JBM2)
 
     @JvmStatic
     fun isBeforeV_19_44_K(): Boolean =
@@ -299,8 +304,8 @@ object UtilKBuildVersion {
         isBeforeVersion(CVersCode.V_21_5_L)
 
     @JvmStatic
-    fun isBeforeV_22_51_L1(): Boolean =
-        isBeforeVersion(CVersCode.V_22_51_L1)
+    fun isBeforeV_22_51_LM1(): Boolean =
+        isBeforeVersion(CVersCode.V_22_51_LM1)
 
     @JvmStatic
     fun isBeforeV_23_6_M(): Boolean =
@@ -311,16 +316,16 @@ object UtilKBuildVersion {
         isBeforeVersion(CVersCode.V_24_7_N)
 
     @JvmStatic
-    fun isBeforeV_25_71_N1(): Boolean =
-        isBeforeVersion(CVersCode.V_25_71_N1)
+    fun isBeforeV_25_71_NM1(): Boolean =
+        isBeforeVersion(CVersCode.V_25_71_NM1)
 
     @JvmStatic
     fun isBeforeV_26_8_O(): Boolean =
         isBeforeVersion(CVersCode.V_26_8_O)
 
     @JvmStatic
-    fun isBeforeV_27_81_O1(): Boolean =
-        isBeforeVersion(CVersCode.V_27_81_O1)
+    fun isBeforeV_27_81_OM1(): Boolean =
+        isBeforeVersion(CVersCode.V_27_81_OM1)
 
     @JvmStatic
     fun isBeforeV_28_9_P(): Boolean =
@@ -339,11 +344,14 @@ object UtilKBuildVersion {
         isBeforeVersion(CVersCode.V_31_12_S)
 
     @JvmStatic
-    fun isBeforeV_32_12_S_V2(): Boolean =
-        isBeforeVersion(CVersCode.V_32_12_S_V2)
+    fun isBeforeV_32_12_SV2(): Boolean =
+        isBeforeVersion(CVersCode.V_32_12_SV2)
 
     @JvmStatic
-    fun isBeforeV_33_13_TIRAMISU(): Boolean =
-        isBeforeVersion(CVersCode.V_33_13_TIRAMISU)
+    fun isBeforeV_33_13_T(): Boolean =
+        isBeforeVersion(CVersCode.V_33_13_T)
 
+    @JvmStatic
+    fun isBeforeV_34_14_UDC(): Boolean =
+        isBeforeVersion(CVersCode.V_34_14_UDC)
 }

@@ -55,14 +55,14 @@ class UtilKAssetActivity : BaseActivityVDB<ActivityUtilkAssetBinding>() {
             val file2StrContent = UtilKStrAsset.strAssetName2str_use_ofBufferedReader("deviceInfo")
             addLog("file2Str1 deviceInfo $file2StrContent time ${System.currentTimeMillis() - file2StrTime}")
             val txt2StrTime = System.currentTimeMillis()
-            val txt2StrContent = UtilKStrAsset.strAssetName2str_ofStream("deviceInfo")
+            val txt2StrContent = UtilKStrAsset.strAssetName2str_use_ofStream("deviceInfo")
             addLog("file2Str2 deviceInfo $txt2StrContent time ${System.currentTimeMillis() - txt2StrTime}")
             val txt2Str2Time = System.currentTimeMillis()
-            val txt2Str2Content = UtilKStrAsset.strAssetName2str_ofBytes("deviceInfo")
+            val txt2Str2Content = UtilKStrAsset.strAssetName2str_use_ofBytes("deviceInfo")
             addLog("file2Str3 deviceInfo $txt2Str2Content time ${System.currentTimeMillis() - txt2Str2Time}")
             addLog("start copy file")
             val assetCopyFileTime = System.currentTimeMillis()
-            val assetCopyFile = UtilKStrAsset.strAssetName2file("deviceInfo", this@UtilKAssetActivity.cacheDir.absolutePath + "/utilk_asset/")
+            val assetCopyFile = UtilKStrAsset.strAssetName2file_use("deviceInfo", this@UtilKAssetActivity.cacheDir.absolutePath + "/utilk_asset/")
             addLog("assetCopyFile deviceInfo path ${assetCopyFile?.absolutePath} time ${System.currentTimeMillis() - assetCopyFileTime}")
         }
     }

@@ -71,7 +71,7 @@ object UtilKIntent : IUtilK {
 
     @JvmStatic
     fun getParcelableArrayListExtra(intent: Intent, name: String, clazz: Class<*>): ArrayList<*>? =
-        if (UtilKBuildVersion.isAfterV_33_13_TIRAMISU())
+        if (UtilKBuildVersion.isAfterV_33_13_T())
             intent.getParcelableArrayListExtra(name, clazz)
         else
             intent.getParcelableArrayListExtra<Parcelable>(name)

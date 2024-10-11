@@ -26,13 +26,13 @@ object CHapticFeedbackConstants {
     //用户已经在对象上执行了上下文点击
     @RequiresApi(CVersCode.V_23_6_M)
     const val CONTEXT_CLICK = HapticFeedbackConstants.CONTEXT_CLICK
-    @RequiresApi(CVersCode.V_27_81_O1)
+    @RequiresApi(CVersCode.V_27_81_OM1)
     const val KEYBOARD_PRESS = HapticFeedbackConstants.KEYBOARD_PRESS
-    @RequiresApi(CVersCode.V_27_81_O1)
+    @RequiresApi(CVersCode.V_27_81_OM1)
     const val KEYBOARD_RELEASE = HapticFeedbackConstants.KEYBOARD_RELEASE
-    @RequiresApi(CVersCode.V_27_81_O1)
+    @RequiresApi(CVersCode.V_27_81_OM1)
     const val VIRTUAL_KEY_RELEASE = HapticFeedbackConstants.VIRTUAL_KEY_RELEASE
-    @RequiresApi(CVersCode.V_27_81_O1)
+    @RequiresApi(CVersCode.V_27_81_OM1)
     const val TEXT_HANDLE_MOVE = HapticFeedbackConstants.TEXT_HANDLE_MOVE
 //    const val ENTRY_BUMP = HapticFeedbackConstants.ENTRY_BUMP
 //    const val DRAG_CROSSING = HapticFeedbackConstants.DRAG_CROSSING
