@@ -23,22 +23,22 @@ class UtilKScreenActivity : BaseActivityVDB<ActivityUtilkScreenBinding>() {
     override fun initData(savedInstanceState: Bundle?) {
         super.initData(savedInstanceState)
         UtilKLogWrapper.d(TAG, "initData: 获取屏幕宽度")
-        UtilKLogWrapper.d(TAG, "initData: getWidth ${UtilKScreen.getWidth()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDisplayMetrics_ofSys ${UtilKScreen.getWidth_ofDisplayMetrics_ofSys()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDefMetrics ${UtilKScreen.getWidth_ofDisplayMetrics_ofDef()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofRealMetrics ${UtilKScreen.getWidth_ofDisplayMetrics_ofReal()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDef()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofSizeDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDefSize()}")
-        UtilKLogWrapper.d(TAG, "initData: getWidth_ofRealSizeDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDefSizeReal()}")
+        UtilKLogWrapper.d(TAG, "initData: getWidth ${UtilKScreen.getWidth()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDisplayMetrics_ofSys ${UtilKScreen.getWidth_ofDisplayMetrics_ofSys()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDefMetrics ${UtilKScreen.getWidth_ofDisplayMetrics_ofDef()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofRealMetrics ${UtilKScreen.getWidth_ofDisplayMetrics_ofReal()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDef()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofSizeDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDefSize()}")//1080
+        UtilKLogWrapper.d(TAG, "initData: getWidth_ofRealSizeDefDisplay ${UtilKScreen.getWidth_ofDisplay_ofDefSizeReal()}")//1080
 
         UtilKLogWrapper.d(TAG, "initData: 获取屏幕高度")
-        UtilKLogWrapper.d(TAG, "initData: getHeight ${UtilKScreen.getHeight()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDisplayMetrics_ofSys ${UtilKScreen.getHeight_ofDisplayMetrics_ofSys()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDefMetrics ${UtilKScreen.getHeight_ofDisplayMetrics_ofDef()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofRealMetrics ${UtilKScreen.getHeight_ofDisplayMetrics_ofReal()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDef()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofSizeDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDefSize()}")
-        UtilKLogWrapper.d(TAG, "initData: getHeight_ofRealSizeDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDefSizeReal()}")
+        UtilKLogWrapper.d(TAG, "initData: getHeight ${UtilKScreen.getHeight()}")//2400
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDisplayMetrics_ofSys ${UtilKScreen.getHeight_ofDisplayMetrics_ofSys()}")//2237
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDefMetrics ${UtilKScreen.getHeight_ofDisplayMetrics_ofDef()}")//2237
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofRealMetrics ${UtilKScreen.getHeight_ofDisplayMetrics_ofReal()}")//2400
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDef()}")//2237
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofSizeDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDefSize()}")//2237
+        UtilKLogWrapper.d(TAG, "initData: getHeight_ofRealSizeDefDisplay ${UtilKScreen.getHeight_ofDisplay_ofDefSizeReal()}")//2400
 
         UtilKLogWrapper.d(TAG, "initData: 获取屏幕方向")
         UtilKLogWrapper.d(TAG, "initData: isOrientationPortrait_ofSysConfig ${UtilKScreen.isOrientationPortrait_ofSysConfig()}")

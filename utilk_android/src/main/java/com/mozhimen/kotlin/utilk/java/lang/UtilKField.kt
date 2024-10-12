@@ -22,7 +22,8 @@ object UtilKField {
         while (tempClazz != null) {
             try {
                 val field = tempClazz.getDeclaredField(fieldName)
-                if (!field.isAccessible) field.isAccessible = true
+                if (!field.isAccessible)
+                    field.isAccessible = true
                 return field
             } catch (e: NoSuchFieldException) {
                 // ignore and search next

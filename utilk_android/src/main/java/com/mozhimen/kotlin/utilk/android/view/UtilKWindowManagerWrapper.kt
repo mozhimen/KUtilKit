@@ -97,6 +97,7 @@ object UtilKWindowManagerWrapper : IUtilK {
 
     @JvmStatic
     fun addViewSafe(windowManager: WindowManager, view: View, layoutParams: WindowManager.LayoutParams) {
+        Log.d(TAG, "addViewSafe: view.parent ${view.parent}")
         try {
             if (!view.hasParentOrAttachedToWindow())
                 windowManager.addView(view, layoutParams)

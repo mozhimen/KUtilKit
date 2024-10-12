@@ -145,30 +145,24 @@ object UtilKViewGroupWrapper : IUtilK {
     }
 
     @JvmStatic
-    fun addViewSafe(viewGroup: ViewGroup, view: View, layoutParams: ViewGroup.LayoutParams) {
-        if (view.parent == null)
-            viewGroup.addView(view, layoutParams)
-        else if (view.parent === viewGroup) {
+    fun addViewSafe(viewGroup: ViewGroup, view: View, layoutParams: ViewGroup.LayoutParams? = null) {
+        if (view.parent == null) {
+            if (layoutParams != null) {
+                viewGroup.addView(view, layoutParams)
+            } else {
+                viewGroup.addView(view)
+            }
+        } else if (view.parent === viewGroup) {
             UtilKLogWrapper.w(TAG, "addViewSafe: view.parent===viewGroup")
         } else if (view.parent is ViewGroup) {
             (view.parent as ViewGroup).removeView(view)
-            viewGroup.addView(view, layoutParams)
-        } else {
-            UtilKLogWrapper.e(TAG, "addViewSafe: fail")
-        }
-    }
-
-    @JvmStatic
-    fun addViewSafe(viewGroup: ViewGroup, view: View) {
-        if (view.parent == null)
-            viewGroup.addView(view)
-        else if (view.parent === viewGroup) {
-            UtilKLogWrapper.e(TAG, "addViewSafe: view.parent===viewGroup")
-        } else if (view.parent is ViewGroup) {
-            (view.parent as ViewGroup).removeView(view)
-            viewGroup.addView(view)
-        } else {
-            UtilKLogWrapper.e(TAG, "addViewSafe: fail")
+            if (layoutParams != null) {
+                viewGroup.addView(view, layoutParams)
+            } else {
+                viewGroup.addView(view)
+            }
+        } else if (view.isAttachedToWindow_ofCompat()) {
+            UtilKLogWrapper.e(TAG, "addViewSafe: fail viewParent ${view.parent}")
         }
     }
 
@@ -176,12 +170,12 @@ object UtilKViewGroupWrapper : IUtilK {
 
     @JvmStatic
     fun removeViewSafe(viewGroup: ViewGroup, view: View) {
-        if (view.parent == null) {
+        if (view.parent == null || !view.isAttachedToWindow_ofCompat()) {
             UtilKLogWrapper.w(TAG, "removeViewSafe(: removeViewSafe")
-        } else if (!view.isAttachedToWindow_ofCompat()) {
-            UtilKLogWrapper.w(TAG, "removeViewSafe(: !view.isAttachedToWindow_ofCompat()")
         } else if (viewGroup.contains(view)) {
             viewGroup.removeView(view)
+        } else {
+            UtilKLogWrapper.w(TAG, "removeViewSafe(: !viewGroup.contains(view)")
         }
     }
 }

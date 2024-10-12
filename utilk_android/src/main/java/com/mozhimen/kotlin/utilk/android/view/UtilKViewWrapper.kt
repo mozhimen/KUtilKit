@@ -247,7 +247,7 @@ object UtilKViewWrapper : IUtilK {
 
     @JvmStatic
     fun hasParentOrAttachedToWindow(view: View): Boolean =
-        view.parent != null || view.isAttachedToWindow_ofCompat()
+        view.parent != null || isAttachedToWindow_ofCompat(view)
 
     //////////////////////////////////////////////////////////////////
 
@@ -415,9 +415,8 @@ object UtilKViewWrapper : IUtilK {
     @JvmStatic
     fun removeView_ofParent(view: View) {
         val viewParent: ViewParent? = view.parent
-        if (viewParent != null && viewParent is ViewGroup && !UtilKActivityWrapper.isFinishingOrDestroyed(view.context)) {
-            UtilKLogWrapper.w(TAG, "removeView_ofParent")
-            viewParent.removeView(view)
+        if (viewParent != null && viewParent is ViewGroup) {
+            viewParent.removeViewSafe(view)
         }
     }
 }
