@@ -3,6 +3,8 @@ package com.mozhimen.kotlin.utilk.android.view
 import android.annotation.SuppressLint
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams
 import android.view.WindowManager
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
@@ -15,6 +17,20 @@ import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
  * @Date 2024/5/13
  * @Version 1.0
  */
+fun WindowManager.addViewSafe(view: View, layoutParams: WindowManager.LayoutParams) {
+    UtilKWindowManagerWrapper.addViewSafe(this, view, layoutParams)
+}
+
+fun WindowManager.addViewSafe(view: View, width: Int, height: Int) {
+    UtilKWindowManagerWrapper.addViewSafe(this, view, width, height)
+}
+
+fun WindowManager.removeViewSafe(view: View) {
+    UtilKWindowManagerWrapper.removeViewSafe(this, view)
+}
+
+////////////////////////////////////////////////////////
+
 object UtilKWindowManagerWrapper : IUtilK {
 
     private val _windowManagerClazz by lazy_ofNone {
@@ -75,5 +91,27 @@ object UtilKWindowManagerWrapper : IUtilK {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun addViewSafe
+    fun addViewSafe(windowManager: WindowManager, view: View, width: Int, height: Int) {
+        addViewSafe(windowManager, view, WindowManager.LayoutParams(width, height))
+    }
+
+    @JvmStatic
+    fun addViewSafe(windowManager: WindowManager, view: View, layoutParams: WindowManager.LayoutParams) {
+        try {
+            if (!view.hasParentOrAttachedToWindow())
+                windowManager.addView(view, layoutParams)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @JvmStatic
+    fun removeViewSafe(windowManager: WindowManager, view: View) {
+        try {
+            if (view.hasParentOrAttachedToWindow())
+                windowManager.removeViewImmediate(view)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

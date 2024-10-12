@@ -16,7 +16,6 @@ import androidx.core.view.isVisible
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.cons.CCons
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
@@ -43,6 +42,9 @@ fun View.getLocation(): Pair<Int, Int> =
     UtilKViewWrapper.getLocation(this)
 
 //////////////////////////////////////////////////////////////////
+
+fun View.hasParentOrAttachedToWindow(): Boolean =
+    UtilKViewWrapper.hasParentOrAttachedToWindow(this)
 
 fun View.isAttachedToWindow_ofCompat(): Boolean =
     UtilKViewWrapper.isAttachedToWindow_ofCompat(this)
@@ -242,6 +244,10 @@ object UtilKViewWrapper : IUtilK {
     @JvmStatic
     fun isAttachedToWindow_ofCompat(view: View): Boolean =
         UtilKViewCompat.isAttachedToWindow(view)
+
+    @JvmStatic
+    fun hasParentOrAttachedToWindow(view: View): Boolean =
+        view.parent != null || view.isAttachedToWindow_ofCompat()
 
     //////////////////////////////////////////////////////////////////
 
