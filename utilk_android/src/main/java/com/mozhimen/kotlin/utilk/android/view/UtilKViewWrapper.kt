@@ -7,7 +7,6 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Rect
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
@@ -15,8 +14,8 @@ import androidx.core.animation.addListener
 import androidx.core.view.isVisible
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
+import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.elemk.cons.CCons
-import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.e
@@ -42,9 +41,6 @@ fun View.getLocation(): Pair<Int, Int> =
     UtilKViewWrapper.getLocation(this)
 
 //////////////////////////////////////////////////////////////////
-
-fun View.hasParentOrAttachedToWindow(): Boolean =
-    UtilKViewWrapper.hasParentOrAttachedToWindow(this)
 
 fun View.isAttachedToWindow_ofCompat(): Boolean =
     UtilKViewWrapper.isAttachedToWindow_ofCompat(this)
@@ -129,6 +125,10 @@ fun View.applyGoneIf(boolean: Boolean) {
 
 fun View.removeView_ofParent() {
     UtilKViewWrapper.removeView_ofParent(this)
+}
+
+fun View.addAndRemoveOnAttachStateChangeListener(invoke: I_Listener){
+    UtilKViewWrapper.addAndRemoveOnAttachStateChangeListener(this,invoke)
 }
 
 //////////////////////////////////////////////////////////////////
@@ -244,10 +244,6 @@ object UtilKViewWrapper : IUtilK {
     @JvmStatic
     fun isAttachedToWindow_ofCompat(view: View): Boolean =
         UtilKViewCompat.isAttachedToWindow(view)
-
-    @JvmStatic
-    fun hasParentOrAttachedToWindow(view: View): Boolean =
-        view.parent != null || isAttachedToWindow_ofCompat(view)
 
     //////////////////////////////////////////////////////////////////
 
@@ -383,6 +379,24 @@ object UtilKViewWrapper : IUtilK {
     }
 
     //////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun addAndRemoveOnAttachStateChangeListener(view: View, block: I_Listener) {
+        if (view.isAttachedToWindow_ofCompat()){
+            block.invoke()
+            return
+        }
+        view.addOnAttachStateChangeListener(object : View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View) {
+                view.removeOnAttachStateChangeListener(this)
+                block.invoke()
+            }
+
+            override fun onViewDetachedFromWindow(v: View) {
+                view.removeOnAttachStateChangeListener(this)
+            }
+        })
+    }
 
     //逐层在父View中查找View
     @JvmStatic

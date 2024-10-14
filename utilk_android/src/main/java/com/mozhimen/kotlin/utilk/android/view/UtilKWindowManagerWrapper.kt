@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 import android.view.WindowManager
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
@@ -97,22 +98,31 @@ object UtilKWindowManagerWrapper : IUtilK {
 
     @JvmStatic
     fun addViewSafe(windowManager: WindowManager, view: View, layoutParams: WindowManager.LayoutParams) {
-        Log.d(TAG, "addViewSafe: view.parent ${view.parent}")
         try {
-            if (!view.hasParentOrAttachedToWindow())
+            if (view.parent == null || !view.isAttachedToWindow_ofCompat()) {
                 windowManager.addView(view, layoutParams)
+                UtilKLogWrapper.d(TAG, "addViewSafe: addView $windowManager success")
+            } else {
+                Log.d(TAG, "addViewSafe: view.parent ${view.parent}")
+            }
         } catch (e: Exception) {
             e.printStackTrace()
+            UtilKLogWrapper.e(TAG, "addViewSafe: ",e)
         }
     }
 
     @JvmStatic
     fun removeViewSafe(windowManager: WindowManager, view: View) {
         try {
-            if (view.hasParentOrAttachedToWindow())
+            if (view.parent != null || view.isAttachedToWindow_ofCompat()) {
                 windowManager.removeViewImmediate(view)
+                UtilKLogWrapper.d(TAG, "removeViewSafe: removeViewImmediate $windowManager success")
+            } else {
+                Log.d(TAG, "removeViewSafe: view.parent ${view.parent}")
+            }
         } catch (e: Exception) {
             e.printStackTrace()
+            UtilKLogWrapper.e(TAG, "removeViewSafe: ",e)
         }
     }
 }

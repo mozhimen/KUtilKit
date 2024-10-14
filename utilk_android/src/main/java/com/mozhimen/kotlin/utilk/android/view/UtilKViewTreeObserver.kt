@@ -62,6 +62,9 @@ object UtilKViewTreeObserver : IUtilK {
 
     @JvmStatic
     fun addAndRemoveOnGlobalLayoutListener(view: View, invoke: I_Listener) {
+        if (get(view)?.isAlive == true){
+            invoke.invoke()
+        }
         get(view)?.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 if (get(view) != null) {
