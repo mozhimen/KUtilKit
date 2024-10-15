@@ -17,22 +17,36 @@ object UtilKByteArrayWrapper {
     fun isAll0(bytes: ByteArray): Boolean =
         bytes.firstOrNull { it != 0x0.toByte() } == null
 
-    /** Return the index at which the array was found or -1. */
+//    /** Return the index at which the array was found or -1. */
+//    @JvmStatic
+//    fun indexOf(bytesOri: ByteArray, bytesDes: ByteArray): Int {
+//        if (bytesDes.isEmpty())
+//            return 0
+//        outer@ for (i in 0 until bytesOri.size - bytesDes.size + 1) {
+//            for (j in bytesDes.indices) {
+//                if (bytesOri[i + j] != bytesDes[j]) {
+//                    continue@outer
+//                }
+//            }
+//            return i
+//        }
+//        return -1
+//    }
+
     @JvmStatic
-    fun indexOf(bytesOri: ByteArray, bytesDes: ByteArray): Int {
-        if (bytesDes.isEmpty())
-            return 0
-        outer@ for (i in 0 until bytesOri.size - bytesDes.size + 1) {
-            for (j in bytesDes.indices) {
-                if (bytesOri[i + j] != bytesDes[j]) {
-                    continue@outer
+    fun indexOf(outerArray: ByteArray, smallerArray: ByteArray): Int {
+        for (i in 0 until outerArray.size - smallerArray.size + 1) {
+            var found = true
+            for (j in smallerArray.indices) {
+                if (outerArray[i + j] != smallerArray[j]) {
+                    found = false
+                    break
                 }
             }
-            return i
+            if (found) return i
         }
         return -1
     }
-
 
     /**
      * 合并Bytes
@@ -61,10 +75,17 @@ object UtilKByteArrayWrapper {
     /**
      * 截取Bytes
      */
+    /**
+     * 截取byte数组   不改变原数组
+     * @param b 原数组
+     * @param off 偏差值（索引）
+     * @param length 长度
+     * @return 截取后的数组
+     */
     @JvmStatic
     fun subBytes(bytes: ByteArray, offset: Int, length: Int): ByteArray {
-        val bytes = ByteArray(length)
-        System.arraycopy(bytes, offset, bytes, 0, length)
-        return bytes
+        val newBytes = ByteArray(length)
+        System.arraycopy(bytes, offset, newBytes, 0, length)
+        return newBytes
     }
 }
