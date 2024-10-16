@@ -42,9 +42,24 @@ fun String.addStart_of0_ofDot(): String =
 fun String.addStart_ofPlus(): String =
     UtilKStringsJVM.addStart_ofPlus(this)
 
+fun String.replaceSqliteSpecialCharacters():String =
+    UtilKStringsJVM.replaceSqliteSpecialCharacters(this)
+
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKStringsJVM {
+    @JvmStatic
+    fun replaceSqliteSpecialCharacters(str:String):String{
+        return str.replace("'","''")
+            .replace("/", "//")
+            .replace("[", "/[")
+            .replace("]", "/]")
+            .replace("%", "/%")
+            .replace("&","/&")
+            .replace("_", "/_")
+            .replace("(", "/(")
+            .replace(")", "/)")
+    }
     @JvmStatic
     fun replaceLineBreak2strHtmlBr(str: String): String =
         str.replace(CMsg.LINE_BREAK, "<br>")
