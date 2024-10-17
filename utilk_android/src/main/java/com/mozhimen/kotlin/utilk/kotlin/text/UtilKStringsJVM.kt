@@ -42,24 +42,32 @@ fun String.addStart_of0_ofDot(): String =
 fun String.addStart_ofPlus(): String =
     UtilKStringsJVM.addStart_ofPlus(this)
 
-fun String.replaceSqliteSpecialCharacters():String =
+fun String.replaceSqliteSpecialCharacters(): String =
     UtilKStringsJVM.replaceSqliteSpecialCharacters(this)
 
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKStringsJVM {
     @JvmStatic
-    fun replaceSqliteSpecialCharacters(str:String):String{
-        return str.replace("'","''")
+    fun replaceSqliteSpecialCharacters(str: String): String {
+        return str.replace("'", "''")
             .replace("/", "//")
             .replace("[", "/[")
             .replace("]", "/]")
             .replace("%", "/%")
-            .replace("&","/&")
+            .replace("&", "/&")
             .replace("_", "/_")
             .replace("(", "/(")
             .replace(")", "/)")
+            .replace("（", "/（")
+            .replace("）", "/）")
+            .replace("\u0000", "")// 1. 移除字符串中的 NULL 字符 (\0)
+            .replace("\b", "") // 删除退格符
+            .replace("\t", " ") // 替换制表符为一个空格
+            .replace("\n", " ") // 替换换行为一个空格
+            .replace("\r", " ") // 替换回车为一个空格
     }
+
     @JvmStatic
     fun replaceLineBreak2strHtmlBr(str: String): String =
         str.replace(CMsg.LINE_BREAK, "<br>")

@@ -18,8 +18,8 @@ import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
  * @Date 2024/5/13
  * @Version 1.0
  */
-fun WindowManager.addViewSafe(view: View, layoutParams: WindowManager.LayoutParams) {
-    UtilKWindowManagerWrapper.addViewSafe(this, view, layoutParams)
+fun WindowManager.addViewSafe(view: View, layoutParams: WindowManager.LayoutParams): Boolean {
+    return UtilKWindowManagerWrapper.addViewSafe(this, view, layoutParams)
 }
 
 fun WindowManager.addViewSafe(view: View, width: Int, height: Int) {
@@ -92,23 +92,25 @@ object UtilKWindowManagerWrapper : IUtilK {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun addViewSafe(windowManager: WindowManager, view: View, width: Int, height: Int) {
-        addViewSafe(windowManager, view, WindowManager.LayoutParams(width, height))
+    fun addViewSafe(windowManager: WindowManager, view: View, width: Int, height: Int): Boolean {
+        return addViewSafe(windowManager, view, WindowManager.LayoutParams(width, height))
     }
 
     @JvmStatic
-    fun addViewSafe(windowManager: WindowManager, view: View, layoutParams: WindowManager.LayoutParams) {
+    fun addViewSafe(windowManager: WindowManager, view: View, layoutParams: WindowManager.LayoutParams): Boolean {
         try {
             if (view.parent == null || !view.isAttachedToWindow_ofCompat()) {
                 windowManager.addView(view, layoutParams)
                 UtilKLogWrapper.d(TAG, "addViewSafe: addView $windowManager success")
+                return true
             } else {
                 Log.d(TAG, "addViewSafe: view.parent ${view.parent}")
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            UtilKLogWrapper.e(TAG, "addViewSafe: ",e)
+            UtilKLogWrapper.e(TAG, "addViewSafe: ", e)
         }
+        return false
     }
 
     @JvmStatic
@@ -122,7 +124,7 @@ object UtilKWindowManagerWrapper : IUtilK {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            UtilKLogWrapper.e(TAG, "removeViewSafe: ",e)
+            UtilKLogWrapper.e(TAG, "removeViewSafe: ", e)
         }
     }
 }
