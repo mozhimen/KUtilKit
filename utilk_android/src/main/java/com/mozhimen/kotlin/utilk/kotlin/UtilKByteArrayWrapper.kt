@@ -1,5 +1,8 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import java.util.Arrays
+import kotlin.jvm.Throws
+
 /**
  * @ClassName UtilKByteArrayDeal
  * @Description TODO
@@ -73,7 +76,7 @@ object UtilKByteArrayWrapper {
     }
 
     /**
-     * 截取Bytes
+     * 截取Bytes 大数组慎用
      */
     /**
      * 截取byte数组   不改变原数组
@@ -83,9 +86,17 @@ object UtilKByteArrayWrapper {
      * @return 截取后的数组
      */
     @JvmStatic
+    @Throws(OutOfMemoryError::class)
     fun subBytes(bytes: ByteArray, offset: Int, length: Int): ByteArray {
         val newBytes = ByteArray(length)
         System.arraycopy(bytes, offset, newBytes, 0, length)
         return newBytes
+    }
+
+    @JvmStatic
+    fun removeBytes(bytes: ByteArray, index: Int): ByteArray {
+        if (index !in 0..bytes.size)
+            return bytes
+        return Arrays.copyOfRange(bytes, index, bytes.size)
     }
 }
