@@ -4,6 +4,8 @@ import com.mozhimen.kotlin.elemk.commons.IA_BListener
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.util.stream.Collectors
 
 /**
@@ -58,7 +60,17 @@ inline fun <T> List<T>.forEachReversedByIndex(action: (T) -> Unit) {
 
 ///////////////////////////////////////////////////////////////////////
 
-object UtilKCollections {
+object UtilKCollections :IUtilK{
+    @JvmStatic
+    fun listsEqual(list1: List<*>, list2: List<*>): Boolean {
+        if (list1.size != list2.size)
+            return false
+        val pairList = list1.zip(list2)
+        return pairList.all { (elt1, elt2) ->
+            elt1 == elt2
+        }.also { UtilKLogWrapper.d(TAG, "listsEqual: $it") }
+    }
+
     inline fun <T> forEachReversedByIndex(list: List<T>, action: (T) -> Unit) {
         val initialSize = list.size
         for (i in list.lastIndex downTo 0) {
