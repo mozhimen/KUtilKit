@@ -36,12 +36,25 @@ object UtilKApplicationInfo : IUtilK {
 
     //得到包名
     @JvmStatic
+    fun getPackageName(context: Context): String =
+        getPackageName(get(context))
+
+    //得到包名
+    @JvmStatic
     fun getPackageName(applicationInfo: ApplicationInfo): String =
         applicationInfo.packageName
 
     @JvmStatic
+    fun getFlags(context: Context): Int =
+        getFlags(get(context))
+
+    @JvmStatic
     fun getFlags(applicationInfo: ApplicationInfo): Int =
         applicationInfo.flags
+
+    @JvmStatic
+    fun getIcon(context: Context): Int =
+        getIcon(get(context))
 
     @JvmStatic
     fun getIcon(applicationInfo: ApplicationInfo): Int =
@@ -51,35 +64,21 @@ object UtilKApplicationInfo : IUtilK {
      * 和这个方法一样[UtilKPackageManager.getApplicationIcon]
      */
     @JvmStatic
+    fun loadIcon(context: Context, packageManager: PackageManager): Drawable? =
+        loadIcon(get(context), packageManager)
+
+    /**
+     * 和这个方法一样[UtilKPackageManager.getApplicationIcon]
+     */
+    @JvmStatic
     fun loadIcon(applicationInfo: ApplicationInfo?, packageManager: PackageManager): Drawable? =
         applicationInfo?.loadIcon(packageManager)
-
-    @JvmStatic
-    fun isSystemApp(applicationInfo: ApplicationInfo): Boolean =
-        (getFlags(applicationInfo) and CApplicationInfo.FLAG_SYSTEM) != 0
-
-    @JvmStatic
-    fun isSystemUpdateApp(applicationInfo: ApplicationInfo): Boolean =
-        (getFlags(applicationInfo) and CApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0
-
-    @JvmStatic
-    fun isSystemOrSystemUpdateApp(applicationInfo: ApplicationInfo): Boolean =
-        isSystemApp(applicationInfo) || isSystemUpdateApp(applicationInfo)
-
-    @JvmStatic
-    fun isUserApp(applicationInfo: ApplicationInfo): Boolean =
-        !isSystemApp(applicationInfo) && !isSystemUpdateApp(applicationInfo)
 
     @JvmStatic
     fun enabled(applicationInfo: ApplicationInfo): Boolean =
         applicationInfo.enabled
 
     //////////////////////////////////////////////////////////////////////
-
-    //得到包名
-    @JvmStatic
-    fun getPackageName(context: Context): String =
-        getPackageName(get(context))
 
     //app的目标版本
     @JvmStatic
@@ -103,37 +102,6 @@ object UtilKApplicationInfo : IUtilK {
             return ""
         }
     }
-
-    @JvmStatic
-    fun getIcon(context: Context): Int =
-        getIcon(get(context))
-
-    @JvmStatic
-    fun isSystemApp(context: Context): Boolean =
-        isSystemApp(get(context))
-
-    @JvmStatic
-    fun isSystemUpdateApp(context: Context): Boolean =
-        isSystemUpdateApp(get(context))
-
-    @JvmStatic
-    fun isSystemOrSystemUpdateApp(context: Context): Boolean =
-        isSystemOrSystemUpdateApp(get(context))
-
-    @JvmStatic
-    fun isUserApp(context: Context): Boolean =
-        isUserApp(get(context))
-
-    @JvmStatic
-    fun getFlags(context: Context): Int =
-        getFlags(get(context))
-
-    /**
-     * 和这个方法一样[UtilKPackageManager.getApplicationIcon]
-     */
-    @JvmStatic
-    fun loadIcon(context: Context, packageManager: PackageManager): Drawable? =
-        loadIcon(get(context), packageManager)
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 

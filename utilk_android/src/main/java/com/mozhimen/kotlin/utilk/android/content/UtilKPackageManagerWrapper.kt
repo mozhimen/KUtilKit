@@ -32,7 +32,7 @@ object UtilKPackageManagerWrapper {
             val iterator = installedPackages.iterator()
             while (iterator.hasNext()) {
                 val next = iterator.next()
-                if (UtilKApplicationInfo.isSystemApp(next.applicationInfo))
+                if (UtilKApplicationInfoWrapper.isSystemApp(next.applicationInfo))
                     iterator.remove()
             }
         }

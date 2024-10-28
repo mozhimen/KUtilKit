@@ -8,6 +8,7 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
+import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfoWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
 import com.mozhimen.kotlin.utilk.android.content.startContext
@@ -27,21 +28,27 @@ import kotlin.system.exitProcess
  */
 object UtilKApp : BaseUtilK() {
     @JvmStatic
+    fun getLabelStr(): String =
+        UtilKApplicationInfo.getLabelResStr(_context)
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
     @Throws(IllegalArgumentException::class)
     fun isSystemApp(context: Context): Boolean =
-        UtilKApplicationInfo.isSystemApp(context)
+        UtilKApplicationInfoWrapper.isSystemApp(context)
 
     @JvmStatic
     fun isSystemUpdateApp(context: Context): Boolean =
-        UtilKApplicationInfo.isSystemUpdateApp(context)
+        UtilKApplicationInfoWrapper.isSystemUpdateApp(context)
 
     @JvmStatic
     fun isUserApp(context: Context): Boolean =
-        UtilKApplicationInfo.isUserApp(context)
+        UtilKApplicationInfoWrapper.isUserApp(context)
 
     @JvmStatic
     fun isSystemOrSystemUpdateApp(context: Context): Boolean =
-        UtilKApplicationInfo.isSystemOrSystemUpdateApp(context)
+        UtilKApplicationInfoWrapper.isSystemOrSystemUpdateApp(context)
 
     /////////////////////////////////////////////////////////////////////////////
 
