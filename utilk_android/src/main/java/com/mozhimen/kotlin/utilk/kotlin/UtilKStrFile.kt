@@ -13,6 +13,7 @@ import com.mozhimen.kotlin.utilk.java.io.createFile
 import com.mozhimen.kotlin.utilk.java.io.createFolder
 import com.mozhimen.kotlin.utilk.java.io.deleteFile
 import com.mozhimen.kotlin.utilk.java.io.deleteFolder
+import com.mozhimen.kotlin.utilk.java.io.deleteFolderNoSelf
 import com.mozhimen.kotlin.utilk.java.io.file2bytes_use
 import com.mozhimen.kotlin.utilk.java.io.file2bytes_use_ofReadWrite
 import com.mozhimen.kotlin.utilk.java.io.file2fileInputStream
@@ -148,6 +149,9 @@ fun String.createFolder(): Boolean =
 
 fun String.deleteFolder(): Boolean =
     UtilKStrFile.deleteFolder(this)
+
+fun String.deleteFolderNoSelf(): Boolean =
+    UtilKStrFile.deleteFolderNoSelf(this)
 //endregion
 
 /////////////////////////////////////////////////////////////////
@@ -379,5 +383,12 @@ object UtilKStrFile : IUtilK {
     @JvmStatic
     fun deleteFolder(strFolderPath: String): Boolean =
         strFolderPath.getStrFolderPath().strFilePath2file().deleteFolder()
+
+    /**
+     * 删除文件夹(保留文件夹)
+     */
+    @JvmStatic
+    fun deleteFolderNoSelf(strFolderPath: String): Boolean =
+        strFolderPath.getStrFolderPath().strFilePath2file().deleteFolderNoSelf()
     //endregion
 }

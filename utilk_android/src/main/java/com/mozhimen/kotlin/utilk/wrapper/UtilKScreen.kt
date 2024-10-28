@@ -12,9 +12,9 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKConfiguration
 import com.mozhimen.kotlin.utilk.android.content.UtilKTheme
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKDisplayMetrics
-import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView
+import com.mozhimen.kotlin.utilk.android.view.UtilKDecorViewWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKDisplay
-import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManagerLayoutParams
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManagerLayoutParamsWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowMetrics
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper
 
@@ -215,7 +215,7 @@ object UtilKScreen : BaseUtilK() {
      */
     @JvmStatic
     fun isFullScreen_ofWindow(activity: Activity): Boolean =
-        UtilKWindowManagerLayoutParams.isFullScreen(activity)
+        UtilKWindowManagerLayoutParamsWrapper.isFullScreen(activity)
 
     /**
      * 是否全屏
@@ -241,12 +241,12 @@ object UtilKScreen : BaseUtilK() {
      */
     @JvmStatic
     fun applyBrightness(activity: Activity, @FloatRange(from = 0.0, to = 1.0) paramFloat: Float) {
-        UtilKWindowManagerLayoutParams.applyBrightness(activity, paramFloat)
+        UtilKWindowWrapper.applyAttributes_ofBrightness(activity, paramFloat)
     }
 
     @JvmStatic
     fun applyMaxBrightness(activity: Activity, isMaxBrightness: Boolean) {
-        UtilKWindowManagerLayoutParams.applyMaxBrightness(activity, isMaxBrightness)
+        UtilKWindowWrapper.applyAttributes_ofBrightest(activity, isMaxBrightness)
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -254,12 +254,12 @@ object UtilKScreen : BaseUtilK() {
     //是否使屏幕常亮
     @JvmStatic
     fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean) {
-        UtilKWindowWrapper.applyKeepScreen(activity, isKeepScreenOn)
+        UtilKWindowWrapper.applyFlags_ofKeepScreen(activity, isKeepScreenOn)
     }
 
     @JvmStatic
-    fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean, isMaxBrightness: Boolean) {
-        UtilKWindowWrapper.applyKeepScreen(activity, isKeepScreenOn, isMaxBrightness)
+    fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean, isBrightest: Boolean) {
+        UtilKWindowWrapper.applyKeepScreen(activity, isKeepScreenOn, isBrightest)
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,5 +267,5 @@ object UtilKScreen : BaseUtilK() {
     //截屏
     @JvmStatic
     fun applyCapture(activity: Activity): Bitmap =
-        UtilKDecorView.getBitmapForDrawingCache(activity)
+        UtilKDecorViewWrapper.getBitmapForDrawingCache(activity)
 }

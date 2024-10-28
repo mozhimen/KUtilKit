@@ -73,12 +73,12 @@ object UtilKStatusBar : BaseUtilK() {
     //状态栏是否可见
     @JvmStatic
     fun isVisible(activity: Activity): Boolean =
-        !UtilKWindowManagerLayoutParams.isFlagFullScreen(activity)
+        !UtilKWindowManagerLayoutParamsWrapper.isFlagFullScreen(activity)
 
     @JvmStatic
     fun isTranslucent(activity: Activity): Boolean {//检查主题中是否有透明的状态栏
         var isStatusBarAvailable: Boolean = activity.obtainStyledAttributes(intArrayOf(CPackage.ANDROID_R_ATTR_WINDOWTRANSLUCENTSTATUS)).use { it.getBoolean(0,false) }
-        if (UtilKWindowManagerLayoutParams.isFlagTranslucentStatus(activity)) isStatusBarAvailable = true
+        if (UtilKWindowManagerLayoutParamsWrapper.isFlagTranslucentStatus(activity)) isStatusBarAvailable = true
         return isStatusBarAvailable
     }
 

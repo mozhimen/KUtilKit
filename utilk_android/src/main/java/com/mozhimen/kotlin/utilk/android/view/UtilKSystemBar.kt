@@ -36,22 +36,22 @@ object UtilKSystemBar {
 
     @JvmStatic
     fun applyLayoutStable(activity: Activity) {
-        UtilKDecorView.applyLayoutStable(activity)
+        UtilKDecorViewWrapper.applyLayoutStable(activity)
     }
 
     @JvmStatic
     fun applyFitsSystemWindows(activity: Activity) {
-        UtilKDecorView.applyFitsSystemWindows(activity)
+        UtilKDecorViewWrapper.applyFitsSystemWindows(activity)
     }
 
     @JvmStatic
     fun applyImmersedHard(activity: Activity) {
-        UtilKDecorView.applyImmersedHard(activity)
+        UtilKDecorViewWrapper.applyImmersedHard(activity)
     }
 
     @JvmStatic
     fun applyImmersedSticky(activity: Activity) {
-        UtilKDecorView.applyImmersedSticky(activity)
+        UtilKDecorViewWrapper.applyImmersedSticky(activity)
     }
 
     ////////////////////////////////////////////////////////////////////

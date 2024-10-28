@@ -30,6 +30,7 @@ object UtilKWindow : BaseUtilK() {
         activity.window
 
     //////////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun getDecorView(activity: Activity): View =
         getDecorView(get(activity))
@@ -79,6 +80,11 @@ object UtilKWindow : BaseUtilK() {
         getAttributes(window).flags
 
     //////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun applyLayout(window: Window, width: Int, height: Int) {
+        window.setLayout(width, height)
+    }
 
     @JvmStatic
     fun applyFlagsFullScreen(window: Window) {

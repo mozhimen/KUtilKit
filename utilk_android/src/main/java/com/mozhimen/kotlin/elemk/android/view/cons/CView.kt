@@ -13,6 +13,7 @@ import com.mozhimen.kotlin.lintk.annors.ADescription
  * @Version 1.0
  */
 object CView {
+    @RequiresApi(CVersCode.V_26_8_O)
     const val FOCUSABLE = View.FOCUSABLE
     const val VISIBLE = View.VISIBLE
     const val INVISIBLE = View.INVISIBLE

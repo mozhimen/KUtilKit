@@ -94,6 +94,9 @@ fun File.createFolder(): Boolean =
 fun File.deleteFolder(): Boolean =
     UtilKFileWrapper.deleteFolder(this)
 
+fun File.deleteFolderNoSelf(): Boolean =
+    UtilKFileWrapper.deleteFolderNoSelf(this)
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 object UtilKFileWrapper : BaseUtilK() {
@@ -350,7 +353,5 @@ object UtilKFileWrapper : BaseUtilK() {
         }
         return true.also { UtilKLogWrapper.d(TAG, "deleteFolder: success") }
     }
-
-
 //endregion
 }

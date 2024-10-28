@@ -97,37 +97,6 @@ object UtilKDecorView : BaseUtilK() {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    /**
-     * 截屏
-     */
-    @JvmStatic
-    fun getBitmapForDrawingCache(activity: Activity): Bitmap {
-        val decorView = get(activity)
-        decorView.isDrawingCacheEnabled = true
-        decorView.buildDrawingCache()
-        val bitmap = Bitmap.createBitmap(decorView.drawingCache, 0, 0, decorView.measuredWidth, decorView.measuredHeight - UtilKVirtualBar.getHeight(activity))
-        decorView.isDrawingCacheEnabled = false
-        decorView.destroyDrawingCache()
-        return bitmap
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-
-    /**
-     * 采用谷歌原生状态栏文字颜色的方法进行设置,携带 [CView.SystemUiFlag.LAYOUT_FULLSCREEN] 这个flag那么默认界面会变成全屏模式,
-     * 需要在根布局中设置FitSystemWindows属性为true, 所以添加Process方法中加入如下的代码
-     * 或者在xml中添加android:fitSystemWindows="true"
-     * 华为,OPPO机型在StatusUtil.setLightStatusBar后布局被顶到状态栏上去了
-     *
-     * 延迟加载不然getChild0为空
-     */
-    @JvmStatic
-    fun applyFitsSystemWindows(activity: Activity) {
-        get(activity).post {
-            UtilKContentView.getChildAt0(activity)?.applyFitSystemWindow() ?: "setFitsSystemWindows contentView is null".e(TAG)
-        }
-    }
-
     @JvmStatic
     fun applySystemUiVisibility(activity: Activity, visibility: Int) {
         applySystemUiVisibility(activity.window, visibility)
@@ -174,59 +143,17 @@ object UtilKDecorView : BaseUtilK() {
     }
 
     @JvmStatic
-    fun applyLayoutStable(activity: Activity) {
-        applySystemUiVisibilityOr(activity, CView.SystemUiFlag.LAYOUT_STABLE)
+    fun applyOnSystemUiVisibilityChangeListener(activity: Activity, listener: View.OnSystemUiVisibilityChangeListener) {
+        applyOnSystemUiVisibilityChangeListener(get(activity), listener)
     }
 
     @JvmStatic
-    fun applyImmersedHard(activity: Activity) {
-        applySystemUiVisibilityOr(activity, CView.SystemUiFlag.IMMERSIVE)
+    fun applyOnSystemUiVisibilityChangeListener(window: Window, listener: View.OnSystemUiVisibilityChangeListener) {
+        applyOnSystemUiVisibilityChangeListener(get(window), listener)
     }
 
     @JvmStatic
-    fun applyImmersedSticky(activity: Activity) {
-        applySystemUiVisibilityOr(activity, CView.SystemUiFlag.IMMERSIVE_STICKY)
+    fun applyOnSystemUiVisibilityChangeListener(decorView: View,  listener: View.OnSystemUiVisibilityChangeListener) {
+        decorView.setOnSystemUiVisibilityChangeListener(listener)
     }
-
-    @JvmStatic
-    fun applyOnSystemUiVisibilityChangeListener(activity: Activity, block: IA_Listener<Int>) {
-        applyOnSystemUiVisibilityChangeListener(get(activity), block)
-    }
-
-    @JvmStatic
-    fun applyOnSystemUiVisibilityChangeListener(window: Window, block: IA_Listener<Int>) {
-        applyOnSystemUiVisibilityChangeListener(get(window), block)
-    }
-
-    @JvmStatic
-    fun applyOnSystemUiVisibilityChangeListener(decorView: View, block: IA_Listener<Int>) {
-        decorView.setOnSystemUiVisibilityChangeListener { visibility: Int ->
-            block.invoke(visibility)
-        }
-    }
-//    @JvmStatic
-//    fun applyFullScreen(activity: Activity) {
-//        setFullScreen(activity.window)
-//    }
-//
-//    @JvmStatic
-//    fun applyFullScreen(window: Window) {
-//        setFullScreen(get(window))
-//    }
-//
-//    /**
-//     * 设置全屏
-//     * @param decorView View
-//     */
-//    @JvmStatic
-//    fun applyFullScreen(decorView: View) {
-//        setSystemUiVisibility(
-//            decorView, (CView.SystemUiFlag.LOW_PROFILE or
-//                    CView.SystemUiFlag.FULLSCREEN or
-//                    CView.SystemUiFlag.LAYOUT_STABLE or
-//                    CView.SystemUiFlag.IMMERSIVE_STICKY or
-//                    CView.SystemUiFlag.LAYOUT_HIDE_NAVIGATION or
-//                    CView.SystemUiFlag.HIDE_NAVIGATION)
-//        )
-//    }
 }
