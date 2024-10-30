@@ -179,6 +179,10 @@ object UtilKScreen : BaseUtilK() {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
+    @JvmStatic
+    fun isOrientationPortrait_ofScreen(): Boolean =
+        getHeight() >= getWidth()
+
     //是否为竖屏(系统配置)
     @JvmStatic
     fun isOrientationPortrait_ofSysConfig(): Boolean =
@@ -195,6 +199,10 @@ object UtilKScreen : BaseUtilK() {
         UtilKDisplayMetrics.isOrientationPortrait_ofSys()
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun isOrientationLandscape_ofScreen(): Boolean =
+        !isOrientationPortrait_ofScreen()
 
     @JvmStatic
     fun isOrientationLandscape_ofSysConfig(): Boolean =
