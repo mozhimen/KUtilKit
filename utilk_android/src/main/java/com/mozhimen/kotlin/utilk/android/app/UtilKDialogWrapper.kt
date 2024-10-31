@@ -26,7 +26,14 @@ object UtilKDialogWrapper {
         val window = getWindow(dialog)
         if (window != null) {
             UtilKWindow.applyLayout(window, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            UtilKDecorView.applySystemUiVisibility(window, CView.SystemUiFlag.FULLSCREEN or CView.SystemUiFlag.LAYOUT_STABLE)
+            UtilKDecorView.applySystemUiVisibility(
+                window,
+                CView.SystemUiFlag.FULLSCREEN or
+                        CView.SystemUiFlag.LAYOUT_FULLSCREEN or
+                        CView.SystemUiFlag.HIDE_NAVIGATION or
+                        CView.SystemUiFlag.LAYOUT_HIDE_NAVIGATION or
+                        CView.SystemUiFlag.LAYOUT_STABLE
+            )
         }
     }
 }

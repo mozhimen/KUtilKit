@@ -83,7 +83,7 @@ open class BaseActivityLifecycleCallbacks : Application.ActivityLifecycleCallbac
     }
 
     override fun onActivityPostSaveInstanceState(activity: Activity, outState: Bundle) {
-        UtilKLogWrapper.v(TAG,"onActivityPostSaveInstanceState activity ${activity.javaClass.simpleName} ${activity.javaClass.name} outState $outState")
+        UtilKLogWrapper.v(TAG,"onActivityPaused activity ${activity.javaClass.simpleName} ${activity.javaClass.name} outState $outState")
     }
 
     override fun onActivityPreDestroyed(activity: Activity) {
