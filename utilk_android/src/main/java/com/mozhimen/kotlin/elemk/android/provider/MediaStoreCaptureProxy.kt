@@ -12,6 +12,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.provider.cons.CMediaStore
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager
@@ -69,7 +70,7 @@ class MediaStoreCaptureProxy {
                 for (resolveInfo in resInfoList) {
                     val strPackageName = resolveInfo.activityInfo.packageName
                     _currentPhotoUri?.let {
-                        UtilKContext.grantUriPermission(context, strPackageName, it, Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        UtilKContext.grantUriPermission(context, strPackageName, it, CIntent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     }
                 }
             }

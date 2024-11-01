@@ -16,6 +16,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_S
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.elemk.android.webkit.cons.EMineTypeMap_application
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfo
 import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
@@ -58,14 +59,13 @@ object UtilKIntentWrapper {
             putExtra(CIntent.EXTRA_STREAM, uriImage)
         }
 
-    @JvmStatic
-    fun getSendFileApk(uriApk: Uri): Intent {
-        val intent = getSend()
-        if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
-            intent.addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
-        intent.setDataAndType(uriApk, "application/vnd.android.package-archive")
-        return intent
-    }
+//    @JvmStatic
+//    fun getSendFileApk(uriApk: Uri): Intent =
+//        getSend().apply {
+//            if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
+//                addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
+//            setDataAndType(uriApk, "application/vnd.android.package-archive")
+//        }
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -204,13 +204,12 @@ object UtilKIntentWrapper {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun getViewInstall(uriApk: Uri): Intent {
-        val intent = getView()
-        if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
-            intent.addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
-        intent.setDataAndType(uriApk, "application/vnd.android.package-archive")
-        return intent
-    }
+    fun getViewInstall(uriApk: Uri): Intent =
+        getView().apply {
+            if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
+                addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
+            setDataAndType(uriApk, EMineTypeMap_application.apk.type)
+        }
 
     /**
      * 获取安装app的intent
