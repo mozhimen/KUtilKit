@@ -1,6 +1,8 @@
 package com.mozhimen.kotlin.utilk.java.lang
 
+import android.util.Log
 import androidx.annotation.RequiresPermission
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.cons.CCmd
 import com.mozhimen.kotlin.elemk.cons.CPath
 import com.mozhimen.kotlin.elemk.kotlin.text.cons.CCharsets
@@ -8,7 +10,6 @@ import com.mozhimen.kotlin.elemk.mos.MResultISS
 import com.mozhimen.kotlin.lintk.optins.ODeviceRoot
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_FLASHLIGHT
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INSTALL_PACKAGES
-import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -18,12 +19,13 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKByteArrayOutputStream
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStreamReader
 import com.mozhimen.kotlin.utilk.java.io.flushClose
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBytesOutStream
 import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBufferedReader
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBytesOutStream
 import com.mozhimen.kotlin.utilk.kotlin.getStrFolderPath
 import java.io.DataOutputStream
 import java.io.IOException
 import java.io.OutputStream
+
 
 /**
  * @ClassName UtilKRuntimeWrapper
@@ -42,6 +44,30 @@ object UtilKRuntimeWrapper : IUtilK {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    @JvmStatic
+    fun exec_chown_chmod_777(strFilePath: String) {
+        var process: Process? = null
+        var dataOutputStream: DataOutputStream? = null
+        try {
+            process = Runtime.getRuntime().exec("sh")
+            dataOutputStream = DataOutputStream(process.outputStream)
+            // 修改文件权限和所有者
+            dataOutputStream.writeBytes(("chown -R u0_a123:u0_a123 $strFilePath").toString() + "\n")
+            dataOutputStream.writeBytes(("chmod -R 777 $strFilePath").toString() + "\n")
+
+            dataOutputStream.flush()
+            dataOutputStream.writeBytes("exit\n")
+            dataOutputStream.flush()
+            process.waitFor()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            dataOutputStream?.flushClose()
+            process?.destroy()
+        }
+        Log.d(TAG, "exec_chown_chmod_777: 文件权限已设置: $strFilePath")
     }
 
     @JvmStatic
@@ -195,6 +221,8 @@ object UtilKRuntimeWrapper : IUtilK {
             process?.destroy()
         }
     }
+
+    /////////////////////////////////////////////////////////////////////
 
     /**
      * 执行单条shell命令
