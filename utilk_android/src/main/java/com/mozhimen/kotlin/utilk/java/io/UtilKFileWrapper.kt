@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.io
 
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
@@ -261,7 +262,10 @@ object UtilKFileWrapper : BaseUtilK() {
     @JvmStatic
     fun getFolderFiles_ofAll(folder: File, fileType: String? = null): Vector<File> {
         val fileVector = Vector<File>()
-        if (!isFolderExist(folder)) return fileVector//判断路径是否存在
+        if (!isFolderExist(folder)) {
+            Log.d(TAG, "getFolderFiles_ofAll: !isFolderExist(folder)")
+            return fileVector//判断路径是否存在
+        }
         val files = getFolderFiles(folder)
         if (files.isEmpty()) { //判断权限
             return fileVector
@@ -274,7 +278,7 @@ object UtilKFileWrapper : BaseUtilK() {
                     fileVector.add(file)
                 }
             } else if (file.isDirectory) { //查询子目录
-                UtilKStrFile.getFolderAllFiles(file.absolutePath, fileType)
+                fileVector.addAll(getFolderFiles_ofAll(file, fileType))
             }
         }
         return fileVector
