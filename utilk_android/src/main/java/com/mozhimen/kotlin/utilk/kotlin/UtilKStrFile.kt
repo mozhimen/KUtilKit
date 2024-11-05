@@ -296,7 +296,6 @@ object UtilKStrFile : IUtilK {
      * 文件转Uri
      */
     @JvmStatic
-    @ADescription(CIntent.FLAG_GRANT_READ_URI_PERMISSION.toString(), CIntent.FLAG_GRANT_WRITE_URI_PERMISSION.toString())
     fun strFilePath2uri(strFilePathName: String): Uri? =
         strFilePathName.strFilePath2file().file2uri()
 

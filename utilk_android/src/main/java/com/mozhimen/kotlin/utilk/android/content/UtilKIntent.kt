@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Parcelable
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -21,10 +22,6 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  */
 fun Intent.createChooser(title: CharSequence): Intent =
     UtilKIntent.createChooser(this, title)
-
-@OPermission_QUERY_ALL_PACKAGES
-fun Intent.isIntentAvailable(context: Context): Boolean =
-    UtilKIntent.isIntentAvailable(this, context)
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -78,19 +75,15 @@ object UtilKIntent : IUtilK {
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
-    //要启动的intent是否可用
     @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
-    fun isIntentAvailable(intent: Intent, context: Context): Boolean =
-        (resolveActivity(intent, context) != null).also { UtilKLogWrapper.d(TAG, "isIntentAvailable: $it") }
-
-    ///////////////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
-    @SuppressLint("QueryPermissionsNeeded")
     fun resolveActivity(intent: Intent, context: Context): ComponentName? =
-        intent.resolveActivity(UtilKPackageManager.get(context))
+        resolveActivity(intent, UtilKPackageManager.get(context))
+
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    fun resolveActivity(intent: Intent, pm: PackageManager): ComponentName? =
+        intent.resolveActivity(pm)
 
     @JvmStatic
     fun createChooser(target: Intent, title: CharSequence): Intent =

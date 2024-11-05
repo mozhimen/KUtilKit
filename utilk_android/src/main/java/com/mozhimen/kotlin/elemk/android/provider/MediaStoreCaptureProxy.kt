@@ -14,8 +14,10 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager
+import com.mozhimen.kotlin.utilk.android.content.isIntentAvailable
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.java.io.file2uri_ofImage
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
@@ -55,32 +57,17 @@ class MediaStoreCaptureProxy {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")
     fun dispatchCaptureIntent(context: Context, requestCode: Int) {
-        val intent = UtilKIntentWrapper.getMediaStoreImageCapture()
+        var intent = UtilKIntentWrapper.getMediaStoreImageCapture()
 
-        if (intent.resolveActivity(context.packageManager) != null) {
-            // 创建uri
+        if (intent.isIntentAvailable(context)&&_currentPhotoUri!=null) {
             createCurrentPhotoUri()
-
-            intent.apply {
-                putExtra(CMediaStore.EXTRA_OUTPUT, _currentPhotoUri)
-                addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            }
-            if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_21_5_L)) {
-                val resInfoList = UtilKPackageManager.queryIntentActivities(context,intent, CPackageManager.MATCH_DEFAULT_ONLY)
-                for (resolveInfo in resInfoList) {
-                    val strPackageName = resolveInfo.activityInfo.packageName
-                    _currentPhotoUri?.let {
-                        UtilKContext.grantUriPermission(context, strPackageName, it, CIntent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    }
-                }
-            }
-
+            intent = UtilKIntentWrapper.getMediaStoreImageCaptureOutput(_currentPhotoUri!!)
+            UtilKContextWrapper.grantUriPermission_before21(context,intent, _currentPhotoUri!!)
             if (_fragmentRef != null) {
                 _fragmentRef?.get()?.startActivityForResult(intent, requestCode)
             } else {
                 _contextRef.get()?.startActivityForResult(intent, requestCode)
             }
-
         }
     }
 

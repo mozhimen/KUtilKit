@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.content
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
@@ -18,8 +19,10 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_P
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.webkit.cons.EMineTypeMap_application
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfo
+import com.mozhimen.kotlin.utilk.android.content.UtilKIntent.TAG
 import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.java.io.file2uri
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKString
@@ -34,6 +37,16 @@ import java.io.File
  * @Date 2023/9/26 22:12
  * @Version 1.0
  */
+@OPermission_QUERY_ALL_PACKAGES
+fun Intent.isIntentAvailable(context: Context): Boolean =
+    UtilKIntentWrapper.isIntentAvailable(this, context)
+
+@OPermission_QUERY_ALL_PACKAGES
+fun Intent.isIntentAvailable(pm:PackageManager): Boolean =
+    UtilKIntentWrapper.isIntentAvailable(this, pm)
+
+///////////////////////////////////////////////////////////////////////////////////////
+
 object UtilKIntentWrapper {
 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +88,7 @@ object UtilKIntentWrapper {
         UtilKIntent.get(CIntent.ACTION_PICK)
 
     @JvmStatic
-    fun getPickImage(): Intent =
+    fun getPickImageAll(): Intent =
         getPick().apply {
             type = CMediaFormat.MIMETYPE_IMAGE_ALL
         }
@@ -330,6 +343,7 @@ object UtilKIntentWrapper {
     fun getMediaStoreImageCaptureOutput(uri: Uri): Intent =
         getMediaStoreImageCapture().apply {
             putExtra(CMediaStore.EXTRA_OUTPUT, uri)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
 
     @JvmStatic
@@ -339,4 +353,19 @@ object UtilKIntentWrapper {
     @JvmStatic
     fun getMediaStoreImageCaptureOutput(file: File): Intent? =
         file.file2uri()?.let { getMediaStoreImageCaptureOutput(it) }
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    //要启动的intent是否可用
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    fun isIntentAvailable(intent: Intent, context: Context): Boolean =
+        (UtilKIntent.resolveActivity(intent, context) != null).also { UtilKLogWrapper.d(TAG, "isIntentAvailable: $it") }
+
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    fun isIntentAvailable(intent: Intent, pm: PackageManager): Boolean =
+        (UtilKIntent.resolveActivity(intent, pm) != null).also { UtilKLogWrapper.d(TAG, "isIntentAvailable: $it") }
+
+
 }

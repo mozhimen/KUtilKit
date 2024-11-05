@@ -93,7 +93,6 @@ object UtilKFileFormat : BaseUtilK() {
     }
 
     @JvmStatic
-    @ADescription(CIntent.FLAG_GRANT_READ_URI_PERMISSION.toString(), CIntent.FLAG_GRANT_WRITE_URI_PERMISSION.toString())
     fun file2uri(file: File): Uri? {
         if (!UtilKFileWrapper.isFileExist(file)) {
             UtilKLogWrapper.e(TAG, "file2Uri: file ${file.absolutePath} isFileExist false")

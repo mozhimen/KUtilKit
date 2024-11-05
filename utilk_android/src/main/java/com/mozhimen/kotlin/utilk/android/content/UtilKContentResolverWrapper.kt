@@ -27,6 +27,8 @@ import java.io.File
 fun Uri.getMediaColumns(selection: String? = null, selectionArgs: Array<String>? = null): String? =
     UtilKContentResolverWrapper.getMediaColumns(this, selection, selectionArgs)
 
+///////////////////////////////////////////////////////////////////////////////////////////
+
 object UtilKContentResolverWrapper : BaseUtilK() {
     @JvmStatic
     fun getString(uri: Uri, projection: Array<String>? = null, selection: String? = null, selectionArgs: Array<String>? = null): String? {

@@ -1,10 +1,20 @@
 package com.mozhimen.kotlin.utilk.android.content
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
+import androidx.annotation.RequiresPermission
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
+import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityManager
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
+import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKDisplayMetrics
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrProcess
 import java.util.Locale
@@ -63,6 +73,22 @@ object UtilKContextWrapper {
     @OApiUse_BaseApplication
     fun isFinishingOrDestroyed(context: Context): Boolean =
         UtilKActivityWrapper.isFinishingOrDestroyed(context)
+
+    ///////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
+    @SuppressLint("QueryPermissionsNeeded", "InlinedApi")
+    fun grantUriPermission_before21(context: Context, intent: Intent, uri: Uri) {
+        if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_21_5_L)) {
+            val resInfoList = UtilKPackageManager.queryIntentActivities(context, intent, CPackageManager.MATCH_DEFAULT_ONLY)
+            for (resolveInfo in resInfoList) {
+                val strPackageName = resolveInfo.activityInfo.packageName
+                UtilKContext.grantUriPermission(context, strPackageName, uri, CIntent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            }
+        }
+    }
 
     /**
      * 这个方法虽然更新了资源但是只能以后的界面生效，之前没有finish的页面还是保留原来的语言
