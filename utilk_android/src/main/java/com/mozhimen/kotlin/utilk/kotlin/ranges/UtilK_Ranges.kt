@@ -24,20 +24,6 @@ fun Int.constraint(min: Int, max: Int): Int =
 
 /////////////////////////////////////////////////////
 
-fun Double.constraint(pair: Pair<Double, Double>): Double =
-    UtilK_Ranges.constraint(this, pair.first, pair.second)
-
-fun Long.constraint(pair: Pair<Long, Long>): Long =
-    UtilK_Ranges.constraint(this, pair.first, pair.second)
-
-fun Float.constraint(pair: Pair<Float, Float>): Float =
-    UtilK_Ranges.constraint(this, pair.first, pair.second)
-
-fun Int.constraint(pair: Pair<Int, Int>): Int =
-    UtilK_Ranges.constraint(this, pair.first, pair.second)
-
-/////////////////////////////////////////////////////
-
 fun Int.constraint(range: IntRange): Int =
     UtilK_Ranges.constraint(this, range)
 
@@ -46,17 +32,14 @@ fun Long.constraint(range: LongRange): Long =
 
 /////////////////////////////////////////////////////
 
+fun Int.percent(start: Int, end: Int): Float =
+    UtilK_Ranges.percent(this, start, end)
+
 fun Float.percent(start: Float, end: Float): Float =
     UtilK_Ranges.percent(this, start, end)
 
-fun Float.percent(pair: Pair<Float, Float>): Float =
-    UtilK_Ranges.percent(this, pair.first, pair.second)
-
 fun Double.percent(start: Double, end: Double): Double =
     UtilK_Ranges.percent(this, start, end)
-
-fun Double.percent(pair: Pair<Double, Double>): Double =
-    UtilK_Ranges.percent(this, pair.first, pair.second)
 
 /////////////////////////////////////////////////////
 
@@ -64,26 +47,30 @@ object UtilK_Ranges {
 
     @JvmStatic
     fun constraint(value: Long, min: Long, max: Long): Long {
-        val tempPair = min(min, max) to max(min, max)
-        return value.coerceIn(tempPair.first, tempPair.second)
+        val minV = min(min, max)
+        val maxV = max(min, max)
+        return value.coerceIn(minV, maxV)
     }
 
     @JvmStatic
     fun constraint(value: Float, min: Float, max: Float): Float {
-        val tempPair = min(min, max) to max(min, max)
-        return value.coerceIn(tempPair.first, tempPair.second)
+        val minV = min(min, max)
+        val maxV = max(min, max)
+        return value.coerceIn(minV, maxV)
     }
 
     @JvmStatic
     fun constraint(value: Double, min: Double, max: Double): Double {
-        val tempPair = min(min, max) to max(min, max)
-        return value.coerceIn(tempPair.first, tempPair.second)
+        val minV = min(min, max)
+        val maxV = max(min, max)
+        return value.coerceIn(minV, maxV)
     }
 
     @JvmStatic
     fun constraint(value: Int, min: Int, max: Int): Int {
-        val tempPair = min(min, max) to max(min, max)
-        return value.coerceIn(tempPair.first, tempPair.second)
+        val minV = min(min, max)
+        val maxV = max(min, max)
+        return value.coerceIn(minV, maxV)
     }
 
     @JvmStatic
@@ -99,15 +86,22 @@ object UtilK_Ranges {
     @JvmStatic
     fun percent(value: Double, start: Double, end: Double): Double {
         if (start == end) return 0.0
-        val tempPair = min(start, end) to max(start, end)
-        return (constraint(value, tempPair.first, tempPair.second) - tempPair.first) / (tempPair.second - tempPair.first)
+        val startV = min(start, end)
+        val endV = max(start, end)
+        return (constraint(value, startV, endV) - startV) / (endV - startV)
     }
 
     @JvmStatic
     fun percent(value: Float, start: Float, end: Float): Float {
         if (start == end) return 0f
-        val tempPair = min(start, end) to max(start, end)
-        return (constraint(value, tempPair.first, tempPair.second) - tempPair.first) / (tempPair.second - tempPair.first)
+        val startV = min(start, end)
+        val endV = max(start, end)
+        return (constraint(value, startV, endV) - startV) / (endV - startV)
+    }
+
+    @JvmStatic
+    fun percent(value: Int, start: Int, end: Int): Float {
+        return percent(value.toFloat(), start.toFloat(), end.toFloat())
     }
 
     //////////////////////////////////////////////////////////////////////

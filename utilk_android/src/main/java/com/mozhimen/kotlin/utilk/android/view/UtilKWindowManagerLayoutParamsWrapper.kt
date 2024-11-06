@@ -22,5 +22,4 @@ object UtilKWindowManagerLayoutParamsWrapper {
     @JvmStatic
     fun isFullScreen(activity: Activity): Boolean =
         isFlagFullScreen(activity) || !UtilKNavigationBar.isVisible(activity) || !UtilKStatusBar.isVisible(activity)
-
 }
