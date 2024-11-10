@@ -29,6 +29,10 @@ object CDateFormat {
         const val ss = "ss"
     }
 
+    object SKELETON {
+        const val YYYYMMMMd = "YYYYMMMMd"
+    }
+
     const val FULL = DateFormat.FULL
     const val LONG = DateFormat.LONG
     const val MEDIUM = DateFormat.MEDIUM

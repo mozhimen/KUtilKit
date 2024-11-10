@@ -88,6 +88,9 @@ object UtilKSimpleDateFormatFormat {
     fun date2strDate(date: Date, context: Context, @AFormatStyle style: Int): String =
         date2strDate(date, UtilKSimpleDateFormat.toLocalizedPattern(UtilKSimpleDateFormatWrapper.get(context, style)))
 
+    /**
+     * @param skeleton "YYYYMMMMd"示例
+     */
     @JvmStatic
     fun date2strDate(date: Date, locale: Locale, skeleton: String): String {
         val newSkeleton = UtilKDateFormat.getBestDateTimePattern(locale, skeleton)
