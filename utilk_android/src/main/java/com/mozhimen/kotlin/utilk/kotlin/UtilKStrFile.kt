@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.elemk.android.media.cons.CMediaFormat
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.lintk.annors.ADescription
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmap
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.createFile
@@ -302,12 +303,12 @@ object UtilKStrFile : IUtilK {
     @JvmStatic
     fun strFilePath2bitmapAny(strFilePathName: String): Bitmap? =
         if (strFilePathName.isEmpty() || strFilePathName.hasSpace()) null
-        else BitmapFactory.decodeFile(strFilePathName)
+        else UtilKBitmap.get(strFilePathName)
 
     @JvmStatic
     fun strFilePath2bitmapAny(strFilePathName: String, opts: BitmapFactory.Options): Bitmap? =
         if (strFilePathName.isEmpty() || strFilePathName.hasSpace()) null
-        else BitmapFactory.decodeFile(strFilePathName, opts)
+        else UtilKBitmap.get(strFilePathName, opts)
 
     //////////////////////////////////////////////////////////////////////
 

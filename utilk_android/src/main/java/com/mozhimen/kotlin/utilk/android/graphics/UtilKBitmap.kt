@@ -1,8 +1,11 @@
 package com.mozhimen.kotlin.utilk.android.graphics
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.graphics.Rect
 import androidx.annotation.IntRange
+import java.io.InputStream
 import java.io.OutputStream
 
 
@@ -16,7 +19,31 @@ import java.io.OutputStream
 fun Bitmap.getByteCount_ofM(): Int =
     UtilKBitmap.getByteCount_ofM(this)
 
+/////////////////////////////////////////////////////////////
+
 object UtilKBitmap {
+    @JvmStatic
+    fun get(inputStream: InputStream): Bitmap =
+        UtilKBitmapFactory.decodeStream(inputStream)
+
+    @JvmStatic
+    fun get(inputStream: InputStream?, outPadding: Rect?, opts: BitmapFactory.Options?): Bitmap? =
+        UtilKBitmapFactory.decodeStream(inputStream, outPadding, opts)
+
+    @JvmStatic
+    fun get(strFilePathName: String): Bitmap =
+        UtilKBitmapFactory.decodeFile(strFilePathName)
+
+    @JvmStatic
+    fun get(strFilePathName: String, opts: BitmapFactory.Options): Bitmap =
+        UtilKBitmapFactory.decodeFile(strFilePathName, opts)
+
+    @JvmStatic
+    fun get(data: ByteArray, offset: Int, length: Int): Bitmap =
+        UtilKBitmapFactory.decodeByteArray(data, offset, length)
+
+    /////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun getByteCount(bitmap: Bitmap): Int =
         bitmap.byteCount

@@ -15,7 +15,7 @@ import com.mozhimen.kotlin.utilk.android.app.UtilKPendingIntentWrapper
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream
-import com.mozhimen.kotlin.utilk.java.io.inputStream2bufferedInputStream
+import com.mozhimen.kotlin.utilk.java.io.fileInputStream2bufferedInputStream
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2fileInputStream
@@ -116,7 +116,7 @@ object UtilKPackageInstallerSession : BaseUtilK() {
         // if the disk is almost full.
         val strFileName = UtilKStrFile.getStrFileName(strApkPathName) ?: return
         val outputStream = session.openWrite(strFileName,  /*getFileName()*/0, strApkPathName.strFilePath2file().length())
-        val bufferedInputStream = strApkPathName.strFilePath2fileInputStream().inputStream2bufferedInputStream()
+        val bufferedInputStream = strApkPathName.strFilePath2fileInputStream().fileInputStream2bufferedInputStream()
         UtilKInputStream.read_write_use(bufferedInputStream, outputStream, 16384)
         Log.d(TAG, "addStrApkPathNameToSession: strApkPathName $strApkPathName")
     }

@@ -1,33 +1,19 @@
 package com.mozhimen.kotlin.utilk.android.content
 
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import android.content.IntentSender
 import android.content.pm.PackageInstaller
 import android.content.pm.PackageInstaller.Session
 import android.content.pm.PackageInstaller.SessionParams
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.RequiresApi
-import androidx.annotation.RequiresPermission
-import com.mozhimen.kotlin.elemk.android.app.cons.CPendingIntent
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageInstaller
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream
 import com.mozhimen.kotlin.utilk.java.io.file2fileInputStream
 import com.mozhimen.kotlin.utilk.java.io.flushClose
-import com.mozhimen.kotlin.utilk.java.io.inputStream2bufferedInputStream
-import com.mozhimen.kotlin.utilk.java.io.isFileExist
 import com.mozhimen.kotlin.utilk.java.io.isFileNotExist
-import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
-import com.mozhimen.kotlin.utilk.kotlin.strFilePath2fileInputStream
-import kotlinx.coroutines.flow.combineTransform
 import java.io.File
 import java.io.OutputStream
 

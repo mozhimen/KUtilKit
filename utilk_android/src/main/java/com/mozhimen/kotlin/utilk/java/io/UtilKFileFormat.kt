@@ -163,7 +163,7 @@ object UtilKFileFormat : BaseUtilK() {
     @JvmStatic
     fun file2bytes_use_ofReadWrite(file: File, bufferSize: Int = 1024): ByteArray? {
         return if (!UtilKFileWrapper.isFileExist(file)) return null
-        else UtilKInputStream.read_write_use(file.file2fileInputStream()?.inputStream2bufferedInputStream()?:return null, UtilKByteArrayOutputStream.get(file), bufferSize)
+        else UtilKInputStream.read_write_use(file.file2fileInputStream()?.fileInputStream2bufferedInputStream()?:return null, UtilKByteArrayOutputStream.get(file), bufferSize)
     }
 
     @JvmStatic

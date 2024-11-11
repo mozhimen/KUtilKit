@@ -1,6 +1,5 @@
 package com.mozhimen.kotlin.utilk.android.graphics
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,6 +8,7 @@ import androidx.annotation.DrawableRes
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.io.FileDescriptor
+import java.io.InputStream
 
 /**
  * @ClassName UtilKBitmapFactory
@@ -23,12 +23,30 @@ object UtilKBitmapFactory : IUtilK {
         BitmapFactory.decodeFileDescriptor(fd, outPadding, opts)
 
     @JvmStatic
-    fun decodeResource(res: Resources, @DrawableRes intResDrawable: Int): Bitmap {
-        UtilKLogWrapper.d(TAG, "decodeResource: intResDrawable $intResDrawable")
-        return BitmapFactory.decodeResource(res, intResDrawable)
-    }
+    fun decodeStream(inputStream: InputStream): Bitmap =
+        BitmapFactory.decodeStream(inputStream)
+
+    @JvmStatic
+    fun decodeStream(inputStream: InputStream?, outPadding: Rect?, opts: BitmapFactory.Options?): Bitmap? =
+        BitmapFactory.decodeStream(inputStream, outPadding, opts)
+
+    @JvmStatic
+    fun decodeFile(strFilePathName: String): Bitmap =
+        BitmapFactory.decodeFile(strFilePathName)
+
+    @JvmStatic
+    fun decodeFile(strFilePathName: String, opts: BitmapFactory.Options): Bitmap =
+        BitmapFactory.decodeFile(strFilePathName, opts)
+
+    @JvmStatic
+    fun decodeResource(res: Resources, @DrawableRes intResDrawable: Int): Bitmap =
+        BitmapFactory.decodeResource(res, intResDrawable).also { UtilKLogWrapper.d(TAG, "decodeResource: intResDrawable $intResDrawable") }
 
     @JvmStatic
     fun decodeResource(res: Resources, @DrawableRes intResDrawable: Int, opts: BitmapFactory.Options): Bitmap =
         BitmapFactory.decodeResource(res, intResDrawable, opts)
+
+    @JvmStatic
+    fun decodeByteArray(data: ByteArray, offset: Int, length: Int): Bitmap =
+        BitmapFactory.decodeByteArray(data, offset, length)
 }

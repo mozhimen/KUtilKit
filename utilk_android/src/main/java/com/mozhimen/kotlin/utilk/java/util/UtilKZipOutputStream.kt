@@ -5,9 +5,9 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream
 import com.mozhimen.kotlin.utilk.java.io.file2fileInputStream
+import com.mozhimen.kotlin.utilk.java.io.fileInputStream2bufferedInputStream
 import com.mozhimen.kotlin.utilk.java.io.flushClose
 import com.mozhimen.kotlin.utilk.java.io.getFolderFiles
-import com.mozhimen.kotlin.utilk.java.io.inputStream2bufferedInputStream
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.OutputStream
@@ -43,7 +43,7 @@ object UtilKZipOutputStream : IUtilK {
                     }
             } else {
                 zipOutputStream.putNextEntry(ZipEntry(fileName))
-                UtilKInputStream.read_write_use(fileSource.file2fileInputStream()?.inputStream2bufferedInputStream()?:return,bufferedOutputStream)
+                UtilKInputStream.read_write_use(fileSource.file2fileInputStream()?.fileInputStream2bufferedInputStream()?:return,bufferedOutputStream)
             }
         } finally {
             zipOutputStream.flushClose()

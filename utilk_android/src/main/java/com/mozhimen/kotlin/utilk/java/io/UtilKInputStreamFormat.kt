@@ -7,6 +7,8 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.commons.IAB_Listener
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmap
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapDrawable
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.security.UtilKMessageDigestMD5
@@ -259,16 +261,16 @@ object UtilKInputStreamFormat : IUtilK {
 
     @JvmStatic
     fun inputStream2bitmapAny_use(inputStream: InputStream): Bitmap =
-        inputStream.use { BitmapFactory.decodeStream(it) }
+        inputStream.use { UtilKBitmap.get(it) }
 
     @JvmStatic
-    fun inputStream2bitmapAny_use(inputStream: InputStream, outPadding: Rect?, opts: BitmapFactory.Options): Bitmap? =
-        inputStream.use { BitmapFactory.decodeStream(it, outPadding, opts) }
+    fun inputStream2bitmapAny_use(inputStream: InputStream, outPadding: Rect?, opts: BitmapFactory.Options?): Bitmap? =
+        inputStream.use { UtilKBitmap.get(it, outPadding, opts) }
 
     ////////////////////////////////////////////////////////////////////////////
     @JvmStatic
     fun inputStream2bitmapDrawable_use(inputStream: InputStream): BitmapDrawable =
-        inputStream.use { BitmapDrawable(null, it) }
+        inputStream.use { UtilKBitmapDrawable.get(null, it) }
 
     ////////////////////////////////////////////////////////////////////////////
 

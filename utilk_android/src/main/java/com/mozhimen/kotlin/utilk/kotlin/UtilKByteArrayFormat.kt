@@ -2,6 +2,8 @@ package com.mozhimen.kotlin.utilk.kotlin
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmap
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapFactory
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
@@ -94,7 +96,7 @@ object UtilKByteArrayFormat : IUtilK {
 
     @JvmStatic
     fun bytes2bitmapAny(bytes: ByteArray): Bitmap =
-        BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+        UtilKBitmap.get(bytes, 0, bytes.size)
 
     @JvmStatic
     fun bytes2file(bytes: ByteArray, strFilePathNameDest: String, isAppend: Boolean = false): File =
