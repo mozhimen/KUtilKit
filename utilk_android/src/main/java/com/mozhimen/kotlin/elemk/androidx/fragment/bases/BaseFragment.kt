@@ -2,6 +2,9 @@ package com.mozhimen.kotlin.elemk.androidx.fragment.bases
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
