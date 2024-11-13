@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.app.ActivityManager.MemoryInfo
 import android.app.ActivityManager.RunningTaskInfo
 import android.content.Context
+import android.content.pm.ConfigurationInfo
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 
 /**
@@ -24,19 +25,12 @@ object UtilKActivityManager {
     }
 
     @JvmStatic
-    fun getMemoryInfo(context: Context): MemoryInfo {
-        val memoryInfo = MemoryInfo()
-        getMemoryInfo(context, memoryInfo)
-        return memoryInfo
-    }
-
-    @JvmStatic
     fun getRunningAppProcesses(context: Context): List<ActivityManager.RunningAppProcessInfo> =
         get(context).runningAppProcesses
 
     @JvmStatic
-    fun getRegGlEsVersion(context: Context): Int =
-        if (get(context).deviceConfigurationInfo.reqGlEsVersion >= 0x30000) 3 else 2
+    fun getDeviceConfigurationInfo(context: Context): ConfigurationInfo =
+        get(context).deviceConfigurationInfo
 
     @JvmStatic
     fun getRunningTasks(context: Context, maxCount: Int): List<RunningTaskInfo> =

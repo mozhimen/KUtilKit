@@ -35,9 +35,6 @@ fun Context.get_of_config_mediumAnimTime(): Int =
 fun Context.get_of_config_longAnimTime(): Int =
     UtilKContextWrapper.get_of_config_longAnimTime(this)
 
-fun Context.getRegGlEsVersion(): Int =
-    UtilKContextWrapper.getRegGlEsVersion(this)
-
 fun Context.isMainProcess(): Boolean =
     UtilKContextWrapper.isMainProcess(this)
 
@@ -55,10 +52,6 @@ object UtilKContextWrapper {
     @JvmStatic
     fun get_of_config_longAnimTime(context: Context): Int =
         UtilKResourcesWrapper.getInt_config_longAnimTime(context.resources)
-
-    @JvmStatic
-    fun getRegGlEsVersion(context: Context): Int =
-        UtilKActivityManager.getRegGlEsVersion(context)
 
     ///////////////////////////////////////////////////////////////////////
 

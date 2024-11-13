@@ -1,6 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.app
 
 import android.app.Dialog
+import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import com.mozhimen.kotlin.elemk.android.view.cons.CView

@@ -24,6 +24,9 @@ fun View.applyMarginEnd(@Px rightMargin: Int) {
     UtilKViewGroupLayoutParams.applyMarginEnd(this, rightMargin)
 }
 
+fun View.applyMarginTop(@Px topMargin: Int) {
+    UtilKViewGroupLayoutParams.applyMarginTop(this, topMargin)
+}
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -55,14 +58,22 @@ object UtilKViewGroupLayoutParams {
     }
 
     @JvmStatic
+    fun applyMarginTop(view: View, @Px topMargin: Int) {
+        when (view.layoutParams) {
+            is ViewGroup.MarginLayoutParams -> {
+                val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
+                layoutParams.setMargins(layoutParams.leftMargin, topMargin, layoutParams.rightMargin, layoutParams.bottomMargin)
+                view.layoutParams = layoutParams
+            }
+        }
+    }
+
+    @JvmStatic
     fun applyMarginEnd(view: View, @Px rightMargin: Int) {
         when (view.layoutParams) {
             is ViewGroup.MarginLayoutParams -> {
                 val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
-                val leftMargin = layoutParams.leftMargin
-                val topMargin = layoutParams.topMargin
-                val bottomMargin = layoutParams.bottomMargin
-                layoutParams.setMargins(leftMargin, topMargin, rightMargin, bottomMargin)
+                layoutParams.setMargins(layoutParams.leftMargin, layoutParams.topMargin, rightMargin, layoutParams.bottomMargin)
                 view.layoutParams = layoutParams
             }
         }

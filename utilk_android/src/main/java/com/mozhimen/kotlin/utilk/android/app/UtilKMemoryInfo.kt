@@ -13,7 +13,7 @@ import com.mozhimen.kotlin.utilk.android.text.formatFileSize
 object UtilKMemoryInfo {
     @JvmStatic
     fun get(context: Context): MemoryInfo =
-        UtilKActivityManager.getMemoryInfo(context)
+        MemoryInfo().apply { UtilKActivityManager.getMemoryInfo(context, this) }
 
     @JvmStatic
     fun get(context: Context, memoryInfo: MemoryInfo) {

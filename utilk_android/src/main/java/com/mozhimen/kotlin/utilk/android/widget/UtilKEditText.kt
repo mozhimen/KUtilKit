@@ -8,7 +8,7 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CEditorInfo
 import com.mozhimen.kotlin.elemk.commons.IAB_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.utilk.kotlin.obj2str_trim
-import com.mozhimen.kotlin.utilk.kotlinx.coroutines.UtilKFlow.getSearchFlow
+import com.mozhimen.kotlin.utilk.kotlinx.coroutines.UtilKFlow.getStringFlow
 import com.mozhimen.kotlin.utilk.kotlinx.coroutines.getEditTextChangeFlow
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -102,7 +102,7 @@ object UtilKEditText {
         resBlock: IAB_Listener<EditText, List<String>>,
         thresholdMillis: Long = 500
     ) {
-        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getSearchFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
+        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getStringFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
             resBlock(editText, it)
         }.launchIn(scope)
     }
@@ -117,7 +117,7 @@ object UtilKEditText {
         resBlock: suspend CoroutineScope.(EditText, List<String>) -> Unit,
         thresholdMillis: Long = 500
     ) {
-        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getSearchFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
+        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getStringFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
             scope.resBlock(editText, it)
         }.launchIn(scope)
     }

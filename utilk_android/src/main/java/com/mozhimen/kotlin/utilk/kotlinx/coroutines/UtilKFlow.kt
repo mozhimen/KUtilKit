@@ -25,6 +25,8 @@ fun View.getViewClickFlow(): Flow<Unit> =
 fun EditText.getEditTextChangeFlow(): Flow<CharSequence> =
     UtilKFlow.getEditTextChangeFlow(this)
 
+/////////////////////////////////////////////////////////////////////////////////////
+
 fun <T> Flow<T>.throttleFirst(thresholdMillis: Long): Flow<T> =
     UtilKFlow.throttleFirst(this, thresholdMillis)
 
@@ -33,6 +35,8 @@ fun <T> Flow<T>.batch_ofTime(maxMillis: Int): Flow<List<T>> =
 
 fun <T> Flow<T>.batch_ofSizeTime(maxSize: Int, maxMillis: Int): Flow<List<T>> =
     UtilKFlow.batch_ofSizeTime(this, maxSize, maxMillis)
+
+/////////////////////////////////////////////////////////////////////////////////////
 
 suspend fun <T> Flow<T>.collectSafe(block: ISuspendA_Listener<T>) {
     UtilKFlow.collectSafe(this, block)
@@ -46,7 +50,7 @@ suspend fun <T> Flow<T>.collectSafe(onGenerate: ISuspendA_Listener<T>, onError: 
 
 object UtilKFlow {
     @JvmStatic
-    fun getSearchFlow(str: String, scope: CoroutineScope, block: suspend CoroutineScope.(String) -> List<String>) =
+    fun getStringFlow(str: String, scope: CoroutineScope, block: suspend CoroutineScope.(String) -> List<String>) =
         flow { emit(scope.block(str)) }
 
     @JvmStatic
@@ -120,6 +124,4 @@ object UtilKFlow {
                 }
             }
     }
-
-
 }
