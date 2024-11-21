@@ -18,6 +18,7 @@ import com.mozhimen.kotlin.utilk.kotlin.obj2str_trim
 import com.mozhimen.kotlin.utilk.kotlin.whether
 import androidx.annotation.IntRange
 import androidx.core.graphics.drawable.toDrawable
+import com.mozhimen.kotlin.utilk.android.content.UtilKAssetManager
 
 /**
  * @ClassName UtilKViewText
@@ -235,7 +236,7 @@ object UtilKTextViewWrapper {
      */
     @JvmStatic
     fun applyTypeface_ofAsset(textView: TextView, assetFontPathWithName: String) {
-        UtilKTextView.setTypeface(textView, Typeface.createFromAsset(UtilKContext.getAssets(textView.context), assetFontPathWithName))
+        UtilKTextView.setTypeface(textView, Typeface.createFromAsset(UtilKAssetManager.get_ofContext(textView.context), assetFontPathWithName))
     }
 
     ////////////////////////////////////////////////////////////////////////////

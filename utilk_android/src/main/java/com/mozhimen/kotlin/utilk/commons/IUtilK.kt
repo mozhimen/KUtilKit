@@ -22,6 +22,8 @@ package com.mozhimen.kotlin.utilk.commons
  * @property TAG String
  */
 interface IUtilK {
-    val NAME: String get() = this.javaClass.simpleName
-    val TAG: String get() = "$NAME>>>>>"
+    val NAME: String
+        get() = synchronized(this) { this.javaClass.simpleName }
+    val TAG: String
+        get() = "$NAME>>>>>"
 }

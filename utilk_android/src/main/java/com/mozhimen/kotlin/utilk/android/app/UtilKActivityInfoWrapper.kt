@@ -7,7 +7,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager
-import com.mozhimen.kotlin.utilk.kotlin.UtilKString
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStringWrapper
 
 /**
  * @ClassName UtilKActivityInfo
@@ -16,14 +16,14 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKString
  * @Date 2024/3/16 23:21
  * @Version 1.0
  */
-object UtilKActivityInfo {
+object UtilKActivityInfoWrapper {
 
     //获取启动Activity
     @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getMainLauncher(context: Context, strPackageName: String): ActivityInfo? {
-        if (UtilKString.hasSpace(strPackageName) || strPackageName.isEmpty()) return null
+        if (UtilKStringWrapper.hasSpace(strPackageName) || strPackageName.isEmpty()) return null
         val resolveInfos = UtilKPackageManager.queryIntentActivities(context, UtilKIntentWrapper.getMainLauncher_ofPackage(strPackageName, null), 0)
         return if (resolveInfos.isEmpty()) null else resolveInfos[0].activityInfo
     }

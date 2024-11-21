@@ -172,9 +172,9 @@ object UtilKByteArrayFormat : IUtilK {
 
     @JvmStatic
     fun bytes2str(bytes: ByteArray, charset: Charset = Charsets.UTF_8): String =
-        String(bytes, charset)
+        UtilKString.get(bytes, charset)
 
     @JvmStatic
     fun bytes2str(bytes: ByteArray, offset: Int, length: Int): String =
-        String(bytes, offset, length)
+        UtilKString.get(bytes, offset, length)
 }

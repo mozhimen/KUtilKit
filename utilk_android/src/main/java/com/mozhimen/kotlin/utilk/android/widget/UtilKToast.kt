@@ -24,12 +24,12 @@ object UtilKToast {
         Toast.makeText(context, intResStr, duration)
 
     @JvmStatic
-    fun show(context: Context, chars: CharSequence, duration: Int) {
+    fun makeText_show(context: Context, chars: CharSequence, duration: Int) {
         makeText(context, chars, duration).show()
     }
 
     @JvmStatic
-    fun show(context: Context, @StringRes intResStr: Int, duration: Int) {
+    fun makeText_show(context: Context, @StringRes intResStr: Int, duration: Int) {
         makeText(context, intResStr, duration).show()
     }
 }

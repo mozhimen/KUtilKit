@@ -100,6 +100,8 @@ object UtilKStrAsset : BaseUtilK() {
     fun strAssetName2bytes_use(strAssetName: String): ByteArray =
         UtilKAssetManager.open(_context, strAssetName).inputStream2bytes_use()
 
+    ///////////////////////////////////////////////////////////////////
+
     /**
      * 文件转String:分析json文件,从资产文件加载内容:license,获取txt文本文件内容等
      */
@@ -124,6 +126,8 @@ object UtilKStrAsset : BaseUtilK() {
         if (!isAssetExists(strAssetName)) null
         else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_ofBytes()
 
+    ///////////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun strAssetName2file_use(strAssetName: String, fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
         if (!isAssetExists(strAssetName)) {
@@ -140,6 +144,8 @@ object UtilKStrAsset : BaseUtilK() {
             UtilKLogWrapper.d(TAG, "strAssetName2file: dont exist")
             null
         } else UtilKAssetManager.open(_context, strAssetName).inputStream2file_use(strAssetName.getStrFilePathName(strFilePathNameDest), isAppend, bufferSize, block)
+
+    ///////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun strAssetName2bitmap_use(strAssetName: String): Bitmap? =
