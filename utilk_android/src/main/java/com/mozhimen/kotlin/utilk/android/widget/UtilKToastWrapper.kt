@@ -42,10 +42,6 @@ fun CharSequence.showToast(context: Context, duration: Int = Toast.LENGTH_SHORT)
     UtilKToastWrapper.showToast(this, duration, context)
 }
 
-fun Context.showToast(chars: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
-    UtilKToastWrapper.showToast(chars, duration, this)
-}
-
 fun Int.showToast(duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToast(this, duration)
 }
@@ -54,8 +50,12 @@ fun Int.showToast(context: Context, duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToast(this, duration, context)
 }
 
-fun Context.showToast(@StringRes intResStr: Int, duration: Int = Toast.LENGTH_SHORT) {
-    UtilKToastWrapper.showToast(intResStr, duration, this)
+fun Exception.showToast(duration: Int = Toast.LENGTH_LONG) {
+    UtilKToastWrapper.showToast(this, duration)
+}
+
+fun Exception.showToast(context: Context, duration: Int = Toast.LENGTH_LONG) {
+    UtilKToastWrapper.showToast(this, duration, context)
 }
 
 ////////////////////////////////////////////////////////////////
@@ -68,10 +68,6 @@ fun CharSequence.showToastOnMain(context: Context, duration: Int = Toast.LENGTH_
     UtilKToastWrapper.showToastOnMain(this, duration, context)
 }
 
-fun Context.showToastOnMain(chars: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
-    UtilKToastWrapper.showToastOnMain(chars, duration, this)
-}
-
 fun Int.showToastOnMain(duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToastOnMain(this, duration)
 }
@@ -80,34 +76,12 @@ fun Int.showToastOnMain(context: Context, duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToastOnMain(this, duration, context)
 }
 
-fun Context.showToastOnMain(@StringRes intResStr: Int, duration: Int = Toast.LENGTH_SHORT) {
-    UtilKToastWrapper.showToastOnMain(intResStr, duration, this)
-}
-
-////////////////////////////////////////////////////////////////
-
-fun Exception.showToast(duration: Int = Toast.LENGTH_LONG) {
-    UtilKToastWrapper.showToast(this, duration)
-}
-
-fun Exception.showToast(context: Context, duration: Int = Toast.LENGTH_LONG) {
-    UtilKToastWrapper.showToast(this, duration, context)
-}
-
-fun Context.showToast(exception: Exception, duration: Int = Toast.LENGTH_LONG) {
-    UtilKToastWrapper.showToast(exception, duration, this)
-}
-
-fun Exception.showToastOnMain(duration: Int = Toast.LENGTH_LONG) {
+fun Exception.showToastOnMain(duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToastOnMain(this, duration)
 }
 
-fun Exception.showToastOnMain(context: Context, duration: Int = Toast.LENGTH_LONG) {
+fun Exception.showToastOnMain(context: Context, duration: Int = Toast.LENGTH_SHORT) {
     UtilKToastWrapper.showToastOnMain(this, duration, context)
-}
-
-fun Context.showToastOnMain(exception: Exception, duration: Int = Toast.LENGTH_LONG) {
-    UtilKToastWrapper.showToastOnMain(exception, duration, this)
 }
 
 ////////////////////////////////////////////////////////////////
@@ -119,18 +93,18 @@ object UtilKToastWrapper : BaseUtilK() {
     fun showToast(chars: CharSequence, duration: Int = CToast.LENGTH_SHORT, context: Context = _context) {
         if (context is Activity) {
             if (!context.isFinishingOrDestroyed())
-                UtilKToast.show(context, chars, duration)
+                UtilKToast.makeText_show(context, chars, duration)
         } else
-            UtilKToast.show(context, chars, duration)
+            UtilKToast.makeText_show(context, chars, duration)
     }
 
     @JvmStatic
     fun showToast(@StringRes intResStr: Int, duration: Int = CToast.LENGTH_SHORT, context: Context = _context) {
         if (context is Activity) {
             if (!context.isFinishingOrDestroyed())
-                UtilKToast.show(context, intResStr, duration)
+                UtilKToast.makeText_show(context, intResStr, duration)
         } else
-            UtilKToast.show(context, intResStr, duration)
+            UtilKToast.makeText_show(context, intResStr, duration)
     }
 
     @JvmStatic

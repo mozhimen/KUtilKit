@@ -112,7 +112,7 @@ object UtilKInputStream : IUtilK {
             var readCount: Int
             var offset = 0
             var percent: Float
-            UtilKLogWrapper.d(TAG, "inputStream2outputStream: totalCount $totalCount")
+            UtilKLogWrapper.d(TAG, "read_write_use: totalCount $totalCount")
             while (inputStream.read(bytes).also { readCount = it } != -1) {
                 offset += readCount
                 outputStream.write(bytes, 0, readCount)

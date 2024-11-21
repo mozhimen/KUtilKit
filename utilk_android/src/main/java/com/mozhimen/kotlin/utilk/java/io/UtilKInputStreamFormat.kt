@@ -143,7 +143,6 @@ fun InputStream.inputStream2file_use_ofReadWriteBytes(fileDest: File): File? =
 
 object UtilKInputStreamFormat : IUtilK {
 
-    ////////////////////////////////////////////////////////////////////////////
     @JvmStatic
     fun inputStream2bufferedInputStream(inputStream: InputStream): BufferedInputStream =
         UtilKBufferedInputStream.get(inputStream)
@@ -169,9 +168,10 @@ object UtilKInputStreamFormat : IUtilK {
     @JvmStatic
     fun inputStream2bytes_use(inputStream: InputStream, isVerify: Boolean): ByteArray {
         val bytes = UtilKByteArray.get(inputStream)
+        val available = inputStream.available()
         val readSize = inputStream.read_use(bytes)
-        if (isVerify && readSize.toLong() < inputStream.available())
-            throw IOException(String.format("File length is [{}] but read [{}]!", *arrayOf<Any>(inputStream.available(), readSize)))
+        if (isVerify && readSize.toLong() < available)
+            throw IOException(String.format("File length is [{}] but read [{}]!", *arrayOf<Any>(available, readSize)))
         return bytes
     }
 

@@ -18,14 +18,14 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.webkit.cons.EMineTypeMap_application
-import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfo
+import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfoWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntent.TAG
 import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.java.io.file2uri
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
-import com.mozhimen.kotlin.utilk.kotlin.UtilKString
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStringWrapper
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2uri
 import com.mozhimen.kotlin.utilk.kotlin.strUri2uri
 import java.io.File
@@ -171,8 +171,8 @@ object UtilKIntentWrapper {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getMainLauncher_ofPackageManger(context: Context, strPackageName: String): Intent? {
-        val strLauncherActivityName: String = UtilKActivityInfo.getMainLauncherName(context, strPackageName)
-        if (UtilKString.hasSpace(strLauncherActivityName) || strLauncherActivityName.isEmpty()) return UtilKPackageManager.getLaunchIntentForPackage(context, strPackageName)
+        val strLauncherActivityName: String = UtilKActivityInfoWrapper.getMainLauncherName(context, strPackageName)
+        if (UtilKStringWrapper.hasSpace(strLauncherActivityName) || strLauncherActivityName.isEmpty()) return UtilKPackageManager.getLaunchIntentForPackage(context, strPackageName)
         return getMainLauncher_ofClazz(strPackageName, strLauncherActivityName)
     }
 

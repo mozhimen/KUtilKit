@@ -29,6 +29,20 @@ fun <C : CharSequence> C?.ifNullOrEmpty(defaultValue: I_AListener<C>): C =
 
 object UtilKCharSequence {
     @JvmStatic
+    fun <C : CharSequence> getNotNullOrEmpty(vararg chars: C?): C? {
+        if (chars.isEmpty())
+            return null
+        chars.forEach { char ->
+            if (!char.isNullOrEmpty()) {
+                return char
+            }
+        }
+        return null
+    }
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
     fun isEquals(chars1: CharSequence, char2: CharSequence): Boolean {
         if (chars1 === char2) return true
         var length: Int
@@ -43,8 +57,6 @@ object UtilKCharSequence {
             }
         } else false
     }
-
-    //////////////////////////////////////////////////////////////////////////////
 
     //是否为空
     @JvmStatic

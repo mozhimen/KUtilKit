@@ -203,7 +203,7 @@ object UtilKFileWrapper : BaseUtilK() {
     fun deleteFile(file: File): Boolean =
         if (!isFileExist(file)) {
             "deleteFile: file ${file.absolutePath} fail".d(TAG)
-            false
+            true
         } else file.delete().also { "deleteFile: file ${file.absolutePath} success".d(TAG) }
 
     //批量删除

@@ -1,7 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.io
 
 import com.mozhimen.kotlin.utilk.commons.IUtilK
-import com.mozhimen.kotlin.utilk.java.util.UtilKGZIPInputStream
 import com.mozhimen.kotlin.utilk.java.util.UtilKGZIPOutputStream
 import com.mozhimen.kotlin.utilk.java.util.UtilKZipOutputStream
 import java.io.BufferedOutputStream
