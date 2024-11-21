@@ -35,7 +35,7 @@ object UtilKBitmapFactory : IUtilK {
         BitmapFactory.decodeFile(strFilePathName)
 
     @JvmStatic
-    fun decodeFile(strFilePathName: String, opts: BitmapFactory.Options): Bitmap =
+    fun decodeFile(strFilePathName: String, opts: BitmapFactory.Options): Bitmap? =
         BitmapFactory.decodeFile(strFilePathName, opts)
 
     @JvmStatic

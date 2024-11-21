@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
-import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.utilk.android.content.UtilKContentResolverWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
@@ -122,7 +121,7 @@ object UtilKFileFormat : BaseUtilK() {
 
     @JvmStatic
     fun file2fileInputStream(file: File): FileInputStream? =
-        UtilKFileInputStream.get(file)
+        UtilKFileInputStream.get_ofSafe(file)
 
     @JvmStatic
     fun file2fileOutputStream(file: File, isAppend: Boolean = false): FileOutputStream =

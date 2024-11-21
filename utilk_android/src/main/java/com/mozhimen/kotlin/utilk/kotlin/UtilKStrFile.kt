@@ -9,6 +9,7 @@ import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmap
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.java.io.UtilKFileInputStream
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.createFile
 import com.mozhimen.kotlin.utilk.java.io.createFolder
@@ -26,6 +27,8 @@ import com.mozhimen.kotlin.utilk.java.io.getFileSize_ofAvaioflable
 import com.mozhimen.kotlin.utilk.java.io.getFileSize_ofTotal
 import com.mozhimen.kotlin.utilk.java.io.getFolderFiles
 import com.mozhimen.kotlin.utilk.java.io.getFolderFiles_ofAll
+import com.mozhimen.kotlin.utilk.java.io.inputStream2bitmapAny_use
+import com.mozhimen.kotlin.utilk.java.io.inputStream2bufferedInputStream
 import com.mozhimen.kotlin.utilk.java.io.isFolder
 import com.mozhimen.kotlin.utilk.java.io.isFolderExist
 import com.mozhimen.kotlin.utilk.java.util.UtilKDateWrapper
@@ -89,8 +92,8 @@ fun String.strFilePath2fileOutputStream(isAppend: Boolean = false): FileOutputSt
 fun String.strFilePath2fileInputStream(): FileInputStream =
     UtilKStrFile.strFilePath2fileInputStream(this)
 
-fun String.strFilePath2fileInputStream2(): FileInputStream? =
-    UtilKStrFile.strFilePath2fileInputStream2(this)
+//fun String.strFilePath2fileInputStream2(): FileInputStream? =
+//    UtilKStrFile.strFilePath2fileInputStream2(this)
 
 fun String.strFilePath2file(): File =
     UtilKStrFile.strFilePath2file(this)
@@ -111,6 +114,9 @@ fun String.strFilePath2bitmapAny(): Bitmap? =
 
 fun String.strFilePath2bitmapAny(opts: BitmapFactory.Options): Bitmap? =
     UtilKStrFile.strFilePath2bitmapAny(this, opts)
+
+fun String.strFilePath2bitmapAny_use_ofInputStream(): Bitmap? =
+    UtilKStrFile.strFilePath2bitmapAny_use_ofInputStream(this)
 
 /////////////////////////////////////////////////////////////////
 
@@ -273,11 +279,11 @@ object UtilKStrFile : IUtilK {
 
     @JvmStatic
     fun strFilePath2fileInputStream(strFilePathName: String): FileInputStream =
-        FileInputStream(strFilePathName)
+        UtilKFileInputStream.get(strFilePathName)
 
-    @JvmStatic
-    fun strFilePath2fileInputStream2(strFilePathName: String): FileInputStream? =
-        strFilePathName.strFilePath2file().file2fileInputStream()
+//    @JvmStatic
+//    fun strFilePath2fileInputStream2(strFilePathName: String): FileInputStream? =
+//        strFilePathName.strFilePath2file().file2fileInputStream()
 
     @JvmStatic
     fun strFilePath2file(strFilePathNameDest: String): File =
@@ -309,6 +315,11 @@ object UtilKStrFile : IUtilK {
     fun strFilePath2bitmapAny(strFilePathName: String, opts: BitmapFactory.Options): Bitmap? =
         if (strFilePathName.isEmpty() || strFilePathName.hasSpace()) null
         else UtilKBitmap.get(strFilePathName, opts)
+
+    @JvmStatic
+    fun strFilePath2bitmapAny_use_ofInputStream(strFilePathName: String):Bitmap ? =
+        if (strFilePathName.isEmpty() || strFilePathName.hasSpace()) null
+        else strFilePathName.strFilePath2fileInputStream().inputStream2bufferedInputStream().inputStream2bitmapAny_use()//UtilKBitmap.get(strFilePathName)
 
     //////////////////////////////////////////////////////////////////////
 
