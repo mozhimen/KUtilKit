@@ -1,9 +1,9 @@
 package com.mozhimen.kotlin.utilk.java.io
 
-import android.util.Log
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import java.io.File
+import java.io.FileDescriptor
 import java.io.FileInputStream
 
 /**
@@ -15,9 +15,21 @@ import java.io.FileInputStream
  */
 object UtilKFileInputStream : IUtilK {
     @JvmStatic
-    fun get(file: File): FileInputStream? =
+    fun get(strFilePathName: String): FileInputStream =
+        FileInputStream(strFilePathName)
+
+    @JvmStatic
+    fun get(file: File): FileInputStream =
+        FileInputStream(file)
+
+    @JvmStatic
+    fun get(fileDescriptor: FileDescriptor): FileInputStream =
+        FileInputStream(fileDescriptor)
+
+    @JvmStatic
+    fun get_ofSafe(file: File): FileInputStream? =
         try {
-            FileInputStream(file)
+            get(file)
         } catch (e: Exception) {
             e.printStackTrace()
             UtilKLogWrapper.e(TAG, "get: ", e)
