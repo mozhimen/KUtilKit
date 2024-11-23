@@ -1,13 +1,11 @@
 package com.mozhimen.kotlin.utilk.android.content
 
-import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Parcelable
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
@@ -67,11 +65,19 @@ object UtilKIntent : IUtilK {
         intent.data
 
     @JvmStatic
-    fun getParcelableArrayListExtra(intent: Intent, name: String, clazz: Class<*>): ArrayList<*>? =
+    inline fun <reified T : Parcelable> getParcelableArrayListExtra(intent: Intent, name: String): ArrayList<T>? =
         if (UtilKBuildVersion.isAfterV_33_13_T())
-            intent.getParcelableArrayListExtra(name, clazz)
+            intent.getParcelableArrayListExtra<T>(name, T::class.java)
         else
-            intent.getParcelableArrayListExtra<Parcelable>(name)
+            intent.getParcelableArrayListExtra<T>(name)
+
+    @JvmStatic
+    inline fun <reified T : Parcelable> getParcelableExtra(intent: Intent, name: String): T? =
+        if (UtilKBuildVersion.isAfterV_33_13_T()) {
+            intent.getParcelableExtra(name, T::class.java)
+        } else {
+            intent.getParcelableExtra(name)
+        }
 
     ///////////////////////////////////////////////////////////////////////////////////////
 

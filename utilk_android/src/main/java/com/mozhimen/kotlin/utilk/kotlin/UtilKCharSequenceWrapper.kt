@@ -12,22 +12,22 @@ import com.mozhimen.kotlin.elemk.commons.I_Listener
  * @Version 1.0
  */
 fun CharSequence.isEquals(chars: CharSequence): Boolean =
-    UtilKCharSequence.isEquals(this, chars)
+    UtilKCharSequenceWrapper.isEquals(this, chars)
 
 fun <C : CharSequence> C.ifNotEmpty(block: IA_Listener<C>) {
-    UtilKCharSequence.ifNotEmpty(this, block)
+    UtilKCharSequenceWrapper.ifNotEmpty(this, block)
 }
 
 fun <C : CharSequence> C.ifNotEmptyOr(onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
-    UtilKCharSequence.ifNotEmptyOr(this, onNotEmpty, onEmpty)
+    UtilKCharSequenceWrapper.ifNotEmptyOr(this, onNotEmpty, onEmpty)
 }
 
 fun <C : CharSequence> C?.ifNullOrEmpty(defaultValue: I_AListener<C>): C =
-    UtilKCharSequence.ifNullOrEmpty(this, defaultValue)
+    UtilKCharSequenceWrapper.ifNullOrEmpty(this, defaultValue)
 
 //////////////////////////////////////////////////////////////////////////////
 
-object UtilKCharSequence {
+object UtilKCharSequenceWrapper {
     @JvmStatic
     fun <C : CharSequence> getNotNullOrEmpty(vararg chars: C?): C? {
         if (chars.isEmpty())

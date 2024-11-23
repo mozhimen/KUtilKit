@@ -206,7 +206,7 @@ object UtilKContextStart : BaseUtilK() {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun startContext_ofPackageName(context: Context, strPackageName: String): Boolean {
-        val intent = UtilKIntentWrapper.getMainLauncher_ofComponent(context, strPackageName) ?: return false
+        val intent = UtilKIntentGet.getMainLauncher_ofComponent(context, strPackageName) ?: return false
         return context.startContext(intent)
     }
 
@@ -215,19 +215,19 @@ object UtilKContextStart : BaseUtilK() {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @Throws(ActivityNotFoundException::class)
     fun startContext_ofPackageName_throw(context: Context, strPackageName: String): Boolean {
-        val intent = UtilKIntentWrapper.getMainLauncher_ofComponent(context, strPackageName) ?: return false
+        val intent = UtilKIntentGet.getMainLauncher_ofComponent(context, strPackageName) ?: return false
         return context.startContext(intent)
     }
 
 
     @JvmStatic
     fun startContext_ofPackageName(context: Context, strPackageName: String, strActivityName: String): Boolean =
-        context.startContext(UtilKIntentWrapper.getComponent(strPackageName, strActivityName))
+        context.startContext(UtilKIntentGet.getComponent(strPackageName, strActivityName))
 
     @JvmStatic
     @Throws(ActivityNotFoundException::class)
     fun startContext_ofPackageName_throw(context: Context, strPackageName: String, strActivityName: String) {
-        context.startContext_throw(UtilKIntentWrapper.getComponent(strPackageName, strActivityName))
+        context.startContext_throw(UtilKIntentGet.getComponent(strPackageName, strActivityName))
     }
 }
 

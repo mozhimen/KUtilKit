@@ -3,22 +3,14 @@ package com.mozhimen.kotlin.elemk.android.provider
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import androidx.annotation.RequiresPermission
 import androidx.fragment.app.Fragment
-import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
-import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.elemk.android.provider.cons.CMediaStore
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextWrapper
-import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
-import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager
+import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
 import com.mozhimen.kotlin.utilk.android.content.isIntentAvailable
-import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.java.io.file2uri_ofImage
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
@@ -57,11 +49,11 @@ class MediaStoreCaptureProxy {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")
     fun dispatchCaptureIntent(context: Context, requestCode: Int) {
-        var intent = UtilKIntentWrapper.getMediaStoreImageCapture()
+        var intent = UtilKIntentGet.getMediaStoreImageCapture()
 
         if (intent.isIntentAvailable(context)&&_currentPhotoUri!=null) {
             createCurrentPhotoUri()
-            intent = UtilKIntentWrapper.getMediaStoreImageCaptureOutput(_currentPhotoUri!!)
+            intent = UtilKIntentGet.getMediaStoreImageCaptureOutput(_currentPhotoUri!!)
             UtilKContextWrapper.grantUriPermission_before21(context,intent, _currentPhotoUri!!)
             if (_fragmentRef != null) {
                 _fragmentRef?.get()?.startActivityForResult(intent, requestCode)
