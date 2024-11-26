@@ -37,11 +37,21 @@ object UtilKIntentWrapper : IUtilK {
 
     @JvmStatic
     inline fun <reified T : Parcelable> gainParcelableArrayListExtra(intent: Intent, name: String): ArrayList<T>? =
-        UtilKIntent.getParcelableArrayListExtra(intent, name)
+        try {
+            UtilKIntent.getParcelableArrayListExtra(intent, name)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
 
     @JvmStatic
     inline fun <reified T : Parcelable> gainParcelableExtra(intent: Intent, name: String): T? =
-        UtilKIntent.getParcelableExtra(intent, name)
+        try {
+            UtilKIntent.getParcelableExtra(intent, name)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
