@@ -28,7 +28,7 @@ fun PackageInfo.getVersionCode(): Int =
 object UtilKPackageInfo : BaseUtilK() {
     @JvmStatic
     fun get(context: Context, strPackageName: String, flags: Int): PackageInfo? =
-        UtilKPackageManager.getPackageInfo(context, strPackageName, flags)
+        UtilKPackageManagerWrapper.getPackageInfoSafe(context, strPackageName, flags)
 
     /////////////////////////////////////////////////////////////////////////
 

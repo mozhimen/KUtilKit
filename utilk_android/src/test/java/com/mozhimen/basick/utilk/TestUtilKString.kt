@@ -3,7 +3,7 @@ package com.mozhimen.basick.utilk
 import com.mozhimen.kotlin.utilk.kotlin.UtilKString
 import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 import com.mozhimen.kotlin.utilk.kotlin.isStrUrlValid
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 
 class TestUtilKString {

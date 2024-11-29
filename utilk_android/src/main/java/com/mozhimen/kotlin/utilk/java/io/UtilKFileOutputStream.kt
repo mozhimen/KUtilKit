@@ -12,12 +12,12 @@ import java.io.FileOutputStream
  * @Date 2023/8/2 16:54
  * @Version 1.0
  */
-fun FileOutputStream.write_flashClose(str: String) {
-    UtilKFileOutputStream.write_flashClose(this, str)
+fun FileOutputStream.write_flushClose(str: String) {
+    UtilKFileOutputStream.write_flushClose(this, str)
 }
 
-fun FileOutputStream.write_flashClose(bytes: ByteArray) {
-    UtilKFileOutputStream.write_flashClose(this, bytes)
+fun FileOutputStream.write_flushClose(bytes: ByteArray) {
+    UtilKFileOutputStream.write_flushClose(this, bytes)
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -30,12 +30,12 @@ object UtilKFileOutputStream : IUtilK {
     //////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun write_flashClose(fileOutputStream: FileOutputStream, str: String) {
-        write_flashClose(fileOutputStream, str.str2bytes())
+    fun write_flushClose(fileOutputStream: FileOutputStream, str: String) {
+        write_flushClose(fileOutputStream, str.str2bytes())
     }
 
     @JvmStatic
-    fun write_flashClose(fileOutputStream: FileOutputStream, bytes: ByteArray) {
+    fun write_flushClose(fileOutputStream: FileOutputStream, bytes: ByteArray) {
         fileOutputStream.flushClose { it.write(bytes) }
     }
 }

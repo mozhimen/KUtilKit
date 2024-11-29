@@ -1,6 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.text
 
-import com.mozhimen.kotlin.utilk.kotlin.text.addStart_of0_ofDot
+import com.mozhimen.kotlin.utilk.kotlin.text.join_sta_0
 import java.util.Locale
 
 /**
@@ -86,27 +86,27 @@ object UtilKDecimalFormatFormat {
 
     @JvmStatic
     fun getStrDecimal(obj: Any, bit: Int): String =
-        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).addStart_of0_ofDot()
+        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).join_sta_0()
 
     @JvmStatic
     fun getDoubleDecimal(obj: Any, bit: Int): Double =
-        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).addStart_of0_ofDot().toDouble()
+        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).join_sta_0().toDouble()
 
     @JvmStatic
     fun getFloatDecimal(obj: Any, bit: Int): Float =
-        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).addStart_of0_ofDot().toFloat()
+        UtilKDecimalFormatWrapper.get_ofBit(bit).format(obj).join_sta_0().toFloat()
 
     @JvmStatic
     fun getStrDecimal(obj: Any, bit: Int, locale: Locale): String =
-        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).addStart_of0_ofDot()
+        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).join_sta_0()
 
     @JvmStatic
     fun getDoubleDecimal(obj: Any, bit: Int, locale: Locale): Double =
-        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).addStart_of0_ofDot().toDouble()
+        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).join_sta_0().toDouble()
 
     @JvmStatic
     fun getFloatDecimal(obj: Any, bit: Int, locale: Locale): Float =
-        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).addStart_of0_ofDot().toFloat()
+        UtilKDecimalFormatWrapper.get_ofBit(bit, locale).format(obj).join_sta_0().toFloat()
 
     //////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,6 @@
 package com.mozhimen.basick.utilk
 
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import com.mozhimen.kotlin.utilk.kotlin.math.UtilKMathBall
 import org.junit.Test
 

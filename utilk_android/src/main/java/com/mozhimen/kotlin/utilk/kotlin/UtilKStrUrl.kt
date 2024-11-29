@@ -12,13 +12,12 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.widget.showToast
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.inputStream2bitmapAny_use
-import com.mozhimen.kotlin.utilk.java.net.UtilKHttpURLConnection
 import com.mozhimen.kotlin.utilk.java.net.UtilKHttpURLConnectionWrapper
 import com.mozhimen.kotlin.utilk.java.net.UtilKURI
 import com.mozhimen.kotlin.utilk.java.net.UtilKURL
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrDomain
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrIp
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrPort
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_domain
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_ip
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_port
 import java.io.File
 import java.net.URL
 
@@ -101,7 +100,7 @@ object UtilKStrUrl : BaseUtilK() {
         if (second.contains("/")) {
             second = second.getSplitFirstIndexToStart("/")
         }
-        if (!second.matches_ofStrIp() && !second.matches_ofStrDomain()) {
+        if (!second.matches_ip() && !second.matches_domain()) {
             "请输入正确的IP或域名".showToast()
             return false
         }
@@ -110,7 +109,7 @@ object UtilKStrUrl : BaseUtilK() {
             if (third.contains("/")) {
                 third = third.getSplitFirstIndexToStart("/")
             }
-            if (!third.matches_ofStrPort()) {
+            if (!third.matches_port()) {
                 "请输入正确的端口".showToast()
                 return false
             }

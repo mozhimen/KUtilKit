@@ -1,10 +1,9 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
-import com.mozhimen.kotlin.utilk.java.text.UtilKDecimalFormat
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.text.UtilKDecimalFormatWrapper
-import com.mozhimen.kotlin.utilk.kotlin.text.replaceDot
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_dot2period
 import java.util.Locale
 
 /**
@@ -48,7 +47,7 @@ object UtilKLongFormat : IUtilK {
         else if (fileSize < 1073741824)
             decimalFormat.format(fileSize.toDouble() / 1048576.0) + "M" + suffix
         else
-            decimalFormat.format(fileSize.toDouble() / 1073741824.0) + "G" + suffix).replaceDot().also { UtilKLogWrapper.d(TAG, "longFileSize2strFileSize: $it") }
+            decimalFormat.format(fileSize.toDouble() / 1073741824.0) + "G" + suffix).replace_dot2period().also { UtilKLogWrapper.d(TAG, "longFileSize2strFileSize: $it") }
     }
 
     @JvmStatic

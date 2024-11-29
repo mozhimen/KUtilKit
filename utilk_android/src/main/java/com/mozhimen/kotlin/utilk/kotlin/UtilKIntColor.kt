@@ -41,7 +41,6 @@ object UtilKIntColor {
     fun intColor2intColorRgba(intColor: Int): List<Int> =
         listOf(Color.red(intColor), Color.green(intColor), Color.blue(intColor), Color.alpha(intColor))
 
-
     @JvmStatic
     fun intColor2intColorRgb(intColor: Int):List<Int> =
         intColor2intColorRgba(intColor).take(3)

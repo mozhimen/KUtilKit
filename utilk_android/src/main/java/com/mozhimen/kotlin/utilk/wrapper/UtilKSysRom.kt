@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemProperties
 import com.mozhimen.kotlin.utilk.java.lang.UtilKRuntimeWrapper
 import com.mozhimen.kotlin.utilk.java.util.UtilKProperties
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
 import java.util.Locale
 
 /**
@@ -29,7 +30,7 @@ object UtilKSysRom {
         if (isRom_of(brand, manufacturer, *getROM_HUAWEI())) {
             romInfo.name = getROM_HUAWEI().get(0)
             val version: String = getRomVersion(CStrPackage.ro_build_version_emui)
-            val temp = version.split("_".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val temp = version.split(UtilKRegexGet.get_underline()).dropLastWhile { it.isEmpty() }.toTypedArray()
             if (temp.size > 1) {
                 romInfo.version = temp[1]
             } else {

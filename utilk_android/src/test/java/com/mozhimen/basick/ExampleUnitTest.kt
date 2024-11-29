@@ -1,7 +1,8 @@
 package com.mozhimen.basick
 
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
+import kotlin.concurrent.thread
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -9,8 +10,8 @@ import org.junit.Test
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
-    @Test
-    fun finalize() {
+//    @Test
+//    fun finalize() {
 //        var lastTime = System.currentTimeMillis()
 //        var time = 0
 //        thread {
@@ -24,14 +25,14 @@ class ExampleUnitTest {
 //        }.start()
 //        val a = 0b010
 //        val b = 0b100
-        //read(a or b, 8)
-    }
-
-    fun read(num: Int, bit: Int) {
-        val binaryString = String.format("%0${bit}s", Integer.toBinaryString(num)).apply { printlog() }
-        for (i in binaryString.indices) {
-            val b = binaryString[i]
-            "Bit at position $i is $b".printlog()
-        }
-    }
+//        read(a or b, 8)
+//    }
+//
+//    fun read(num: Int, bit: Int) {
+//        val binaryString = String.format("%0${bit}s", Integer.toBinaryString(num)).apply { printlog() }
+//        for (i in binaryString.indices) {
+//            val b = binaryString[i]
+//            "Bit at position $i is $b".printlog()
+//        }
+//    }
 }

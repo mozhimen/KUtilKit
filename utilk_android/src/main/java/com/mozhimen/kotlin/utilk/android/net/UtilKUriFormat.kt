@@ -27,7 +27,8 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.kotlin.getStrFolderPath
 import com.mozhimen.kotlin.utilk.kotlin.isFileExist
 import com.mozhimen.kotlin.utilk.kotlin.strUri2uri
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrDigits2
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_digits2
 import java.io.File
 import java.io.InputStream
 import kotlin.math.ceil
@@ -115,13 +116,13 @@ object UtilKUriFormat : BaseUtilK() {
             return uri.path
         if (UtilKBuildVersion.isAfterV_19_44_K() && DocumentsContract.isDocumentUri(_context, uri)) {
             val documentId = UtilKDocumentsContract.getDocumentId(uri)
-            val split = documentId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val split = documentId.split(UtilKRegexGet.get_colon()).dropLastWhile { it.isEmpty() }.toTypedArray()
             val type = split[0]
             val path = split[1]
 
             when {
                 uri.isAuthorityDownloadsDocument() -> {
-                    if (documentId.matches_ofStrDigits2())
+                    if (documentId.matches_digits2())
                         return "content://downloads/public_downloads".strUri2uri().withAppendedId(documentId.toLong()).getMediaColumns()
                 }
 

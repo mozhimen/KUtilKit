@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.java.io
 import android.util.Log
 import com.mozhimen.kotlin.elemk.cons.CPath
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -25,7 +26,7 @@ object UtilKRandomAccessFileWrapper : IUtilK {
         try {
             randomAccessFile = UtilKRandomAccessFile.get(CPath.SYSTEM_XBIN_WHICH, "r")
             var strLine: String = UtilKRandomAccessFile.readLine(randomAccessFile)
-            var toks = strLine.split(" ".toRegex()).toTypedArray()
+            var toks = strLine.split(UtilKRegexGet.get_blank()).toTypedArray()
             val idle = toks[5].toLong()
             val cpu = toks[2].toLong() + toks[3].toLong() + toks[4].toLong() + toks[6].toLong() + toks[7].toLong() + toks[8].toLong()
             Thread.sleep(360)
@@ -34,7 +35,7 @@ object UtilKRandomAccessFileWrapper : IUtilK {
 
             randomAccessFile.seek(0)
             strLine = UtilKRandomAccessFile.readLine(randomAccessFile)
-            toks = strLine.split(" ".toRegex()).toTypedArray()
+            toks = strLine.split(UtilKRegexGet.get_blank()).toTypedArray()
             val newIdle = toks[5].toLong()
             val newCpu = toks[2].toLong() + toks[3].toLong() + toks[4].toLong() + toks[6].toLong() + toks[7].toLong() + toks[8].toLong()
             return (newCpu - cpu).toFloat() / (newCpu + newIdle - (cpu + idle))

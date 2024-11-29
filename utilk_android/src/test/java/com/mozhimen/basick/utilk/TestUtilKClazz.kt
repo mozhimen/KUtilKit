@@ -3,7 +3,7 @@ package com.mozhimen.basick.utilk
 import android.view.Display
 import com.mozhimen.kotlin.utilk.kotlin.getStrPackageName
 import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 
 /**

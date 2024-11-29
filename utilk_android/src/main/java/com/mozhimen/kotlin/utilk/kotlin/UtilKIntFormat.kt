@@ -1,11 +1,18 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import android.util.Log
+import androidx.annotation.IntRange
 import com.mozhimen.kotlin.elemk.android.graphics.cons.CImageFormat
 import com.mozhimen.kotlin.elemk.android.os.cons.CBuild
 import com.mozhimen.kotlin.elemk.android.util.annors.ALog
 import com.mozhimen.kotlin.elemk.android.util.cons.CLog
 import com.mozhimen.kotlin.utilk.android.text.formatIpAddress
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.lang.UtilKCharacter
+import com.mozhimen.kotlin.utilk.java.lang.UtilKInteger
+import com.mozhimen.kotlin.utilk.kotlin.collections.joinT2listIgnoreNull
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKStringsJVMWrapper
 
 /**
  * @ClassName UtilKIntFormat
@@ -14,6 +21,12 @@ import com.mozhimen.kotlin.utilk.java.lang.UtilKCharacter
  * @Date 2023/10/19 0:17
  * @Version 1.0
  */
+fun Int.intBinary2booleans(): Array<Boolean> =
+    UtilKIntFormat.intBinary2booleans(this)
+
+fun Int.intBinary2booleans(digit: Int): Array<Boolean> =
+    UtilKIntFormat.intBinary2booleans(this, digit)
+
 fun Int.int2boolean(): Boolean =
     UtilKIntFormat.int2boolean(this)
 
@@ -26,6 +39,12 @@ fun Int.intAscii2int(): Int =
 fun Int.intByte2strByte(): String =
     UtilKIntFormat.intByte2strByte(this)
 
+fun Int.intByte2strByte(@IntRange(from = 1) digit: Int): String =
+    UtilKIntFormat.intByte2strByte(this, digit)
+
+fun Int.intByte2strByte2(@IntRange(from = 1) digit: Int): String =
+    UtilKIntFormat.intByte2strByte2(this, digit)
+
 fun Int.intImageFormat2strImageFormat(): String =
     UtilKIntFormat.intImageFormat2strImageFormat(this)
 
@@ -37,7 +56,21 @@ fun Int.intLogPriority2strLogPriority(): String =
 
 ///////////////////////////////////////////////////////////////////////
 
-object UtilKIntFormat {
+object UtilKIntFormat : IUtilK {
+    @JvmStatic
+    fun intBinary2booleans(intBinary: Int): Array<Boolean> {
+        return intBinary2booleans(intBinary, intBinary.intByte2strByte().length)
+    }
+
+    @JvmStatic
+    fun intBinary2booleans(intBinary: Int, digit: Int): Array<Boolean> {
+        val result = Array(digit) { false }
+        for ((index, i) in ((digit - 1) downTo 0).withIndex()) { // 从高位到低位遍历
+            result[index] = ((intBinary shr i) and 1 == 1) // 提取每一位并转换为布尔值
+        }
+        return result.also { Log.d(TAG, "intBinary2booleans: result ${result.map { it }.joinToString { it.toString() }}") }
+    }
+
     @JvmStatic
     fun int2boolean(int: Int) =
         int == 1
@@ -53,7 +86,23 @@ object UtilKIntFormat {
 
     @JvmStatic
     fun intByte2strByte(intByte: Int): String =
-        Integer.toBinaryString(intByte)
+        UtilKInteger.toBinaryString(intByte)
+
+    @JvmStatic
+    fun intByte2strByte(intByte: Int, @IntRange(from = 1) digit: Int): String {
+//        val mask = (1 shl digit) - 1
+        var strByte = UtilKStringsJVMWrapper.format_fillStart0(digit, (intByte /*and mask*/).intByte2strByte())
+        if (strByte.length > digit)
+            strByte = strByte.substring(strByte.length - digit, strByte.length)
+        return strByte
+    }
+
+    @JvmStatic
+    fun intByte2strByte2(intByte: Int, @IntRange(from = 1) digit: Int): String {
+        val mask = (1 shl digit) - 1// 确保只取指定的 digit 位
+        val strByte = (intByte and mask).intByte2strByte()
+        return strByte.padStart(digit, '0')// 补齐 digit 位并返回
+    }
 
     @JvmStatic
     fun intImageFormat2strImageFormat(imageFormat: Int): String =

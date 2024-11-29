@@ -3,7 +3,7 @@ package com.mozhimen.basick.elemk
 import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
 import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_SetSameNonnull
 import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_SetVaryNullable
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 
 /**

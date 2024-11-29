@@ -2,7 +2,7 @@ package com.mozhimen.basick.utilk
 
 import com.mozhimen.kotlin.utilk.java.util.strUnderline2strHump
 import com.mozhimen.kotlin.utilk.java.util.strHump2strUnderline
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 
 

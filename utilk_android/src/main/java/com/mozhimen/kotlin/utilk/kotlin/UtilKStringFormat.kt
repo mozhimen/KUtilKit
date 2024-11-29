@@ -5,8 +5,9 @@ import com.mozhimen.kotlin.utilk.java.io.UtilKFileFormat
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.createFile
 import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
-import com.mozhimen.kotlin.utilk.java.io.write_flashClose
+import com.mozhimen.kotlin.utilk.java.io.write_flushClose
 import com.mozhimen.kotlin.utilk.java.io.write_use
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegex
 import java.io.File
 import java.io.RandomAccessFile
 import java.nio.charset.Charset
@@ -24,19 +25,24 @@ fun String.str2file_use(strFilePathNameDest: String): File? =
 fun String.str2file_use(fileDest: File): File? =
     UtilKStringFormat.str2file_use(this, fileDest)
 
-fun String.str2fileOfFileOutStream(strFilePathName: String, isAppend: Boolean = false): File? =
-    UtilKStringFormat.str2fileOfFileOutStream(this, strFilePathName, isAppend)
+////////////////////////////////////////////////////////////////////////////////////////
 
-fun String.str2fileOfFileOutStream(fileDest: File, isAppend: Boolean = false): File? =
-    UtilKStringFormat.str2fileOfFileOutStream(this, fileDest, isAppend)
+fun String.str2file_flushClose_ofFileOutStream(strFilePathName: String, isAppend: Boolean = false): File? =
+    UtilKStringFormat.str2file_flushClose_ofFileOutStream(this, strFilePathName, isAppend)
+
+fun String.str2file_flushClose_ofFileOutStream(fileDest: File, isAppend: Boolean = false): File? =
+    UtilKStringFormat.str2file_flushClose_ofFileOutStream(this, fileDest, isAppend)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
-fun String.str2strUnicode(): String =
-    UtilKStringFormat.str2strUnicode(this)
+fun String.str2regex(): Regex =
+    UtilKStringFormat.str2regex(this)
 
 fun String.str2bytes(charset: Charset = Charsets.UTF_8): ByteArray =
     UtilKStringFormat.str2bytes(this, charset)
+
+fun String.str2strUnicode(): String =
+    UtilKStringFormat.str2strUnicode(this)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -64,15 +70,17 @@ object UtilKStringFormat {
         return null
     }
 
-    @JvmStatic
-    fun str2fileOfFileOutStream(str: String, strFilePathName: String, isAppend: Boolean = false): File? =
-        str2fileOfFileOutStream(str, strFilePathName.strFilePath2file().apply { createFile() }, isAppend)
+    ////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun str2fileOfFileOutStream(str: String, fileDest: File, isAppend: Boolean = false): File? {
+    fun str2file_flushClose_ofFileOutStream(str: String, strFilePathName: String, isAppend: Boolean = false): File? =
+        str2file_flushClose_ofFileOutStream(str, strFilePathName.strFilePath2file().apply { createFile() }, isAppend)
+
+    @JvmStatic
+    fun str2file_flushClose_ofFileOutStream(str: String, fileDest: File, isAppend: Boolean = false): File? {
         UtilKFileWrapper.createFile(fileDest)
         try {
-            fileDest.file2fileOutputStream(isAppend).write_flashClose(str)
+            fileDest.file2fileOutputStream(isAppend).write_flushClose(str)
             return fileDest
         } catch (e: Exception) {
             e.printStackTrace()
@@ -81,6 +89,13 @@ object UtilKStringFormat {
         return null
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun str2regex(pattern: String): Regex =
+        UtilKRegex.get(pattern)
+
+    @JvmStatic
     fun str2bytes(str: String, charset: Charset = Charsets.UTF_8): ByteArray =
         str.toByteArray(charset)
 
