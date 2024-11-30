@@ -13,6 +13,8 @@ import java.nio.ByteBuffer
 fun ByteBuffer.byteBuffer2bytes(): ByteArray =
     UtilKByteBufferFormat.byteBuffer2bytes(this)
 
+////////////////////////////////////////////////////////////////////////
+
 object UtilKByteBufferFormat {
 
     @JvmStatic
