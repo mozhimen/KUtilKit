@@ -10,7 +10,7 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfoWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
-import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
+import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.os.UtilKProcess
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
@@ -59,7 +59,7 @@ object UtilKApp : BaseUtilK() {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun restartApp(isKillProcess: Boolean, isValid: Boolean = true, context: Context = _context) {
-        val intent: Intent = UtilKIntentWrapper.getMainLauncher_ofPackageManger(context, UtilKContext.getPackageName(context)) ?: run {
+        val intent: Intent = UtilKIntentGet.getMainLauncher_ofPackageManger(context, UtilKContext.getPackageName(context)) ?: run {
             UtilKLogWrapper.e(TAG, "didn't exist launcher activity.");return
         }
         intent.addFlags(CIntent.FLAG_ACTIVITY_CLEAR_TOP or CIntent.FLAG_ACTIVITY_CLEAR_TASK)

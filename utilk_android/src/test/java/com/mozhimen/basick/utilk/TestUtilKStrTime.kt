@@ -1,7 +1,7 @@
 package com.mozhimen.basick.utilk
 
 import com.mozhimen.kotlin.utilk.java.util.longHour2longMillis
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import com.mozhimen.kotlin.utilk.kotlin.isStrTime_ofHH
 import com.mozhimen.kotlin.utilk.kotlin.isStrTime_ofHHmm
 import com.mozhimen.kotlin.utilk.java.util.longMinute2longMillis

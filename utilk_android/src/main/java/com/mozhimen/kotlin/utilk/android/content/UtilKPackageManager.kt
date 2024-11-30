@@ -17,15 +17,12 @@ import android.graphics.drawable.Drawable
 import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
-import com.mozhimen.kotlin.elemk.android.content.cons.CPackageInfo
-import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 
@@ -44,13 +41,7 @@ object UtilKPackageManager : IUtilK {
 
     @JvmStatic
     fun getPackageInfo(context: Context, strPackageName: String, flags: Int): PackageInfo? =
-        try {
-            get(context).getPackageInfo(strPackageName, flags)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            UtilKLogWrapper.e(TAG, "getPackageInfo: ", e)
-            null
-        }
+        get(context).getPackageInfo(strPackageName, flags)
 
     @JvmStatic
     fun getPackageArchiveInfo(context: Context, archiveFilePath: String, flags: Int): PackageInfo? =
@@ -61,9 +52,7 @@ object UtilKPackageManager : IUtilK {
     fun getPackageInstaller(context: Context): PackageInstaller =
         get(context).packageInstaller
 
-    @JvmStatic
-    fun getApplicationInfo(context: Context, strPackageName: String): ApplicationInfo =
-        getApplicationInfo(context, strPackageName, CPackageInfo.INSTALL_LOCATION_AUTO)
+    /////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getApplicationInfo(context: Context, strPackageName: String, flags: Int): ApplicationInfo =
@@ -119,25 +108,6 @@ object UtilKPackageManager : IUtilK {
     fun getInstalledPackages(context: Context, flags: PackageInfoFlags): List<PackageInfo> =
         get(context).getInstalledPackages(flags)
 
-    @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
-    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun getInstalledPackages_ofGET_ACTIVITIES(context: Context): List<PackageInfo> =
-        getInstalledPackages(context, CPackageManager.GET_ACTIVITIES)
-
-    @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
-    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun getInstalledPackages(context: Context): List<PackageInfo> {
-        val flags = CPackageManager.GET_ACTIVITIES or CPackageManager.GET_SERVICES
-        val installedPackageInfos: List<PackageInfo> = if (UtilKBuildVersion.isAfterV_33_13_T()) {
-            getInstalledPackages(context, PackageInfoFlags.of(flags.toLong()))
-        } else {
-            getInstalledPackages(context, flags)
-        }
-        return installedPackageInfos
-    }
-
     /////////////////////////////////////////////////////////////////
 
     @JvmStatic
@@ -151,10 +121,6 @@ object UtilKPackageManager : IUtilK {
     @JvmStatic
     fun getActivityInfo(context: Context, component: ComponentName, flags: Int): ActivityInfo =
         get(context).getActivityInfo(component, flags)
-
-    @JvmStatic
-    fun getActivityInfo(context: Context, packageClazzName: String, activityClazzName: String): ActivityInfo =
-        getActivityInfo(context, ComponentName(packageClazzName, activityClazzName), CPackageManager.GET_ACTIVITIES)
 
     @JvmStatic
     fun getLaunchIntentForPackage(context: Context, strPackageName: String): Intent? =

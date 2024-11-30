@@ -1,13 +1,13 @@
 package com.mozhimen.basick.utilk
 
-import com.mozhimen.kotlin.utilk.kotlin.filterAlphabet
-import com.mozhimen.kotlin.utilk.kotlin.filterChinese
-import com.mozhimen.kotlin.utilk.kotlin.filterNAC
-import com.mozhimen.kotlin.utilk.kotlin.filterNumber
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrDigits
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrDigits2
-import com.mozhimen.kotlin.utilk.kotlin.text.matches_ofStrDigitsAndAlphabets
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_digits
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_digits2
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_digits_alphabets
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_2alphabets
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_2chinese
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_2digits
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_2digits_alphabets_chinese
 import org.junit.Test
 
 
@@ -27,25 +27,25 @@ class TestUtilKFilter {
 //        "8080".checkPort().printlog()
 //        "80".checkPort().printlog()
 
-        "0123456789".matches_ofStrDigits().printlog()
-        "12322r".matches_ofStrDigits().printlog()
-        "ree".matches_ofStrDigits().printlog()
+        "0123456789".matches_digits().printlog()
+        "12322r".matches_digits().printlog()
+        "ree".matches_digits().printlog()
 
-        "0123456789".matches_ofStrDigits2().printlog()
-        "12322r".matches_ofStrDigits2().printlog()
-        "ree".matches_ofStrDigits2().printlog()
+        "0123456789".matches_digits2().printlog()
+        "12322r".matches_digits2().printlog()
+        "ree".matches_digits2().printlog()
 
-        "ree123".matches_ofStrDigitsAndAlphabets().printlog()
-        "123456".matches_ofStrDigitsAndAlphabets().printlog()
-        "123".matches_ofStrDigitsAndAlphabets().printlog()
-        "ree".matches_ofStrDigitsAndAlphabets().printlog()
+        "ree123".matches_digits_alphabets().printlog()
+        "123456".matches_digits_alphabets().printlog()
+        "123".matches_digits_alphabets().printlog()
+        "ree".matches_digits_alphabets().printlog()
     }
 
     @Test
     fun filter() {
-        "123我是谁AAA&&".filterNumber().printlog()
-        "123我是谁AAA&&".filterAlphabet().printlog()
-        "123我是谁AAA&&".filterChinese().printlog()
-        "123我是谁AAA&&".filterNAC().printlog()
+        "123我是谁AAA&&".replace_2digits().printlog()
+        "123我是谁AAA&&".replace_2alphabets().printlog()
+        "123我是谁AAA&&".replace_2chinese().printlog()
+        "123我是谁AAA&&".replace_2digits_alphabets_chinese().printlog()
     }
 }

@@ -3,7 +3,11 @@ package com.mozhimen.kotlin.utilk.kotlin
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.elemk.cons.CMsg
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import com.mozhimen.kotlin.utilk.kotlin.ranges.constraint
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegex
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_brackets_content2none
 
 /**
  * @ClassName UtilKStringWrapper
@@ -31,6 +35,14 @@ fun String.getSplitFirstIndexToEnd(splitStr: String): String =
 
 /////////////////////////////////////////////////////////////////////////////
 
+fun String.getAbbreviatedName(): String =
+    UtilKStringWrapper.getAbbreviatedName(this)
+
+fun String.getStandardName(): String =
+    UtilKStringWrapper.getStandardName(this)
+
+/////////////////////////////////////////////////////////////////////////////
+
 fun String.isNotEmptyOrElse(isNotEmptyBlock: I_Listener, orElseBlock: I_Listener) {
     UtilKStringWrapper.isNotEmptyOrElse(this, isNotEmptyBlock, orElseBlock)
 }
@@ -50,8 +62,8 @@ fun String.equalsIgnoreCase(str: String): Boolean =
 fun String.startsWithAny(strs: Collection<String>): Boolean =
     UtilKStringWrapper.startsWithAny(this, strs)
 
-fun String.endsWithWithAny(strs: Collection<String>): Boolean =
-    UtilKStringWrapper.endsWithWithAny(this, strs)
+fun String.endsWithAny(strs: Collection<String>): Boolean =
+    UtilKStringWrapper.endsWithAny(this, strs)
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -64,18 +76,13 @@ fun String.findFirst(str: String): Int =
 fun String.subStr(firstIndex: Int, length: Int): String =
     UtilKStringWrapper.subStr(this, firstIndex, length)
 
+/////////////////////////////////////////////////////////////////////////////
+
 fun String.hidePhone(): String =
     UtilKStringWrapper.hidePhone(this)
 
 fun String.hideName(): String =
     UtilKStringWrapper.hideName(this)
-
-fun String.appendStrLineBreak(): String =
-    UtilKStringWrapper.appendStrLineBreak(this)
-
-fun String.throwIllegalStateException() {
-    UtilKStringWrapper.throwIllegalStateException(this)
-}
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -90,6 +97,8 @@ object UtilKStringWrapper {
 
     /**
      * 获取分割后的最后一个元素
+     * "a/b/c".getSplitLastIndexToEnd("/").printlog()
+     * c
      */
     @JvmStatic
     fun getSplitLastIndexToEnd(str: String, splitStr: String): String =
@@ -97,6 +106,10 @@ object UtilKStringWrapper {
 
     /**
      * 获取分割后的最后一个元素的互斥集合
+     * "a/b/c".getSplitLastIndexToStart("/").printlog()
+     * "a/b/c".getSplitLastIndexToStart("/",false).printlog()
+     * a/b/
+     * a/b
      */
     @JvmStatic
     fun getSplitLastIndexToStart(str: String, splitStr: String, isContainSplitStr: Boolean = true): String =
@@ -109,6 +122,8 @@ object UtilKStringWrapper {
 
     /**
      * 获取分割后的第一个元素
+     * "a/b/c".getSplitFirstIndexToStart("/").printlog()
+     * a
      */
     @JvmStatic
     fun getSplitFirstIndexToStart(str: String, splitStr: String): String {
@@ -116,6 +131,11 @@ object UtilKStringWrapper {
         return if (index >= 0) str.substring(0, index) else str
     }
 
+    /**
+     * 获取分割后的第一个元素的互斥集合
+     * "a/b/c".getSplitFirstIndexToEnd("/").printlog()
+     * b/c
+     */
     @JvmStatic
     fun getSplitFirstIndexToEnd(str: String, splitStr: String): String {
         val index = str.indexOf(splitStr)
@@ -124,17 +144,38 @@ object UtilKStringWrapper {
 
     /////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * 获取缩略名
+     * 示例输入和输出
+     * 输入："Test123(World)"
+     * 输出："T12"
+     *
+     * 输入："hello123"
+     * 输出："H"
+     *
+     * 输入："Abc&123"
+     * 输出："A&1"
+     *
+     * 输入："()!"
+     * 输出："(" （括号被删除，最终返回原字符串的第一个字符）
+     */
     @JvmStatic
-    fun getStr_ofCompute(str: String): String {
-        val sanitizedName = str
-            .replace(Regex("\\(.*\\)"), "")
-
-        return sanitizedName.asSequence()
+    fun getAbbreviatedName(str: String): String {
+        return str.replace_brackets_content2none()
+            .asSequence()
             .filter { it.isDigit() or it.isUpperCase() or (it == '&') }
             .take(3)
             .joinToString("")
             .ifBlank { str.first().toString() }
-            .capitalize()
+            .capitalize()//首字母大写
+    }
+
+    @JvmStatic
+    fun getStandardName(str: String): String {
+        return str.replace(UtilKRegexGet.get_digits_alphabets(), "-") // 替换非字母数字字符为 '-'
+            .replace(UtilKRegexGet.get_end_(), "")           // 去掉末尾的多余 '-'
+            .ifEmpty { "-" }                     // 如果为空字符串，替换为 '-'
+            .lowercase()
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -189,14 +230,10 @@ object UtilKStringWrapper {
         strs.any { str.startsWith(it) }
 
     @JvmStatic
-    fun endsWithWithAny(str: String, strs: Collection<String>): Boolean =
+    fun endsWithAny(str: String, strs: Collection<String>): Boolean =
         strs.any { str.endsWith(it) }
 
     /////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    fun appendStrLineBreak(str: String): String =
-        if (!str.endsWith(CMsg.LINE_BREAK)) str + CMsg.LINE_BREAK else str
 
     /**
      * 找到第一个匹配的字符的位置
@@ -208,6 +245,7 @@ object UtilKStringWrapper {
     /**
      * 找到第一个匹配的字符串的位置
      */
+    @JvmStatic
     fun findFirst(strContent: String, str: String): Int =
         strContent.indexOf(str)
 
@@ -217,6 +255,8 @@ object UtilKStringWrapper {
     @JvmStatic
     fun subStr(strContent: String, firstIndex: Int, length: Int): String =
         strContent.substring(firstIndex.constraint(strContent.indices), if (firstIndex + length > strContent.length) strContent.length else firstIndex + length)
+
+    /////////////////////////////////////////////////////////////////////////////
 
     /**
      * 电话号码隐藏中间四位
@@ -237,10 +277,5 @@ object UtilKStringWrapper {
             stringBuilder.append("*")
         }
         return str.first() + stringBuilder.toString() + str.last()
-    }
-
-    @JvmStatic
-    fun throwIllegalStateException(str: String) {
-        throw IllegalStateException(str)
     }
 }

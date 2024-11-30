@@ -7,7 +7,6 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrClazz
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 
 
 /**
@@ -87,7 +86,7 @@ object UtilKPackage : BaseUtilK() {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun hasPackage_ofPackageManager(strPackageName: String, flags: Int): Boolean =
-        UtilKPackageManager.queryIntentActivities(_context, UtilKIntentWrapper.getMainLauncher_ofPackage(strPackageName), flags).isNotEmpty()
+        UtilKPackageManager.queryIntentActivities(_context, UtilKIntentGet.getMainLauncher_ofPackage(strPackageName), flags).isNotEmpty()
 
     @JvmStatic
     fun hasPackage_ofPackageInfo(strPackageName: String, flags: Int): Boolean =

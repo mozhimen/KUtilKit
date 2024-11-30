@@ -1,13 +1,21 @@
 package com.mozhimen.kotlin.utilk.android.content
 
+import android.content.ComponentName
 import android.content.Context
+import android.content.pm.ActivityInfo
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
+import android.content.pm.PackageManager.PackageInfoFlags
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CProcess
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.elemk.android.content.cons.CPackageInfo
+import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager.TAG
+import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 
 /**
  * @ClassName UtilKPackageManagerWrapper
@@ -17,6 +25,46 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
  * @Version 1.0
  */
 object UtilKPackageManagerWrapper {
+    @JvmStatic
+    fun getPackageInfoSafe(context: Context, strPackageName: String, flags: Int): PackageInfo? =
+        try {
+            UtilKPackageManager.getPackageInfo(context, strPackageName, flags)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            UtilKLogWrapper.e(TAG, "getPackageInfo: ", e)
+            null
+        }
+
+    @JvmStatic
+    fun getApplicationInfo_INSTALL_LOCATION_AUTO(context: Context, strPackageName: String): ApplicationInfo =
+        UtilKPackageManager.getApplicationInfo(context, strPackageName, CPackageInfo.INSTALL_LOCATION_AUTO)
+
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
+    fun getInstalledPackages_GET_ACTIVITIES(context: Context): List<PackageInfo> =
+        UtilKPackageManager.getInstalledPackages(context, CPackageManager.GET_ACTIVITIES)
+
+    @JvmStatic
+    fun getActivityInfo_GET_ACTIVITIES(context: Context, packageClazzName: String, activityClazzName: String): ActivityInfo =
+        UtilKPackageManager.getActivityInfo(context, ComponentName(packageClazzName, activityClazzName), CPackageManager.GET_ACTIVITIES)
+
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
+    fun getInstalledPackages(context: Context): List<PackageInfo> {
+//        val flags = CPackageManager.GET_ACTIVITIES or CPackageManager.GET_SERVICES
+        val flags = CPackageManager.GET_META_DATA
+        val installedPackageInfos: List<PackageInfo> = if (UtilKBuildVersion.isAfterV_33_13_T()) {
+            UtilKPackageManager.getInstalledPackages(context, PackageInfoFlags.of(flags.toLong()))
+        } else {
+            UtilKPackageManager.getInstalledPackages(context, flags)
+        }
+        return installedPackageInfos
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * 获取所有安装程序包名
      */
@@ -24,7 +72,7 @@ object UtilKPackageManagerWrapper {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getInstalledPackages(context: Context, hasSystemPackages: Boolean): List<PackageInfo> {
-        var installedPackages = UtilKPackageManager.getInstalledPackages(context).toMutableList()
+        var installedPackages = getInstalledPackages(context).toMutableList()
         if (installedPackages.isEmpty()) {
             installedPackages = getInstalledPackages_ofForce(context).toMutableList()
         }

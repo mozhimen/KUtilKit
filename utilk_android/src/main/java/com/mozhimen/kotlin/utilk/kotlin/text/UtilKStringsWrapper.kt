@@ -1,50 +1,24 @@
 package com.mozhimen.kotlin.utilk.kotlin.text
 
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.MainThread
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.widget.showToast
-import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.getSplitFirstIndexToStart
 
 /**
- * @ClassName Verifier
- * @Description 密码校验
+ * @ClassName UtilKStringsWrapper
+ * @Description TODO
  * @Author mozhimen
+ * @Date 2024/11/28
  * @Version 1.0
  */
-fun String.isStrUrlIp(): Boolean =
-    UtilKMatchStrUrl.isStrUrlIp(this)
-
-fun String.isStrUrlDomain(): Boolean =
-    UtilKMatchStrUrl.isStrUrlDomain(this)
-
-fun String.isStrUrlPort(): Boolean =
-    UtilKMatchStrUrl.isStrUrlPort(this)
-
 fun String.checkStrUrl(): Boolean =
-    UtilKMatchStrUrl.checkStrUrl(this)
+    UtilKStringsWrapper.checkStrUrl(this)
 
-object UtilKMatchStrUrl : BaseUtilK() {
-    /**
-     * ip是否合法
-     */
-    @JvmStatic
-    fun isStrUrlIp(ip: String) =
-        ip.matches(Regex("((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)"))
+///////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * 域名是否合法
-     */
-    @JvmStatic
-    fun isStrUrlDomain(domain: String) =
-        domain.matches(Regex("^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$"))
-
-    /**
-     * 端口是否合法
-     */
-    @JvmStatic
-    fun isStrUrlPort(port: String) =
-        port.matches(Regex("^[-+]?[\\d]{1,6}$"))
+object UtilKStringsWrapper :IUtilK{
 
     /**
      * 判断url是否合法
@@ -85,7 +59,7 @@ object UtilKMatchStrUrl : BaseUtilK() {
         if (second.contains("/")) {
             second = second.getSplitFirstIndexToStart("/")
         }
-        if (!second.isStrUrlIp() && !second.isStrUrlDomain()) {
+        if (!second.matches_ip() && !second.matches_domain()) {
             "请输入正确的IP或域名".showToast()
             return false
         }
@@ -94,7 +68,7 @@ object UtilKMatchStrUrl : BaseUtilK() {
             if (third.contains("/")) {
                 third = third.getSplitFirstIndexToStart("/")
             }
-            if (!third.isStrUrlPort()) {
+            if (!third.matches_port()) {
                 "请输入正确的端口".showToast()
                 return false
             }

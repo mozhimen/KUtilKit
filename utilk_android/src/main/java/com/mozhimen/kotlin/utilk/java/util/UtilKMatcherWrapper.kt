@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.util
 
+import com.mozhimen.kotlin.utilk.kotlin.str2regex
 import java.util.Locale
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -17,6 +18,8 @@ fun String.strHump2strUnderline(): String =
 fun String.strUnderline2strHump(): String =
     UtilKMatcherWrapper.strUnderline2strHump(this)
 
+///////////////////////////////////////////////////////////////////////
+
 object UtilKMatcherWrapper {
     /**
      * Hump to underline
@@ -28,7 +31,7 @@ object UtilKMatcherWrapper {
         val matcher: Matcher = UtilKMatcher.get("([A-Z])", tempStr)
         while (matcher.find()) {
             val target = matcher.group()
-            tempStr = tempStr.replace(target.toRegex(), "_" + target.lowercase(Locale.getDefault()))
+            tempStr = tempStr.replace(target.str2regex(), "_" + target.lowercase(Locale.getDefault()))
         }
         if (tempStr.first() == '_') tempStr.replaceFirst("_", "")
         return tempStr
@@ -45,7 +48,7 @@ object UtilKMatcherWrapper {
         while (matcher.find()) {
             val target = matcher.group(1)
             if (target != null) {
-                tempStr = tempStr.replace("_$target".toRegex(), target.uppercase(Locale.getDefault()))
+                tempStr = tempStr.replace("_$target".str2regex(), target.uppercase(Locale.getDefault()))
             }
         }
         return tempStr

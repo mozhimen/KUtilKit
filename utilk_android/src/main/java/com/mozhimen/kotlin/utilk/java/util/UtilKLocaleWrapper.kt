@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
 import java.util.Locale
 
 /**
@@ -22,7 +23,7 @@ object UtilKLocaleWrapper : IUtilK {
         var languageTag = Locale.getDefault().toLanguageTag().replace("-Hant", "")
         UtilKLogWrapper.d(TAG, "getOSLang: language $language toLanguageTag $languageTag");
         try {
-            val tags = languageTag.split("-".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            val tags = languageTag.split(UtilKRegexGet.get_strikethrough()).dropLastWhile { it.isEmpty() }.toTypedArray()
             var newTag = ""
             if (tags.size > 1) {
                 newTag = "r" + tags[1]

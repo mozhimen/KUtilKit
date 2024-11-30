@@ -1,7 +1,7 @@
 package com.mozhimen.basick.utilk
 
-import com.mozhimen.kotlin.utilk.kotlin.printlog
-import com.mozhimen.kotlin.utilk.kotlin.UtilKConsole
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.UtilKConsole
 import com.mozhimen.kotlin.utilk.kotlin.math.UtilKMathTriangle
 import com.mozhimen.kotlin.utilk.kotlin.ranges.UtilK_Ranges
 import org.junit.Test

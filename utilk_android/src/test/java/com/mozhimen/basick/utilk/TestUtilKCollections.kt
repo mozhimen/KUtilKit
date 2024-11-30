@@ -2,7 +2,7 @@ package com.mozhimen.basick.utilk
 
 import com.mozhimen.kotlin.utilk.kotlin.collections.getIndexFirst
 import com.mozhimen.kotlin.utilk.kotlin.collections.joinT2list
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 
 

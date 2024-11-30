@@ -5,6 +5,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKProcess
 import com.mozhimen.kotlin.utilk.android.text.formatFileSize
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
 import java.io.File
 import java.io.FileReader
 import java.io.IOException
@@ -41,7 +42,7 @@ object UtilKFileReader : IUtilK {
     fun getMemorySize(): String? {
         try {
             val strLine: String = readLine_use(CPath.PROC_MEMINFO, 8192) ?: return null// 读取mem info第一行，系统总内存大小
-            val strs: Array<String> = strLine.split("\\s+".toRegex()).toTypedArray()
+            val strs: Array<String> = strLine.split(UtilKRegexGet.get_blanks()).toTypedArray()
             val memorySize: Long = (Integer.valueOf(strs[1]).toInt() * 1024).toLong() // 获得系统总内存，单位是KB，乘以1024转换为Byte
             return memorySize.formatFileSize() // Byte转换为KB或者MB，内存大小规格化
         } catch (e: IOException) {

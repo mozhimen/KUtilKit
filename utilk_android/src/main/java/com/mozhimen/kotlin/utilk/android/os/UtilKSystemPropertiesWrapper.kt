@@ -5,6 +5,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CBuild
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_v2none
 import java.lang.reflect.Method
 
 /**
@@ -46,7 +47,7 @@ object UtilKSystemPropertiesWrapper {
             val clazz = CStrPackage.android_os_SystemProperties.strPackage2clazz()
             val methodGet: Method = clazz.getMethod("get", String::class.java)
             var value = methodGet.invoke(null, CStrPackage.ro_miui_ui_version_name) as String
-            value = value.replace("[vV]".toRegex(), "")
+            value = value.replace_v2none()
             val version = value.toInt()
             version >= 6
         } catch (e: Exception) {
@@ -64,7 +65,7 @@ object UtilKSystemPropertiesWrapper {
             val clazz = CStrPackage.android_os_SystemProperties.strPackage2clazz()
             val methodGet = clazz.getMethod("get", String::class.java)
             var value = methodGet.invoke(null, CStrPackage.ro_build_version_opporom) as String
-            value = value.replace("[vV]".toRegex(), "")
+            value = value.replace_v2none()
             value = value.substring(0, 1)
             val version = value.toInt()
             version >= 3

@@ -1,4 +1,4 @@
-package com.mozhimen.kotlin.utilk.kotlin
+package com.mozhimen.kotlin.utilk.kotlin.io
 
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 

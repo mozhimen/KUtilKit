@@ -2,7 +2,7 @@ package com.mozhimen.basick.utilk
 
 import com.mozhimen.kotlin.utilk.kotlin.UtilKAny
 import com.mozhimen.kotlin.utilk.kotlin.isObjPrimitive
-import com.mozhimen.kotlin.utilk.kotlin.printlog
+import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Assert
 import org.junit.Test
 
