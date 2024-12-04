@@ -1,7 +1,11 @@
 package com.mozhimen.kotlin.utilk.android.app
 
+import android.app.Notification
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import androidx.annotation.RequiresApi
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 
@@ -18,11 +22,15 @@ object UtilKNotificationManager {
         UtilKContext.getNotificationManager(context)
 
     /////////////////////////////////////////////////////////////////////////////
-    
+
     @JvmStatic
-    fun createNotificationChannel(notificationManager: NotificationManager, channelId: String, channelName: String, importance: Int) {
-        if (UtilKBuildVersion.isAfterV_26_8_O()) {// 在 Android 8.0 及更高版本上，需要在系统中注册应用的通知渠道
-            notificationManager.createNotificationChannel(UtilKNotificationChannel.get(channelId, channelName, importance))
-        }
+    @RequiresApi(CVersCode.V_26_8_O)
+    fun getNotificationChannel(notificationManager: NotificationManager, channelId: String): NotificationChannel? =
+        notificationManager.getNotificationChannel(channelId)
+
+    @JvmStatic
+    @RequiresApi(CVersCode.V_26_8_O)
+    fun createNotificationChannel(notificationManager: NotificationManager, notificationChannel: NotificationChannel) {
+        notificationManager.createNotificationChannel(notificationChannel)
     }
 }

@@ -16,10 +16,10 @@ import org.junit.Test
 class TestUtilKInt {
     @Test
     fun test() {
-        (0b11 or 0b100).intByte2strByte(8).printlog()
-        (0b11 or 0b100).intByte2strByte().printlog()
-        (0b11 or 0b100).intByte2strByte2(8).printlog()
-        (0b1 shl 7).intByte2strByte(8).printlog()
-        (0b11 shl 8).intByte2strByte(10).printlog()
+//        (0b11 or 0b100).intByte2strByte(8).printlog()
+//        (0b11 or 0b100).intByte2strByte().printlog()
+//        (0b11 or 0b100).intByte2strByte2(8).printlog()
+//        (0b1 shl 7).intByte2strByte(8).printlog()
+//        (0b11 shl 8).intByte2strByte(10).printlog()
     }
 }

@@ -40,16 +40,6 @@ scheme: content
 schemeSpecificPart: //com.android.providers.media.documents/document/image:27391
 userInfo: null
  */
-
-fun Uri.isAuthorityDownloadsDocument(): Boolean =
-    UtilKUri.isAuthorityDownloadsDocument(this)
-
-fun Uri.isAuthorityExternalStorageDocument(): Boolean =
-    UtilKUri.isAuthorityExternalStorageDocument(this)
-
-fun Uri.isAuthorityMediaDocument(): Boolean =
-    UtilKUri.isAuthorityMediaDocument(this)
-
 object UtilKUri : BaseUtilK() {
     @JvmStatic
     fun get(strUri: String): Uri =
@@ -58,6 +48,8 @@ object UtilKUri : BaseUtilK() {
     @JvmStatic
     fun get(scheme: String, ssp: String, fragment: String): Uri =
         fromParts(scheme, ssp, fragment)
+
+    /////////////////////////////////////////////////////////////////////////////
 
     //获取PackageUri
     @JvmStatic
@@ -69,6 +61,8 @@ object UtilKUri : BaseUtilK() {
     fun getPackage_ofParts(context: Context): Uri =
         Uri.fromParts("package", UtilKContext.getPackageName(context), null)
 
+    /////////////////////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun fromParts(scheme: String, ssp: String, fragment: String): Uri =
         Uri.fromParts(scheme, ssp, fragment)
@@ -77,17 +71,11 @@ object UtilKUri : BaseUtilK() {
     fun parse(strUri: String): Uri =
         Uri.parse(strUri)
 
-    /////////////////////////////////////////////////////////////////////////////
+    @JvmStatic
+    fun encode(strUri: String): String =
+        Uri.encode(strUri)
 
     @JvmStatic
-    fun isAuthorityDownloadsDocument(uri: Uri): Boolean =
-        uri.authority == CStrPackage.com_android_providers_downloads_documents//"com.android.providers.downloads.documents"
-
-    @JvmStatic
-    fun isAuthorityExternalStorageDocument(uri: Uri): Boolean =
-        uri.authority == CStrPackage.com_android_externalstorage_documents//"com.android.externalstorage.documents"
-
-    @JvmStatic
-    fun isAuthorityMediaDocument(uri: Uri): Boolean =
-        uri.authority == CStrPackage.com_android_internal_policy_Decorview//"com.android.providers.media.documents"
+    fun decode(strUri: String): String =
+        Uri.decode(strUri)
 }

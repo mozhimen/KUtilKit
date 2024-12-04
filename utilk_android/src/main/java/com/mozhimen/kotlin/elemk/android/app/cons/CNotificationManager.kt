@@ -15,4 +15,6 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 object CNotificationManager {
     @RequiresApi(CVersCode.V_24_7_N)
     const val IMPORTANCE_LOW = NotificationManager.IMPORTANCE_LOW
+    @RequiresApi(CVersCode.V_24_7_N)
+    const val IMPORTANCE_DEFAULT = NotificationManager.IMPORTANCE_DEFAULT
 }

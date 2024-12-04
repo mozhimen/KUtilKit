@@ -12,4 +12,5 @@ import android.content.ContentResolver
 object CContentResolver {
     const val SCHEME_FILE = ContentResolver.SCHEME_FILE
     const val SCHEME_CONTENT = ContentResolver.SCHEME_CONTENT
+    const val SCHEME_ANDROID_RESOURCE = ContentResolver.SCHEME_ANDROID_RESOURCE
 }

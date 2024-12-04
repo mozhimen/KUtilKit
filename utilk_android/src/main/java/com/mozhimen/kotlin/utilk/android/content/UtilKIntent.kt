@@ -82,6 +82,10 @@ object UtilKIntent : IUtilK {
     ///////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
+    fun toURI(intent: Intent):String =
+        intent.toURI()
+
+    @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
     fun resolveActivity(intent: Intent, context: Context): ComponentName? =
         resolveActivity(intent, UtilKPackageManager.get(context))

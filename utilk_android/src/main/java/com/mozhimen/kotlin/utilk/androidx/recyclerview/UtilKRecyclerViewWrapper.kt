@@ -2,8 +2,10 @@ package com.mozhimen.kotlin.utilk.androidx.recyclerview
 
 import android.graphics.Rect
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -17,6 +19,24 @@ import kotlin.math.ceil
  * @Date 2024/3/26
  * @Version 1.0
  */
+
+fun RecyclerView.gainItemCount(): Int =
+    UtilKRecyclerViewWrapper.gainItemCount(this)
+
+fun RecyclerView.gainSpanCount(): Int =
+    UtilKRecyclerViewWrapper.gainSpanCount(this)
+
+fun RecyclerView.getLastVisibleItemPosition(): Int =
+    UtilKRecyclerViewWrapper.getLastVisibleItemPosition(this)
+
+fun RecyclerView.getFirstVisibleItemPosition(): Int =
+    UtilKRecyclerViewWrapper.getFirstVisibleItemPosition(this)
+
+///////////////////////////////////////////////////////////////////////////
+
+fun RecyclerView.isScrollVertical(): Boolean =
+    UtilKRecyclerViewWrapper.isScrollVertical(this)
+
 fun RecyclerView.isScroll2top(): Boolean =
     UtilKRecyclerViewWrapper.isScroll2top(this)
 
@@ -41,7 +61,89 @@ fun RecyclerView.isScroll2verticalEdge_ofItem(): Boolean =
 //fun RecyclerView.isScrollDown(dx: Int): Boolean =
 //    UtilKRecyclerView.isScrollDown(dx)
 
+///////////////////////////////////////////////////////////////////////////
+
+fun RecyclerView.applyScroll2top() {
+    UtilKRecyclerViewWrapper.applyScroll2top(this)
+}
+
+fun RecyclerView.requireLayoutManager_ofLinear(): LinearLayoutManager? =
+    UtilKRecyclerViewWrapper.requireLayoutManager_ofLinear(this)
+
+fun RecyclerView.requireLayoutManager_ofGrid(): GridLayoutManager? =
+    UtilKRecyclerViewWrapper.requireLayoutManager_ofGrid(this)
+
+///////////////////////////////////////////////////////////////////////////
+
 object UtilKRecyclerViewWrapper : IUtilK {
+
+    /**
+     * 获取目标状态按钮
+     */
+    /*open fun getProgressButtonByAppFileParams(appFileParams: AppFileParams): DownloadProgressButton? {
+        val recyclerView = getRecyclerView()
+        recyclerView ?: return null
+        val linearLayoutManager =
+            recyclerView.layoutManager as NiuLinearLayoutManager
+        //拿到开始显示的位置和最后显示的位置
+        val findFirstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition()
+        if (findFirstVisibleItemPosition < 0) {
+            return null
+        }
+        val findLastVisibleItemPosition = linearLayoutManager.findLastVisibleItemPosition()
+        if (findLastVisibleItemPosition < 0) {
+            return null
+        }
+        (recyclerView.adapter as? AppBaseInfoPagedListAdapter<*>)?.let { adapter ->
+            if (adapter.itemCount <= 0) {
+                return null
+            }
+            for (position in findFirstVisibleItemPosition..findLastVisibleItemPosition) {
+                adapter.getItem(position)?.let { appBaseInfo ->
+                    if (appBaseInfo.id == appFileParams.appId && appBaseInfo.packageName == appFileParams.packName) {
+                        linearLayoutManager.findViewByPosition(position)
+                            ?.let { findViewByPosition ->
+                                return findViewByPosition.findViewById(R.id.common_app_base_info_status)
+                            }
+                    }
+                }
+            }
+        }
+        return null
+    }*/
+
+    @JvmStatic
+    fun gainItemCount(recyclerView: RecyclerView): Int =
+        recyclerView.layoutManager?.itemCount ?: 0
+
+    /**
+     * 获取 spanCount
+     * 注：此方法只针对设置 LayoutManager 为 GridLayoutManager 的 RecyclerView 生效
+     */
+    @JvmStatic
+    fun gainSpanCount(recyclerView: RecyclerView): Int =
+        requireLayoutManager_ofGrid(recyclerView)?.spanCount ?: 0
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    //找到最后一个可视的Item
+    @JvmStatic
+    fun getLastVisibleItemPosition(recyclerView: RecyclerView): Int =
+        recyclerView.layoutManager?.getLastVisibleItemPosition() ?: -1
+
+    //找到第一个可视的View
+    @JvmStatic
+    fun getFirstVisibleItemPosition(recyclerView: RecyclerView): Int =
+        recyclerView.layoutManager?.getFirstVisibleItemPosition() ?: -1
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun isScrollVertical(recyclerView: RecyclerView): Boolean =
+        when (val layoutManager = recyclerView.layoutManager) {
+            is LinearLayoutManager -> layoutManager.orientation == LinearLayoutManager.VERTICAL
+            else -> true
+        }
 
     //是否滑动到边缘
     @JvmStatic
@@ -104,6 +206,38 @@ object UtilKRecyclerViewWrapper : IUtilK {
 //    fun isScrollDown(dx: Int): Boolean =
 //        dy > 0
 
+    ///////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun applyScroll2top(recyclerView: RecyclerView) {
+        UtilKRecyclerView.scrollToPosition(recyclerView, 0)
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun requireLayoutManager_ofLinear(recyclerView: RecyclerView): LinearLayoutManager? {
+        val layoutManager = recyclerView.layoutManager ?: return null
+        if (layoutManager !is LinearLayoutManager)
+            throw IllegalStateException("Make sure you are using the LinearLayoutManager")
+        return layoutManager
+    }
+
+    /**
+     * 检查 RecyclerView 设置的 GridLayoutManager
+     */
+    @JvmStatic
+
+    fun requireLayoutManager_ofGrid(recyclerView: RecyclerView): GridLayoutManager? {
+        val layoutManager = recyclerView.layoutManager ?: return null
+        if (layoutManager !is GridLayoutManager) {
+            throw IllegalStateException("Make sure you are using the GridLayoutManager")
+        }
+        return layoutManager
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+
     /**
      * {@link ItemDecoration#getItemOffsets(outRect: Rect,view: View,parent: RecyclerView)} or
      * {@link ItemDecoration#getItemOffsets(outRect: Rect,view: View,parent: RecyclerView,state: RecyclerView.State)}.
@@ -111,7 +245,7 @@ object UtilKRecyclerViewWrapper : IUtilK {
      */
     @JvmStatic
     fun equilibriumAssignment_ofLinearLayoutManager(recyclerView: RecyclerView, itemView: View, outRect: Rect, gapOuter: Int, gapInner: Int = gapOuter / 2, gapOther: Int = gapOuter) {
-        val itemCount = recyclerView.getItemCount()// item 的个数
+        val itemCount = recyclerView.gainItemCount()// item 的个数
         val itemPosition = recyclerView.getChildAdapterPosition(itemView)// 当前 item 的 position
         val layoutManager = recyclerView.requireLayoutManager_ofLinear() ?: return
         val orientation = layoutManager.orientation// 获取 LinearLayoutManager 的布局方向
@@ -175,10 +309,10 @@ object UtilKRecyclerViewWrapper : IUtilK {
         gapOuter: Int,
         gapInnerHorizontal: Int = gapOuter / 2,
         gapInnerVertical: Int = gapInnerHorizontal,
-        gapOther: Int = gapOuter
+        gapOther: Int = gapOuter,
     ) {
-        val itemCount = recyclerView.getItemCount()// item 的个数
-        val spanCount = recyclerView.getSpanCount()// 网格布局的跨度数
+        val itemCount = recyclerView.gainItemCount()// item 的个数
+        val spanCount = recyclerView.gainSpanCount()// 网格布局的跨度数
         val itemPosition = recyclerView.getChildAdapterPosition(itemView)// 当前 item 的 position
         val lastRowFirstPosition = ((ceil(itemCount.toDouble() / spanCount.toDouble()).toInt() - 1) * spanCount).constraint(0, itemCount - 1)
         UtilKLogWrapper.d(TAG, "equilibriumAssignment_ofGridLayoutManager: lastRowFirstPosition $lastRowFirstPosition");

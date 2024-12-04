@@ -1,6 +1,10 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import android.content.ContentResolver
+import android.content.Context
 import android.net.Uri
+import com.mozhimen.kotlin.elemk.android.content.cons.CContentResolver
+import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 
 /**
  * @ClassName UtilKStrUri
@@ -12,24 +16,17 @@ import android.net.Uri
 fun String.strUri2uri(): Uri =
     UtilKStrUri.strUri2uri(this)
 
-fun String.strUriEncode(): String =
-    UtilKStrUri.strUriEncode(this)
-
-fun String.strUriDecode(): String =
-    UtilKStrUri.strUriDecode(this)
-
 ////////////////////////////////////////////////////////////
 
 object UtilKStrUri {
+
+    @JvmStatic
+    fun getStrUri_ofRaw(context: Context, rawName: String): String =
+        "${CContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/raw/${rawName}"
+
+    ////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun strUri2uri(strUri: String): Uri =
-        Uri.parse(strUri)
-
-    @JvmStatic
-    fun strUriEncode(strUri: String): String =
-        Uri.encode(strUri)
-
-    @JvmStatic
-    fun strUriDecode(strUri: String): String =
-        Uri.decode(strUri)
+        UtilKUri.get(strUri)
 }
