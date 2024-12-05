@@ -58,9 +58,16 @@ inline fun <T> List<T>.forEachReversedByIndex(action: (T) -> Unit) {
     UtilKCollections.forEachReversedByIndex(this, action)
 }
 
+fun List<String>.filterNotEmpty(): List<String> =
+    UtilKCollections.filterNotEmpty(this)
+
 ///////////////////////////////////////////////////////////////////////
 
-object UtilKCollections :IUtilK{
+object UtilKCollections : IUtilK {
+    @JvmStatic
+    fun filterNotEmpty(strs: List<String>): List<String> =
+        strs.filterNot { it.isEmpty() }
+
     @JvmStatic
     fun listsEqual(list1: List<*>, list2: List<*>): Boolean {
         if (list1.size != list2.size)

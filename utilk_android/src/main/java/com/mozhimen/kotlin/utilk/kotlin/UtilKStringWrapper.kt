@@ -170,6 +170,9 @@ object UtilKStringWrapper {
             .capitalize()//首字母大写
     }
 
+    /**
+     * 获取标准名
+     */
     @JvmStatic
     fun getStandardName(str: String): String {
         return str.replace(UtilKRegexGet.get_digits_alphabets(), "-") // 替换非字母数字字符为 '-'

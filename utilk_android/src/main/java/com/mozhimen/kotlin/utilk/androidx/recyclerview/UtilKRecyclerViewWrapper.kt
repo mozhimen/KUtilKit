@@ -67,6 +67,10 @@ fun RecyclerView.applyScroll2top() {
     UtilKRecyclerViewWrapper.applyScroll2top(this)
 }
 
+fun RecyclerView.applyScroll2top_smooth() {
+    UtilKRecyclerViewWrapper.applyScroll2top_smooth(this)
+}
+
 fun RecyclerView.requireLayoutManager_ofLinear(): LinearLayoutManager? =
     UtilKRecyclerViewWrapper.requireLayoutManager_ofLinear(this)
 
@@ -210,6 +214,11 @@ object UtilKRecyclerViewWrapper : IUtilK {
 
     @JvmStatic
     fun applyScroll2top(recyclerView: RecyclerView) {
+        UtilKRecyclerView.scrollToPosition(recyclerView, 0)
+    }
+
+    @JvmStatic
+    fun applyScroll2top_smooth(recyclerView: RecyclerView) {
         UtilKRecyclerView.scrollToPosition(recyclerView, 0)
     }
 

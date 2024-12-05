@@ -34,4 +34,9 @@ object UtilKRecyclerView : IUtilK {
     fun scrollToPosition(recyclerView: RecyclerView, position: Int) {
         recyclerView.scrollToPosition(position)
     }
+
+    @JvmStatic
+    fun smoothScrollToPosition(recyclerView: RecyclerView, position: Int) {
+        recyclerView.smoothScrollToPosition(position)
+    }
 }
