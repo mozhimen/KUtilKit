@@ -2,10 +2,12 @@ package com.mozhimen.kotlin.utilk.android.content
 
 import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager.PackageInfoFlags
+import android.text.TextUtils
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CProcess
@@ -64,6 +66,28 @@ object UtilKPackageManagerWrapper {
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
+
+    fun getService(context: Context, action: String, serviceClazz: Class<*>): Boolean? {
+        try {
+            val intent = Intent()
+            intent.setAction(action)
+            intent.setPackage(UtilKContext.getPackageName(context))
+            val resolveInfos = UtilKPackageManager.queryIntentServices(context, intent, 0)
+            for (resolveInfo in resolveInfos) {
+                val serviceInfo = resolveInfo.serviceInfo ?: continue
+                val className = serviceInfo.name
+                if (className.isEmpty()) continue
+                val clazz = Class.forName(className)
+                // MTCommonService是clazz的父类
+                if (serviceClazz.isAssignableFrom(clazz)) {
+                    return clazz.canonicalName.also { commonServiceName = it }
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return ""
+    }
 
     /**
      * 获取所有安装程序包名

@@ -25,11 +25,13 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getVersionCode(strPackageName: String, flags: Int): Int =
-        UtilKPackageInfo.getVersionCode(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.getVersionCode(_context, strPackageName, flags)
 
     @JvmStatic
     fun getVersionCode(flags: Int): Int =
-        UtilKPackageInfo.getVersionCode(_context, _context.packageName, flags)
+        UtilKPackageInfoWrapper.getVersionCode(_context, getPackageName(), flags)
+
+    //////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getPackageName(): String =
@@ -37,11 +39,13 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getVersionName(strPackageName: String, flags: Int): String =
-        UtilKPackageInfo.getVersionName(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.getVersionName(_context, strPackageName, flags)
 
     @JvmStatic
     fun getVersionName(flags: Int): String =
-        UtilKPackageInfo.getVersionName(_context, _context.packageName, flags)
+        UtilKPackageInfoWrapper.getVersionName(_context, getPackageName(), flags)
+
+    //////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getRequestedPermissionsStr(strPackageName: String, flags: Int): String =
@@ -49,7 +53,7 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getRequestedPermissionsStr(flags: Int): String =
-        UtilKPackageInfo.getRequestedPermissions(_context, _context.packageName, flags).contentToString()
+        UtilKPackageInfo.getRequestedPermissions(_context, getPackageName(), flags).contentToString()
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -76,11 +80,11 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun hasPackage_ofPackageManager_enabled(strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfo.enabled_ofPackageManager(_context, strPackageName, flags)
+        UtilKApplicationInfoWrapper.enabled_ofPackageManager(_context, strPackageName, flags)
 
     @JvmStatic
     fun hasPackage_ofPackageInfo_enabled(strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfo.enabled_ofPackageInfo(_context, strPackageName, flags)
+        UtilKApplicationInfoWrapper.enabled_ofPackageInfo(_context, strPackageName, flags)
 
     @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
@@ -90,7 +94,7 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun hasPackage_ofPackageInfo(strPackageName: String, flags: Int): Boolean =
-        UtilKPackageInfo.hasPackage(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.hasPackage(_context, strPackageName, flags)
 
     @JvmStatic
     fun hasPackage_ofClazz(strPackageNameWithActivity: String): Boolean =

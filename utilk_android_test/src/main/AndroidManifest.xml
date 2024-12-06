@@ -22,15 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KUtilKit">
         <activity
-            android:name=".utilk.android.UtilKContentViewActivity"
-            android:exported="true"
-            android:theme="@style/Theme.KUtilKit">
-        </activity>
-        <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".utilk.android.UtilKDateFormatActivity"
             android:exported="false" />
@@ -42,7 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".utilk.kotlin.UtilKStrPathActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <receiver
             android:name=".utilk.android.InstallKReceiver"
@@ -131,7 +124,7 @@
             android:exported="false" />
         <activity
             android:name=".utilk.android.UtilKContextDirActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".utilk.android.UtilKGraphicsActivity"
             android:exported="false" />
@@ -158,13 +151,23 @@
             android:exported="false" />
         <activity
             android:name=".utilk.android.UtilKScreenActivity"
-            android:exported="true" >
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".utilk.android.UtilKApplicationActivity"
+            android:exported="true"
+            android:theme="@style/Theme.KUtilKit">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".utilk.android.UtilKContentViewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.KUtilKit"></activity>
         <activity
             android:name=".utilk.kotlin.UtilKVerifyUrlActivity"
             android:exported="false" />

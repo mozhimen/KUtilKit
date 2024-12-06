@@ -94,6 +94,10 @@ object UtilKPackageManager : IUtilK {
         get(context).queryIntentActivities(intent, flags)
 
     @JvmStatic
+    fun queryIntentServices(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
+        get(context).queryIntentServices(intent, flags)
+
+    @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")

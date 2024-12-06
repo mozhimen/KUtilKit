@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import androidx.annotation.IdRes
 import com.mozhimen.kotlin.elemk.android.content.cons.CApplicationInfo
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -78,6 +79,10 @@ object UtilKApplicationInfo : IUtilK {
     fun enabled(applicationInfo: ApplicationInfo): Boolean =
         applicationInfo.enabled
 
+    @JvmStatic
+    fun getMetaData(applicationInfo: ApplicationInfo): Bundle =
+        applicationInfo.metaData
+
     //////////////////////////////////////////////////////////////////////
 
     //app的目标版本
@@ -89,48 +94,5 @@ object UtilKApplicationInfo : IUtilK {
     @IdRes
     fun getLabelRes(context: Context): Int =
         get(context).labelRes
-
-    @SuppressLint("ResourceType")
-    @JvmStatic
-    fun getLabelResStr(context: Context): String {
-        try {
-            val intResStr:Int = getLabelRes(context)
-            if (intResStr == 0) return ""
-            return UtilKRes.getString_ofContext(context, intResStr)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return ""
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    fun enabled_ofPackageManager_throw(context: Context, strPackageName: String, flags: Int): Boolean =
-        enabled(get_ofPackageManager(context, strPackageName, flags))
-
-    @JvmStatic
-    fun enabled_ofPackageManager(context: Context, strPackageName: String, flags: Int): Boolean {
-        return try {
-            enabled_ofPackageManager_throw(context, strPackageName, flags)
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            false
-        }
-    }
-
-    @JvmStatic
-    fun enabled_ofPackageInfo_throw(context: Context, strPackageName: String, flags: Int): Boolean =
-        enabled(get_ofPackageManager(context, strPackageName, flags))
-
-    @JvmStatic
-    fun enabled_ofPackageInfo(context: Context, strPackageName: String, flags: Int): Boolean {
-        return try {
-            enabled_ofPackageInfo_throw(context, strPackageName, flags)
-        } catch (e: PackageManager.NameNotFoundException) {
-            e.printStackTrace()
-            false
-        }
-    }
 }
 

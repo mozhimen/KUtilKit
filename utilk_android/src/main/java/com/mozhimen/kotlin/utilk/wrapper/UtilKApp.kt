@@ -7,10 +7,11 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
+import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfoWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
+import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.os.UtilKProcess
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
@@ -29,7 +30,11 @@ import kotlin.system.exitProcess
 object UtilKApp : BaseUtilK() {
     @JvmStatic
     fun getLabelStr(): String =
-        UtilKApplicationInfo.getLabelResStr(_context)
+        UtilKApplicationInfoWrapper.getLabelResStr(_context)
+
+    @JvmStatic
+    fun getMetaDataStr(strMetaData: String, strPackageName: String = UtilKPackage.getPackageName(), flags: Int = CPackageManager.GET_META_DATA, context: Context = _context): String =
+        UtilKApplicationInfoWrapper.getMetaDataStr(context, strPackageName, flags, strMetaData)
 
     /////////////////////////////////////////////////////////////////////////////
 

@@ -6,6 +6,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.elemk.android.media.cons.CMediaFormat
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextStart
+import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentWrapper
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkIntentBinding
 
@@ -23,7 +24,7 @@ class UtilKIntentActivity : BaseActivityVDB<ActivityUtilkIntentBinding>() {
             vdb.utilkIntentImg.setImageURI(it)
         }
         vdb.utilkIntentBtn.setOnClickListener {
-            UtilKContextStart.startActivityForResult(this, 0, UtilKIntentWrapper.getPickUriImage())
+            UtilKContextStart.startActivityForResult(this, 0, UtilKIntentGet.getPickUriImage())
         }
         vdb.utilkIntentBtn2.setOnClickListener {
             activityResultLauncher.launch(CMediaFormat.MIMETYPE_IMAGE_ALL)
