@@ -16,7 +16,7 @@ import java.io.OutputStream
  * @Date 2023/8/15 14:21
  * @Version 1.0
  */
-fun Bitmap.getByteCount_ofM(): Int =
+fun Bitmap.getByteCount_ofM(): Float =
     UtilKBitmap.getByteCount_ofM(this)
 
 /////////////////////////////////////////////////////////////
@@ -49,8 +49,8 @@ object UtilKBitmap {
         bitmap.byteCount
 
     @JvmStatic
-    fun getByteCount_ofM(bitmap: Bitmap): Int =
-        getByteCount(bitmap) / 1024 / 1024
+    fun getByteCount_ofM(bitmap: Bitmap): Float =
+        getByteCount(bitmap) / 1024f / 1024f
 
     /////////////////////////////////////////////////////////////
 

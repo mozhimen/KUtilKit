@@ -67,27 +67,27 @@ object UtilKPackageManagerWrapper {
 
     //////////////////////////////////////////////////////////////////////////////////////
 
-    fun getService(context: Context, action: String, serviceClazz: Class<*>): Boolean? {
-        try {
-            val intent = Intent()
-            intent.setAction(action)
-            intent.setPackage(UtilKContext.getPackageName(context))
-            val resolveInfos = UtilKPackageManager.queryIntentServices(context, intent, 0)
-            for (resolveInfo in resolveInfos) {
-                val serviceInfo = resolveInfo.serviceInfo ?: continue
-                val className = serviceInfo.name
-                if (className.isEmpty()) continue
-                val clazz = Class.forName(className)
-                // MTCommonService是clazz的父类
-                if (serviceClazz.isAssignableFrom(clazz)) {
-                    return clazz.canonicalName.also { commonServiceName = it }
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return ""
-    }
+//    fun getService(context: Context, action: String, serviceClazz: Class<*>): Boolean? {
+//        try {
+//            val intent = Intent()
+//            intent.setAction(action)
+//            intent.setPackage(UtilKContext.getPackageName(context))
+//            val resolveInfos = UtilKPackageManager.queryIntentServices(context, intent, 0)
+//            for (resolveInfo in resolveInfos) {
+//                val serviceInfo = resolveInfo.serviceInfo ?: continue
+//                val className = serviceInfo.name
+//                if (className.isEmpty()) continue
+//                val clazz = Class.forName(className)
+//                // MTCommonService是clazz的父类
+//                if (serviceClazz.isAssignableFrom(clazz)) {
+//                    return clazz.canonicalName.also { commonServiceName = it }
+//                }
+//            }
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//        return ""
+//    }
 
     /**
      * 获取所有安装程序包名

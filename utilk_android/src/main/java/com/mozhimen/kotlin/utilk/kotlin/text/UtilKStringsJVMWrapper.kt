@@ -144,10 +144,10 @@ object UtilKStringsJVMWrapper {
     ///////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun format_fillStart0(digit: Int, obj: Number): String =
+    fun format_fillStart0(digit: Number, obj: Number): String =
         String.format("%0${digit}d", obj)
 
     @JvmStatic
-    fun format_fillStart0(digit: Int, obj: String): String =
+    fun format_fillStart0(digit: Number, obj: String): String =
         String.format("%0${digit}s", obj).replace(" ", "0")
 }
