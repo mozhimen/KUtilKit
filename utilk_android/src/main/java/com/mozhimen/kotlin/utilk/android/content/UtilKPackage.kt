@@ -25,11 +25,11 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getVersionCode(strPackageName: String, flags: Int): Int =
-        UtilKPackageInfoWrapper.getVersionCode(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.gainVersionCode(_context, strPackageName, flags)
 
     @JvmStatic
     fun getVersionCode(flags: Int): Int =
-        UtilKPackageInfoWrapper.getVersionCode(_context, getPackageName(), flags)
+        UtilKPackageInfoWrapper.gainVersionCode(_context, getPackageName(), flags)
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -39,11 +39,11 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getVersionName(strPackageName: String, flags: Int): String =
-        UtilKPackageInfoWrapper.getVersionName(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.gainVersionName(_context, strPackageName, flags)
 
     @JvmStatic
     fun getVersionName(flags: Int): String =
-        UtilKPackageInfoWrapper.getVersionName(_context, getPackageName(), flags)
+        UtilKPackageInfoWrapper.gainVersionName(_context, getPackageName(), flags)
 
     //////////////////////////////////////////////////////////////////////////////////
 

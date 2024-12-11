@@ -258,10 +258,10 @@ object UtilKRuntimeWrapper : IUtilK {
             dataOutputStream = DataOutputStream(outputStream)
             for (command in commands) {
                 dataOutputStream.write(command.toByteArray())
-                dataOutputStream.writeBytes(UtilKSystemWrapper.getProperty_ofLineSeparator())
+                dataOutputStream.writeBytes(UtilKSystemGet.getProperty_line_separator())
                 dataOutputStream.flush()
             }
-            dataOutputStream.writeBytes("exit${UtilKSystemWrapper.getProperty_ofLineSeparator()}")
+            dataOutputStream.writeBytes("exit${UtilKSystemGet.getProperty_line_separator()}")
             dataOutputStream.flush()
             result = process.waitFor()
 

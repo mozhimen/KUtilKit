@@ -50,4 +50,30 @@ object UtilKPackageInfo : BaseUtilK() {
     @JvmStatic
     fun getPackageName(packageInfo: PackageInfo?): String? =
         packageInfo?.packageName
+
+    @JvmStatic
+    fun getVersionName(context: Context, strPackageName: String, flags: Int): String? =
+        getVersionName(get(context, strPackageName, flags))
+
+    @JvmStatic
+    fun getVersionName(packageInfo: PackageInfo?): String? =
+        packageInfo?.versionName
+
+    @JvmStatic
+    @RequiresApi(CVersCode.V_28_9_P)
+    fun getLongVersionCode(context: Context, strPackageName: String, flags: Int): Long? =
+        getLongVersionCode(get(context, strPackageName, flags))
+
+    @JvmStatic
+    @RequiresApi(CVersCode.V_28_9_P)
+    fun getLongVersionCode(packageInfo: PackageInfo?): Long? =
+        packageInfo?.longVersionCode
+
+    @JvmStatic
+    fun getVersionCode(context: Context, strPackageName: String, flags: Int): Int? =
+        getVersionCode(get(context, strPackageName, flags))
+
+    @JvmStatic
+    fun getVersionCode(packageInfo: PackageInfo?): Int? =
+        packageInfo?.versionCode
 }

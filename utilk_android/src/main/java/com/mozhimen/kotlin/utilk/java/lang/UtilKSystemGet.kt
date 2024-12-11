@@ -9,8 +9,8 @@ import com.mozhimen.kotlin.elemk.cons.CStrPackage
  * @Date 2024/1/30 13:43
  * @Version 1.0
  */
-object UtilKSystemWrapper {
+object UtilKSystemGet {
     @JvmStatic
-    fun getProperty_ofLineSeparator(): String? =
+    fun getProperty_line_separator(): String? =
         UtilKSystem.getProperty(CStrPackage.line_separator)
 }

@@ -9,21 +9,21 @@ import android.os.Bundle
  * @Date 2024/5/17
  * @Version 1.0
  */
-fun Bundle?.getStrDump():String =
-    UtilKBundleWrapper.getStrDump(this)
+fun Bundle.bundle2strDump():String =
+    UtilKBundleFormat.bundle2strDump(this)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-object UtilKBundleWrapper {
+object UtilKBundleFormat {
     @JvmStatic
-    fun getStrDump(bundle: Bundle?): String {
-        if (bundle == null) return "null"
-        val stringBuilder = StringBuilder("Extras:\n")
+    fun bundle2strDump(bundle: Bundle): String {
+        val stringBuilder = StringBuilder("{")
         bundle.keySet()
             .toSet()
             .forEach { key ->
-                stringBuilder.append(key).append(": ").append(bundle.get(key)).append("\n")
+                stringBuilder.append(key).append(":").append(bundle.get(key)).append(" ")
             }
+        stringBuilder.append("}")
         return stringBuilder.toString()
     }
 }

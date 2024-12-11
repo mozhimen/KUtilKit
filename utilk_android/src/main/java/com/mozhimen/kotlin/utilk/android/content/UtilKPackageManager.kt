@@ -83,19 +83,7 @@ object UtilKPackageManager : IUtilK {
     fun getApplicationIcon(context: Context, strPackageName: String): Drawable =
         get(context).getApplicationIcon(strPackageName)
 
-    /**
-     * 查询所有的符合Intent的Activities
-     */
-    @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
-    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    @SuppressLint("QueryPermissionsNeeded")
-    fun queryIntentActivities(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
-        get(context).queryIntentActivities(intent, flags)
-
-    @JvmStatic
-    fun queryIntentServices(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
-        get(context).queryIntentServices(intent, flags)
+    /////////////////////////////////////////////////////////////////
 
     @JvmStatic
     @OPermission_QUERY_ALL_PACKAGES
@@ -152,4 +140,24 @@ object UtilKPackageManager : IUtilK {
         if (UtilKBuildVersion.isAfterV_26_8_O())
             get(context).canRequestPackageInstalls()
         else true
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * 查询所有的符合Intent的Activities
+     */
+    @JvmStatic
+    @OPermission_QUERY_ALL_PACKAGES
+    @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
+    @SuppressLint("QueryPermissionsNeeded")
+    fun queryIntentActivities(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
+        get(context).queryIntentActivities(intent, flags)
+
+    @JvmStatic
+    fun queryIntentServices(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
+        get(context).queryIntentServices(intent, flags)
+
+    @JvmStatic
+    fun queryBroadcastReceivers(context: Context, intent: Intent, flags: Int): List<ResolveInfo> =
+        get(context).queryBroadcastReceivers(intent, flags)
 }
