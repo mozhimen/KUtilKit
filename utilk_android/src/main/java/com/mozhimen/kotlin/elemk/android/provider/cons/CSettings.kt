@@ -46,6 +46,9 @@ object CSettings {
     const val EXTRA_APP_PACKAGE = Settings.EXTRA_APP_PACKAGE
 
     ///////////////////////////////////////////////////////////////////////////////////////
+    object System {
+        const val ANDROID_ID = Settings.System.ANDROID_ID
+    }
 
     object Secure {
         const val ACCESSIBILITY_ENABLED = Settings.Secure.ACCESSIBILITY_ENABLED

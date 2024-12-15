@@ -53,7 +53,7 @@ object UtilKImeiOrMeid : IUtilK {
             return imei
         try {
             imei = if (UtilKBuildVersion.isAfterV_26_8_O())
-                UtilKTelephonyManager.getImei(context, slotId)
+                UtilKTelephonyManagerWrapper.getImei(context, slotId)
             else if (UtilKBuildVersion.isAfterV_21_5_L())
                 UtilKSystemPropertiesWrapper.getImei()//5.0的系统如果想获取MEID/IMEI1/IMEI2  ----framework层提供了两个属性值“ril.cdma.meid"和“ril.gsm.imei"获取
             else
@@ -110,7 +110,7 @@ object UtilKImeiOrMeid : IUtilK {
             return ""
         return try {
             if (UtilKBuildVersion.isAfterV_26_8_O()) { // android 8 即以后建议用getImei 方法获取 不会获取到MEID
-                UtilKTelephonyManager.getImei(context, slotIndex)
+                UtilKTelephonyManagerWrapper.getImei(context, slotIndex)
             } else if (UtilKBuildVersion.isAfterV_21_5_L()) {
                 UtilKSystemPropertiesWrapper.getImei()//如果获取不到 就调用 getDeviceId 方法获取
             } else { //5.0以下获取imei/meid只能通过 getDeviceId  方法去取
@@ -138,7 +138,7 @@ object UtilKImeiOrMeid : IUtilK {
             return ""
         return try {
             if (UtilKBuildVersion.isAfterV_26_8_O()) { // android 8 即以后建议用getMeid 方法获取 不会获取到Imei
-                UtilKTelephonyManager.getMeid(context, slotIndex)
+                UtilKTelephonyManagerWrapper.getMeid(context, slotIndex)
             } else if (UtilKBuildVersion.isAfterV_21_5_L()) {
                 UtilKSystemPropertiesWrapper.getMeid()//如果获取不到 就调用 getDeviceId 方法获取
             } else { //5.0以下获取imei/meid只能通过 getDeviceId  方法去取

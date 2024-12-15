@@ -86,7 +86,7 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @SuppressLint("DiscouragedPrivateApi")
     fun get_ofReflect(context: Context): String =
-        UtilKTelephonyManager.getDeviceId_ofReflect(context)
+        UtilKTelephonyManagerWrapper.getDeviceId_ofReflect(context)
 
     /**
      * 反射获取 deviceId
@@ -94,7 +94,7 @@ object UtilKDeviceId : IUtilK {
      */
     @JvmStatic
     fun get_ofReflect(context: Context, slotIndex: Int): String =
-        UtilKTelephonyManager.getDeviceId_ofReflect(context, slotIndex)
+        UtilKTelephonyManagerWrapper.getDeviceId_ofReflect(context, slotIndex)
 
     ////////////////////////////////////////////////////////////////////////
 

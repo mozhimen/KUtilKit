@@ -14,7 +14,9 @@ import com.mozhimen.kotlin.utilk.android.net.UtilKNetworkInfo
 import com.mozhimen.kotlin.utilk.android.net.UtilKWifiInfo
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.java.net.UtilKInetAddress
 import com.mozhimen.kotlin.utilk.java.net.UtilKNetworkInterface
+import com.mozhimen.kotlin.utilk.java.net.UtilKNetworkInterfaceWrapper
 
 /**
  * @ClassName UtilKNet
@@ -42,7 +44,7 @@ object UtilKNet : BaseUtilK() {
     //获取网路IP
     @JvmStatic
     fun getStrIP(): String? =
-        UtilKNetworkInterface.getStrIP()
+        UtilKInetAddress.getHostAddress()
 
     @JvmStatic
     @OPermission_ACCESS_NETWORK_STATE

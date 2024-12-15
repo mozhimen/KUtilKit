@@ -3,9 +3,13 @@ package com.mozhimen.kotlin.utilk.android.os
 import android.annotation.SuppressLint
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.mozhimen.kotlin.elemk.android.os.cons.CBuild
+import androidx.annotation.RequiresPermission
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_25_71_NM1
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.utilk.kotlin.array2str
 import com.mozhimen.kotlin.utilk.java.text.longDate2strDate
@@ -20,127 +24,145 @@ import com.mozhimen.kotlin.utilk.java.text.longDate2strDate
 
 object UtilKBuild {
 
+    /**
+     * 在API 23-25版本的设备上无需配置权限
+     */
     @JvmStatic
     @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_25_71_NM1
     @SuppressLint("HardwareIds")
-    fun getSerial(): String =
+    fun get_SERIAL(): String =
         Build.SERIAL
 
     //设备名
     @JvmStatic
-    fun getProduct(): String =
+    fun get_PRODUCT(): String =
         Build.PRODUCT
 
     //构建类型
     @JvmStatic
-    fun getType(): String =
+    fun get_TYPE(): String =
         Build.TYPE
 
     //构建标签聚合
     @JvmStatic
-    fun getTags(): String? =
+    fun get_TAGS(): String? =
         Build.TAGS
-
-    //构建SDK版本
-    @JvmStatic
-    fun getVersionSDK(): String =
-        UtilKBuildVersion.getStrSDKInt()
-
-    //构建Release版本号
-    @JvmStatic
-    fun getVersionRelease(): String =
-        UtilKBuildVersion.getRelease()
-
-    //构建版本名称
-    @JvmStatic
-    fun getVersionCodeName(): String =
-        UtilKBuildVersion.getCodeName()
 
     //设备品牌
     @JvmStatic
-    fun getBrand(): String =
+    fun get_BRAND(): String =
         Build.BRAND
 
     //设备/硬件制造商
     @JvmStatic
-    fun getManufacture(): String =
+    fun get_MANUFACTURER(): String =
         Build.MANUFACTURER
 
     //设备最终用户名
     @JvmStatic
-    fun getModel(): String =
+    fun get_MODEL(): String =
         Build.MODEL
 
     //设备支持架构
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
-    fun getSupportABIs(): String =
-        Build.SUPPORTED_ABIS.array2str()
+    fun get_SUPPORTED_ABIS(): Array<String> =
+        Build.SUPPORTED_ABIS
+
+    //设备支持架构
+    @JvmStatic
+    @RequiresApi(CVersCode.V_21_5_L)
+    fun get_SUPPORTED_ABIS_STR(): String =
+        get_SUPPORTED_ABIS().array2str()
 
     //设备支持32位架构
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
-    fun getSupport32BitABIs(): String =
+    fun get_SUPPORTED_32_BIT_ABIS(): Array<String> =
+        Build.SUPPORTED_32_BIT_ABIS
+
+    //设备支持32位架构
+    @JvmStatic
+    @RequiresApi(CVersCode.V_21_5_L)
+    fun get_SUPPORTED_32_BIT_ABIS_STR(): String =
         Build.SUPPORTED_32_BIT_ABIS.array2str()
 
     //设备支持64位架构
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
-    fun getSupport64BitABIs(): String =
+    fun get_SUPPORTED_64_BIT_ABIS(): Array<String> =
+        Build.SUPPORTED_64_BIT_ABIS
+
+    //设备支持64位架构
+    @JvmStatic
+    @RequiresApi(CVersCode.V_21_5_L)
+    fun get_SUPPORTED_64_BIT_ABIS_STR(): String =
         Build.SUPPORTED_64_BIT_ABIS.array2str()
 
     //设备开发板名称
     @JvmStatic
-    fun getBoard(): String =
+    fun get_BOARD(): String =
         Build.BOARD
 
     //设备工业设计名
     @JvmStatic
-    fun getDevice(): String =
+    fun get_DEVICE(): String =
         Build.DEVICE
 
     //硬件名称
     @JvmStatic
-    fun getHardware(): String =
+    fun get_HARDWARE(): String =
         Build.HARDWARE
 
     //唯一标识版本字符
     @JvmStatic
-    fun getFingerPrint(): String =
+    fun get_FINGERPRINT(): String =
         Build.FINGERPRINT
 
     //构建显示ID
     @JvmStatic
-    fun getDisplay(): String =
+    fun get_DISPLAY(): String =
         Build.DISPLAY
 
     //构建变更列表号
     @JvmStatic
-    fun getId(): String =
+    fun get_ID(): String =
         Build.ID
-
-    //设备无线固件版本
-    @JvmStatic
-    fun getRadioVersion(): String =
-        Build.getRadioVersion() ?: CBuild.UNKNOWN
 
     //系统引导加载程序版本
     @JvmStatic
-    fun getBootLoader(): String =
+    fun get_BOOTLOADER(): String =
         Build.BOOTLOADER
 
     //构建内部Host
     @JvmStatic
-    fun getHost(): String =
+    fun get_HOST(): String =
         Build.HOST
 
     //构建内部构建者
     @JvmStatic
-    fun getUser(): String =
+    fun get_USER(): String =
         Build.USER
 
     //构建内部时间
     @JvmStatic
-    fun getTime(): String =
+    fun get_TIME(): String =
         Build.TIME.longDate2strDate(CDateFormat.Format.yyyy_MM_dd_HH_mm_ss)
+
+    //设备无线固件版本
+    @JvmStatic
+    fun getRadioVersion(): String? =
+        Build.getRadioVersion()
+
+    //API 26-28
+    @JvmStatic
+    @RequiresApi(CVersCode.V_26_8_O)
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
+    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    fun getSerial(): String =
+        Build.getSerial()
 }

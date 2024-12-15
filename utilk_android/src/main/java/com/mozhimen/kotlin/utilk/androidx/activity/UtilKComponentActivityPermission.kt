@@ -15,7 +15,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 object UtilKComponentActivityPermission {
     @JvmStatic
     fun launch_ofREAD_EXTERNAL_STORAGE(activityResultLauncher: ActivityResultLauncher<String>) {
-        if (UtilKBuildVersion.getSDKInt() in CVersCode.V_23_6_M until CVersCode.V_30_11_R)
+        if (UtilKBuildVersion.get_SDK_INT() in CVersCode.V_23_6_M until CVersCode.V_30_11_R)
             activityResultLauncher.launch(CPermission.READ_EXTERNAL_STORAGE)
     }
 

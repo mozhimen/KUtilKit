@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager.PackageInfoFlags
+import android.util.Log
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CProcess
@@ -85,7 +86,7 @@ object UtilKPackageManagerWrapper {
                 val clazz = Class.forName(className)
                 // MTCommonService是clazz的父类
                 if (serviceClazz.isAssignableFrom(clazz)) {
-                    return clazz.canonicalName
+                    return clazz.canonicalName.also { Log.d(TAG, "getServiceClazzName: name $it") }
                 }
             }
         } catch (e: Exception) {
@@ -108,13 +109,13 @@ object UtilKPackageManagerWrapper {
             }
             val resolveInfos = UtilKPackageManager.queryBroadcastReceivers(context, intent, 0)
             for (resolveInfo in resolveInfos) {
-                val serviceInfo = resolveInfo.serviceInfo ?: continue
-                val className = serviceInfo.name
+                val activityInfo = resolveInfo.activityInfo ?: continue
+                val className = activityInfo.name
                 if (className.isEmpty()) continue
                 val clazz = Class.forName(className)
                 // MTCommonReceiver是clazz的父类
                 if (receiverClazz.isAssignableFrom(clazz)) {
-                    return clazz.canonicalName
+                    return clazz.canonicalName.also { Log.d(TAG, "getReceiverClazzName: name $it") }
                 }
             }
         } catch (e: Exception) {

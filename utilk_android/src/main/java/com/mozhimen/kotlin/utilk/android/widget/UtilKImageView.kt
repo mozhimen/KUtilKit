@@ -13,7 +13,7 @@ import androidx.annotation.FloatRange
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.graphics.cons.CGradientDrawable
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.utilk.android.graphics.UtilKGradientDrawable
+import com.mozhimen.kotlin.utilk.android.graphics.UtilKGradientDrawableGet
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 
 /**
@@ -75,7 +75,7 @@ object UtilKImageView {
 
     @JvmStatic
     fun applyBackground_ofFillWithStroke(imageView: ImageView, @ColorInt intColor: Int, @ColorInt intColorBorder: Int, isDrawRectangle: Boolean = false) {
-        imageView.background = UtilKGradientDrawable.get(
+        imageView.background = UtilKGradientDrawableGet.get(
             if (isDrawRectangle) CGradientDrawable.RECTANGLE else CGradientDrawable.OVAL,
             intColor,
             intColorBorder,
