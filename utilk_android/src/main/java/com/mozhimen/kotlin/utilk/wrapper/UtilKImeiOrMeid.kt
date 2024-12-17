@@ -1,4 +1,4 @@
-package com.mozhimen.kotlin.utilk.android.telephony
+package com.mozhimen.kotlin.utilk.wrapper
 
 import android.content.Context
 import android.text.TextUtils
@@ -8,9 +8,10 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.wrapper.UtilKPermission
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemPropertiesWrapper
+import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManagerWrapper
 import com.mozhimen.kotlin.utilk.android.util.i
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
@@ -45,6 +46,7 @@ object UtilKImeiOrMeid : IUtilK {
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PHONE_STATE
     @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getImeiOrMeid(context: Context, slotId: Int): String {
         var imei = ""
@@ -74,6 +76,7 @@ object UtilKImeiOrMeid : IUtilK {
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PHONE_STATE
     @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getImei_of2(context: Context): String {
         //imei2必须与 imei1不一样
@@ -103,7 +106,9 @@ object UtilKImeiOrMeid : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getImei(context: Context, slotIndex: Int): String {
         //Android 6.0 以后需要获取动态权限  检查权限
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))
@@ -131,7 +136,9 @@ object UtilKImeiOrMeid : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getMeid(context: Context, slotIndex: Int): String {
         //Android 6.0 以后需要获取动态权限  检查权限
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))

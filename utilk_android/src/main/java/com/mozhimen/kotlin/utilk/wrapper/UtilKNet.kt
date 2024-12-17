@@ -15,8 +15,6 @@ import com.mozhimen.kotlin.utilk.android.net.UtilKWifiInfo
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.net.UtilKInetAddress
-import com.mozhimen.kotlin.utilk.java.net.UtilKNetworkInterface
-import com.mozhimen.kotlin.utilk.java.net.UtilKNetworkInterfaceWrapper
 
 /**
  * @ClassName UtilKNet

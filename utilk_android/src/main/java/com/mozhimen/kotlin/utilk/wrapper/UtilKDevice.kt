@@ -24,7 +24,6 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKEnvironment
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemProperties
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemPropertiesWrapper
-import com.mozhimen.kotlin.utilk.android.telephony.UtilKImeiOrMeid
 import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManager
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileReader

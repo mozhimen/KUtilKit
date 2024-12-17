@@ -1,4 +1,4 @@
-package com.mozhimen.kotlin.utilk.android.telephony
+package com.mozhimen.kotlin.utilk.wrapper
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,7 +8,10 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.wrapper.UtilKPermission
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
+import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManager
+import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManagerWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
@@ -27,7 +30,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun get(context: Context): String {
         var imei = ""
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))//Android 6.0 以后需要获取动态权限  检查权限
@@ -46,7 +51,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun get(context: Context, slotId: Int): String {
         var imei: String
         imei = get_ofTeleMgr(context, slotId)// 1. 尝试通过系统api获取imei
@@ -64,7 +71,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
     fun get_ofTeleMgr(context: Context, slotId: Int): String =
         UtilKTelephonyManager.getDeviceId(context, slotId)
@@ -72,7 +81,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
     fun get_ofTeleMgr(context: Context): String =
         UtilKTelephonyManager.getDeviceId(context)
@@ -102,7 +113,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getImei(context: Context, slotIndex: Int): String? {
         val imeiOrMeid = get(context, slotIndex)
         return if (!TextUtils.isEmpty(imeiOrMeid) && imeiOrMeid.length >= 15)//长度15 的是imei  14的是meid
@@ -114,7 +127,9 @@ object UtilKDeviceId : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getMeid(context: Context, slotIndex: Int): String? {
         val imeiOrMeid = get(context, slotIndex)
         //长度15 的是imei  14的是meid
