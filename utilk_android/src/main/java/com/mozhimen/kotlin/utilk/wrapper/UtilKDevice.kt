@@ -22,11 +22,8 @@ import com.mozhimen.kotlin.utilk.android.hardware.UtilKUsbDevice
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuild
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKEnvironment
-import com.mozhimen.kotlin.utilk.android.os.UtilKStatFs
-import com.mozhimen.kotlin.utilk.android.os.UtilKStatFsWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemProperties
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemPropertiesWrapper
-import com.mozhimen.kotlin.utilk.android.telephony.UtilKImeiOrMeid
 import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManager
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileReader
@@ -91,7 +88,7 @@ object UtilKDevice : BaseUtilK() {
     fun getSerialNumber(): String = if (UtilKBuildVersion.isAfterV_29_10_Q()) {
         CBuild.UNKNOWN
     } else if (UtilKBuildVersion.isAfterV_26_8_O()) {
-        UtilKBuild.getSerial()
+        UtilKBuild.get_SERIAL()
     } else {
         UtilKSystemProperties.getStr(CStrPackage.ro_serialno, CBuild.UNKNOWN)
     }

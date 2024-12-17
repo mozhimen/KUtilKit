@@ -9,11 +9,10 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.telephony.CTelephonyManager
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
-import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.android.util.e
-import com.mozhimen.kotlin.utilk.kotlin.strPackage2clazz
-import java.lang.reflect.Method
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 
 /**
@@ -23,94 +22,58 @@ import java.lang.reflect.Method
  * @Date 2023/3/20 16:03
  * @Version 1.0
  */
-object UtilKTelephonyManager {
+object UtilKTelephonyManager : IUtilK {
     @JvmStatic
     fun get(context: Context): TelephonyManager =
         UtilKContext.getTelephonyManager(context)
 
+    /**
+     * API 23-28
+     */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
     fun getDeviceId(context: Context, slotIndex: Int): String =
         get(context).getDeviceId(slotIndex)
 
+    /**
+     * API 23-28
+     */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @RequiresPermission(CPermission.READ_PRIVILEGED_PHONE_STATE)
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
     fun getDeviceId(context: Context): String =
         get(context).deviceId
 
-    /**
-     * 反射获取 IMEI/MEID
-     * Android 6.0之后如果用户不允许通过 [CPermission.READ_PHONE_STATE] 权限的话，
-     * 那么是没办法通过系统api进行获取 IMEI/MEID 的，但是可以通过这个反射来尝试绕过权限进行获取
-     * @return 获取到的值 或者 空串""
-     */
     @JvmStatic
-    @SuppressLint("DiscouragedPrivateApi")
-    fun getDeviceId_ofReflect(context: Context): String {
-        try {
-            val telephonyManager = get(context)
-            return if (UtilKBuildVersion.isAfterV_21_5_L()) {
-                val methodGetDefaultSim: Method = TelephonyManager::class.java.getDeclaredMethod("getDefaultSim")
-                methodGetDefaultSim.isAccessible = true
-                val defaultSim: Any? = methodGetDefaultSim.invoke(telephonyManager)
+    @RequiresApi(CVersCode.V_26_8_O)
+    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
+    fun getImei(context: Context): String =
+        get(context).imei
 
-                val methodGetDeviceId: Method = TelephonyManager::class.java.getDeclaredMethod("getDeviceId", Int::class.javaPrimitiveType)
-                methodGetDeviceId.invoke(telephonyManager, defaultSim)?.toString() ?: ""
-            } else {
-                val methodGetSubscriberInfo: Method = TelephonyManager::class.java.getDeclaredMethod("getSubscriberInfo")
-                methodGetSubscriberInfo.isAccessible = true
-                val subInfo: Any? = methodGetSubscriberInfo.invoke(telephonyManager)
-
-                val methodGetDeviceId: Method = "com.android.internal.telephony.IPhoneSubInfo".strPackage2clazz().getDeclaredMethod("getDeviceId")
-                methodGetDeviceId.invoke(subInfo)?.toString() ?: ""
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            e.message?.e(UtilKDeviceId.TAG)
-        }
-        return ""
-    }
-
-    /**
-     * 反射获取 deviceId
-     * @param slotId  slotId为卡槽Id，它的值为 0、1；
-     */
     @JvmStatic
-    fun getDeviceId_ofReflect(context: Context, slotIndex: Int): String {
-        try {
-            val telephonyManager = get(context)
-            val methodGetDeviceId: Method = telephonyManager.javaClass.getMethod("getDeviceId", Int::class.javaPrimitiveType)
-            return methodGetDeviceId.invoke(telephonyManager, slotIndex)?.toString() ?: ""
-        } catch (e: Exception) {
-            e.printStackTrace()
-            e.message?.e(UtilKDeviceId.TAG)
-        }
-        return ""
-    }
+    @RequiresApi(CVersCode.V_26_8_O)
+    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OPermission_READ_PHONE_STATE
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
+    fun getMeid(context: Context): String =
+        get(context).meid
 
     @JvmStatic
     fun getPhoneType(context: Context): Int =
         get(context).phoneType
-
-    @JvmStatic
-    @RequiresApi(CVersCode.V_26_8_O)
-    fun getImei(context: Context, slotIndex: Int): String {
-        val telephonyManager = get(context)
-        return telephonyManager.javaClass.getMethod("getImei", Int::class.javaPrimitiveType).invoke(telephonyManager, slotIndex) as String// android 8 即以后建议用getImei 方法获取 不会获取到MEID
-    }
-
-    @JvmStatic
-    @RequiresApi(CVersCode.V_26_8_O)
-    fun getMeid(context: Context, slotIndex: Int): String {
-        val telephonyManager = get(context)
-        return telephonyManager.javaClass.getMethod("getMeid", Int::class.javaPrimitiveType).invoke(telephonyManager, slotIndex) as String// android 8 即以后建议用getImei 方法获取 不会获取到MEID
-    }
 
     //////////////////////////////////////////////////////////////
 

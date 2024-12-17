@@ -70,6 +70,6 @@ fun main() {
         mutableMapOf(1 to "1", 2 to "2", 3 to "3"),
         mapOf(1 to "2", 4 to "4", 5 to "5")
     )
-    val merged: Map<Int, String> = maps.fold(emptyMap()) { acc, next -> acc + next }
+    val merged: Map<Int, String> = maps.fold(mutableMapOf()) { acc, next -> acc += next;acc }
     println(merged)
 }

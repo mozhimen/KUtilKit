@@ -22,6 +22,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKEnvironment
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettings
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSecure
+import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSecureWrapper
 import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.android.util.i
@@ -102,7 +103,7 @@ object UtilKPermission : BaseUtilK() {
     fun hasAccessLocation(): Boolean =
         if (!isSelfGranted(arrayOf(CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION))) {
             false.also { "get: permission denied".e(TAG) }
-        } else if (!UtilKSettingsSecure.isLocationModeOn(_context)) {
+        } else if (!UtilKSettingsSecureWrapper.isLocationModeOn(_context)) {
             false.also { "get: system setting location off".e(TAG) }
         } else true
 

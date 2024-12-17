@@ -32,21 +32,4 @@ object UtilKSettingsSecure {
     @JvmStatic
     fun getString(context: Context, name: String): String =
         Settings.Secure.getString(UtilKContentResolver.get(context), name)
-
-    //////////////////////////////////////////////////////////////////////////
-
-    //判断定位服务是否开启
-    fun isLocationModeOn(context: Context): Boolean {
-        return if (UtilKBuildVersion.isAfterV_19_44_K()) {
-            val locationMode = try {
-                getInt(context, CSettings.Secure.LOCATION_MODE)
-            } catch (e: Settings.SettingNotFoundException) {
-                e.printStackTrace()
-                return false
-            }
-            locationMode != CSettings.Secure.LOCATION_MODE_OFF
-        } else {
-            getString(context, CSettings.Secure.LOCATION_PROVIDERS_ALLOWED).isNotEmpty()
-        }
-    }
 }

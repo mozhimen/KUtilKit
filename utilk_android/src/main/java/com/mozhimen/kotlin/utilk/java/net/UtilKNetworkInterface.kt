@@ -1,5 +1,7 @@
 package com.mozhimen.kotlin.utilk.java.net
 
+import com.mozhimen.kotlin.elemk.commons.IA_BListener
+import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -23,50 +25,27 @@ object UtilKNetworkInterface : IUtilK {
     fun gets(): Enumeration<NetworkInterface> =
         NetworkInterface.getNetworkInterfaces()
 
-    //获取网路IP(移动网络)
     @JvmStatic
-    fun getStrIP(): String? {
-        try {
-            val networkInterfaces: Enumeration<NetworkInterface> = gets()
-            var inetAddress: InetAddress
-            while (networkInterfaces.hasMoreElements()) {
-                val networkInterface = (networkInterfaces.nextElement() as NetworkInterface)
-                val inetAddresses: Enumeration<InetAddress> = networkInterface.inetAddresses
-                while (inetAddresses.hasMoreElements()) {
-                    inetAddress = inetAddresses.nextElement() as InetAddress
-                    if (inetAddress !is Inet6Address && !inetAddress.isLoopbackAddress && inetAddress.hostAddress != "127.0.0.1") {
-                        return inetAddress.hostAddress ?: continue
-                    }
-                }
-            }
-        } catch (e: SocketException) {
-            e.printStackTrace()
-            "getStrIp SocketException ${e.message}".e(TAG)
-        }
-        return null
-    }
-
-    /////////////////////////////////////////////////////////////////////////
+    fun get(condition: IA_BListener<NetworkInterface, Boolean>): NetworkInterface? =
+        UtilKNetworkInterfaceWrapper.getNetworkInterface(condition)
 
     @JvmStatic
-    fun printStrIP() {
-        try {
-            val networkInterfaces: Enumeration<NetworkInterface> = gets()
-            var inetAddress: InetAddress
-            while (networkInterfaces.hasMoreElements()) {
-                val networkInterface = (networkInterfaces.nextElement() as NetworkInterface)
-                val inetAddresses: Enumeration<InetAddress> = networkInterface.inetAddresses
-                while (inetAddresses.hasMoreElements()) {
-                    inetAddress = inetAddresses.nextElement() as InetAddress
-                    if (inetAddress !is Inet6Address && !inetAddress.isLoopbackAddress && inetAddress.hostAddress != "127.0.0.1") {
-                        val ip: String = inetAddress.hashCode().intIp2strIp()
-                        UtilKLogWrapper.i(TAG, "Found new IP: " + ip + " at " + networkInterface.name)
-                    }
-                }
-            }
-        } catch (e: SocketException) {
-            e.printStackTrace()
-            "printStrIp SocketException ${e.message}".e(TAG)
-        }
-    }
+    fun get_ofWlan(): NetworkInterface? =
+        get { networkInterface -> networkInterface.name == "wlan0" }
+
+    ////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun getHardwareAddress(): ByteArray? =
+        get_ofWlan()?.hardwareAddress
+
+    /**
+     * 23-28
+     * 获取代码和上面一致，但是从API 29（Android10.0）开始，连接不同的WI-FI时会获取到不同的MAC地址。
+     * 从API 30（Android11.0）开始，已无法获取到MAC地址。
+     */
+    @OApiDeprecated_Official_AfterV_28_9_P
+    @JvmStatic
+    fun getMac(): String? =
+        getHardwareAddress()?.joinToString(":") { macAddress -> String.format("%02X", macAddress) }
 }

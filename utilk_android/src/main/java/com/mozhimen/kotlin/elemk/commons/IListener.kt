@@ -22,3 +22,4 @@ typealias IABCD_Listener<A, B, C, D> = (a: A, b: B, c: C, d: D) -> Unit
 
 typealias IExt_Listener<E> = E.() -> Unit
 typealias IExt_AListener<E, A> = E.() -> A
+typealias IExtA_BListener<E, A, B> = E.(a: A) -> B

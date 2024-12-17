@@ -7,7 +7,6 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuild
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
-import com.mozhimen.kotlin.utilk.java.lang.UtilKRuntime
 import com.mozhimen.kotlin.utilk.java.lang.UtilKRuntimeWrapper
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
 import java.io.File
@@ -91,5 +90,5 @@ object UtilKSys : IUtilK {
     //系统是否是非官方发布版
     @JvmStatic
     fun isSystemBeta(): Boolean =
-            UtilKBuild.getTags() != null && UtilKBuild.getTags()!!.contains("test-keys").also { UtilKLogWrapper.d(TAG, "isSystemBeta: $it") }
+            UtilKBuild.get_TAGS() != null && UtilKBuild.get_TAGS()!!.contains("test-keys").also { UtilKLogWrapper.d(TAG, "isSystemBeta: $it") }
 }

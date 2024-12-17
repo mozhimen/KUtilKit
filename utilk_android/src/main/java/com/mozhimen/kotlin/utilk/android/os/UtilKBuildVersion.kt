@@ -20,30 +20,32 @@ fun Int.isBeforeVersion(): Boolean =
 object UtilKBuildVersion {
 
     @JvmStatic
-    fun getSDKInt(): Int =
+    fun get_SDK_INT(): Int =
         Build.VERSION.SDK_INT
 
     //构建Release版本号
     @JvmStatic
-    fun getRelease(): String =
+    fun get_RELEASE(): String =
         Build.VERSION.RELEASE
 
     //构建版本名称
     @JvmStatic
-    fun getCodeName(): String =
+    fun get_CODENAME(): String =
         Build.VERSION.CODENAME
 
     @JvmStatic
-    fun getStrSDKInt(): String =
-        getSDKInt().toString()
+    fun get_SDK_INT_STR(): String =
+        get_SDK_INT().toString()
+
+    ///////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun isAfterVersion(versionInt: Int): Boolean =
-        getSDKInt() >= versionInt
+        get_SDK_INT() >= versionInt
 
     @JvmStatic
     fun isBeforeVersion(versionInt: Int): Boolean =
-        getSDKInt() < versionInt
+        get_SDK_INT() < versionInt
 
     ///////////////////////////////////////////////////////////////////////
 

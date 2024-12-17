@@ -25,8 +25,8 @@ object UtilKSysRom {
     fun getRomInfo(): MRomInfo {
         if (_romInfo != null) return _romInfo!!
         val romInfo = MRomInfo()
-        val brand: String = UtilKBuild.getBrand()
-        val manufacturer: String = UtilKBuild.getManufacture()
+        val brand: String = UtilKBuild.get_BRAND()
+        val manufacturer: String = UtilKBuild.get_MANUFACTURER()
         if (isRom_of(brand, manufacturer, *getROM_HUAWEI())) {
             romInfo.name = getROM_HUAWEI().get(0)
             val version: String = getRomVersion(CStrPackage.ro_build_version_emui)
@@ -211,7 +211,7 @@ object UtilKSysRom {
             romVersion = getProperties(propertyName)
         if (romVersion.isNullOrEmpty()) {
             try {
-                val display = UtilKBuild.getDisplay()
+                val display = UtilKBuild.get_DISPLAY()
                 if (display.isNotEmpty()) {
                     romVersion = display.lowercase(Locale.getDefault())
                 }

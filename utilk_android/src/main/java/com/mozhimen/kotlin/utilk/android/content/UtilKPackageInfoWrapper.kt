@@ -14,18 +14,26 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Date 2024/12/6
  * @Version 1.0
  */
+fun PackageInfo.gainVersionName(): String =
+    UtilKPackageInfoWrapper.gainVersionName(this)
+
+fun PackageInfo.gainVersionCode(): Int =
+    UtilKPackageInfoWrapper.gainVersionCode(this)
+
+//////////////////////////////////////////////////////////////////////
+
 object UtilKPackageInfoWrapper : IUtilK {
     /**
      * 获取程序包名
      */
     @JvmStatic
-    fun getVersionName(context: Context, strPackageName: String, flags: Int): String =
-        UtilKPackageInfo.get(context, strPackageName, flags)?.let { getVersionName(it) } ?: ""
+    fun gainVersionName(context: Context, strPackageName: String, flags: Int): String =
+        UtilKPackageInfo.get(context, strPackageName, flags)?.let { gainVersionName(it) } ?: ""
 
     @JvmStatic
-    fun getVersionName(packageInfo: PackageInfo?): String =
+    fun gainVersionName(packageInfo: PackageInfo?): String =
         try {
-            packageInfo?.versionName ?: ""
+            UtilKPackageInfo.getVersionName(packageInfo) ?: ""
         } catch (e: NameNotFoundException) {
             e.printStackTrace()
             UtilKLogWrapper.e(TAG, "getVersionName: NameNotFoundException ${e.message}")
@@ -36,17 +44,17 @@ object UtilKPackageInfoWrapper : IUtilK {
      * 获取程序版本号
      */
     @JvmStatic
-    fun getVersionCode(context: Context, strPackageName: String, flags: Int): Int =
-        UtilKPackageInfo.get(context, strPackageName, flags)?.let { getVersionCode(it) } ?: 0
+    fun gainVersionCode(context: Context, strPackageName: String, flags: Int): Int =
+        UtilKPackageInfo.get(context, strPackageName, flags)?.let { gainVersionCode(it) } ?: 0
 
     @JvmStatic
-    fun getVersionCode(packageInfo: PackageInfo?): Int =
+    fun gainVersionCode(packageInfo: PackageInfo?): Int =
         try {
-            packageInfo?.let {
-                (if (UtilKBuildVersion.isAfterV_28_9_P())
-                    it.longVersionCode.toInt()
-                else it.versionCode)
-            } ?: 0
+            (if (UtilKBuildVersion.isAfterV_28_9_P()) {
+                UtilKPackageInfo.getLongVersionCode(packageInfo)?.toInt()
+            } else {
+                UtilKPackageInfo.getVersionCode(packageInfo)
+            }) ?: 0
         } catch (e: NameNotFoundException) {
             e.printStackTrace()
             UtilKLogWrapper.e(TAG, "getVersionCode: NameNotFoundException ${e.message}")
