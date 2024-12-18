@@ -20,6 +20,21 @@ object CView {
     const val GONE = View.GONE
     const val NO_ID = View.NO_ID
 
+    object Property {
+        const val ALPHA = "alpha"
+        const val TRANSLATION_X = "translationX"
+        const val TRANSLATION_Y = "translationY"
+        const val TRANSLATION_Z = "translationZ"
+        const val X = "x"
+        const val Y = "y"
+        const val Z = "z"
+        const val ROTATION = "rotation"
+        const val ROTATION_X = "rotationX"
+        const val ROTATION_Y = "rotationY"
+        const val SCALE_X = "scaleX"
+        const val SCALE_Y = "scaleY"
+    }
+
     object SystemUiFlag {
         /**
          * 字体白色

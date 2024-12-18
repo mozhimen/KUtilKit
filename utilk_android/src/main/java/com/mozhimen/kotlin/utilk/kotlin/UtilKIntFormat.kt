@@ -10,9 +10,7 @@ import com.mozhimen.kotlin.utilk.android.text.formatIpAddress
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.lang.UtilKCharacter
 import com.mozhimen.kotlin.utilk.java.lang.UtilKInteger
-import com.mozhimen.kotlin.utilk.kotlin.collections.joinT2listIgnoreNull
-import com.mozhimen.kotlin.utilk.kotlin.io.printlog
-import com.mozhimen.kotlin.utilk.kotlin.text.UtilKStringsJVMWrapper
+import com.mozhimen.kotlin.utilk.kotlin.text.format_fill_sta_0
 
 /**
  * @ClassName UtilKIntFormat
@@ -91,7 +89,7 @@ object UtilKIntFormat : IUtilK {
     @JvmStatic
     fun intByte2strByte(intByte: Int, @IntRange(from = 1) digit: Int): String {
 //        val mask = (1 shl digit) - 1
-        var strByte = UtilKStringsJVMWrapper.format_fillStart0(digit, (intByte /*and mask*/).intByte2strByte())
+        var strByte = (intByte /*and mask*/).intByte2strByte().format_fill_sta_0(digit)
         if (strByte.length > digit)
             strByte = strByte.substring(strByte.length - digit, strByte.length)
         return strByte

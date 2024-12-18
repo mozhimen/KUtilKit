@@ -10,12 +10,13 @@ import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
+import androidx.annotation.FloatRange
 import androidx.core.animation.addListener
-import androidx.core.view.isVisible
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.elemk.cons.CCons
+import com.mozhimen.kotlin.utilk.android.animation.applyAnimateAlpha
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.e
@@ -83,10 +84,6 @@ fun View.applyVisibleIfElseGone(boolean: Boolean) {
     UtilKViewWrapper.applyVisibleIfElseGone(this, boolean)
 }
 
-fun View.applyVisibleIfElseGoneAnimate(boolean: Boolean, durationMillis: Long) {
-    UtilKViewWrapper.applyVisibleIfElseGoneAnimate(this, boolean, durationMillis)
-}
-
 fun View.applyVisibleIfElseInVisible(invoke: I_AListener<Boolean>) {
     UtilKViewWrapper.applyVisibleIfElseInVisible(this, invoke)
 }
@@ -127,8 +124,8 @@ fun View.removeView_ofParent() {
     UtilKViewWrapper.removeView_ofParent(this)
 }
 
-fun View.addAndRemoveOnAttachStateChangeListener(invoke: I_Listener){
-    UtilKViewWrapper.addAndRemoveOnAttachStateChangeListener(this,invoke)
+fun View.addAndRemoveOnAttachStateChangeListener(invoke: I_Listener) {
+    UtilKViewWrapper.addAndRemoveOnAttachStateChangeListener(this, invoke)
 }
 
 //////////////////////////////////////////////////////////////////
@@ -315,26 +312,6 @@ object UtilKViewWrapper : IUtilK {
     }
 
     @JvmStatic
-    fun applyVisibleIfElseGoneAnimate(view: View, boolean: Boolean, durationMillis: Long) {
-        val alpha = if (boolean) 1.0f else 0.0f
-        ObjectAnimator.ofFloat(view, "alpha", alpha).apply {
-            duration = durationMillis
-            setAutoCancel(true)
-            addListener(
-                onStart = {
-                    if (boolean)
-                        view.isVisible = true
-                },
-                onEnd = {
-                    if (!boolean)
-                        view.isVisible = false
-                }
-            )
-            start()
-        }
-    }
-
-    @JvmStatic
     fun applyVisibleIfElseInVisible(view: View, invoke: I_AListener<Boolean>) {
         if (invoke.invoke()) applyVisible(view)
         else applyInVisible(view)
@@ -382,7 +359,7 @@ object UtilKViewWrapper : IUtilK {
 
     @JvmStatic
     fun addAndRemoveOnAttachStateChangeListener(view: View, block: I_Listener) {
-        if (view.isAttachedToWindow_ofCompat()){
+        if (view.isAttachedToWindow_ofCompat()) {
             block.invoke()
             return
         }

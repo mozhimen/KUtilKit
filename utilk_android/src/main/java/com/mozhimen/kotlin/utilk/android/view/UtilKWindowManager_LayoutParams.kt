@@ -3,8 +3,6 @@ package com.mozhimen.kotlin.utilk.android.view
 import android.app.Activity
 import android.view.Window
 import android.view.WindowManager
-import androidx.annotation.FloatRange
-import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
 
 /**
  * @ClassName UtilKWindowManagerLayoutParams
@@ -13,7 +11,7 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
  * @Date 2024/3/22
  * @Version 1.0
  */
-object UtilKWindowManagerLayoutParams {
+object UtilKWindowManager_LayoutParams {
     @JvmStatic
     fun get(activity: Activity): WindowManager.LayoutParams =
         UtilKWindow.getAttributes(activity)

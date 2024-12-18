@@ -10,14 +10,14 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
  * @Date 2024/10/24
  * @Version 1.0
  */
-object UtilKWindowManagerLayoutParamsWrapper {
+object UtilKWindowManager_LayoutParamsWrapper {
     @JvmStatic
     fun isFlagTranslucentStatus(activity: Activity): Boolean =
-        UtilKWindowManagerLayoutParams.getFlags(activity) and CWinMgr.Lpf.TRANSLUCENT_STATUS != 0
+        UtilKWindowManager_LayoutParams.getFlags(activity) and CWinMgr.Lpf.TRANSLUCENT_STATUS != 0
 
     @JvmStatic
     fun isFlagFullScreen(activity: Activity): Boolean =
-        UtilKWindowManagerLayoutParams.getFlags(activity) and CWinMgr.Lpf.FULLSCREEN != 0
+        UtilKWindowManager_LayoutParams.getFlags(activity) and CWinMgr.Lpf.FULLSCREEN != 0
 
     @JvmStatic
     fun isFullScreen(activity: Activity): Boolean =

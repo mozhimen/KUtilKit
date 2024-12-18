@@ -4,7 +4,7 @@ import android.app.Activity
 import android.view.WindowManager
 import androidx.annotation.FloatRange
 import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
-import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManagerLayoutParams.get
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManager_LayoutParams.get
 
 /**
  * @ClassName UtilKWindowWrapper

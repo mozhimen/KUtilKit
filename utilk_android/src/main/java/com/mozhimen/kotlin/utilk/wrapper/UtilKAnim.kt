@@ -7,12 +7,11 @@ import android.view.View
 import android.view.animation.Animation
 import androidx.annotation.RequiresApi
 import androidx.annotation.TransitionRes
-import android.transition.TransitionInflater
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.utilk.android.animation.UtilKAnimator
+import com.mozhimen.kotlin.utilk.android.animation.UtilKAnimatorWrapper
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.transition.UtilKTransitionInflater
-import com.mozhimen.kotlin.utilk.android.view.UtilKAnimation
+import com.mozhimen.kotlin.utilk.android.view.UtilKAnimationWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindow
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 
@@ -56,8 +55,8 @@ object UtilKAnim : BaseUtilK() {
     fun releaseAnim(vararg objs: Any) {
         if (objs.isEmpty()) return
         for (obj in objs) {
-            if (obj is Animation) UtilKAnimation.cancel_releaseAnimationListener(obj)
-            else if (obj is Animator) UtilKAnimator.cancel_removeAllListeners(obj)
+            if (obj is Animation) UtilKAnimationWrapper.cancel_setAnimationListener_null(obj)
+            else if (obj is Animator) UtilKAnimatorWrapper.cancel_removeAllListeners(obj)
         }
     }
 

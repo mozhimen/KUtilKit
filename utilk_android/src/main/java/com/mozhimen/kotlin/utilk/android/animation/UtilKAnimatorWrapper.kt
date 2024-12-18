@@ -13,19 +13,19 @@ import kotlin.math.max
  * @Version 1.0
  */
 fun Animator.cancel_removeAllListeners() {
-    UtilKAnimator.cancel_removeAllListeners(this)
+    UtilKAnimatorWrapper.cancel_removeAllListeners(this)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
-object UtilKAnimator {
+object UtilKAnimatorWrapper {
     /**
      * 获取时长
      * @param animator Animator
      * @return Long
      */
     @JvmStatic
-    fun getDuration(animator: Animator): Long {
+    fun gainDuration(animator: Animator): Long {
         var duration: Long
         if (animator is AnimatorSet) {
             duration = animator.duration

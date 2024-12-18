@@ -2,7 +2,6 @@ package com.mozhimen.kotlin.utilk.android.view
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.annotation.Px
 
 /**
@@ -13,27 +12,27 @@ import androidx.annotation.Px
  * @Version 1.0
  */
 fun View.applyMargin(@Px verticalMargin: Int, @Px horizontalMargin: Int) {
-    UtilKViewGroupLayoutParams.applyMargin(this, verticalMargin, horizontalMargin)
+    UtilKViewGroup_LayoutParamsWrapper.applyMargin(this, verticalMargin, horizontalMargin)
 }
 
 fun View.applyMarginVertical(@Px margin: Int) {
-    UtilKViewGroupLayoutParams.applyMarginVertical(this, margin)
+    UtilKViewGroup_LayoutParamsWrapper.applyMarginVertical(this, margin)
 }
 
 fun View.applyMarginEnd(@Px rightMargin: Int) {
-    UtilKViewGroupLayoutParams.applyMarginEnd(this, rightMargin)
+    UtilKViewGroup_LayoutParamsWrapper.applyMarginEnd(this, rightMargin)
 }
 
 fun View.applyMarginTop(@Px topMargin: Int) {
-    UtilKViewGroupLayoutParams.applyMarginTop(this, topMargin)
+    UtilKViewGroup_LayoutParamsWrapper.applyMarginTop(this, topMargin)
 }
 
 ///////////////////////////////////////////////////////////////////////////
 
-object UtilKViewGroupLayoutParams {
+object UtilKViewGroup_LayoutParamsWrapper {
 
     @JvmStatic
-    fun get_ofMargin(view: View): ViewGroup.MarginLayoutParams? =
+    fun requireMarginLayoutParams(view: View): ViewGroup.MarginLayoutParams? =
         when (view.layoutParams) {
             is ViewGroup.MarginLayoutParams -> view.layoutParams as ViewGroup.MarginLayoutParams
             else -> null

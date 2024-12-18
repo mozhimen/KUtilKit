@@ -1,6 +1,9 @@
 package com.mozhimen.kotlin.utilk.kotlin.text
 
+import android.util.Log
 import com.mozhimen.kotlin.elemk.cons.CMsg
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName UtilKFilter
@@ -57,7 +60,15 @@ fun String.join_end_lineBreak(): String =
 
 /////////////////////////////////////////////////////////////////////////////
 
-object UtilKStringsJVMWrapper {
+fun Number.format_fill_sta_0(digit: Number): String =
+    UtilKStringsJVMWrapper.format_fill_sta_0(this, digit)
+
+fun String.format_fill_sta_0(digit: Number): String =
+    UtilKStringsJVMWrapper.format_fill_sta_0(this, digit)
+
+/////////////////////////////////////////////////////////////////////////////
+
+object UtilKStringsJVMWrapper : IUtilK {
     @JvmStatic
     fun replace_sqliteSpecialCharacters(str: String): String {
         return str.replace("'", "''")
@@ -144,10 +155,12 @@ object UtilKStringsJVMWrapper {
     ///////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun format_fillStart0(digit: Number, obj: Number): String =
-        String.format("%0${digit}d", obj)
+    fun format_fill_sta_0(number: Number, digit: Number): String =
+        String.format("%0${digit}d", number)
 
     @JvmStatic
-    fun format_fillStart0(digit: Number, obj: String): String =
-        String.format("%0${digit}s", obj).replace(" ", "0")
+    fun format_fill_sta_0(obj: String, digit: Number): String {
+        UtilKLogWrapper.d(TAG, "format_fill_sta_0: obj $obj digit $digit")
+        return String.format("%0${digit}s", obj).replace(" ", "0")
+    }
 }

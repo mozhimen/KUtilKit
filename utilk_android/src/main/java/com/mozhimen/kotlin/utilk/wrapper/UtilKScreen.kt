@@ -14,7 +14,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKDisplayMetrics
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorViewWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKDisplay
-import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManagerLayoutParamsWrapper
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManager_LayoutParamsWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowMetrics
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper
 
@@ -223,7 +223,7 @@ object UtilKScreen : BaseUtilK() {
      */
     @JvmStatic
     fun isFullScreen_ofWindow(activity: Activity): Boolean =
-        UtilKWindowManagerLayoutParamsWrapper.isFullScreen(activity)
+        UtilKWindowManager_LayoutParamsWrapper.isFullScreen(activity)
 
     /**
      * 是否全屏
