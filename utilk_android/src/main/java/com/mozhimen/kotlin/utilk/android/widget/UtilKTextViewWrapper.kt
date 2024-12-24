@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import com.mozhimen.kotlin.elemk.android.view.annors.AGravity
 import com.mozhimen.kotlin.elemk.android.view.cons.CGravity
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.text.UtilKInputFilter
 import com.mozhimen.kotlin.utilk.kotlin.obj2str_trim
 import com.mozhimen.kotlin.utilk.kotlin.whether
@@ -44,20 +43,20 @@ fun TextView.applyTypeface(@IntRange(from = 0, to = 3) style: Int = Typeface.NOR
     UtilKTextViewWrapper.applyTypeface(this, style)
 }
 
-fun TextView.applyTypeface_ofBold() {
-    UtilKTextViewWrapper.applyTypeface_ofBold(this)
+fun TextView.applyTypeface_BOLD() {
+    UtilKTextViewWrapper.applyTypeface_BOLD(this)
 }
 
-fun TextView.applyTypeface_ofNormal() {
-    UtilKTextViewWrapper.applyTypeface_ofNormal(this)
+fun TextView.applyTypeface_NORMAL() {
+    UtilKTextViewWrapper.applyTypeface_NORMAL(this)
 }
 
-fun TextView.applyTypeface_ofDefault() {
-    UtilKTextViewWrapper.applyTypeface_ofDefault(this)
+fun TextView.applyTypeface_DEFAULT() {
+    UtilKTextViewWrapper.applyTypeface_DEFAULT(this)
 }
 
-fun TextView.applyTypeface_ofDefaultBold() {
-    UtilKTextViewWrapper.applyTypeface_ofDefaultBold(this)
+fun TextView.applyTypeface_DEFAULT_BOLD() {
+    UtilKTextViewWrapper.applyTypeface_DEFAULT_BOLD(this)
 }
 
 fun TextView.applyTypeface_ofAsset(assetFontPathWithName: String) {
@@ -101,7 +100,7 @@ object UtilKTextViewWrapper {
         truncateAt: TextUtils.TruncateAt? = TextUtils.TruncateAt.END,
         gravity: Int? = Gravity.CENTER,
         intResColor: Int? = android.R.color.black,
-        textSize: Float? = 16f
+        textSize: Float? = 16f,
     ): TextView {
         val textView = TextView(context)
         singleLine.whether { textView.setSingleLine() }//设置显示为1行
@@ -152,43 +151,43 @@ object UtilKTextViewWrapper {
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun applyCompoundDrawables(textView: TextView, @DrawableRes start: Int = 0, @DrawableRes top: Int = 0, @DrawableRes end: Int = 0, @DrawableRes bottom: Int = 0, boundsSize: Int = 0) {
+    fun applyCompoundDrawables(textView: TextView, @DrawableRes left: Int = 0, @DrawableRes top: Int = 0, @DrawableRes right: Int = 0, @DrawableRes bottom: Int = 0, boundsSize: Int = 0) {
         if (boundsSize <= 0) {
-            textView.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom)
+            UtilKTextView.applyCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom)
         } else {
-            val drawables = listOfNotNull(start, top, end, bottom).map { if (it != 0) it.toDrawable() else null }.onEach { it?.setBounds(0, 0, boundsSize, boundsSize) }
-            textView.setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3])
+            val drawables = listOfNotNull(left, top, right, bottom).map { if (it != 0) it.toDrawable() else null }.onEach { it?.setBounds(0, 0, boundsSize, boundsSize) }
+            UtilKTextView.applyCompoundDrawables(textView, drawables[0], drawables[1], drawables[2], drawables[3])
         }
     }
 
     @JvmStatic
     fun applyCompoundDrawables(textView: TextView, @DrawableRes intResDrawable: Int, @AGravity gravity: Int, boundsSize: Int = 0) {
         when (gravity) {
-            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, top = intResDrawable, boundsSize = boundsSize)
+            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, left = intResDrawable, boundsSize = boundsSize)
             CGravity.TOP -> applyCompoundDrawables(textView, top = intResDrawable, boundsSize = boundsSize)
-            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, end = intResDrawable, boundsSize = boundsSize)
+            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, right = intResDrawable, boundsSize = boundsSize)
             else -> applyCompoundDrawables(textView, bottom = intResDrawable, boundsSize = boundsSize)
         }
     }
 
     @JvmStatic
-    fun applyCompoundDrawables(textView: TextView, start: Drawable? = null, top: Drawable? = null, end: Drawable? = null, bottom: Drawable? = null, boundsSize: Int = 0) {
+    fun applyCompoundDrawables(textView: TextView, left: Drawable? = null, top: Drawable? = null, right: Drawable? = null, bottom: Drawable? = null, boundsSize: Int = 0) {
         if (boundsSize <= 0) {
-            textView.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom)
+            UtilKTextView.applyCompoundDrawablesWithIntrinsicBounds(textView, left, top, right, bottom)
         } else {
-            listOfNotNull(start, top, end, bottom).forEach {
+            listOfNotNull(left, top, right, bottom).forEach {
                 it.setBounds(0, 0, boundsSize, boundsSize)
             }
-            textView.setCompoundDrawables(start, top, end, bottom)
+            UtilKTextView.applyCompoundDrawables(textView, left, top, right, bottom)
         }
     }
 
     @JvmStatic
     fun applyCompoundDrawables(textView: TextView, drawable: Drawable, @AGravity gravity: Int, boundsSize: Int = 0) {
         when (gravity) {
-            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, top = drawable, boundsSize = boundsSize)
+            CGravity.START, CGravity.LEFT -> applyCompoundDrawables(textView, left = drawable, boundsSize = boundsSize)
             CGravity.TOP -> applyCompoundDrawables(textView, top = drawable, boundsSize = boundsSize)
-            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, end = drawable, boundsSize = boundsSize)
+            CGravity.END, CGravity.RIGHT -> applyCompoundDrawables(textView, right = drawable, boundsSize = boundsSize)
             else -> applyCompoundDrawables(textView, bottom = drawable, boundsSize = boundsSize)
         }
     }
@@ -207,27 +206,37 @@ object UtilKTextViewWrapper {
     //设置字体的细或粗
     @JvmStatic
     fun applyTypeface(textView: TextView, @IntRange(from = 0, to = 3) style: Int = Typeface.NORMAL) {
-        UtilKTextView.setTypeface(textView, Typeface.defaultFromStyle(style))
+        UtilKTextView.applyTypeface(textView, Typeface.defaultFromStyle(style))
     }
 
     @JvmStatic
-    fun applyTypeface_ofBold(textView: TextView) {
-        applyTypeface(textView, Typeface.BOLD)
-    }
-
-    @JvmStatic
-    fun applyTypeface_ofNormal(textView: TextView) {
+    fun applyTypeface_NORMAL(textView: TextView) {
         applyTypeface(textView, Typeface.NORMAL)
     }
 
     @JvmStatic
-    fun applyTypeface_ofDefault(textView: TextView) {
-        UtilKTextView.setTypeface(textView, Typeface.DEFAULT)
+    fun applyTypeface_BOLD(textView: TextView) {
+        applyTypeface(textView, Typeface.BOLD)
     }
 
     @JvmStatic
-    fun applyTypeface_ofDefaultBold(textView: TextView) {
-        UtilKTextView.setTypeface(textView, Typeface.DEFAULT_BOLD)
+    fun applyTypeface_ITALIC(textView: TextView) {
+        applyTypeface(textView, Typeface.ITALIC)
+    }
+
+    @JvmStatic
+    fun applyTypeface_BOLD_ITALIC(textView: TextView) {
+        applyTypeface(textView, Typeface.BOLD_ITALIC)
+    }
+
+    @JvmStatic
+    fun applyTypeface_DEFAULT(textView: TextView) {
+        UtilKTextView.applyTypeface(textView, Typeface.DEFAULT)
+    }
+
+    @JvmStatic
+    fun applyTypeface_DEFAULT_BOLD(textView: TextView) {
+        UtilKTextView.applyTypeface(textView, Typeface.DEFAULT_BOLD)
     }
 
     /**
@@ -236,7 +245,7 @@ object UtilKTextViewWrapper {
      */
     @JvmStatic
     fun applyTypeface_ofAsset(textView: TextView, assetFontPathWithName: String) {
-        UtilKTextView.setTypeface(textView, Typeface.createFromAsset(UtilKAssetManager.get_ofContext(textView.context), assetFontPathWithName))
+        UtilKTextView.applyTypeface(textView, Typeface.createFromAsset(UtilKAssetManager.get_ofContext(textView.context), assetFontPathWithName))
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -244,7 +253,7 @@ object UtilKTextViewWrapper {
     @JvmStatic
     fun applyFilter_ofLength(textView: TextView, inputLength: Int) {
         if (inputLength > 0) {
-            UtilKTextView.setFilters(textView, arrayOf(UtilKInputFilter.getLengthFilter(inputLength)))
+            UtilKTextView.applyFilters(textView, arrayOf(UtilKInputFilter.getLengthFilter(inputLength)))
         }
     }
 }
