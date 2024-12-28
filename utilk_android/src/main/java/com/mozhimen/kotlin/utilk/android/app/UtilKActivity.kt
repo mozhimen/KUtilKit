@@ -17,6 +17,12 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Date 2022/6/13 13:44
  * @Version 1.0
  */
+fun Activity.applyResult(resultCode: Int, data: Intent? = null) {
+    UtilKActivity.applyResult(this, resultCode, data)
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
 object UtilKActivity : IUtilK {
 
     @JvmStatic

@@ -26,6 +26,10 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Version 1.0
  */
 open class BaseWebViewClient : WebViewClient(), IUtilK {
+    /**
+     * 返回 true：你接管了 URL 的处理，WebView 不会加载该 URL。
+     * 返回 false：WebView 按默认行为加载该 URL。
+     */
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
         UtilKLogWrapper.d(TAG, "shouldOverrideUrlLoading: url ${if (UtilKBuildVersion.isAfterV_21_5_L()) request!!.url else "version"}")
         return super.shouldOverrideUrlLoading(view, request)

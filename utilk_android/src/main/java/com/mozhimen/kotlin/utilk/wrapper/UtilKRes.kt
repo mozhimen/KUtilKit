@@ -36,7 +36,7 @@ fun Context.gainString(@StringRes intResStr: Int): String =
     UtilKRes.gainString(this, intResStr)
 
 fun Context.gainString(@StringRes intResStr: Int, vararg formatArgs: Any): String =
-    UtilKRes.gainString(this, intResStr, formatArgs)
+    UtilKRes.gainString(this, intResStr, *formatArgs)
 
 fun Context.gainStringArray(@ArrayRes intResArray: Int): Array<String> =
     UtilKRes.gainStringArray(this, intResArray)
@@ -132,29 +132,29 @@ object UtilKRes : BaseUtilK() {
 
     @JvmStatic
     fun gainString(context: Context, @StringRes intResStr: Int, vararg formatArgs: Any): String =
-        getString_ofContext(context, intResStr, formatArgs)
+        getString_ofContext(context, intResStr, *formatArgs)
 
     @JvmStatic
     fun gainString(@StringRes intResStr: Int, vararg formatArgs: Any): String =
-        gainString(_context, intResStr, formatArgs)
+        gainString(_context, intResStr, *formatArgs)
 
     //////////////////////////
 
     @JvmStatic
     fun getString_ofContext(context: Context, @StringRes intResStr: Int, vararg formatArgs: Any): String =
-        UtilKContext.getString(context, intResStr, formatArgs)
+        UtilKContext.getString(context, intResStr, *formatArgs)
 
     @JvmStatic
     fun getString_ofContext(@StringRes intResStr: Int, vararg formatArgs: Any): String =
-        getString_ofContext(_context, intResStr, formatArgs)
+        getString_ofContext(_context, intResStr, *formatArgs)
 
     @JvmStatic
     fun getString_ofResources(context: Context, @StringRes intResStr: Int, vararg formatArgs: Any): String =
-        UtilKContext.getString(context, intResStr, formatArgs)
+        UtilKContext.getString(context, intResStr, *formatArgs)
 
     @JvmStatic
     fun getString_ofResources(@StringRes intResStr: Int, vararg formatArgs: Any): String =
-        getString_ofResources(_context, intResStr, formatArgs)
+        getString_ofResources(_context, intResStr, *formatArgs)
 
     /////////////////////////////////////////////////////////////////////
 

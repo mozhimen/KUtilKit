@@ -56,7 +56,7 @@ open class BaseWebChromeClient : WebChromeClient(), IUtilK {
     }
 
     override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
-        UtilKLogWrapper.d(TAG, "onConsoleMessage: consoleMessage $consoleMessage")
+        UtilKLogWrapper.d(TAG, "onConsoleMessage: consoleMessage ${consoleMessage?.message()}")
         return super.onConsoleMessage(consoleMessage)
     }
 

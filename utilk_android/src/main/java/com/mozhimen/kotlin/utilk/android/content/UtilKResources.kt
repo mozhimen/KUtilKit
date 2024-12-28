@@ -99,7 +99,7 @@ object UtilKResources {
 
     @JvmStatic
     fun getString_ofApp(context: Context, @StringRes intResStr: Int, vararg formatArgs: Any): String =
-        get_ofApp(context).getString(intResStr, formatArgs)
+        get_ofApp(context).getString(intResStr, *formatArgs)
 
     @JvmStatic
     fun getStringArray_ofApp(context: Context, @ArrayRes intResArray: Int): Array<String> =

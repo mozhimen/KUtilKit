@@ -142,7 +142,7 @@ object UtilKFileWrapper : BaseUtilK() {
 
     //文件创建时间
     @JvmStatic
-    fun getFileCreateTimeStr(file: File, formatDate: String = CDateFormat.Format.yyyy_MM_dd_HH_mm_ss): String =
+    fun getFileCreateTimeStr(file: File, formatDate: String = CDateFormat.Format.`yyyy-MM-dd_HH_mm_ss`): String =
         getFileCreateTime(file).longDate2strDate(formatDate)
 
     //Returns the uncompressed input stream if gzip compressed.

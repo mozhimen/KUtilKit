@@ -149,7 +149,7 @@ object UtilKBuild {
     //构建内部时间
     @JvmStatic
     fun get_TIME(): String =
-        Build.TIME.longDate2strDate(CDateFormat.Format.yyyy_MM_dd_HH_mm_ss)
+        Build.TIME.longDate2strDate(CDateFormat.Format.`yyyy-MM-dd_HH_mm_ss`)
 
     //设备无线固件版本
     @JvmStatic

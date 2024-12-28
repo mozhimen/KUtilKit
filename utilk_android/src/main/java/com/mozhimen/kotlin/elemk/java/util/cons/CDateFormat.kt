@@ -10,17 +10,27 @@ import java.text.DateFormat
  */
 object CDateFormat {
     object Format {
-        const val yyyy_MM_dd_HH_mm_ss_SS = "yyyy-MM-dd HH:mm:ss:SS"
-        const val yyyy_MM_dd_HH_mm_ss_S = "yyyy-MM-dd HH:mm:ss:S"
-        const val yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss"
+        const val yyyy_MM_dd_HH_mm_ss_SS = "yyyy/MM/dd HH:mm:ss:SS"
+        const val yyyy_MM_dd_HH_mm_ss_S = "yyyy/MM/dd HH:mm:ss:S"
+        const val yyyy_MM_dd_HH_mm_ss = "yyyy/MM/dd HH:mm:ss"
+        const val yyyy_MM_dd_HH_mm = "yyyy/MM/dd HH:mm"
+        const val yyyy_MM_dd_HH = "yyyy/MM/dd HH"
+        const val yyyy_MM_dd = "yyyy/MM/dd"
+
+        const val `yyyy-MM-dd_HH_mm_ss_SS` = "yyyy-MM-dd HH:mm:ss:SS"
+        const val `yyyy-MM-dd_HH_mm_ss_S` = "yyyy-MM-dd HH:mm:ss:S"
+        const val `yyyy-MM-dd_HH_mm_ss` = "yyyy-MM-dd HH:mm:ss"
+        const val `yyyy-MM-dd_HH_mm` = "yyyy-MM-dd HH:mm"
+        const val `yyyy-MM-dd_HH` = "yyyy-MM-dd HH"
+        const val `yyyy-MM-dd` = "yyyy-MM-dd"
+
         const val yyyyMMddHHmmss = "yyyyMMddHHmmss"
-        const val yyyy_MM_dd_HH_mm = "yyyy-MM-dd HH:mm"
-        const val yyyy_MM_dd_HH = "yyyy-MM-dd HH"
-        const val yyyy_MM_dd = "yyyy-MM-dd"
         const val yyyyMMdd = "yyyyMMdd"
+
         const val HH_mm_ss = "HH:mm:ss"
         const val HH_mm = "HH:mm"
         const val mm_ss = "mm:ss"
+
         const val yyyy = "yyyy"
         const val MM = "MM"
         const val dd = "dd"
