@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.mozhimen.kotlin.utilk'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 19
+        multiDexEnabled true
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+dependencies {
+    if (rootProject.name == "ALibKit_Jetpack") {
+        api project(':core')
+        api project(":annotation")
+    } else {
+        api project(':ALibKit_Jetpack:core')
+        api project(":ALibKit_Jetpack:annotation")
+    }
+    if (rootProject.name == "ALibKit_Google") {
+        api project(':material')
+    } else {
+        api project(':ALibKit_Google:material')
+    }
+    api project(':ALibKit_Jetbrains:kotlin_stdlib')
+
+    api project(project.path.replace(project.name, '') + ':kotlin')
+
+    //test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

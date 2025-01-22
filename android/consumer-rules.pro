@@ -1,0 +1,2 @@
+-keep class com.mozhimen.kotlin.elemk.java.lang.bases.** { *; }
+-keep class * extends com.mozhimen.kotlin.elemk.java.lang.bases.BaseGeneric

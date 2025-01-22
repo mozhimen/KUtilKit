@@ -19,21 +19,39 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "KUtilKit"
-include ':utilk_android'
-include ':utilk_koptional'
-include ':utilk_koptional_rxjava2'
-include ':utilk_kotlin'
-include ':utilk_android_test'
-//SwiftKit
-include ":SwiftKit"
-project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
-include ':SwiftKit:basick'
-include ':SwiftKit:bindk'
-include ':SwiftKit:xmlk'
+include ':android'
+include ':android:test'
+include ':koptional'
+include ':koptional:rxjava2'
+include ':kotlin'
+//ALibKit_Jetpack
+include ":ALibKit_Jetpack"
+project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
+include ':ALibKit_Jetpack:navigation_fragment'
+include ':ALibKit_Jetpack:navigation_common'
+include ':ALibKit_Jetpack:navigation_ui'
+include ':ALibKit_Jetpack:core'
+include ':ALibKit_Jetpack:annotation'
+include ':ALibKit_Jetpack:databinding'
+//ALibKit_Google
+include ":ALibKit_Google"
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:material'
+//ALibKit_Jetbrains
+include ":ALibKit_Jetbrains"
+project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
+include ':ALibKit_Jetbrains:kotlin_stdlib'
+include ':ALibKit_Jetbrains:kotlinx_coroutines'
+//ASwiftKit
+include ":ASwiftKit"
+project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
+include ':ASwiftKit:basick'
+include ':ASwiftKit:bindk'
+include ':ASwiftKit:xmlk'
 //ATaskKit
 include ":ATaskKit"
 project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
-include ':ATaskKit:taskk_executor'
+include ':ATaskKit:executor'
 //AManifestKit_XXPermissions
 include ":AManifestKit_XXPermissions"
 project(':AManifestKit_XXPermissions').projectDir = new File("D:\\WorkSpace\\GitHub\\AManifestKit_XXPermissions")
@@ -44,9 +62,3 @@ include ":AXmlKit"
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
 include ':AXmlKit:recyclerk'
 include ':AXmlKit:vhk'
-//ALibKit_Jetpack
-include ":ALibKit_Jetpack"
-project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
-include ':ALibKit_Jetpack:navigation_fragment'
-include ':ALibKit_Jetpack:navigation_common'
-include ':ALibKit_Jetpack:navigation_ui'
