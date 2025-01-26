@@ -8,6 +8,7 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.utilk.android.content.UtilKContentResolverWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
+import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.androidx.core.UtilKFileProvider
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
@@ -29,8 +30,11 @@ import java.io.InputStream
 fun File.file2uri_ofImage(): Uri? =
     UtilKFileFormat.file2uri_ofImage(this)
 
-fun File.file2uri(): Uri? =
-    UtilKFileFormat.file2uri(this)
+fun File.file2uri_internal(): Uri? =
+    UtilKFileFormat.file2uri_internal(this)
+
+fun File.file2uri_external(): Uri? =
+    UtilKFileFormat.file2uri_external(this)
 
 fun File.file2bitmapAny(): Bitmap? =
     UtilKFileFormat.file2bitmapAny(this)
@@ -88,11 +92,11 @@ object UtilKFileFormat : BaseUtilK() {
         }
         return if (UtilKBuildVersion.isAfterV_29_10_Q()) {
             UtilKContentResolverWrapper.insertImage_after29(_context, file)
-        } else file2uri(file)
+        } else file2uri_internal(file)
     }
 
     @JvmStatic
-    fun file2uri(file: File): Uri? {
+    fun file2uri_internal(file: File): Uri? {
         if (!UtilKFileWrapper.isFileExist(file)) {
             UtilKLogWrapper.e(TAG, "file2Uri: file ${file.absolutePath} isFileExist false")
             return null
@@ -102,7 +106,16 @@ object UtilKFileFormat : BaseUtilK() {
             UtilKFileProvider.getUriForFile(_context, authority, file).also {
                 UtilKContext.grantUriPermission(_context, it, CIntent.FLAG_GRANT_READ_URI_PERMISSION)
             }
-        } else Uri.fromFile(file)
+        } else UtilKUri.get(file)
+    }
+
+    @JvmStatic
+    fun file2uri_external(file: File): Uri? {
+        if (!UtilKFileWrapper.isFileExist(file)) {
+            UtilKLogWrapper.e(TAG, "file2Uri: file ${file.absolutePath} isFileExist false")
+            return null
+        }
+        return UtilKUri.get(file)
     }
 
     @JvmStatic

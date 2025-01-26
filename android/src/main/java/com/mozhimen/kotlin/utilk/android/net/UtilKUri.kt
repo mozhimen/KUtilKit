@@ -2,9 +2,9 @@ package com.mozhimen.kotlin.utilk.android.net
 
 import android.content.Context
 import android.net.Uri
-import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import java.io.File
 
 
 /**
@@ -49,6 +49,10 @@ object UtilKUri : BaseUtilK() {
     fun get(scheme: String, ssp: String, fragment: String): Uri =
         fromParts(scheme, ssp, fragment)
 
+    @JvmStatic
+    fun get(file: File): Uri =
+        fromFile(file)
+
     /////////////////////////////////////////////////////////////////////////////
 
     //获取PackageUri
@@ -78,4 +82,7 @@ object UtilKUri : BaseUtilK() {
     @JvmStatic
     fun decode(strUri: String): String =
         Uri.decode(strUri)
+
+    fun fromFile(file: File): Uri =
+        Uri.fromFile(file)
 }

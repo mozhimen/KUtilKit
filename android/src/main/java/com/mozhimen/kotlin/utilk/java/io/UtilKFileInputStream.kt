@@ -31,7 +31,7 @@ object UtilKFileInputStream : IUtilK {
         try {
             get(file)
         } catch (e: Exception) {
-            e.printStackTrace()
+//            e.printStackTrace()
             UtilKLogWrapper.e(TAG, "get: ", e)
             null
         }

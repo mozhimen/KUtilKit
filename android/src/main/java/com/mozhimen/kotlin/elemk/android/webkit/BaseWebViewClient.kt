@@ -41,7 +41,7 @@ open class BaseWebViewClient : WebViewClient(), IUtilK {
 //    }
 
     override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
-        UtilKLogWrapper.v(TAG, "shouldInterceptRequest: ")
+//        UtilKLogWrapper.v(TAG, "shouldInterceptRequest: ")
         return super.shouldInterceptRequest(view, request)
     }
 
@@ -66,7 +66,7 @@ open class BaseWebViewClient : WebViewClient(), IUtilK {
     }
 
     override fun onLoadResource(view: WebView?, url: String?) {
-        UtilKLogWrapper.v(TAG, "onLoadResource: url $url")
+//        UtilKLogWrapper.v(TAG, "onLoadResource: url $url")
         super.onLoadResource(view, url)
     }
 

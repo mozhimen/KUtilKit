@@ -2,12 +2,10 @@ package com.mozhimen.kotlin.utilk.kotlin
 
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.elemk.cons.CMsg
-import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import com.mozhimen.kotlin.utilk.kotlin.ranges.constraint
-import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegex
 import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
 import com.mozhimen.kotlin.utilk.kotlin.text.replace_brackets_content2none
+import java.util.Locale
 
 /**
  * @ClassName UtilKStringWrapper
@@ -55,6 +53,9 @@ fun String.containStr(str: String): Boolean =
 
 fun String.containsAny(collection: Collection<String>): Boolean =
     UtilKStringWrapper.containsAny(this, collection)
+
+fun String.containsAny_return(collection: List<String>): String? =
+    UtilKStringWrapper.containsAny_return(this, collection)
 
 fun String.equalsIgnoreCase(str: String): Boolean =
     UtilKStringWrapper.equalsIgnoreCase(this, str)
@@ -223,6 +224,16 @@ object UtilKStringWrapper {
     @JvmStatic
     fun containsAny(strContent: String, strs: Collection<String>): Boolean =
         strs.any { strContent.containStr(it) }
+
+    @JvmStatic
+    fun containsAny_return(strContent: String, strs: List<String>, ignoreCache: Boolean = false): String? {
+        for (i in strs.indices) {
+            if ((if (ignoreCache) strContent.lowercase(Locale.getDefault()) else strContent).contains(if (ignoreCache) strs[i].lowercase(Locale.getDefault()) else strs[i])) {
+                return strs[i] // 如果发现任何一个关键词出现，则返回true
+            }
+        }
+        return null // 如果没有任何关键词出现，则返回false
+    }
 
     @JvmStatic
     fun equalsIgnoreCase(str: String, str1: String): Boolean =

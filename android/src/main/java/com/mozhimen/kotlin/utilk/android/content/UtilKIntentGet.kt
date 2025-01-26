@@ -1,9 +1,9 @@
 package com.mozhimen.kotlin.utilk.android.content
 
+import android.app.DownloadManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
@@ -19,14 +19,12 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_P
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.webkit.cons.EMineTypeMap_application
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfoWrapper
-import com.mozhimen.kotlin.utilk.android.content.UtilKIntent.TAG
 import com.mozhimen.kotlin.utilk.android.net.UtilKUri
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.kotlin.utilk.java.io.file2uri
+import com.mozhimen.kotlin.utilk.java.io.file2uri_internal
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStringWrapper
-import com.mozhimen.kotlin.utilk.kotlin.strFilePath2uri
+import com.mozhimen.kotlin.utilk.kotlin.strFilePath2uri_internal
 import com.mozhimen.kotlin.utilk.kotlin.strUri2uri
 import java.io.File
 
@@ -198,6 +196,22 @@ object UtilKIntentGet {
         UtilKIntent.get(CIntent.ACTION_VIEW, uri)
 
     @JvmStatic
+    fun getView(uri: Uri, type: String): Intent =
+        getView(uri).apply { setType(type) }
+
+    @JvmStatic
+    fun getViewAudio(uri: Uri): Intent =
+        getView(uri, CMediaFormat.MIMETYPE_AUDIO_ALL)
+
+    @JvmStatic
+    fun getViewVideo(uri: Uri): Intent =
+        getView(uri, CMediaFormat.MIMETYPE_VIDEO_ALL)
+
+    @JvmStatic
+    fun getViewApk(uri: Uri): Intent =
+        getView(uri, EMineTypeMap_application.apk.type)
+
+    @JvmStatic
     fun getViewStrUrl(strUrl: String): Intent =
         getView(Uri.parse(strUrl))
 
@@ -207,7 +221,7 @@ object UtilKIntentGet {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun getViewInstall(uriApk: Uri): Intent =
+    fun getView_install_internal(uriApk: Uri): Intent =
         getView().apply {
             if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
                 addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
@@ -220,8 +234,8 @@ object UtilKIntentGet {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun getViewInstall(strFilePathName: String): Intent? =
-        UtilKStrFile.strFilePath2uri(strFilePathName)?.let { getViewInstall(it) }
+    fun getView_install_internal(strFilePathName: String): Intent? =
+        UtilKStrFile.strFilePath2uri_internal(strFilePathName)?.let { getView_install_internal(it) }
 
     /**
      * 获取安装app的intent
@@ -229,8 +243,8 @@ object UtilKIntentGet {
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
-    fun getViewInstall(fileApk: File): Intent? =
-        fileApk.file2uri()?.let { getViewInstall(it) }
+    fun getView_install_internal(fileApk: File): Intent? =
+        fileApk.file2uri_internal()?.let { getView_install_internal(it) }
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //CSettings
@@ -338,8 +352,13 @@ object UtilKIntentGet {
 
     @JvmStatic
     fun getMediaStoreImageCaptureOutput(strFilePathName: String): Intent? =
-        strFilePathName.strFilePath2uri()?.let { getMediaStoreImageCaptureOutput(it) }
+        strFilePathName.strFilePath2uri_internal()?.let { getMediaStoreImageCaptureOutput(it) }
 
     @JvmStatic
     fun getMediaStoreImageCaptureOutput(file: File): Intent? =
-        file.file2uri()?.let { getMediaStoreImageCaptureOutput(it) } }
+        file.file2uri_internal()?.let { getMediaStoreImageCaptureOutput(it) }
+
+    @JvmStatic
+    fun getDownloadManager_downloads():Intent=
+        UtilKIntent.get(DownloadManager.ACTION_VIEW_DOWNLOADS)
+}
