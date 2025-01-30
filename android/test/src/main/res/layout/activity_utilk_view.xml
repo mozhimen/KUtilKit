@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".utilk.android.UtilKViewActivity">
+        tools:context="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKViewActivity">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/utilk_view_btn_debounce"

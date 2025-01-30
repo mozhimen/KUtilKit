@@ -5,6 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".utilk.kotlin.UtilKMathActivity">
+    tools:context="com.mozhimen.kotlin.utilk.android.test.utilk.kotlin.UtilKMathActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

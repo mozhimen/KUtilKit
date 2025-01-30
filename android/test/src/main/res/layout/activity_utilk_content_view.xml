@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".utilk.android.UtilKContentViewActivity">
+        tools:context="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKContentViewActivity">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

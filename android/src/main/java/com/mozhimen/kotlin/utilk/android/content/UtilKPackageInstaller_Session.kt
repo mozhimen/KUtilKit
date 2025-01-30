@@ -11,7 +11,7 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.android.app.UtilKPendingIntentWrapper
+import com.mozhimen.kotlin.utilk.android.app.UtilKPendingIntentGet
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream
@@ -85,7 +85,7 @@ object UtilKPackageInstaller_Session : BaseUtilK() {
     @OPermission_REQUEST_INSTALL_PACKAGES
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     fun commit_use_ofBroadCast(session: Session, intent: Intent, requestCode: Int, flags: Int) {
-        val intentSender = UtilKPendingIntentWrapper.get_ofBroadCast(requestCode/*1*/, intent, flags).intentSender
+        val intentSender = UtilKPendingIntentGet.getBroadCast(requestCode/*1*/, intent, flags).intentSender
         commit_use(session, intentSender)
     }
 
@@ -94,7 +94,7 @@ object UtilKPackageInstaller_Session : BaseUtilK() {
     @OPermission_REQUEST_INSTALL_PACKAGES
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     fun commit_use_ofActivity(packageInstaller: PackageInstaller, sessionId: Int, intent: Intent, requestCode: Int, flags: Int) {
-        val intentSender = UtilKPendingIntentWrapper.get_ofActivity(requestCode, intent, flags).intentSender
+        val intentSender = UtilKPendingIntentGet.getActivity(requestCode, intent, flags).intentSender
         commit_use(get(packageInstaller, sessionId), intentSender)
     }
 
@@ -103,7 +103,7 @@ object UtilKPackageInstaller_Session : BaseUtilK() {
     @OPermission_REQUEST_INSTALL_PACKAGES
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     fun commit_use_ofActivity(session: Session, intent: Intent, requestCode: Int, flags: Int) {
-        val intentSender = UtilKPendingIntentWrapper.get_ofActivity(requestCode, intent, flags).intentSender
+        val intentSender = UtilKPendingIntentGet.getActivity(requestCode, intent, flags).intentSender
         commit_use(session, intentSender)
     }
 

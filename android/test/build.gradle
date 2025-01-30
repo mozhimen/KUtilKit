@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.mozhimen.utilk.android.test'
+    namespace 'com.mozhimen.kotlin.utilk.android.test'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.mozhimen.utilk.android.test"
+        applicationId "com.mozhimen.kotlin.utilk.android.test"
         minSdk 21
         targetSdk 34
         versionCode 1

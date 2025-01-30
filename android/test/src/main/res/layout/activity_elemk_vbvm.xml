@@ -6,7 +6,7 @@
 
         <variable
             name="elemk_vbvm"
-            type="com.mozhimen.utilk.android.test.elemk.androidx.ElemKViewModel" />
+            type="com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKViewModel" />
     </data>
 
     <LinearLayout
@@ -30,21 +30,21 @@
 
         <fragment
             android:id="@+id/elemk_vbvm_fragment_vb"
-            android:name="com.mozhimen.utilk.android.test.elemk.androidx.ElemKFragmentVB"
+            android:name="com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKFragmentVB"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <fragment
             android:id="@+id/elemk_vbvm_fragment_vbvm"
-            android:name="com.mozhimen.utilk.android.test.elemk.androidx.ElemKFragmentVBVM"
+            android:name="com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKFragmentVBVM"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <fragment
             android:id="@+id/elemk_vbvm_fragment_dialog_vbvm"
-            android:name="com.mozhimen.utilk.android.test.elemk.androidx.ElemKDialogFragmentVB"
+            android:name="com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKDialogFragmentVB"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />

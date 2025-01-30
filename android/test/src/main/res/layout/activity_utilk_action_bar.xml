@@ -28,7 +28,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".utilk.androidx.UtilKActionBarActivity">
+            tools:context="com.mozhimen.kotlin.utilk.android.test.utilk.androidx.UtilKActionBarActivity">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item_utilk_file_log"
-            type="com.mozhimen.utilk.android.test.utilk.java.UtilKFileActivity.UtilKFileLogBean" />
+            type="com.mozhimen.kotlin.utilk.android.test.utilk.java.UtilKFileActivity" />
     </data>
 
     <TextView

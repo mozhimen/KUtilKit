@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".elemk.android.ElemKAndroidActivity">
+        tools:context="com.mozhimen.kotlin.utilk.android.test.elemk.android.ElemKAndroidActivity">
 
         <com.google.android.material.button.MaterialButton
             style="@style/BasicKStyle_Btn"
