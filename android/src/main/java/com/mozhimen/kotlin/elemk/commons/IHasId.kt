@@ -10,3 +10,7 @@ package com.mozhimen.kotlin.elemk.commons
 interface IHasId {
     val id: String
 }
+
+interface IHasId2 {
+    val id: Long
+}

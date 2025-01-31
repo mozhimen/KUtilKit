@@ -67,6 +67,10 @@ fun TextView.applyValueIfNotEmpty(str: String?) {
     UtilKTextViewWrapper.applyValueIfNotEmpty(this, str)
 }
 
+fun TextView.applyHintIfNotEmpty(str: String?) {
+    UtilKTextViewWrapper.applyHintIfNotEmpty(this, str)
+}
+
 fun TextView.applyFilter_ofLength(inputLength: Int) {
     UtilKTextViewWrapper.applyFilter_ofLength(this, inputLength)
 }
@@ -147,6 +151,13 @@ object UtilKTextViewWrapper {
         if (!str.isNullOrEmpty()) {
             textView.text = str;true
         } else false
+
+    @JvmStatic
+    fun applyHintIfNotEmpty(textView: TextView, str: String?): Boolean =
+        if (!str.isNullOrEmpty()) {
+            textView.hint = str;true
+        } else false
+
 
     ////////////////////////////////////////////////////////////////////////////
 
