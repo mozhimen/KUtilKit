@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.widget.SeekBar
 import androidx.lifecycle.lifecycleScope
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INTERNET
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapDeal

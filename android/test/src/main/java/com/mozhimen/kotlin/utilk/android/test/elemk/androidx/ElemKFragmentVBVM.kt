@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.test.elemk.androidx
 
 import android.os.Bundle
-import com.mozhimen.bindk.bases.viewdatabinding.fragment.BaseFragmentVDBVM
+import com.mozhimen.uik.databinding.bases.viewdatabinding.fragment.BaseFragmentVDBVM
 import com.mozhimen.utilk.android.test.databinding.FragmentElemkFragmentVbvmBinding
 
 class ElemKFragmentVBVM : BaseFragmentVDBVM<FragmentElemkFragmentVbvmBinding, com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKViewModel>() {

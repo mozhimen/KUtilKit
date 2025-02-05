@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import android.os.Bundle
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSecureGet
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSystemGet
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper

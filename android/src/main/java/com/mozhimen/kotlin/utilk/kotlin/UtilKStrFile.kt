@@ -18,8 +18,7 @@ import com.mozhimen.kotlin.utilk.java.io.file2bytes_use
 import com.mozhimen.kotlin.utilk.java.io.file2bytes_use_ofReadWrite
 import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
 import com.mozhimen.kotlin.utilk.java.io.file2str_use
-import com.mozhimen.kotlin.utilk.java.io.file2uri_external
-import com.mozhimen.kotlin.utilk.java.io.file2uri_internal
+import com.mozhimen.kotlin.utilk.java.io.file2uri
 import com.mozhimen.kotlin.utilk.java.io.getFileNameNoExtension
 import com.mozhimen.kotlin.utilk.java.io.getFileSize_ofAvaioflable
 import com.mozhimen.kotlin.utilk.java.io.getFileSize_ofTotal
@@ -104,11 +103,8 @@ fun String.strFilePath2bytes(): ByteArray? =
 fun String.strFilePath2bytes2(): ByteArray? =
     UtilKStrFile.strFilePath2bytes2(this)
 
-fun String.strFilePath2uri_internal(): Uri? =
-    UtilKStrFile.strFilePath2uri_internal(this)
-
-fun String.strFilePath2uri_external(): Uri? =
-    UtilKStrFile.strFilePath2uri_external(this)
+fun String.strFilePath2uri(): Uri? =
+    UtilKStrFile.strFilePath2uri(this)
 
 fun String.strFilePath2bitmapAny(): Bitmap? =
     UtilKStrFile.strFilePath2bitmapAny(this)
@@ -304,12 +300,8 @@ object UtilKStrFile : IUtilK {
      * 文件转Uri
      */
     @JvmStatic
-    fun strFilePath2uri_internal(strFilePathName: String): Uri? =
-        strFilePathName.strFilePath2file().file2uri_internal()
-
-    @JvmStatic
-    fun strFilePath2uri_external(strFilePathName: String): Uri? =
-        strFilePathName.strFilePath2file().file2uri_external()
+    fun strFilePath2uri(strFilePathName: String): Uri? =
+        strFilePathName.strFilePath2file().file2uri()
 
     @JvmStatic
     fun strFilePath2bitmapAny(strFilePathName: String): Bitmap? =

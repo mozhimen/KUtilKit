@@ -30,11 +30,8 @@ import java.io.InputStream
 fun File.file2uri_ofImage(): Uri? =
     UtilKFileFormat.file2uri_ofImage(this)
 
-fun File.file2uri_internal(): Uri? =
-    UtilKFileFormat.file2uri_internal(this)
-
-fun File.file2uri_external(): Uri? =
-    UtilKFileFormat.file2uri_external(this)
+fun File.file2uri(): Uri? =
+    UtilKFileFormat.file2uri(this)
 
 fun File.file2bitmapAny(): Bitmap? =
     UtilKFileFormat.file2bitmapAny(this)
@@ -92,11 +89,11 @@ object UtilKFileFormat : BaseUtilK() {
         }
         return if (UtilKBuildVersion.isAfterV_29_10_Q()) {
             UtilKContentResolverWrapper.insertImage_after29(_context, file)
-        } else file2uri_internal(file)
+        } else file2uri(file)
     }
 
     @JvmStatic
-    fun file2uri_internal(file: File): Uri? {
+    fun file2uri(file: File): Uri? {
         if (!UtilKFileWrapper.isFileExist(file)) {
             UtilKLogWrapper.e(TAG, "file2Uri: file ${file.absolutePath} isFileExist false")
             return null
@@ -107,15 +104,6 @@ object UtilKFileFormat : BaseUtilK() {
                 UtilKContext.grantUriPermission(_context, it, CIntent.FLAG_GRANT_READ_URI_PERMISSION)
             }
         } else UtilKUri.get(file)
-    }
-
-    @JvmStatic
-    fun file2uri_external(file: File): Uri? {
-        if (!UtilKFileWrapper.isFileExist(file)) {
-            UtilKLogWrapper.e(TAG, "file2Uri: file ${file.absolutePath} isFileExist false")
-            return null
-        }
-        return UtilKUri.get(file)
     }
 
     @JvmStatic

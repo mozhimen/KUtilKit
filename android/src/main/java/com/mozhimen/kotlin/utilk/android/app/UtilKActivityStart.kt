@@ -44,7 +44,7 @@ object UtilKActivityStart {
     @JvmStatic
     fun startViewInstall(context: Context, strPathNameApk: String): Boolean {
         context.startContext(
-            UtilKIntentGet.getView_install_internal(strPathNameApk.apply {
+            UtilKIntentGet.getView_install(strPathNameApk.apply {
                 if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_24_7_N))
                     UtilKRuntimeWrapper.exec_chmod_777(this)
             }) ?: return false
@@ -57,7 +57,7 @@ object UtilKActivityStart {
     @OPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
     fun startViewInstall(context: Context, fileApk: File) {
-        context.startContext(UtilKIntentGet.getView_install_internal(fileApk) ?: return)
+        context.startContext(UtilKIntentGet.getView_install(fileApk) ?: return)
     }
 
     //安装 if sdk >= 24 add provider
@@ -65,7 +65,7 @@ object UtilKActivityStart {
     @OPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
     fun startViewInstall(context: Context, uriApk: Uri) {
-        context.startContext(UtilKIntentGet.getView_install_internal(uriApk))
+        context.startContext(UtilKIntentGet.getView_install(uriApk))
     }
 
     ///////////////////////////////////////////////////////////////////////

@@ -7,7 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
+import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper

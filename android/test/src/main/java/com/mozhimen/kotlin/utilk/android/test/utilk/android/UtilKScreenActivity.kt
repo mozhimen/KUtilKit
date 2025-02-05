@@ -2,7 +2,7 @@ package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManager
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen

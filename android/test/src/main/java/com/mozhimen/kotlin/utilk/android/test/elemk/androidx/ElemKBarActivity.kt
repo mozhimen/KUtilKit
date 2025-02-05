@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.android.test.elemk.androidx
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseBarActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
 import com.mozhimen.utilk.android.test.R
 import com.mozhimen.utilk.android.test.databinding.ActivityElemkBarBinding

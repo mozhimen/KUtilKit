@@ -2,7 +2,7 @@ package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import android.view.MotionEvent
 import android.view.View
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.view.UtilKInputMethodManagerWrapper
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkKeyboardBinding
 

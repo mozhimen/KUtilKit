@@ -11,7 +11,7 @@ import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.android.view.UtilKContentView
 import com.mozhimen.kotlin.utilk.android.view.UtilKContentViewWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKTitleBar
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.utilk.android.test.R
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkContentViewBinding
 

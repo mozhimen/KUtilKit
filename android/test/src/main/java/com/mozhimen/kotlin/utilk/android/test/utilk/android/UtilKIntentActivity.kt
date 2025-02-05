@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.android.test.utilk.android
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.elemk.android.media.cons.CMediaFormat
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextStart
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet

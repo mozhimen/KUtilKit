@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mozhimen.bindk.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.utilk.android.test.databinding.ActivityUtilkAssetBinding
 import com.mozhimen.utilk.android.test.databinding.ItemUtilkFileLogBinding
