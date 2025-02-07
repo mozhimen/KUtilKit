@@ -1,5 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.os
 
+import android.os.HandlerThread
+
 /**
  * @ClassName UtilKHandlerThread
  * @Description TODO
@@ -8,4 +10,7 @@ package com.mozhimen.kotlin.utilk.android.os
  * @Version 1.0
  */
 object UtilKHandlerThread {
+    @JvmStatic
+    fun get(name: String): HandlerThread =
+        HandlerThread(name)
 }

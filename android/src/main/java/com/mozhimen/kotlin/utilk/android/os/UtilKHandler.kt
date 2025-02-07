@@ -1,6 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.os
 
 import android.os.Handler
+import android.os.Looper
 import android.os.Message
 
 /**
@@ -25,6 +26,12 @@ fun Handler.removeCallbacksAndMessages_ofNull() {
 /////////////////////////////////////////////////////////////////
 
 object UtilKHandler {
+    @JvmStatic
+    fun get(looper: Looper): Handler =
+        Handler(looper)
+
+    /////////////////////////////////////////////////////////////////
+
     @JvmStatic
     fun postDelayed(handler: Handler, delayMills: Long, runnable: Runnable) {
         handler.postDelayed(runnable, delayMills)
