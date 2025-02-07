@@ -56,7 +56,7 @@ object UtilKAnim : BaseUtilK() {
         if (objs.isEmpty()) return
         for (obj in objs) {
             if (obj is Animation) UtilKAnimationWrapper.cancel_setAnimationListener_null(obj)
-            else if (obj is Animator) UtilKAnimatorWrapper.cancel_removeAllListeners(obj)
+            else if (obj is Animator) UtilKAnimatorWrapper.cancel_removeAll_AllUpdateListeners(obj)
         }
     }
 
