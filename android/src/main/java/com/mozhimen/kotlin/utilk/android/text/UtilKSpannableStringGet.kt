@@ -2,9 +2,9 @@ package com.mozhimen.kotlin.utilk.android.text
 
 import android.graphics.drawable.Drawable
 import android.text.SpannableString
-import android.text.Spanned
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
+import com.mozhimen.kotlin.elemk.android.text.cons.CSpanned
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 
 /**
@@ -17,7 +17,7 @@ import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 object UtilKSpannableStringGet {
     @JvmStatic
     fun get_foreColor(chars: CharSequence, @ColorInt intColor: Int, start: Int, end: Int): SpannableString =
-        UtilKSpannableString.get(chars).apply { setSpan(UtilKCharacterStyle.getForegroundColorSpan(intColor), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE) }
+        UtilKSpannableString.get(chars).apply { setSpan(UtilKCharacterStyle.getForegroundColorSpan(intColor), start, end, CSpanned.SPAN_EXCLUSIVE_EXCLUSIVE) }
 
     @JvmStatic
     fun get_firstDrawable(chars: CharSequence, @DrawableRes intDrawableRes: Int, verticalAlignment: Int): SpannableString =
@@ -27,7 +27,7 @@ object UtilKSpannableStringGet {
     fun get_firstDrawable(chars: CharSequence, drawable: Drawable?, verticalAlignment: Int): SpannableString =
         UtilKSpannableString.get(" $chars").apply {
             drawable?.let {
-                setSpan(UtilKCharacterStyle.getImageSpan(it.apply { setBounds(0, 0, intrinsicWidth, intrinsicHeight) }, verticalAlignment), 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                setSpan(UtilKCharacterStyle.getImageSpan(it.apply { setBounds(0, 0, intrinsicWidth, intrinsicHeight) }, verticalAlignment), 0, 1, CSpanned.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
 }

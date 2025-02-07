@@ -12,9 +12,14 @@ import kotlin.math.max
  * @Date 2022/11/22 23:06
  * @Version 1.0
  */
-fun Animator.cancel_removeAllListeners() {
-    UtilKAnimatorWrapper.cancel_removeAllListeners(this)
+fun Animator.cancel_removeAll_AllUpdateListeners() {
+    UtilKAnimatorWrapper.cancel_removeAll_AllUpdateListeners(this)
 }
+
+fun Animator.removeAll_AllUpdateListeners() {
+    UtilKAnimatorWrapper.removeAll_AllUpdateListeners(this)
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -41,11 +46,15 @@ object UtilKAnimatorWrapper {
 
     /**
      * 释放Animator
-     * @param animator Animator
      */
     @JvmStatic
-    fun cancel_removeAllListeners(animator: Animator) {
+    fun cancel_removeAll_AllUpdateListeners(animator: Animator) {
         animator.cancel()
+        removeAll_AllUpdateListeners(animator)
+    }
+
+    @JvmStatic
+    fun removeAll_AllUpdateListeners(animator: Animator) {
         animator.removeAllListeners()
         if (animator is ValueAnimator) {
             UtilKValueAnimator.removeAllUpdateListeners(animator)
