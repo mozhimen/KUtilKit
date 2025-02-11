@@ -1,6 +1,8 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
 import com.mozhimen.kotlin.elemk.commons.IA_BListener
+import com.mozhimen.kotlin.elemk.commons.IA_Listener
+import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.utilk.java.lang.UtilKWeakReference
 import java.lang.ref.WeakReference
 
@@ -17,8 +19,12 @@ inline fun <T> T?.filterNullable(predicate: IA_BListener<T, Boolean>): T? =
 fun <T> T.t2weakRef(): WeakReference<T> =
     UtilKT.t2weakRef(this)
 
-inline fun <T, R> T.applyTry(block: IA_BListener<T,R>) {
-    UtilKT.applyTry(this,block)
+inline fun <T, R> T.applyTry(block: IA_BListener<T, R>) {
+    UtilKT.applyTry(this, block)
+}
+
+inline fun <T, R> T.applyTry(block: IA_BListener<T, R>, onFinally: IA_Listener<T>) {
+    UtilKT.applyTry(this, block, onFinally)
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -26,11 +32,21 @@ inline fun <T, R> T.applyTry(block: IA_BListener<T,R>) {
 object UtilKT {
 
     @JvmStatic
-    inline fun <T, R> applyTry(obj:T,block: IA_BListener<T,R>) {
+    inline fun <T, R> applyTry(obj: T, block: IA_BListener<T, R>) {
         try {
             block(obj)
         } catch (e: Throwable) {
             e.printStackTrace()
+        }
+    }
+
+    inline fun <T, R> applyTry(obj: T, block: IA_BListener<T, R>, onFinally: IA_Listener<T>) {
+        try {
+            block(obj)
+        } catch (e: Throwable) {
+            e.printStackTrace()
+        } finally {
+            onFinally.invoke(obj)
         }
     }
 
