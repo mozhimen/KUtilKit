@@ -5,6 +5,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
+import com.mozhimen.kotlin.elemk.androidx.lifecycle.commons.ILifecycleOwner
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.androidx.lifecycle.handleLifecycleEventOnCreate
 import com.mozhimen.kotlin.utilk.androidx.lifecycle.handleLifecycleEventOnDestroy
@@ -22,52 +23,53 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Version 1.0
  */
 @OApiInit_ByLazy
-open class LifecycleOwnerProxy : LifecycleOwner, IUtilK {
+open class LifecycleOwnerProxy : ILifecycleOwner {
     private var _lifecycleRegistry: LifecycleRegistry? = null
-    protected val lifecycleRegistry: LifecycleRegistry
-        get() = _lifecycleRegistry ?: LifecycleRegistry(this).also {
-            _lifecycleRegistry = it
-        }
 
     ///////////////////////////////////////////////////////////////////////
 
     @CallSuper
-    open fun onCreate(name: String) {
-        UtilKLogWrapper.v(TAG, "onCreate:  $name")
+    override fun onCreate() {
+        UtilKLogWrapper.v(TAG, "onCreate: ")
         lifecycleRegistry.handleLifecycleEventOnCreate()
     }
 
     @CallSuper
-    open fun onStart(name: String) {
-        UtilKLogWrapper.v(TAG, "onStart:   $name")
+    override fun onStart() {
+        UtilKLogWrapper.v(TAG, "onStart: ")
         lifecycleRegistry.handleLifecycleEventOnStart()
     }
 
     @CallSuper
-    open fun onResume(name: String) {
-        UtilKLogWrapper.v(TAG, "onResume:  $name")
+    override fun onResume() {
+        UtilKLogWrapper.v(TAG, "onResume: ")
         lifecycleRegistry.handleLifecycleEventOnResume()
     }
 
     @CallSuper
-    open fun onPause(name: String) {
-        UtilKLogWrapper.v(TAG, "onPause:   $name")
+    override fun onPause() {
+        UtilKLogWrapper.v(TAG, "onPause: ")
         lifecycleRegistry.handleLifecycleEventOnPause()
     }
 
     @CallSuper
-    open fun onStop(name: String) {
-        UtilKLogWrapper.v(TAG, "onStop:    $name")
+    override fun onStop() {
+        UtilKLogWrapper.v(TAG, "onStop: ")
         lifecycleRegistry.handleLifecycleEventOnStop()
     }
 
     @CallSuper
-    open fun onDestroy(name: String) {
-        UtilKLogWrapper.v(TAG, "onDestroy: $name")
+    override fun onDestroy() {
+        UtilKLogWrapper.v(TAG, "onDestroy: ")
         lifecycleRegistry.handleLifecycleEventOnDestroy()
     }
 
     ///////////////////////////////////////////////////////////////////////
+
+    override val lifecycleRegistry: LifecycleRegistry
+        get() = _lifecycleRegistry ?: LifecycleRegistry(this).also {
+            _lifecycleRegistry = it
+        }
 
     override val lifecycle: Lifecycle
         get() = lifecycleRegistry

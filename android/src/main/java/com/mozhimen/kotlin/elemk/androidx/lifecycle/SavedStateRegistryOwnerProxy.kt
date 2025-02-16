@@ -27,8 +27,8 @@ class SavedStateRegistryOwnerProxy : SavedStateRegistryOwner, LifecycleOwnerProx
         savedStateRegistryController.performAttach()
     }
 
-    override fun onCreate(name: String) {
+    override fun onCreate() {
         savedStateRegistryController.performRestore(null)
-        super.onCreate(name)
+        super.onCreate()
     }
 }
