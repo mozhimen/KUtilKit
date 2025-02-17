@@ -111,16 +111,16 @@ object UtilKFlow {
     }
 
     @JvmStatic
-    suspend fun <T> collectSafe(flow: Flow<T>, onGenerate: ISuspendA_Listener<T>, onError: ISuspendA_Listener<Throwable>) {
+    suspend fun <T> collectSafe(flow: Flow<T>, onGenerate: ISuspendA_Listener<T>, onError: ISuspendA_Listener<Throwable>?) {
         flow
             .catch {
                 UtilKLogWrapper.e(it)
             }
             .collect {
                 try {
-                    onGenerate(it)
+                    onGenerate.invoke(it)
                 } catch (e: Throwable) {
-                    onError(e)
+                    onError?.invoke(e)
                 }
             }
     }

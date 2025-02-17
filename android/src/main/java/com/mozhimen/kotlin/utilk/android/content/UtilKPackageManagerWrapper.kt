@@ -14,9 +14,9 @@ import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageInfo
-import com.mozhimen.kotlin.utilk.android.content.UtilKPackageManager.TAG
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
+import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
  * @ClassName UtilKPackageManagerWrapper
@@ -25,7 +25,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
  * @Date 2024/8/21
  * @Version 1.0
  */
-object UtilKPackageManagerWrapper {
+object UtilKPackageManagerWrapper:IUtilK {
     @JvmStatic
     fun getPackageInfoSafe(context: Context, strPackageName: String, flags: Int): PackageInfo? =
         try {
