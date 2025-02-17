@@ -9,6 +9,7 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKHandler
 import com.mozhimen.kotlin.utilk.android.app.isFinishingOrDestroyed
 import com.mozhimen.kotlin.utilk.android.os.UtilKLooper
+import com.mozhimen.kotlin.utilk.android.os.UtilKLooperWrapper
 import java.lang.Exception
 
 
@@ -116,7 +117,7 @@ object UtilKToastWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showToastOnMain(chars: CharSequence, duration: Int = Toast.LENGTH_SHORT, context: Context = _context) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showToast(chars, duration, context)
         else
             UtilKHandler.postOnMain { showToast(chars, duration, context) }
@@ -124,7 +125,7 @@ object UtilKToastWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showToastOnMain(@StringRes intResStr: Int, duration: Int = Toast.LENGTH_SHORT, context: Context = _context) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showToast(intResStr, duration, context)
         else
             UtilKHandler.postOnMain { showToast(intResStr, duration, context) }

@@ -9,10 +9,16 @@ import android.os.Parcel
  * @Date 2024/11/21
  * @Version 1.0
  */
+fun Parcel.applyWriteBoolean(value: Boolean) {
+    UtilKParcelWrapper.applyWriteBoolean(this, value)
+}
+
+fun Parcel.applyReadBoolean(value: Boolean): Boolean =
+    UtilKParcelWrapper.applyReadBoolean(this)
 
 /////////////////////////////////////////////////////////////////
 
-object UtilKParcel {
+object UtilKParcelWrapper {
     @JvmStatic
     fun applyWriteBoolean(parcel: Parcel, value: Boolean) {
         if (UtilKBuildVersion.isAfterV_29_10_Q()) {

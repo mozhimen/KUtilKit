@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.elemk.google.material.CSnackbar
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKHandler
 import com.mozhimen.kotlin.utilk.android.os.UtilKLooper
+import com.mozhimen.kotlin.utilk.android.os.UtilKLooperWrapper
 
 /**
  * @ClassName UtilKSnackBar
@@ -41,7 +42,7 @@ object UtilKSnackbarWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showSnackbarOnMain(view: View, msg: String, duration: Int = CSnackbar.LENGTH_SHORT) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showSnackbar(view, msg, duration)
         else
             UtilKHandler.postOnMain { showSnackbar(view, msg, duration) }
@@ -49,7 +50,7 @@ object UtilKSnackbarWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showSnackbarOnMain(view: View, @StringRes intResStr: Int, duration: Int = CSnackbar.LENGTH_SHORT) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showSnackbar(view, intResStr, duration)
         else
             UtilKHandler.postOnMain { showSnackbar(view, intResStr, duration) }
@@ -59,7 +60,7 @@ object UtilKSnackbarWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showSnackbarOnMain_ofLines(view: View, chars: CharSequence, duration: Int = CSnackbar.LENGTH_SHORT, maxLines: Int = CSnackbar.MAX_LINES) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showSnackbar_ofLines(view, chars, duration, maxLines)
         else
             UtilKHandler.postOnMain { showSnackbar_ofLines(view, chars, duration, maxLines) }
@@ -67,7 +68,7 @@ object UtilKSnackbarWrapper : BaseUtilK() {
 
     @JvmStatic
     fun showSnackbarOnMain_ofLines(view: View, @StringRes intResStr: Int, duration: Int = CSnackbar.LENGTH_SHORT, maxLines: Int = CSnackbar.MAX_LINES) {
-        if (UtilKLooper.isMainLooper())
+        if (UtilKLooperWrapper.isLooperMain())
             showSnackbar_ofLines(view, intResStr, duration, maxLines)
         else
             UtilKHandler.postOnMain { showSnackbar_ofLines(view, intResStr, duration, maxLines) }

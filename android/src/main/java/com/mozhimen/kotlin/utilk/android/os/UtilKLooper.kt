@@ -12,11 +12,11 @@ import com.mozhimen.kotlin.elemk.commons.I_Listener
  */
 object UtilKLooper {
     @JvmStatic
-    fun get_ofMain(): Looper =
+    fun get_main(): Looper =
         getMainLooper()
 
     @JvmStatic
-    fun get_ofMy(): Looper? =
+    fun get_my(): Looper? =
         getMyLooper()
 
     ////////////////////////////////////////////////////////////////////////////
@@ -32,32 +32,10 @@ object UtilKLooper {
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getThread_ofMain(): Thread =
-        get_ofMain().thread
+    fun getThread_main(): Thread =
+        get_main().thread
 
-    ////////////////////////////////////////////////////////////////////////////
-
-    //是否是MainLooper
     @JvmStatic
-    fun isMainLooper(): Boolean =
-        get_ofMy() == get_ofMain()
-
-    ////////////////////////////////////////////////////////////////////////////
-
-    /**
-     * 循环
-     */
-    @JvmStatic
-    fun prepareAndLoop(block: I_Listener) {
-        var myLooper = get_ofMy()
-        if (myLooper == null) {
-            Looper.prepare()
-            myLooper = get_ofMy()
-        }
-        block.invoke()
-        if (myLooper != null) {
-            Looper.loop()
-            myLooper.quit()
-        }
-    }
+    fun getThread_my(): Thread? =
+        get_my()?.thread
 }

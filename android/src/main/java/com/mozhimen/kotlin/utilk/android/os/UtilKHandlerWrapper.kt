@@ -19,7 +19,7 @@ object UtilKHandlerWrapper {
 
     @JvmStatic
     fun post(runnable: Runnable) {
-        if (UtilKLooper.isMainLooper()) {
+        if (UtilKLooperWrapper.isLooperMain()) {
             runnable.run()
         } else {
             _handler.post(runnable)
