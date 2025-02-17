@@ -11,4 +11,5 @@ import android.bluetooth.BluetoothAdapter
  */
 object CBluetoothAdapter {
     const val ACTION_REQUEST_ENABLE = BluetoothAdapter.ACTION_REQUEST_ENABLE
+    const val ACTION_STATE_CHANGED = BluetoothAdapter.ACTION_STATE_CHANGED
 }

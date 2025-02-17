@@ -180,15 +180,19 @@ object UtilKPackageManagerWrapper:IUtilK {
      * 是否有前置
      */
     @JvmStatic
-    fun hasFrontCamera(context: Context): Boolean =
+    fun hasSystemFeature_camera_front(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_CAMERA_FRONT)
 
     /**
      * 是否有后置
      */
     @JvmStatic
-    fun hasBackCamera(context: Context): Boolean =
+    fun hasSystemFeature_camera(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_CAMERA)
+
+    @JvmStatic
+    fun hasSystemFeature_bluetooth(context: Context): Boolean =
+        UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_BLUETOOTH)
 
     /**
      * 系统的下载组件是否可用

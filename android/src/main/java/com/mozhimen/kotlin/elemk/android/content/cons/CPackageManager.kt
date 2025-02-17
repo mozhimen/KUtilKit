@@ -29,4 +29,5 @@ object CPackageManager {
 
     const val FEATURE_CAMERA_FRONT = PackageManager.FEATURE_CAMERA_FRONT
     const val FEATURE_CAMERA = PackageManager.FEATURE_CAMERA
+    const val FEATURE_BLUETOOTH = PackageManager.FEATURE_BLUETOOTH
 }
