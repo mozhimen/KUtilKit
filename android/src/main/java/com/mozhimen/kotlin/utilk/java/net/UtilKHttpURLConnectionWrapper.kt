@@ -7,7 +7,7 @@ import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream
 import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
 import com.mozhimen.kotlin.utilk.java.io.flushClose
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBufferedReader
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bufferedReader
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrUrl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -86,7 +86,7 @@ object UtilKHttpURLConnectionWrapper {
                     httpURLConnection.inputStream
                 else httpURLConnection.errorStream
 
-            return inputStream.inputStream2str_use_ofBufferedReader()
+            return inputStream.inputStream2str_use_bufferedReader()
         } catch (e: MalformedURLException) {
             e.printStackTrace() // url格式错误
         } catch (e: Exception) {
@@ -136,7 +136,7 @@ object UtilKHttpURLConnectionWrapper {
             val inputStream = if (httpURLConnection.responseCode == 200)
                 httpURLConnection.inputStream
             else httpURLConnection.errorStream
-            return inputStream.inputStream2str_use_ofBufferedReader()
+            return inputStream.inputStream2str_use_bufferedReader()
         } catch (e: IOException) {
             e.printStackTrace()
         } finally {

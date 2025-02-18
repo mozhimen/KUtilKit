@@ -48,7 +48,7 @@ object UtilKAppInstall : BaseUtilK() {
      */
     @JvmStatic
     fun startManageUnknownInstallSource(activity: Activity) {
-        UtilKActivityStart.startSettingManageUnknownInstallSource(activity)
+        UtilKActivityStart.startSettingsManageUnknownInstallSource(activity)
     }
 
     /**
@@ -56,7 +56,7 @@ object UtilKAppInstall : BaseUtilK() {
      */
     @JvmStatic
     fun startManageUnknownInstallSource(context: Context) {
-        UtilKActivityStart.startSettingManageUnknownInstallSource(context)
+        UtilKActivityStart.startSettingsManageUnknownInstallSource(context)
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ object UtilKAppInstall : BaseUtilK() {
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     fun install_ofView(strPathNameApk: String) :Boolean =
-        UtilKActivityStart.startViewInstall(_context, strPathNameApk)
+        UtilKActivityStart.startViewApk(_context, strPathNameApk)
 
     /**
      * 手动安装 if sdk >= 24 add provider
@@ -85,7 +85,7 @@ object UtilKAppInstall : BaseUtilK() {
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     fun install_ofView(fileApk: File) {
-        UtilKActivityStart.startViewInstall(_context, fileApk)
+        UtilKActivityStart.startViewApk(_context, fileApk)
     }
 
     /**

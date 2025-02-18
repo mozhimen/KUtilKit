@@ -27,24 +27,24 @@ object UtilKActivityStart {
     //分享文本
     @JvmStatic
     fun startSendTextChooser(context: Context, title: String, str: String) {
-        context.startContext(UtilKIntentGet.getSendText(str).createChooser(title))
+        context.startContext(UtilKIntentGet.getIntent_ACTION_SEND_TYPE_TEXT(str).createChooser(title))
     }
 
     ///////////////////////////////////////////////////////////////////////
 
     //打开外部浏览器
     @JvmStatic
-    fun startViewStrUrl(context: Context, strUrl: String) {
-        context.startContext(UtilKIntentGet.getViewStrUrl(strUrl)/*Intent(Intent.ACTION_VIEW, Uri.parse(strUrl)*/)
+    fun startView(context: Context, strUrl: String) {
+        context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW(strUrl)/*Intent(Intent.ACTION_VIEW, Uri.parse(strUrl)*/)
     }
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewInstall(context: Context, strPathNameApk: String): Boolean {
+    fun startViewApk(context: Context, strPathNameApk: String): Boolean {
         context.startContext(
-            UtilKIntentGet.getView_install(strPathNameApk.apply {
+            UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(strPathNameApk.apply {
                 if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_24_7_N))
                     UtilKRuntimeWrapper.exec_chmod_777(this)
             }) ?: return false
@@ -56,88 +56,91 @@ object UtilKActivityStart {
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewInstall(context: Context, fileApk: File) {
-        context.startContext(UtilKIntentGet.getView_install(fileApk) ?: return)
+    fun startViewApk(context: Context, fileApk: File) {
+        context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(fileApk) ?: return)
     }
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewInstall(context: Context, uriApk: Uri) {
-        context.startContext(UtilKIntentGet.getView_install(uriApk))
+    fun startViewApk(context: Context, uriApk: Uri) {
+        context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(uriApk))
     }
 
     ///////////////////////////////////////////////////////////////////////
 
     //打开包安装权限
     @JvmStatic
-    fun startSettingManageUnknownInstallSource(context: Context) {
+    fun startSettingsManageUnknownInstallSource(context: Context) {
         if (UtilKBuildVersion.isAfterV_26_8_O())
-            context.startContext(UtilKIntentGet.getSettingManageUnknownAppSources(context))
+            context.startContext(UtilKIntentGet.getSettings_ACTION_MANAGE_UNKNOWN_APP_SOURCES(context))
     }
 
     //打开包安装权限
     @JvmStatic
-    fun startSettingManageUnknownInstallSource_ofResult(activity: Activity, requestCode: Int) {
+    fun startSettingsManageUnknownInstallSource_ofResult(activity: Activity, requestCode: Int) {
         if (UtilKBuildVersion.isAfterV_26_8_O())
-            activity.startActivityForResult(UtilKIntentGet.getSettingManageUnknownAppSources(activity), requestCode)
+            activity.startActivityForResult(UtilKIntentGet.getSettings_ACTION_MANAGE_UNKNOWN_APP_SOURCES(activity), requestCode)
     }
 
     //设置申请权限 当系统在23及以上
     @JvmStatic
-    fun startSettingManageOverlayPermission(context: Context) {
+    fun startSettingsManageOverlayPermission(context: Context) {
         if (UtilKBuildVersion.isAfterV_23_6_M())
-            context.startContext(UtilKIntentGet.getSettingManageOverlayPermission(context))
+            context.startContext(UtilKIntentGet.getSettings_ACTION_MANAGE_OVERLAY_PERMISSION(context))
     }
 
     //设置申请权限 当系统在11及以上
     @JvmStatic
-    @RequiresPermission(CPermission.MANAGE_EXTERNAL_STORAGE)
-    @OPermission_MANAGE_EXTERNAL_STORAGE
-    fun startSettingManageAllFilesAccessPermission(context: Context) {
+    fun startSettingsManageAllFilesAccessPermission(context: Context) {
         if (UtilKBuildVersion.isAfterV_30_11_R()) {
-            context.startContext(UtilKIntentGet.getSettingManageAppAllFilesAccessPermission(context))
-        } else startSettingApplicationDetailsSettings(context)
+            context.startContext(UtilKIntentGet.getSettings_ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION(context))
+        } else startSettingsApplicationDetailsSettings(context)
     }
 
-    ///////////////////////////////////////////////////////////////////////
-
     @JvmStatic
-    fun startSettingAppNotificationSettings(context: Context) {
+    fun startSettingsAppNotificationSettings(context: Context) {
         if (UtilKBuildVersion.isAfterV_26_8_O())
-            context.startContext(UtilKIntentGet.getSettingAppNotificationSettings(context))
+            context.startContext(UtilKIntentGet.getSettings_ACTION_APP_NOTIFICATION_SETTINGS(context))
         else
-            startSettingApplicationDetailsSettings(context)
+            startSettingsApplicationDetailsSettings(context)
     }
 
     //设置申请app权限
     @JvmStatic
-    fun startSettingApplicationDetailsSettings(context: Context) {
-        context.startContext(UtilKIntentGet.getSettingApplicationDetailsSettings(context))
+    fun startSettingsApplicationDetailsSettings(context: Context) {
+        context.startContext(UtilKIntentGet.getSettings_ACTION_APPLICATION_DETAILS_SETTINGS(context))
     }
 
     @JvmStatic
-    fun startSettingApplicationDetailsSettings_ofDownloads(context: Context) {
-        context.startContext(UtilKIntentGet.getSettingApplicationDetailsSettings_ofDownloads(context))
+    fun startSettingsApplicationDetailsSettings_ofDownloads(context: Context) {
+        context.startContext(UtilKIntentGet.getSettings_ACTION_APPLICATION_DETAILS_SETTINGS_downloads())
     }
 
     //设置申请无障碍权限
     @JvmStatic
-    fun startSettingAccessibilitySettings(context: Context) {
-        context.startContext(UtilKIntentGet.getSettingAccessibilitySettings())
+    fun startSettingsAccessibilitySettings(context: Context) {
+        context.startContext(UtilKIntentGet.getSettings_ACTION_ACCESSIBILITY_SETTINGS())
     }
 
     //设置申请定位
     @JvmStatic
-    fun startSettingLocationSourceSettings(context: Context) {
-        context.startContext(UtilKIntentGet.getSettingLocationSourceSettings())
+    fun startSettingsLocationSourceSettings(context: Context) {
+        context.startContext(UtilKIntentGet.getSettings_ACTION_LOCATION_SOURCE_SETTINGS())
     }
 
     //设置生物识别
     @RequiresApi(CVersCode.V_30_11_R)
     @JvmStatic
-    fun startSettingBiometricEnroll_ofResult(activity: Activity, allowedAuthenticators: Int, requestCode: Int) {
-        activity.startActivityForResult(UtilKIntentGet.getSettingBiometricEnroll(allowedAuthenticators), requestCode)
+    fun startForResultSettingsBiometricEnroll(activity: Activity, allowedAuthenticators: Int, requestCode: Int) {
+        activity.startActivityForResult(UtilKIntentGet.getSettings_ACTION_BIOMETRIC_ENROLL(allowedAuthenticators), requestCode)
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun startBluetoothAdapterRequestEnable(context: Context){
+        context.startContext(UtilKIntentGet.getBluetoothAdapter_ACTION_REQUEST_ENABLE())
     }
 }

@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.javax.net
 
 import com.mozhimen.kotlin.elemk.java.net.cons.CHttpURLConnection
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBufferedReader
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bufferedReader
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
@@ -41,7 +41,7 @@ object UtilKHttpsURLConnectionWrapper {
             val inputStream: InputStream = if (httpsURLConnection.responseCode == CHttpURLConnection.HTTP_OK)
                 httpsURLConnection.inputStream
             else httpsURLConnection.errorStream
-            return inputStream.inputStream2str_use_ofBufferedReader()
+            return inputStream.inputStream2str_use_bufferedReader()
         } catch (e: MalformedURLException) {
             e.printStackTrace() // url格式错误
         } catch (e: IOException) {
@@ -85,7 +85,7 @@ object UtilKHttpsURLConnectionWrapper {
             val inputStream = if (httpsURLConnection.responseCode == HttpURLConnection.HTTP_OK)
                 httpsURLConnection.inputStream
             else httpsURLConnection.errorStream
-            return inputStream.inputStream2str_use_ofBufferedReader()
+            return inputStream.inputStream2str_use_bufferedReader()
         } catch (e: MalformedURLException) {
             e.printStackTrace() // url格式错误
         } catch (e: IOException) {

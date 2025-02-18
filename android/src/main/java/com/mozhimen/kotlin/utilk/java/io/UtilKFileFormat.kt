@@ -141,12 +141,12 @@ object UtilKFileFormat : BaseUtilK() {
     @JvmStatic
     fun file2str_use(file: File, isAddLineBreak: Boolean = false): String? =
         if (!UtilKFileWrapper.isFileExist(file)) null
-        else file.file2fileInputStream()?.inputStream2str_use_ofBufferedReader(isAddLineBreak = isAddLineBreak)
+        else file.file2fileInputStream()?.inputStream2str_use_bufferedReader(isAddLineBreak = isAddLineBreak)
 
     @JvmStatic
     fun file2strMd5Hex_use_ofStream(file: File): String? =
         if (!UtilKFileWrapper.isFileExist(file)) null
-        else file.file2fileInputStream()?.inputStream2strMd5Hex_use_ofHexString()
+        else file.file2fileInputStream()?.inputStream2strMd5Hex_use_hexString()
 
     @JvmStatic
     fun file2strMd5Hex_use(file: File): String? =

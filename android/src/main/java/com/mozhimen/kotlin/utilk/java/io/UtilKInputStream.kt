@@ -55,7 +55,7 @@ object UtilKInputStream : IUtilK {
 
     @JvmStatic
     fun isInputStreamSame_use(inputStream1: InputStream, inputStream2: InputStream): Boolean =
-        TextUtils.equals(inputStream1.inputStream2strMd5Hex_use_ofBigInteger(), inputStream2.inputStream2strMd5Hex_use_ofBigInteger())
+        TextUtils.equals(inputStream1.inputStream2strMd5Hex_use_bigInteger(), inputStream2.inputStream2strMd5Hex_use_bigInteger())
 
     ////////////////////////////////////////////////////////////////////////////
 

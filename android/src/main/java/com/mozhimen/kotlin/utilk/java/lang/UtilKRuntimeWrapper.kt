@@ -19,8 +19,8 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKByteArrayOutputStream
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStreamReader
 import com.mozhimen.kotlin.utilk.java.io.flushClose
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBufferedReader
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBytesOutStream
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bufferedReader
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bytesOutStream
 import com.mozhimen.kotlin.utilk.kotlin.getStrFolderPath
 import java.io.DataOutputStream
 import java.io.IOException
@@ -75,7 +75,7 @@ object UtilKRuntimeWrapper : IUtilK {
         var process: Process? = null
         try {
             process = UtilKRuntime.exec("getprop $strPackage")
-            return process.inputStream.inputStream2str_use_ofBufferedReader(bufferSize = 1024)
+            return process.inputStream.inputStream2str_use_bufferedReader(bufferSize = 1024)
         } catch (e: Exception) {
             e.printStackTrace()
             UtilKLogWrapper.e(UtilKRuntime.TAG, "getProp Unable to read prop strPackage $strPackage msg ${e.message}")
@@ -106,7 +106,7 @@ object UtilKRuntimeWrapper : IUtilK {
 
             process.waitFor()
 
-            val strError = process.errorStream.inputStream2str_use_ofBufferedReader()
+            val strError = process.errorStream.inputStream2str_use_bufferedReader()
             "execSuInstall msg is $strError".d(UtilKRuntime.TAG)
             return !strError.contains("failure", ignoreCase = true)
         } catch (e: Exception) {
@@ -135,7 +135,7 @@ object UtilKRuntimeWrapper : IUtilK {
         var process: Process? = null
         try {
             process = ProcessBuilder(*command).start()
-            strInput = process.inputStream.inputStream2str_use_ofBufferedReader()
+            strInput = process.inputStream.inputStream2str_use_bufferedReader()
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -162,7 +162,7 @@ object UtilKRuntimeWrapper : IUtilK {
             process = ProcessBuilder(*command).start()
             val byteArrayOutputStream = UtilKByteArrayOutputStream.get()
             byteArrayOutputStream.write('/'.code)
-            strInput = process.inputStream.inputStream2str_use_ofBytesOutStream(byteArrayOutputStream)
+            strInput = process.inputStream.inputStream2str_use_bytesOutStream(byteArrayOutputStream)
             "installSilence result $strInput".d(TAG)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -211,8 +211,8 @@ object UtilKRuntimeWrapper : IUtilK {
         var process: Process? = null
         try {
             process = UtilKRuntime.exec(arrayOf("sh", "-c", command))
-            val strLineInput = process.inputStream.inputStream2str_use_ofBufferedReader()
-            val strLineError = process.errorStream.inputStream2str_use_ofBufferedReader()
+            val strLineInput = process.inputStream.inputStream2str_use_bufferedReader()
+            val strLineError = process.errorStream.inputStream2str_use_bufferedReader()
             "execShC line $strLineInput error $strLineError".d(TAG)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -266,8 +266,8 @@ object UtilKRuntimeWrapper : IUtilK {
             result = process.waitFor()
 
             if (isNeedResultMsg) {
-                strLineInput = process.inputStream.inputStream2str_use_ofBufferedReader(CCharsets.UTF_8)
-                strLineError = process.errorStream.inputStream2str_use_ofBufferedReader(CCharsets.UTF_8)
+                strLineInput = process.inputStream.inputStream2str_use_bufferedReader(CCharsets.UTF_8)
+                strLineError = process.errorStream.inputStream2str_use_bufferedReader(CCharsets.UTF_8)
             }
         } catch (e: Exception) {
             UtilKLogWrapper.e(TAG, "execSuOrSh: Exception ${e.message}")

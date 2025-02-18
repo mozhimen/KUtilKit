@@ -1,16 +1,13 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmap
-import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapFactory
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.createFile
 import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
-import com.mozhimen.kotlin.utilk.java.io.inputStream2File_use_ofCopyTo_gZip
-import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use_ofCopyTo
+import com.mozhimen.kotlin.utilk.java.io.inputStream2File_use_copyTo_gZip
 import com.mozhimen.kotlin.utilk.java.security.UtilKMessageDigestMD5
 import java.io.ByteArrayInputStream
 import java.io.File
@@ -111,7 +108,7 @@ object UtilKByteArrayFormat : IUtilK {
 
     @JvmStatic
     fun bytes2file_ofGZip(bytes: ByteArray, fileDest: File): File =
-        bytes.bytes2byteArrayInputStream().inputStream2File_use_ofCopyTo_gZip(fileDest)
+        bytes.bytes2byteArrayInputStream().inputStream2File_use_copyTo_gZip(fileDest)
 
     //////////////////////////////////////////////////////////////////////////////////
 

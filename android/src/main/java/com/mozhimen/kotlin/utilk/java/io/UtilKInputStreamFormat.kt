@@ -18,7 +18,6 @@ import com.mozhimen.kotlin.utilk.kotlin.bytes2str
 import com.mozhimen.kotlin.utilk.kotlin.bytes2strHex
 import com.mozhimen.kotlin.utilk.kotlin.bytes2strHex_ofHexString
 import com.mozhimen.kotlin.utilk.kotlin.bytes2strHex_ofBigInteger
-import com.mozhimen.kotlin.utilk.kotlin.createFile
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
 import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
@@ -58,6 +57,9 @@ fun InputStream.inputStream2gZIPInputStream(size: Int? = null): GZIPInputStream 
 fun InputStream.inputStream2bytes_use(): ByteArray =
     UtilKInputStreamFormat.inputStream2bytes_use(this)
 
+fun InputStream.inputStream2bytes_use_stream(): ByteArray =
+    UtilKInputStreamFormat.inputStream2bytes_use_stream(this)
+
 ////////////////////////////////////////////////////////////////////////////
 
 fun InputStream.inputStream2bytesMd5_use(bufferSize: Int = 1024 * 1024): ByteArray =
@@ -66,28 +68,28 @@ fun InputStream.inputStream2bytesMd5_use(bufferSize: Int = 1024 * 1024): ByteArr
 fun InputStream.inputStream2strMd5Hex_use(): String =
     UtilKInputStreamFormat.inputStream2strMd5Hex_use(this)
 
-fun InputStream.inputStream2strMd5Hex_use_ofBigInteger(): String =
-    UtilKInputStreamFormat.inputStream2strMd5Hex_use_ofBigInteger(this)
+fun InputStream.inputStream2strMd5Hex_use_bigInteger(): String =
+    UtilKInputStreamFormat.inputStream2strMd5Hex_use_bigInteger(this)
 
-fun InputStream.inputStream2strMd5Hex_use_ofHexString(): String =
-    UtilKInputStreamFormat.inputStream2strMd5Hex_use_ofHexString(this)
+fun InputStream.inputStream2strMd5Hex_use_hexString(): String =
+    UtilKInputStreamFormat.inputStream2strMd5Hex_use_hexString(this)
 
-fun InputStream.inputStream2str_use_ofBufferedReader(charset: String? = null, bufferSize: Int = 1024, isAddLineBreak: Boolean = false): String =
-    UtilKInputStreamFormat.inputStream2str_use_ofBufferedReader(this, charset, bufferSize, isAddLineBreak)
+fun InputStream.inputStream2str_use_bufferedReader(charset: String? = null, bufferSize: Int = 1024, isAddLineBreak: Boolean = false): String =
+    UtilKInputStreamFormat.inputStream2str_use_bufferedReader(this, charset, bufferSize, isAddLineBreak)
 
-fun InputStream.inputStream2str_use_ofBytesOutStream(byteArrayOutputStream: ByteArrayOutputStream): String =
-    UtilKInputStreamFormat.inputStream2str_use_ofBytesOutStream(this, byteArrayOutputStream)
+fun InputStream.inputStream2str_use_bytesOutStream(byteArrayOutputStream: ByteArrayOutputStream): String =
+    UtilKInputStreamFormat.inputStream2str_use_bytesOutStream(this, byteArrayOutputStream)
 
-fun InputStream.inputStream2str_use_ofBytesOutStream(): String =
-    UtilKInputStreamFormat.inputStream2str_use_ofBytesOutStream(this)
+fun InputStream.inputStream2str_use_bytesOutStream(): String =
+    UtilKInputStreamFormat.inputStream2str_use_bytesOutStream(this)
 
-fun InputStream.inputStream2str_use_ofBytes(): String? =
-    UtilKInputStreamFormat.inputStream2str_use_ofBytes(this)
+fun InputStream.inputStream2str_use_bytes(): String? =
+    UtilKInputStreamFormat.inputStream2str_use_bytes(this)
 
 ////////////////////////////////////////////////////////////////////////////
 
-fun InputStream.inputStream2strs_use_ofBufferedReader_forEachLine(charset: Charset = Charsets.UTF_8): List<String> =
-    UtilKInputStreamFormat.inputStream2strs_use_ofBufferedReader_forEachLine(this, charset)
+fun InputStream.inputStream2strs_use_bufferedReader_forEachLine(charset: Charset = Charsets.UTF_8): List<String> =
+    UtilKInputStreamFormat.inputStream2strs_use_bufferedReader_forEachLine(this, charset)
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -110,34 +112,34 @@ fun InputStream.inputStream2file_use(strFilePathNameDest: String, isAppend: Bool
 fun InputStream.inputStream2file_use(fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
     UtilKInputStreamFormat.inputStream2file_use(this, fileDest, isAppend, bufferSize, block)
 
-fun InputStream.inputStream2file_use_ofCopyTo(strFilePathNameDest: String): File =
-    UtilKInputStreamFormat.inputStream2file_use_ofCopyTo(this, strFilePathNameDest)
+fun InputStream.inputStream2file_use_copyTo(strFilePathNameDest: String): File =
+    UtilKInputStreamFormat.inputStream2file_use_copyTo(this, strFilePathNameDest)
 
-fun InputStream.inputStream2file_use_ofCopyTo(fileDest: File): File =
-    UtilKInputStreamFormat.inputStream2file_use_ofCopyTo(this, fileDest)
+fun InputStream.inputStream2file_use_copyTo(fileDest: File): File =
+    UtilKInputStreamFormat.inputStream2file_use_copyTo(this, fileDest)
 
-fun InputStream.inputStream2File_use_ofCopyTo_gZip(fileDest: File): File =
-    UtilKInputStreamFormat.inputStream2File_use_ofCopyTo_gZip(this, fileDest)
+fun InputStream.inputStream2File_use_copyTo_gZip(fileDest: File): File =
+    UtilKInputStreamFormat.inputStream2File_use_copyTo_gZip(this, fileDest)
 
-fun InputStream.inputStream2file_use_ofBufferedOutStream(strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofBufferedOutStream(this, strFilePathNameDest, isAppend, bufferSize, block)
+fun InputStream.inputStream2file_use_bufferedOutStream(strFilePathNameDest: String, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
+    UtilKInputStreamFormat.inputStream2file_use_bufferedOutStream(this, strFilePathNameDest, isAppend, bufferSize, block)
 
-fun InputStream.inputStream2file_use_ofBufferedOutStream(fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofBufferedOutStream(this, fileDest, isAppend, bufferSize, block)
-
-@RequiresApi(CVersCode.V_29_10_Q)
-fun InputStream.inputStream2file_use_ofFileUtils(strFilePathNameDest: String, isAppend: Boolean = false): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofFileUtils(this, strFilePathNameDest, isAppend)
+fun InputStream.inputStream2file_use_bufferedOutStream(fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? =
+    UtilKInputStreamFormat.inputStream2file_use_bufferedOutStream(this, fileDest, isAppend, bufferSize, block)
 
 @RequiresApi(CVersCode.V_29_10_Q)
-fun InputStream.inputStream2file_use_ofFileUtils(fileDest: File, isAppend: Boolean = false): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofFileUtils(this, fileDest, isAppend)
+fun InputStream.inputStream2file_use_fileUtils(strFilePathNameDest: String, isAppend: Boolean = false): File? =
+    UtilKInputStreamFormat.inputStream2file_use_fileUtils(this, strFilePathNameDest, isAppend)
 
-fun InputStream.inputStream2file_use_ofReadWriteBytes(strFilePathNameDest: String): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofReadWriteBytes(this, strFilePathNameDest)
+@RequiresApi(CVersCode.V_29_10_Q)
+fun InputStream.inputStream2file_use_fileUtils(fileDest: File, isAppend: Boolean = false): File? =
+    UtilKInputStreamFormat.inputStream2file_use_fileUtils(this, fileDest, isAppend)
 
-fun InputStream.inputStream2file_use_ofReadWriteBytes(fileDest: File): File? =
-    UtilKInputStreamFormat.inputStream2file_use_ofReadWriteBytes(this, fileDest)
+fun InputStream.inputStream2file_use_readWriteBytes(strFilePathNameDest: String): File? =
+    UtilKInputStreamFormat.inputStream2file_use_readWriteBytes(this, strFilePathNameDest)
+
+fun InputStream.inputStream2file_use_readWriteBytes(fileDest: File): File? =
+    UtilKInputStreamFormat.inputStream2file_use_readWriteBytes(this, fileDest)
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -175,11 +177,28 @@ object UtilKInputStreamFormat : IUtilK {
         return bytes
     }
 
+    @Throws(IOException::class)
+    fun inputStream2bytes_use_stream(inputStream: InputStream): ByteArray {
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        UtilKInputStream.read_write_use(inputStream, ByteArrayOutputStream())
+        return byteArrayOutputStream.byteArrayOutputStream2bytes_use()
+    }
+
+//    @JvmStatic
+//    fun inputStream2bytes_use(inputStream: InputStream, isVerify: Boolean): ByteArray {
+//        val bytes = UtilKByteArray.get(inputStream)
+//        val available = inputStream.available()
+//        val readSize = inputStream.read_use(bytes)
+//        if (isVerify && readSize.toLong() < available)
+//            throw IOException(String.format("File length is [{}] but read [{}]!", *arrayOf<Any>(available, readSize)))
+//        return bytes
+//    }
+
     /**
      * 和方法二一样(增加完整性校验)
      */
     @JvmStatic
-    fun inputStream2bytes_use_ofVerify(inputStream: InputStream): ByteArray =
+    fun inputStream2bytes_use_verify(inputStream: InputStream): ByteArray =
         inputStream.use {
             val bytes = UtilKByteArray.get(inputStream)
             var offset = 0
@@ -212,32 +231,32 @@ object UtilKInputStreamFormat : IUtilK {
 
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
-    fun inputStream2strMd5Hex_use_ofBigInteger(inputStream: InputStream): String =
+    fun inputStream2strMd5Hex_use_bigInteger(inputStream: InputStream): String =
         inputStream.inputStream2bytesMd5_use().bytes2strHex_ofBigInteger()
 
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
-    fun inputStream2strMd5Hex_use_ofHexString(inputStream: InputStream): String =
+    fun inputStream2strMd5Hex_use_hexString(inputStream: InputStream): String =
         inputStream.inputStream2bytesMd5_use().bytes2strHex_ofHexString()
 
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun inputStream2str_use_ofBufferedReader(inputStream: InputStream, charset: String? = null, bufferSize: Int = 1024, isAddLineBreak: Boolean = false): String =
+    fun inputStream2str_use_bufferedReader(inputStream: InputStream, charset: String? = null, bufferSize: Int = 1024, isAddLineBreak: Boolean = false): String =
         UtilKInputStreamReader.readLines_use(inputStream, charset, bufferSize, isAddLineBreak)
 
     @JvmStatic
-    fun inputStream2str_use_ofBytesOutStream(inputStream: InputStream): String =
-        inputStream2str_use_ofBytesOutStream(inputStream, UtilKByteArrayOutputStream.get())
+    fun inputStream2str_use_bytesOutStream(inputStream: InputStream): String =
+        inputStream2str_use_bytesOutStream(inputStream, UtilKByteArrayOutputStream.get())
 
     @JvmStatic
-    fun inputStream2str_use_ofBytesOutStream(inputStream: InputStream, byteArrayOutputStream: ByteArrayOutputStream, charset: Charset = Charsets.UTF_8): String {
+    fun inputStream2str_use_bytesOutStream(inputStream: InputStream, byteArrayOutputStream: ByteArrayOutputStream, charset: Charset = Charsets.UTF_8): String {
         UtilKInputStream.read_write_use(inputStream, byteArrayOutputStream)
         return byteArrayOutputStream.byteArrayOutputStream2str_use(charset)
     }
 
     @JvmStatic
-    fun inputStream2str_use_ofBytes(inputStream: InputStream): String {
+    fun inputStream2str_use_bytes(inputStream: InputStream): String {
         inputStream.use {
             val stringBuilder = StringBuilder()
             var readCount: Int
@@ -251,7 +270,7 @@ object UtilKInputStreamFormat : IUtilK {
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun inputStream2strs_use_ofBufferedReader_forEachLine(inputStream: InputStream, charset: Charset = Charsets.UTF_8): List<String> {
+    fun inputStream2strs_use_bufferedReader_forEachLine(inputStream: InputStream, charset: Charset = Charsets.UTF_8): List<String> {
         val strs = mutableListOf<String>()
         inputStream.inputStream2inputStreamReader().inputStreamReader2bufferedReader().forEachLine_use(charset) { strs.add(it) }
         return strs
@@ -297,11 +316,11 @@ object UtilKInputStreamFormat : IUtilK {
     }
 
     @JvmStatic
-    fun inputStream2file_use_ofCopyTo(inputStream: InputStream, strFilePathNameDest: String): File =
-        inputStream2file_use_ofCopyTo(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() })
+    fun inputStream2file_use_copyTo(inputStream: InputStream, strFilePathNameDest: String): File =
+        inputStream2file_use_copyTo(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() })
 
     @JvmStatic
-    fun inputStream2file_use_ofCopyTo(inputStream: InputStream, fileDest: File): File {
+    fun inputStream2file_use_copyTo(inputStream: InputStream, fileDest: File): File {
         inputStream.use { inputStream1 ->
             fileDest.outputStream().use { outputStream ->
                 inputStream1.copyTo(outputStream)
@@ -311,7 +330,7 @@ object UtilKInputStreamFormat : IUtilK {
     }
 
     @JvmStatic
-    fun inputStream2File_use_ofCopyTo_gZip(inputStream: InputStream, fileDest: File): File {
+    fun inputStream2File_use_copyTo_gZip(inputStream: InputStream, fileDest: File): File {
         inputStream.use { inputStream1 ->
             fileDest.outputStream().outputStream2gZipOutputStream().use { outputStream ->
                 inputStream1.copyTo(outputStream)
@@ -321,17 +340,17 @@ object UtilKInputStreamFormat : IUtilK {
     }
 
     @JvmStatic
-    fun inputStream2file_use_ofBufferedOutStream(
+    fun inputStream2file_use_bufferedOutStream(
         inputStream: InputStream,
         strFilePathNameDest: String,
         isAppend: Boolean = false,
         bufferSize: Int = 1024,
-        block: IAB_Listener<Int, Float>? = null
+        block: IAB_Listener<Int, Float>? = null,
     ): File? =
-        inputStream2file_use_ofBufferedOutStream(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() }, isAppend, bufferSize, block)
+        inputStream2file_use_bufferedOutStream(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() }, isAppend, bufferSize, block)
 
     @JvmStatic
-    fun inputStream2file_use_ofBufferedOutStream(inputStream: InputStream, fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? {
+    fun inputStream2file_use_bufferedOutStream(inputStream: InputStream, fileDest: File, isAppend: Boolean = false, bufferSize: Int = 1024, block: IAB_Listener<Int, Float>? = null): File? {
         UtilKFileWrapper.createFile(fileDest)
         try {
             UtilKInputStream.read_write_use(inputStream, fileDest.file2bufferedOutputStream(isAppend), bufferSize, block)
@@ -345,12 +364,12 @@ object UtilKInputStreamFormat : IUtilK {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun inputStream2file_use_ofFileUtils(inputStream: InputStream, strFilePathNameDest: String, isAppend: Boolean = false): File? =
-        inputStream2file_use_ofFileUtils(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() }, isAppend)
+    fun inputStream2file_use_fileUtils(inputStream: InputStream, strFilePathNameDest: String, isAppend: Boolean = false): File? =
+        inputStream2file_use_fileUtils(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() }, isAppend)
 
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun inputStream2file_use_ofFileUtils(inputStream: InputStream, fileDest: File, isAppend: Boolean = false): File? {
+    fun inputStream2file_use_fileUtils(inputStream: InputStream, fileDest: File, isAppend: Boolean = false): File? {
         UtilKFileWrapper.createFile(fileDest)
         /*//        val fileInputStream = file.file2fileInputStream()
         //        if (isInputStreamSame(inputStream, fileInputStream)) {//相似内容就直接返回地址
@@ -367,11 +386,11 @@ object UtilKInputStreamFormat : IUtilK {
     }
 
     @JvmStatic
-    fun inputStream2file_use_ofReadWriteBytes(inputStream: InputStream, strFilePathNameDest: String): File? =
-        inputStream2file_use_ofReadWriteBytes(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() })
+    fun inputStream2file_use_readWriteBytes(inputStream: InputStream, strFilePathNameDest: String): File? =
+        inputStream2file_use_readWriteBytes(inputStream, strFilePathNameDest.strFilePath2file().apply { createFile() })
 
     @JvmStatic
-    fun inputStream2file_use_ofReadWriteBytes(inputStream: InputStream, fileDest: File): File? {
+    fun inputStream2file_use_readWriteBytes(inputStream: InputStream, fileDest: File): File? {
         UtilKFileWrapper.createFile(fileDest)
         try {
             UtilKInputStream.read_write_use_ofReadWriteBytes(inputStream, fileDest)

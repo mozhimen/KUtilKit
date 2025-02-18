@@ -24,7 +24,7 @@ object UtilKActivityInfoWrapper {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getMainLauncher(context: Context, strPackageName: String): ActivityInfo? {
         if (UtilKStringWrapper.hasSpace(strPackageName) || strPackageName.isEmpty()) return null
-        val resolveInfos = UtilKPackageManager.queryIntentActivities(context, UtilKIntentGet.getMainLauncher_ofPackage(strPackageName, null), 0)
+        val resolveInfos = UtilKPackageManager.queryIntentActivities(context, UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_PACKAGE(strPackageName, null), 0)
         return if (resolveInfos.isEmpty()) null else resolveInfos[0].activityInfo
     }
 

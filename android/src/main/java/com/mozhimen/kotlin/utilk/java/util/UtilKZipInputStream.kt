@@ -1,6 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.util
 
-import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use_ofCopyTo
+import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use_copyTo
 import java.io.File
 import java.util.zip.ZipInputStream
 
@@ -27,7 +27,7 @@ object UtilKZipInputStream {
                 val entry = inputStream.nextEntry
                 if (entry.name == entryName) break
             }
-            inputStream.inputStream2file_use_ofCopyTo(gameFile)
+            inputStream.inputStream2file_use_copyTo(gameFile)
         }
     }
 }

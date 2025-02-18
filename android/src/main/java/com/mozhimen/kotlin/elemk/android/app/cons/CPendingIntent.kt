@@ -1,6 +1,8 @@
 package com.mozhimen.kotlin.elemk.android.app.cons
 
 import android.app.PendingIntent
+import androidx.annotation.RequiresApi
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_31_11_S
 
 /**
@@ -11,6 +13,12 @@ import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_31_11_S
  * @Version 1.0
  */
 object CPendingIntent {
+    @Deprecated(
+        """
+        Targeting S+ (version 31 and above) requires that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+        Strongly consider using FLAG_IMMUTABLE, only use FLAG_MUTABLE if some functionality depends on the PendingIntent being mutable, e.g. if it needs to be used with inline replies or bubbles.
+    """
+    )
     @OApiDeprecated_Official_AfterV_31_11_S
     const val FLAG_NONE = 0
 
@@ -27,4 +35,10 @@ object CPendingIntent {
      * FLAG_IMMUTABLE：禁止任何对 PendingIntent 内容的更改
      */
     const val FLAG_IMMUTABLE = PendingIntent.FLAG_IMMUTABLE
+    const val FLAG_MUTABLE = PendingIntent.FLAG_MUTABLE
+    const val FLAG_NO_CREATE = PendingIntent.FLAG_NO_CREATE
+    const val FLAG_ONE_SHOT = PendingIntent.FLAG_ONE_SHOT
+    @RequiresApi(CVersCode.V_34_14_UDC)
+    const val FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT = PendingIntent.FLAG_ALLOW_UNSAFE_IMPLICIT_INTENT
+    const val FLAG_CANCEL_CURRENT = PendingIntent.FLAG_CANCEL_CURRENT
 }

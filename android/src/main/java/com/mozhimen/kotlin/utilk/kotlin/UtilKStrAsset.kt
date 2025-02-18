@@ -8,8 +8,8 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.inputStream2bitmapAny_use
 import com.mozhimen.kotlin.utilk.java.io.inputStream2bytes_use
 import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBytes
-import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_ofBufferedReader
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bytes
+import com.mozhimen.kotlin.utilk.java.io.inputStream2str_use_bufferedReader
 import java.io.File
 
 /**
@@ -108,7 +108,7 @@ object UtilKStrAsset : BaseUtilK() {
     @JvmStatic
     fun strAssetName2str_use_ofBufferedReader(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
-        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_ofBufferedReader()
+        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_bufferedReader()
 
     /**
      * 获取文本文件内容: txt 最快的方法
@@ -124,7 +124,7 @@ object UtilKStrAsset : BaseUtilK() {
     @JvmStatic
     fun strAssetName2str_use_ofStream(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
-        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_ofBytes()
+        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_bytes()
 
     ///////////////////////////////////////////////////////////////////
 

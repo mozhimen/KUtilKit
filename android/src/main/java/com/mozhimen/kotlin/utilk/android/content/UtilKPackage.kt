@@ -90,7 +90,7 @@ object UtilKPackage : BaseUtilK() {
     @OPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun hasPackage_ofPackageManager(strPackageName: String, flags: Int): Boolean =
-        UtilKPackageManager.queryIntentActivities(_context, UtilKIntentGet.getMainLauncher_ofPackage(strPackageName), flags).isNotEmpty()
+        UtilKPackageManager.queryIntentActivities(_context, UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_PACKAGE(strPackageName), flags).isNotEmpty()
 
     @JvmStatic
     fun hasPackage_ofPackageInfo(strPackageName: String, flags: Int): Boolean =

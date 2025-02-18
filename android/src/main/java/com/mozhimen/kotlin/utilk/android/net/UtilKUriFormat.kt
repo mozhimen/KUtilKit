@@ -21,7 +21,7 @@ import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.mozhimen.kotlin.utilk.android.webkit.UtilKMimeTypeMap
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.io.inputStream2bitmapAny_use
-import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use_ofFileUtils
+import com.mozhimen.kotlin.utilk.java.io.inputStream2file_use_fileUtils
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.kotlin.getStrFolderPath
@@ -85,7 +85,7 @@ object UtilKUriFormat : BaseUtilK() {
                 val strFileName = UtilKContentResolverWrapper.getOpenableColumns(uri) ?:
                 "${UtilKStrFile.getStrFileName_ofNow()}.${UtilKMimeTypeMap.getExtensionFromMimeType(_context, uri)}"
                 val strFilePathName = "${UtilKStrPath.Absolute.Internal.getCache().getStrFolderPath()}uri/$strFileName"
-                UtilKContentResolver.openInputStream(_context, uri)?.inputStream2file_use_ofFileUtils(strFilePathName)?.absolutePath
+                UtilKContentResolver.openInputStream(_context, uri)?.inputStream2file_use_fileUtils(strFilePathName)?.absolutePath
             }
 
             else -> null

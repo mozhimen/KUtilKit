@@ -49,11 +49,11 @@ class MediaStoreCaptureProxy {
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")
     fun dispatchCaptureIntent(context: Context, requestCode: Int) {
-        var intent = UtilKIntentGet.getMediaStoreImageCapture()
+        var intent = UtilKIntentGet.getMediaStore_ACTION_IMAGE_CAPTURE()
 
         if (intent.isIntentAvailable(context)&&_currentPhotoUri!=null) {
             createCurrentPhotoUri()
-            intent = UtilKIntentGet.getMediaStoreImageCaptureOutput(_currentPhotoUri!!)
+            intent = UtilKIntentGet.getMediaStore_ACTION_IMAGE_CAPTURE(_currentPhotoUri!!)
             UtilKContextWrapper.grantUriPermission_before21(context,intent, _currentPhotoUri!!)
             if (_fragmentRef != null) {
                 _fragmentRef?.get()?.startActivityForResult(intent, requestCode)
