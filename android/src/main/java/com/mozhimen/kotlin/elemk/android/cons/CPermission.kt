@@ -89,6 +89,7 @@ object CPermission {
     @RequiresApi(CVersCode.V_30_11_R)
     const val BIND_CONTROLS = Manifest.permission.BIND_CONTROLS
     const val BIND_DEVICE_ADMIN = Manifest.permission.BIND_DEVICE_ADMIN
+    @RequiresApi(CVersCode.V_21_5_L)
     const val BIND_DREAM_SERVICE = Manifest.permission.BIND_DREAM_SERVICE
 
     @RequiresApi(CVersCode.V_23_6_M)
@@ -114,6 +115,7 @@ object CPermission {
     @RequiresApi(CVersCode.V_23_6_M)
     const val BIND_TELECOM_CONNECTION_SERVICE = Manifest.permission.BIND_TELECOM_CONNECTION_SERVICE
     const val BIND_TEXT_SERVICE = Manifest.permission.BIND_TEXT_SERVICE
+    @RequiresApi(CVersCode.V_21_5_L)
     const val BIND_TV_INPUT = Manifest.permission.BIND_TV_INPUT
 
     @RequiresApi(CVersCode.V_33_13_T)
@@ -121,6 +123,7 @@ object CPermission {
 
     @RequiresApi(CVersCode.V_26_8_O)
     const val BIND_VISUAL_VOICEMAIL_SERVICE = Manifest.permission.BIND_VISUAL_VOICEMAIL_SERVICE
+    @RequiresApi(CVersCode.V_21_5_L)
     const val BIND_VOICE_INTERACTION = Manifest.permission.BIND_VOICE_INTERACTION
     const val BIND_VPN_SERVICE = Manifest.permission.BIND_VPN_SERVICE
 
@@ -139,6 +142,7 @@ object CPermission {
 
     @RequiresApi(CVersCode.V_31_12_S)
     const val BLUETOOTH_SCAN = Manifest.permission.BLUETOOTH_SCAN
+    @RequiresApi(CVersCode.V_20_44W_KW)
     const val BODY_SENSORS = Manifest.permission.BODY_SENSORS
 
     @RequiresApi(CVersCode.V_33_13_T)
