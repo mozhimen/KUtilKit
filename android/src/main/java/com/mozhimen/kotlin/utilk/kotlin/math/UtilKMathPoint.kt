@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.kotlin.math
 
+import android.graphics.PointF
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -13,18 +14,22 @@ import kotlin.math.sqrt
  */
 object UtilKMathPoint {
     @JvmStatic
-    fun center(x1: Float, y1: Float, x2: Float, y2: Float): Pair<Float, Float> =
+    fun getCenter(pointF1: PointF, pointF2: PointF): PointF =
+        PointF((pointF1.x + pointF2.x) / 2f, (pointF1.y + pointF2.y) / 2f)
+
+    @JvmStatic
+    fun getCenter(x1: Float, y1: Float, x2: Float, y2: Float): Pair<Float, Float> =
         Pair((x1 + x2) / 2f, (y1 + y2) / 2f)
 
     @JvmStatic
-    fun center(x1: Double, y1: Double, x2: Double, y2: Double): Pair<Double, Double> =
+    fun getCenter(x1: Double, y1: Double, x2: Double, y2: Double): Pair<Double, Double> =
         Pair((x1 + x2) / 2.0, (y1 + y2) / 2.0)
 
     @JvmStatic
-    fun distance(x1: Float, y1: Float, x2: Float, y2: Float): Float =
+    fun getDistance(x1: Float, y1: Float, x2: Float, y2: Float): Float =
         sqrt((x1 - x2).pow(2f) + (y1 - y2).pow(2f))
 
     @JvmStatic
-    fun distance(x1: Double, y1: Double, x2: Double, y2: Double): Double =
+    fun getDistance(x1: Double, y1: Double, x2: Double, y2: Double): Double =
         sqrt((x1 - x2).pow(2.0) + (y1 - y2).pow(2.0))
 }

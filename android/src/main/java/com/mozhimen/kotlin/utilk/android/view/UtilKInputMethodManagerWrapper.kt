@@ -35,47 +35,48 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      * 是否需要隐藏软键盘
      * Return whether touch the view.
      * for Example:
-     *
      * inActivity:
      *
-    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-    if (event?.action == MotionEvent.ACTION_DOWN) {
-    val focusView: View? = currentFocus
-    if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
-    UtilKKeyBoard.hide(this)
-    }
-    }
-    return super.dispatchTouchEvent(event)
-    }
+     * override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+     *      if (event?.action == MotionEvent.ACTION_DOWN) {
+     *          val focusView: View? = currentFocus
+     *          if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
+     *              UtilKKeyBoard.hide(this)
+     *              focusView!!.clearFocus()
+     *          }
+     *      }
+     *      return super.dispatchTouchEvent(event)
+     * }
      *
      * inFragment:
      *
-    @SuppressLint("ClickableViewAccessibility")
-    override fun inflateView(viewGroup: ViewGroup?) {
-    viewGroup?.setOnTouchListener { _, event ->
-    if (event?.action == MotionEvent.ACTION_DOWN) {
-    val focusView: View? = requireActivity().currentFocus
-    if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
-    UtilKKeyBoard.hide(requireActivity())
-    }
-    }
-    false
-    }
-    super.inflateView(viewGroup)
-    }
+     * @SuppressLint("ClickableViewAccessibility")
+     * override fun inflateView(viewGroup: ViewGroup?) {
+     *      viewGroup?.setOnTouchListener { _, event ->
+     *          if (event?.action == MotionEvent.ACTION_DOWN) {
+     *              val focusView: View? = requireActivity().currentFocus
+     *              if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
+     *                  UtilKKeyBoard.hide(requireActivity())
+     *                  focusView!!.clearFocus()
+     *              }
+     *          }
+     *          false
+     *      }
+     *      super.inflateView(viewGroup)
+     * }
      * @param view View 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditView上，和用户用轨迹球选择其他的焦点
      * @param event MotionEvent
      * @return Boolean
      */
     fun isShouldHide(view: View, event: MotionEvent): Boolean {
         if (view is EditText) {
-            val ints = intArrayOf(0, 0)
-            view.getLocationOnScreen(ints)
-            val left = ints[0]
-            val top = ints[1]
-            val bottom = top + view.getHeight()
+            val outLocation = intArrayOf(0, 0)
+            view.getLocationOnScreen(outLocation)
+            val left = outLocation[0].toFloat()
+            val top = outLocation[1].toFloat()
             val right = left + view.getWidth()
-            return !(event.rawX > left && event.rawX < right && event.rawY > top && event.rawY < bottom)
+            val bottom = top + view.getHeight()
+            return !UtilKMotionEventWrapper.isTapInArea_raw(event, left, top, right, bottom)/*(event.rawX > left && event.rawX < right && event.rawY > top && event.rawY < bottom)*/
         }
         return false
     }
@@ -109,13 +110,13 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
         UtilKInputMethodManager.showSoftInput(focusView)
     }
 
-
-
     //延迟显示软键盘
     @JvmStatic
     fun showByDelay(view: View, delayMillis: Long) {
         view.postDelayed({ show(view) }, delayMillis)
     }
+
+    ////////////////////////////////////////////////////////////////////////////
 
     //关闭软键盘
     @JvmStatic
@@ -127,7 +128,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
     //隐藏软键盘
     @JvmStatic
     fun hide(view: View) {
-        if (UtilKInputMethodManager.isActive(view))
+        if (UtilKInputMethodManager.isActive(view.context))
             UtilKInputMethodManager.hideSoftInputFromWindow(view)
     }
 
@@ -136,14 +137,18 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      * Click blank area to hide soft input.
      * Copy the following code in ur activity.
      */
+    /**
+     * Click blank area to hide soft input.
+     * Copy the following code in ur activity.
+     */
     @JvmStatic
-    fun hideByClickOther() {
+    fun hide_clickBlank() {
         UtilKLogWrapper.d(TAG, "hideByClickOther: Please refer to the following code.")
         //kotlin
         /*override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
             if (event?.action == MotionEvent.ACTION_DOWN) {
                 val focusView: View? = currentFocus
-                if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
+                if (focusView != null && UtilKEditTextWrapper.canHideKeyboard(focusView, event)) {
                     UtilKKeyBoard.hide(this)
                 }
             }
@@ -164,17 +169,8 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
         */
     }
 
-    /**
-     * Click blank area to hide soft input.
-     * Copy the following code in ur activity.
-     */
     @JvmStatic
-    fun clickBlankAreaToHide() {
-
-    }
-
-    @JvmStatic
-    fun handleKeyEventHide(view: View, keyCode: Int) {
+    fun hide_keyEvent_ENTER(view: View, keyCode: Int) {
         if (keyCode == CKeyEvent.KEYCODE_ENTER)
             hide(view)
     }

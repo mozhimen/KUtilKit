@@ -58,7 +58,7 @@ open class BaseActivity : AppCompatActivity(), IUtilK {
         super.onRestart()
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         UtilKLogWrapper.d(TAG, "onNewIntent: intent $intent")
         super.onNewIntent(intent)
     }

@@ -32,36 +32,6 @@ val EditText.value: String get() = UtilKEditText.getValue(this)
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
-fun EditText.applyOnEditorActionListener_ofSearch(block: I_Listener) {
-    UtilKEditText.applyOnEditorActionListener_ofSearch(this, block)
-}
-
-@FlowPreview
-@ExperimentalCoroutinesApi
-fun EditText.applyDebounceTextChangeListener(
-    scope: CoroutineScope,
-    searchBlock: suspend CoroutineScope.(String) -> List<String>,
-    resBlock: IAB_Listener<EditText, List<String>>,
-    thresholdMillis: Long = 500
-) {
-    UtilKEditText.applyDebounceTextChangeListener(this, scope, searchBlock, resBlock, thresholdMillis)
-}
-
-@FlowPreview
-@ExperimentalCoroutinesApi
-fun EditText.applySuspendDebounceTextChangeListener(
-    scope: CoroutineScope,
-    searchBlock: suspend CoroutineScope.(String) -> List<String>,
-    resBlock: suspend CoroutineScope.(EditText, List<String>) -> Unit,
-    thresholdMillis: Long = 500
-) {
-    UtilKEditText.applySuspendDebounceTextChangeListener(this, scope, searchBlock, resBlock, thresholdMillis)
-}
-
-fun EditText.addTextChangedObserver(onTextChanged: IA_Listener<String>/*(newText: String) -> Unit*/) {
-    UtilKEditText.addTextChangedObserver(this, onTextChanged)
-}
-
 fun EditText.clearText() {
     UtilKEditText.clearText(this)
 }
@@ -78,59 +48,6 @@ object UtilKEditText {
     @JvmStatic
     fun getValue(editText: EditText): String =
         getText(editText).obj2str_trim()
-
-    //////////////////////////////////////////////////////////////////////////////////////////////
-
-    @JvmStatic
-    fun applyOnEditorActionListener_ofSearch(editText: EditText, block: I_Listener) {
-        editText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == CEditorInfo.IME_ACTION_SEARCH) {
-                block.invoke()
-                return@setOnEditorActionListener true
-            }
-            false
-        }
-    }
-
-    @ExperimentalCoroutinesApi
-    @FlowPreview
-    @JvmStatic
-    fun applyDebounceTextChangeListener(
-        editText: EditText,
-        scope: CoroutineScope,
-        searchBlock: suspend CoroutineScope.(String) -> List<String>,
-        resBlock: IAB_Listener<EditText, List<String>>,
-        thresholdMillis: Long = 500
-    ) {
-        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getStringFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
-            resBlock(editText, it)
-        }.launchIn(scope)
-    }
-
-    @ExperimentalCoroutinesApi
-    @FlowPreview
-    @JvmStatic
-    fun applySuspendDebounceTextChangeListener(
-        editText: EditText,
-        scope: CoroutineScope,
-        searchBlock: suspend CoroutineScope.(String) -> List<String>,
-        resBlock: suspend CoroutineScope.(EditText, List<String>) -> Unit,
-        thresholdMillis: Long = 500
-    ) {
-        editText.getEditTextChangeFlow().filter { it.isNotEmpty() }.debounce(thresholdMillis).flatMapLatest { getStringFlow(it.toString(), scope, searchBlock) }.flowOn(Dispatchers.IO).onEach {
-            scope.resBlock(editText, it)
-        }.launchIn(scope)
-    }
-
-    //变化观察
-    @JvmStatic
-    fun addTextChangedObserver(editText: EditText, onTextChanged: IA_Listener<String>/*(newTextStr: String) -> Unit*/) {
-        editText.addTextChangedListener(object : ITextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                onTextChanged(s.toString())
-            }
-        })
-    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 

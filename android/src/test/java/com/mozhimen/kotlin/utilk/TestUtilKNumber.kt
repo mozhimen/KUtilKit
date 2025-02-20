@@ -24,8 +24,8 @@ class TestUtilKNumber {
 
     @Test
     fun angleSin() {
-        UtilKConsole.printlog(UtilKMathTriangle.angleSin(1f, 2f).toString())
-        UtilKConsole.printlog(UtilKMathTriangle.angleCos(1f, 2f).toString())
+        UtilKConsole.printlog(UtilKMathTriangle.getAngleSin(1f, 2f).toString())
+        UtilKConsole.printlog(UtilKMathTriangle.getAngleCos(1f, 2f).toString())
     }
 
     @Test

@@ -8,7 +8,7 @@ import kotlin.math.sin
 
 /**
  * @ClassName UtilKTriangle
- * @Description TODO
+ * @Description 三角
  * @Author Mozhimen & Kolin Zhao
  * @Date 2023/3/10 16:55
  * @Version 1.0
@@ -19,14 +19,14 @@ object UtilKMathTriangle {
      * @param adjacent Double 临边
      */
     @JvmStatic
-    fun angleCos(adjacent: Double, hypotenuse: Double): Double =
+    fun getAngleCos(adjacent: Double, hypotenuse: Double): Double =
         Math.toDegrees(acos(adjacent / hypotenuse))
 
     /**
      * 计算对边对斜边的角度
      */
     @JvmStatic
-    fun angleSin(opposite: Double, hypotenuse: Double): Double =
+    fun getAngleSin(opposite: Double, hypotenuse: Double): Double =
         Math.toDegrees(asin(opposite / hypotenuse))
 
     /**
@@ -34,14 +34,14 @@ object UtilKMathTriangle {
      * @param adjacent Float 临边
      */
     @JvmStatic
-    fun angleCos(adjacent: Float, hypotenuse: Float): Float =
+    fun getAngleCos(adjacent: Float, hypotenuse: Float): Float =
         Math.toDegrees(acos(adjacent / hypotenuse).toDouble()).toFloat()
 
     /**
      * 计算对边对斜边的角度
      */
     @JvmStatic
-    fun angleSin(opposite: Float, hypotenuse: Float): Float =
+    fun getAngleSin(opposite: Float, hypotenuse: Float): Float =
         Math.toDegrees(asin(opposite / hypotenuse).toDouble()).toFloat()
 
     @JvmStatic

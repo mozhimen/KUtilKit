@@ -13,5 +13,5 @@ import com.mozhimen.kotlin.utilk.kotlin.math.UtilKMathPoint
 object UtilKPoint {
     @JvmStatic
     fun getDistance(a: Point, b: Point) =
-        UtilKMathPoint.distance(a.x.toDouble(), a.y.toDouble(), b.x.toDouble(), b.y.toDouble())
+        UtilKMathPoint.getDistance(a.x.toDouble(), a.y.toDouble(), b.x.toDouble(), b.y.toDouble())
 }
