@@ -6,7 +6,7 @@ import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityV
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManager
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkScreenBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkScreenBinding
 //import com.mozhimen.adaptk.systembar.annors.AAdaptKSystemBarProperty
 //import com.mozhimen.adaptk.systembar.cons.CProperty
 

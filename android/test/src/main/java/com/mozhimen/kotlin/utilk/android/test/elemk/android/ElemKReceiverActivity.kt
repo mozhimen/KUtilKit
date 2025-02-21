@@ -8,7 +8,7 @@ import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityV
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiCall_RegisterDynamic
-import com.mozhimen.utilk.android.test.databinding.ActivityElemkReceiverBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkReceiverBinding
 
 
 /**

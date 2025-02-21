@@ -4,7 +4,7 @@ import android.view.MotionEvent
 import android.view.View
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.view.UtilKInputMethodManagerWrapper
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkKeyboardBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkKeyboardBinding
 
 
 /**

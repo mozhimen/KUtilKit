@@ -11,8 +11,8 @@ import com.mozhimen.uik.databinding.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.kotlin.utilk.android.app.UtilKApplicationWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkApplicationBinding
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkApplicationBinding
 
 class UtilKApplicationActivity : BaseActivityVB<ActivityUtilkApplicationBinding>() {
     override fun initView(savedInstanceState: Bundle?) {

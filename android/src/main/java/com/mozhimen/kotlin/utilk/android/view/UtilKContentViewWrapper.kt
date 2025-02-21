@@ -20,7 +20,7 @@ object UtilKContentViewWrapper {
 
     @JvmStatic
     fun getInvisibleHeight(window: Window): Int {
-        val contentView = UtilKContentView.get<View>(window)
+        val contentView = UtilKContentView.get_window<View>(window)
         val outRect = UtilKContentView.getWindowVisibleDisplayFrame(window)
         val delta = abs(contentView.bottom - outRect.bottom)
         return if (delta <= UtilKStatusBar.getHeight() + UtilKNavigationBar.getHeight()) 0

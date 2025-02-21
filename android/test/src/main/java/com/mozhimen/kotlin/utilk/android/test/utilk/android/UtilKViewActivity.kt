@@ -14,7 +14,7 @@ import com.mozhimen.kotlin.utilk.android.view.applyDebounceClickListener
 import com.mozhimen.kotlin.utilk.android.view.applyHapticOnTouchListener
 import com.mozhimen.kotlin.utilk.android.view.applySuspendDebounceClickListener
 import com.mozhimen.kotlin.utilk.java.text.longDate2strDate
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkViewBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkViewBinding
 import kotlinx.coroutines.delay
 import android.view.ViewGroup
 import android.view.View

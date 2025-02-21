@@ -52,13 +52,18 @@ include ':ASwiftKit:xmlk'
 include ":ATaskKit"
 project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
 include ':ATaskKit:executor'
-//AManifestKit_XXPermissions
-include ":AManifestKit_XXPermissions"
-project(':AManifestKit_XXPermissions').projectDir = new File("D:\\WorkSpace\\GitHub\\AManifestKit_XXPermissions")
-include ':AManifestKit_XXPermissions:manifestk_xxpermissions'
-include ':AManifestKit_XXPermissions:library'
+//APermissionKit_XXPermissions
+include ":APermissionKit_XXPermissions"
+project(':APermissionKit_XXPermissions').projectDir = new File("D:\\WorkSpace\\GitHub\\APermissionKit_XXPermissions")
+include ':APermissionKit_XXPermissions:permissionk_xxpermissions'
+include ':APermissionKit_XXPermissions:library'
 //AXmlKit
 include ":AXmlKit"
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
 include ':AXmlKit:recyclerk'
+include ':AXmlKit:recyclerk:quick'
 include ':AXmlKit:vhk'
+//APermissionKit
+include ":APermissionKit"
+project(':APermissionKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APermissionKit")
+include ':APermissionKit:permissionk'

@@ -6,10 +6,10 @@ import com.mozhimen.basick.helpers.DragAndDropProxy
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkGestureBinding
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 import com.mozhimen.kotlin.utilk.android.view.UtilKViewLeak
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.databinding.ActivityElemkGestureBinding
+import com.mozhimen.kotlin.utilk.android.test.R
 
 
 /**

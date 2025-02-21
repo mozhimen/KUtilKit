@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileFormat
 import com.mozhimen.kotlin.utilk.java.io.isFileExist
 import com.mozhimen.kotlin.utilk.java.util.UtilKDateWrapper
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkMd5Binding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkMd5Binding
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

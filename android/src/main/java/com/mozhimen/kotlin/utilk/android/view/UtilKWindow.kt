@@ -21,7 +21,7 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
  * @Version 1.0
  */
 fun <V : View> Window.getContentView(): V =
-    UtilKWindow.getContentView_ofPackage(this)
+    UtilKWindow.getContentView_package(this)
 
 object UtilKWindow : BaseUtilK() {
 
@@ -47,20 +47,23 @@ object UtilKWindow : BaseUtilK() {
     fun getPeekDecorView(window: Window): View? =
         window.peekDecorView()
 
+    /**
+     * @see getContentView_window 是同一个对象
+     */
     @JvmStatic
-    fun <V : View> getContentView_ofPackage(activity: Activity): V =
-        getContentView_ofPackage(get(activity))
+    fun <V : View> getContentView_package(activity: Activity): V =
+        getContentView_package(get(activity))
 
     @JvmStatic
-    fun <V : View> getContentView_ofPackage(window: Window): V =
+    fun <V : View> getContentView_package(window: Window): V =
         window.findViewById(CPackage.ANDROID_R_ID_CONTENT)
 
     @JvmStatic
-    fun <V : View> getContentView_ofWindow(activity: Activity): V =
-        getContentView_ofWindow(get(activity))
+    fun <V : View> getContentView_window(activity: Activity): V =
+        getContentView_window(get(activity))
 
     @JvmStatic
-    fun <V : View> getContentView_ofWindow(window: Window): V =
+    fun <V : View> getContentView_window(window: Window): V =
         window.findViewById(CWindow.ID_ANDROID_CONTENT)
 
     @JvmStatic
