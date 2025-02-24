@@ -7,7 +7,7 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.uik.databinding.bases.viewdatabinding.fragment.BaseFragmentVDB
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
-import com.mozhimen.utilk.android.test.databinding.FragmentElemkGestureBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.FragmentElemkGestureBinding
 
 class ElemKGestureFragment : BaseFragmentVDB<FragmentElemkGestureBinding>() {
     @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)

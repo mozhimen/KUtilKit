@@ -162,7 +162,13 @@
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKContentViewActivity"
             android:exported="true"
-            android:theme="@style/Theme.KUtilKit"></activity>
+            android:theme="@style/Theme.KUtilKit">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.kotlin.UtilKVerifyUrlActivity"
             android:exported="false" />
@@ -175,11 +181,11 @@
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKSettingsActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
+        <activity
+            android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKWindowActivity"
+            android:exported="true">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

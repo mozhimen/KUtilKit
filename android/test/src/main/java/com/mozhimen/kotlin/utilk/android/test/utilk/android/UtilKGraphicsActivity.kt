@@ -4,8 +4,8 @@ import android.os.Bundle
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.util.dp2px
 import com.mozhimen.kotlin.utilk.androidx.core.UtilKRoundedBitmapDrawable
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkGraphicsBinding
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkGraphicsBinding
 
 /**
  * @ClassName UtilKGraphicsActivity

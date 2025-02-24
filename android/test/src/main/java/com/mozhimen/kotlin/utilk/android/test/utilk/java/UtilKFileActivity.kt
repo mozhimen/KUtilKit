@@ -10,17 +10,17 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_S
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.manifestk.permission.ManifestKPermission
-import com.mozhimen.manifestk.permission.annors.APermissionCheck
+import com.mozhimen.permissionk.PermissionK
+import com.mozhimen.permissionk.annors.APermissionCheck
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextDir
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkFileBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ItemUtilkFileLogBinding
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.kotlin.createFile
 import com.mozhimen.kotlin.utilk.kotlin.createFolder
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkFileBinding
-import com.mozhimen.utilk.android.test.databinding.ItemUtilkFileLogBinding
-import com.mozhimen.manifestk.xxpermissions.XXPermissionsRequestUtil
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.BR
+import com.mozhimen.permissionk.xxpermissions.XXPermissionsRequestUtil
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.BR
 import com.mozhimen.xmlk.recyclerk.quick.RecyclerKQuickAdapterVDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,8 +36,8 @@ class UtilKFileActivity : BaseActivityVDB<ActivityUtilkFileBinding>() {
     @OptIn(OPermission_WRITE_EXTERNAL_STORAGE::class, OPermission_READ_EXTERNAL_STORAGE::class, OPermission_MANAGE_EXTERNAL_STORAGE::class)
     @SuppressLint("MissingPermission")
     override fun initData(savedInstanceState: Bundle?) {
-        XXPermissionsRequestUtil.requestReadWritePermission(this, onGranted = {
-            ManifestKPermission.requestPermissions(this) {
+        XXPermissionsRequestUtil.requestPermission_EXTERNAL_STORAGE(this, onGranted = {
+            PermissionK.requestPermissions(this) {
                 if (it) {
                     vdb.utilkFileRecycler.layoutManager = LinearLayoutManager(this)
                     _adapterKRecycler = RecyclerKQuickAdapterVDB<UtilKFileLogBean, ItemUtilkFileLogBinding>(_logs, R.layout.item_utilk_file_log, BR.item_utilk_file_log)

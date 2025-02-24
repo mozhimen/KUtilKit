@@ -5,8 +5,8 @@ import android.view.Menu
 import android.view.MenuItem
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseBarActivityVDB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.databinding.ActivityElemkBarBinding
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkBarBinding
 
 /**
  * @ClassName ElemKBarActivity
@@ -17,7 +17,7 @@ import com.mozhimen.utilk.android.test.databinding.ActivityElemkBarBinding
  */
 class ElemKBarActivity : BaseBarActivityVDB<ActivityElemkBarBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
-        setToolbarTitle("标题")
+        setToolbarText("标题")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

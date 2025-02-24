@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.android.test.elemk
 import android.view.View
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.content.startContext
-import com.mozhimen.utilk.android.test.databinding.ActivityElemkBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkBinding
 import com.mozhimen.kotlin.utilk.android.test.elemk.android.ElemKAndroidActivity
 import com.mozhimen.kotlin.utilk.android.test.elemk.androidx.ElemKAndroidXActivity
 

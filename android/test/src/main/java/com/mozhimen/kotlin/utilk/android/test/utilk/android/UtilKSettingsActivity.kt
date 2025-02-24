@@ -5,7 +5,7 @@ import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityV
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSecureGet
 import com.mozhimen.kotlin.utilk.android.provider.UtilKSettingsSystemGet
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkSettingsBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkSettingsBinding
 
 /**
  * @ClassName UtilKSettingsActivity

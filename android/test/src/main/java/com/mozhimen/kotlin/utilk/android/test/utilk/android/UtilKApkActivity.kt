@@ -8,7 +8,7 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.kotlin.isFileExist
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkApkBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkApkBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

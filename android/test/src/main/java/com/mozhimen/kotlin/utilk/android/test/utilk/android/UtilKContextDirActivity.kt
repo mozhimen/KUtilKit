@@ -1,13 +1,13 @@
 package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.manifestk.permission.ManifestKPermission
-import com.mozhimen.manifestk.permission.annors.APermissionCheck
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextDir
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkContextDirBinding
 import com.mozhimen.kotlin.utilk.android.util.i
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkContextDirBinding
+import com.mozhimen.permissionk.PermissionK
+import com.mozhimen.permissionk.annors.APermissionCheck
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 
 /**
@@ -20,11 +20,11 @@ import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityV
 @APermissionCheck(CPermission.READ_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE)
 class UtilKContextDirActivity : BaseActivityVDB<ActivityUtilkContextDirBinding>() {
     override fun initData(savedInstanceState: android.os.Bundle?) {
-        ManifestKPermission.requestPermissions(this) {
+        PermissionK.requestPermissions(this) {
             if (it) {
                 super.initData(savedInstanceState)
             } else {
-                UtilKActivityStart.startSettingApplicationDetailsSettings(this)
+                UtilKActivityStart.startSettingsApplicationDetailsSettings(this)
             }
         }
     }

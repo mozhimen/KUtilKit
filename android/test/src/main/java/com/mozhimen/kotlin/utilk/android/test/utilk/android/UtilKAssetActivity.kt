@@ -1,20 +1,19 @@
 package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import android.os.Bundle
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkAssetBinding
-import com.mozhimen.utilk.android.test.databinding.ItemUtilkFileLogBinding
-import com.mozhimen.manifestk.permission.ManifestKPermission
-import com.mozhimen.manifestk.permission.annors.APermissionCheck
 import com.mozhimen.kotlin.utilk.android.content.UtilKAssetManager
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkAssetBinding
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.BR
-import com.mozhimen.kotlin.utilk.android.test.utilk.java.UtilKFileActivity
+import com.mozhimen.permissionk.PermissionK
+import com.mozhimen.permissionk.annors.APermissionCheck
+import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
+import com.mozhimen.kotlin.utilk.android.test.BR
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.databinding.ItemUtilkFileLogBinding
 import com.mozhimen.xmlk.recyclerk.quick.RecyclerKQuickAdapterVDB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +27,7 @@ class UtilKAssetActivity : BaseActivityVDB<ActivityUtilkAssetBinding>() {
     )
 
     override fun initData(savedInstanceState: Bundle?) {
-        ManifestKPermission.requestPermissions(this) {
+        PermissionK.requestPermissions(this) {
             if (it) {
                 vdb.utilkAssetRecycler.layoutManager = LinearLayoutManager(this)
                 _adapterKRecycler = RecyclerKQuickAdapterVDB<com.mozhimen.kotlin.utilk.android.test.utilk.java.UtilKFileActivity.UtilKFileLogBean, ItemUtilkFileLogBinding>(

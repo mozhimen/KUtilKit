@@ -167,7 +167,7 @@ object UtilKActivityWrapper : IUtilK {
 
     @JvmStatic
     fun <V : View> getContentView(activity: Activity): V =
-        UtilKContentView.get(activity)
+        UtilKContentView.get_window(activity)
 
     @JvmStatic
     fun <V : View> getDecorView(activity: Activity): V =

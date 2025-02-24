@@ -14,8 +14,8 @@ import com.mozhimen.kotlin.utilk.android.graphics.applyBitmapAnyScaleRatio
 import com.mozhimen.kotlin.utilk.android.graphics.drawable2bitmap
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrUrl
-import com.mozhimen.utilk.android.test.R
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkBitmapBinding
+import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkBitmapBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

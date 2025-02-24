@@ -13,14 +13,14 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeK_OverlayAppDarkAction">
+            android:theme="@style/ThemeK_Overlay_AppCompat_Dark_ActionBar">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/utilk_action_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeK_OverlayAppLight"
+                app:popupTheme="@style/ThemeK_Overlay_AppCompat_Light"
                 tools:title="DLNA Cast" />
 
         </com.google.android.material.appbar.AppBarLayout>

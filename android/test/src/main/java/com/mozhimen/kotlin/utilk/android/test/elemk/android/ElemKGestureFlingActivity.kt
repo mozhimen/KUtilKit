@@ -5,7 +5,7 @@ import android.view.MotionEvent
 import com.mozhimen.kotlin.elemk.android.view.bases.BaseFlingSimpleOnGestureCallback
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.widget.showToast
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkGestureBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkGestureBinding
 
 class ElemKGestureFlingActivity : BaseActivityVDB<ActivityUtilkGestureBinding>() {
 

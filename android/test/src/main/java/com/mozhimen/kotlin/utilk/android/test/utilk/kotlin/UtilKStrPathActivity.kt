@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.i
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkStrPathBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkStrPathBinding
 
 class UtilKStrPathActivity : BaseActivityVDB<ActivityUtilkStrPathBinding>() {
     override fun initView(savedInstanceState: Bundle?) {

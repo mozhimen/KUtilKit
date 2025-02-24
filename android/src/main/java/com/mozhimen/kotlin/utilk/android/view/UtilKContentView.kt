@@ -17,38 +17,33 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 object UtilKContentView : BaseUtilK() {
 
     @JvmStatic
-    fun <V : View> get(window: Window): V =
-        UtilKWindow.getContentView_ofPackage(window)
+    fun <V : View> get_window(window: Window): V =
+        UtilKWindow.getContentView_package(window)
 
     @JvmStatic
-    fun <V : View> get(activity: Activity): V =
-        get(activity.window)
+    fun <V : View> get_window(activity: Activity): V =
+        get_window(activity.window)
 
+    /**
+     *  和 [get_window] 是同一个对象
+     */
     @JvmStatic
-    fun <V : View> get_ofWindow(window: Window): V =
-        UtilKWindow.getContentView_ofWindow(window)
-
-    @JvmStatic
-    fun <V : View> get_ofWindow(activity: Activity): V =
-        get_ofWindow(activity.window)
-
-    @JvmStatic
-    fun <V : View> get_ofDecorView(activity: Activity): V =
+    fun <V : View> get_decor(activity: Activity): V =
         UtilKDecorView.getContentView(activity)
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getAsViewGroup(activity: Activity): ViewGroup =
-        get(activity.window)
+        get_window(activity.window)
 
     @JvmStatic
     fun getAsViewGroup(window: Window): ViewGroup =
-        get(window)
+        get_window(window)
 
     @JvmStatic
     fun getTag(window: Window, tag: Int): Any? =
-        get<View>(window).getTag(tag)
+        get_window<View>(window).getTag(tag)
 
     @JvmStatic
     fun getChildAt0(window: Window): View? =
@@ -59,16 +54,19 @@ object UtilKContentView : BaseUtilK() {
         getChildAt0(activity.window)
 
     @JvmStatic
-    fun getWindowVisibleDisplayFrame(window: Window): Rect =
-        getWindowVisibleDisplayFrame(window, Rect())
+    fun getWindowVisibleDisplayFrame(window: Window): Rect {
+        val outRect = Rect()
+        getWindowVisibleDisplayFrame(window, outRect)
+        return outRect
+    }
 
     @JvmStatic
-    fun getWindowVisibleDisplayFrame(window: Window, rect: Rect): Rect {
-        UtilKView.getWindowVisibleDisplayFrame(get(window), rect)
-        return rect
+    fun getWindowVisibleDisplayFrame(window: Window, rect: Rect) {
+        UtilKView.getWindowVisibleDisplayFrame(get_window(window), rect)
     }
 
     @JvmStatic
     fun getTop(activity: Activity): Int =
-        get<View>(activity).top
+        get_window<View>(activity).top
 }
+

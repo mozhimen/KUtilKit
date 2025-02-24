@@ -6,7 +6,7 @@ import android.view.View
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.utilk.android.test.databinding.ActivityUtilkJavaBinding
+import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkJavaBinding
 
 
 class UtilKJavaActivity : BaseActivityVDB<ActivityUtilkJavaBinding>() {
