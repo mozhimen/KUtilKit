@@ -223,10 +223,10 @@ object UtilKIntentGet {
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     @OPermission_REQUEST_INSTALL_PACKAGES
     fun getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(uri: Uri): Intent =
-        getIntent_ACTION_VIEW_TYPE_APK(uri).apply {
+        getIntent_ACTION_VIEW().apply {
             if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
                 addFlags(CIntent.FLAG_GRANT_READ_URI_PERMISSION) //增加读写权限//添加这一句表示对目标应用临时授权该Uri所代表的文件
-//            setDataAndType(uriApk, EMineTypeMap_application.apk.type)
+            setDataAndType(uri, EMineTypeMap_application.apk.type)
         }
 
     /**

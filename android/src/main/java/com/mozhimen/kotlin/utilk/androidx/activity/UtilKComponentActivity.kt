@@ -33,124 +33,136 @@ object UtilKComponentActivity {
 
     ////////////////////////////////////////////////////////////////////
 
+    //启动一个 Activity 并返回结果。
     @JvmStatic
     fun registerForActivityResult_ofStartActivityForResult(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<ActivityResult?>
     ): ActivityResultLauncher<Intent> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.StartActivityForResult(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_StartActivityForResult(), callback)
 
     @JvmStatic
     fun registerForActivityResult_ofStartIntentSenderForResult(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<ActivityResult?>
     ): ActivityResultLauncher<IntentSenderRequest> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_StartIntentSenderForResult(), callback)
 
+    //请求多个权限。
     @JvmStatic
     fun registerForActivityResult_ofRequestMultiplePermissions(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Map<String, @JvmSuppressWildcards Boolean>?>
     ): ActivityResultLauncher<Array<String>> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_RequestMultiplePermissions(), callback)
 
+    //请求单个权限
     @JvmStatic
     fun registerForActivityResult_ofRequestPermission(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<String> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.RequestPermission(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_RequestPermission(), callback)
 
+    //拍照并返回预览图（Bitmap）。
     @JvmStatic
     fun registerForActivityResult_ofTakePicturePreview(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Bitmap?>
     ): ActivityResultLauncher<Void?> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.TakePicturePreview(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_TakePicturePreview(), callback)
 
+    //用途：拍照并将图片保存到指定 URI。
     @JvmStatic
     fun registerForActivityResult_ofTakePicture(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<Uri> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.TakePicture(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_TakePicture(), callback)
 
+    //用途:录制视频并返回缩略图。
     @JvmStatic
     fun registerForActivityResult_ofTakeVideo(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Bitmap?>
     ): ActivityResultLauncher<Uri> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.TakeVideo(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_TakeVideo(), callback)
 
     @JvmStatic
     fun registerForActivityResult_ofCaptureVideo(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<Uri> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.CaptureVideo(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_CaptureVideo(), callback)
 
+    //从通讯录中选择一个联系人
     @JvmStatic
     fun registerForActivityResult_ofPickContact(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Void?> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.PickContact(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_PickContact(), callback)
 
+    //选择单个文件并返回其 URI。
     @JvmStatic
     fun registerForActivityResult_ofGetContent(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<String> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.GetContent(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_GetContent(), callback)
 
     @JvmStatic
     fun registerForActivityResult_ofGetMultipleContents(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<String> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.GetMultipleContents(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_GetMultipleContents(), callback)
 
+    //打开单个文档并返回其 URI。
     @JvmStatic
     fun registerForActivityResult_ofOpenDocument(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Array<String>> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.OpenDocument(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_OpenDocument(), callback)
 
+    //打开多个文档并返回其 URI 列表。
     @JvmStatic
     fun registerForActivityResult_ofOpenMultipleDocuments(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<Array<String>> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_OpenMultipleDocuments(), callback)
 
+    //选择目录并返回其 URI。
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
     fun registerForActivityResult_ofOpenDocumentTree(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Uri?> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.OpenDocumentTree(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_OpenDocumentTree(), callback)
 
+    //创建新文档并返回其 URI。
     @JvmStatic
     fun registerForActivityResult_ofCreateDocument(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<String> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.CreateDocument(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_CreateDocument(), callback)
 
     @JvmStatic
     fun registerForActivityResult_ofPickVisualMedia(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<PickVisualMediaRequest> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.PickVisualMedia(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_PickVisualMedia(), callback)
 
     @JvmStatic
     fun registerForActivityResult_ofPickMultipleVisualMedia(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<PickVisualMediaRequest> =
-        componentActivity.registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(), callback)
+        componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_PickMultipleVisualMedia(), callback)
 
 }
