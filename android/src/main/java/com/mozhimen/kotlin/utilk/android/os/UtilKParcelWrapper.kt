@@ -16,6 +16,13 @@ fun Parcel.applyWriteBoolean(value: Boolean) {
 fun Parcel.applyReadBoolean(value: Boolean): Boolean =
     UtilKParcelWrapper.applyReadBoolean(this)
 
+fun Parcel.applyWriteStringList(value: List<String>) {
+    UtilKParcelWrapper.applyWriteStringList(this, value)
+}
+
+fun Parcel.applyReadStringList(): List<String> =
+    UtilKParcelWrapper.applyReadStringList(this)
+
 /////////////////////////////////////////////////////////////////
 
 object UtilKParcelWrapper {
@@ -35,4 +42,13 @@ object UtilKParcelWrapper {
         } else {
             parcel.readByte() != 0.toByte()
         }
+
+    @JvmStatic
+    fun applyWriteStringList(parcel: Parcel, value: List<String>) {
+        parcel.writeStringList(value)
+    }
+
+    @JvmStatic
+    fun applyReadStringList(parcel: Parcel): List<String> =
+        parcel.createStringArrayList() ?: emptyList()
 }

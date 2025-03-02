@@ -12,6 +12,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
  * @Version 1.0
  */
 object CMediaFormat {
+    const val MIMETYPE_ALL = "*/*"
     const val MIMETYPE_TEXT_PLAIN = "text/plain"
 
     ///////////////////////////////////////////////////////////////////
