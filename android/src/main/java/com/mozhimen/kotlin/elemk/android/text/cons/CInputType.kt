@@ -12,6 +12,7 @@ import android.text.InputType
 object CInputType {
     const val TYPE_CLASS_TEXT = InputType.TYPE_CLASS_TEXT//文本类型
     const val TYPE_CLASS_NUMBER = InputType.TYPE_CLASS_NUMBER//数字类型
+    const val TYPE_NUMBER_FLAG_DECIMAL = InputType.TYPE_NUMBER_FLAG_DECIMAL//数字类型
     const val TYPE_CLASS_PHONE = InputType.TYPE_CLASS_PHONE//电话号码类型
     const val TYPE_TEXT_FLAG_CAP_WORDS = InputType.TYPE_TEXT_FLAG_CAP_WORDS//每个单词首字母大写
     const val TYPE_TEXT_FLAG_CAP_SENTENCES = InputType.TYPE_TEXT_FLAG_CAP_SENTENCES//每句话首字母大写
