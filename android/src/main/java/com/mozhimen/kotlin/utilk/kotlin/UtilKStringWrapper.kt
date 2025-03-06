@@ -164,7 +164,7 @@ object UtilKStringWrapper {
     fun getAbbreviatedName(str: String): String {
         return str.replace_brackets_content2none()
             .asSequence()
-            .filter { it.isDigit() or it.isUpperCase() or (it == '&') }
+//            .filter { it.isDigit() or it.isUpperCase() or (it == '&') }
             .take(3)
             .joinToString("")
             .ifBlank { str.first().toString() }
