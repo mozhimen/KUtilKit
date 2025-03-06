@@ -5,7 +5,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
-import com.mozhimen.kotlin.utilk.android.view.UtilKStatusBar
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView
 import com.mozhimen.kotlin.utilk.android.view.applyGone
 import com.mozhimen.kotlin.utilk.android.view.applyVisibleIfElseGone

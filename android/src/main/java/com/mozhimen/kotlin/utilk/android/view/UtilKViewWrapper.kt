@@ -1,33 +1,38 @@
 package com.mozhimen.kotlin.utilk.android.view
 
-import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Rect
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewParent
-import androidx.annotation.FloatRange
-import androidx.core.animation.addListener
+import androidx.annotation.Px
+import com.mozhimen.kotlin.elemk.android.view.cons.CGravity
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
 import com.mozhimen.kotlin.elemk.cons.CCons
-import com.mozhimen.kotlin.utilk.android.animation.applyAnimateAlpha
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
+import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.androidx.core.UtilKViewCompat
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.java.lang.UtilKField
 import com.mozhimen.kotlin.utilk.kotlin.UtilKAny
 import com.mozhimen.kotlin.utilk.kotlin.strColor2intColor
-import com.mozhimen.kotlin.utilk.kotlinx.coroutines.getViewClickFlow
 import com.mozhimen.kotlin.utilk.kotlinx.coroutines.throttleFirst
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -38,6 +43,23 @@ import kotlinx.coroutines.flow.onEach
  * @Date 2023/8/7 14:13
  * @Version 1.0
  */
+fun View.getOnClickFlow(): Flow<Unit> =
+    UtilKViewWrapper.getOnClickFlow(this)
+
+fun View.getOnLongClickFlow(): Flow<Unit> =
+    UtilKViewWrapper.getOnLongClickFlow(this)
+
+fun View.getOnTouchFlow(): Flow<MotionEvent> =
+    UtilKViewWrapper.getOnTouchFlow(this)
+
+fun View.getOnTouchActionFlow(): Flow<Int> =
+    UtilKViewWrapper.getOnTouchActionFlow(this)
+
+fun View.getOnTouchDirectionFlow(): Flow<Int> =
+    UtilKViewWrapper.getOnTouchDirectionFlow(this)
+
+//////////////////////////////////////////////////////////////////
+
 fun View.getLocation(): Pair<Int, Int> =
     UtilKViewWrapper.getLocation(this)
 
@@ -133,6 +155,69 @@ fun View.addAndRemoveOnAttachStateChangeListener(invoke: I_Listener) {
 object UtilKViewWrapper : IUtilK {
 
     @JvmStatic
+    fun getOnClickFlow(view: View): Flow<Unit> =
+        callbackFlow {
+            view.setOnClickListener { this.trySend(Unit).isSuccess }
+            awaitClose { view.setOnClickListener(null) }
+        }
+
+    @JvmStatic
+    fun getOnLongClickFlow(view: View): Flow<Unit> =
+        callbackFlow {
+            view.setOnLongClickListener { this.trySend(Unit).isSuccess;true }
+            awaitClose { view.setOnLongClickListener(null) }
+        }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @JvmStatic
+    fun getOnTouchFlow(view: View): Flow<MotionEvent> =
+        callbackFlow {
+            view.setOnTouchListener { _, event -> trySend(event).isSuccess;true }
+            awaitClose { view.setOnTouchListener(null) }
+        }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @JvmStatic
+    fun getOnTouchActionFlow(view: View): Flow<Int> =
+        callbackFlow {
+            view.setOnTouchListener { _, event -> trySend(event.action).isSuccess;true }
+            awaitClose { view.setOnTouchListener(null) }
+        }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @JvmStatic
+    fun getOnTouchDirectionFlow(view: View, @Px extraTouchArea: Int = 0): Flow<Int> =
+        callbackFlow {
+            val rect = Rect()
+            view.setOnTouchListener { _, event ->
+                if (rect.width() == 0) {
+                    view.getHitRect(rect)
+                    if (extraTouchArea != 0) {
+                        rect.apply {
+                            left -= extraTouchArea
+                            top -= extraTouchArea
+                            right += extraTouchArea
+                            bottom += extraTouchArea
+                        }
+                    }
+                }
+                if (event.action == MotionEvent.ACTION_UP) {
+                    when {
+                        event.x <= rect.left -> trySend(CGravity.LEFT).isSuccess
+                        event.y <= rect.top -> trySend(CGravity.TOP).isSuccess
+                        event.x >= rect.right -> trySend(CGravity.RIGHT).isSuccess
+                        event.y >= rect.bottom -> trySend(CGravity.BOTTOM).isSuccess
+                    }
+                }
+                false
+            }
+            awaitClose { view.setOnTouchListener(null) }
+        }
+
+
+    //////////////////////////////////////////////////////////////////
+
+    @JvmStatic
     fun getLocation(view: View): Pair<Int, Int> {
         val intArray = UtilKView.getLocationOnScreen(view)
         return intArray[0] to intArray[1]
@@ -219,7 +304,7 @@ object UtilKViewWrapper : IUtilK {
         return tempBitmap
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     //寻找父View是否匹配列举的类型
     @JvmStatic
@@ -231,7 +316,7 @@ object UtilKViewWrapper : IUtilK {
         var isClickable = false
         val currentClickTime = System.currentTimeMillis()
         val lastClickTime = UtilKView.getLongTag(view, CCons.DEBOUNCE_LAST_CLICK_TIME, currentClickTime)
-        if (currentClickTime - lastClickTime >= UtilKView.getLongTag(view, CCons.DEBOUNCE_THRESHOLD_MILLIS, thresholdMillis)) {
+        if (kotlin.math.abs(currentClickTime - lastClickTime) >= thresholdMillis) {
             isClickable = true
             view.setTag(CCons.DEBOUNCE_LAST_CLICK_TIME, currentClickTime)
         }
@@ -242,23 +327,22 @@ object UtilKViewWrapper : IUtilK {
     fun isAttachedToWindow_ofCompat(view: View): Boolean =
         UtilKViewCompat.isAttachedToWindow(view)
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun applyDebounceClickListener(view: View, scope: CoroutineScope, block: IA_Listener<View>, thresholdMillis: Long = 500) {
-        view.getViewClickFlow().throttleFirst(thresholdMillis).onEach { block.invoke(view) }.launchIn(scope)
+        getOnClickFlow(view).throttleFirst(thresholdMillis).onEach { block.invoke(view) }.launchIn(scope)
     }
 
     @JvmStatic
     fun applySuspendDebounceClickListener(view: View, scope: CoroutineScope, block: suspend CoroutineScope.(View) -> Unit, thresholdMillis: Long = 500) {
-        view.getViewClickFlow().throttleFirst(thresholdMillis).onEach { scope.block(view) }.launchIn(scope)
+        getOnClickFlow(view).throttleFirst(thresholdMillis).onEach { scope.block(view) }.launchIn(scope)
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun applyDebounceClickListener(view: View, block: IA_Listener<View>, thresholdMillis: Long = 500) {
-        view.setTag(CCons.DEBOUNCE_THRESHOLD_MILLIS, thresholdMillis)
         view.setOnClickListener {
             if (isDebounceClickable(view, thresholdMillis)) {
                 block.invoke(view)
@@ -266,7 +350,7 @@ object UtilKViewWrapper : IUtilK {
         }
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     // 根据View的高度和宽高比, 设置高度
     @JvmStatic
@@ -297,7 +381,7 @@ object UtilKViewWrapper : IUtilK {
             view.visibility = View.GONE
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun applyVisibleIfElseGone(view: View, invoke: I_AListener<Boolean>) {
@@ -323,7 +407,7 @@ object UtilKViewWrapper : IUtilK {
         else applyInVisible(view)
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun applyVisibleIf(view: View, invoke: I_AListener<Boolean>) {
@@ -355,7 +439,7 @@ object UtilKViewWrapper : IUtilK {
         if (boolean) applyGone(view)
     }
 
-    //////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun addAndRemoveOnAttachStateChangeListener(view: View, block: I_Listener) {
@@ -408,6 +492,39 @@ object UtilKViewWrapper : IUtilK {
         val viewParent: ViewParent? = view.parent
         if (viewParent != null && viewParent is ViewGroup) {
             viewParent.removeViewSafe(view)
+        }
+    }
+
+//////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    @Throws(Exception::class)
+    fun fixLeak_ofDragChild(vararg views: View) {
+        var tempView: View
+        views.forEach { v ->
+            tempView = v
+            while (tempView.parent != null && tempView.parent is ViewGroup) {
+                tempView = tempView.parent as ViewGroup
+                fixLeak_ofDragChild(tempView)
+            }
+        }
+    }
+
+    @JvmStatic
+    @Throws(Exception::class)
+    fun fixLeak_ofDragChild(view: View) {
+        try {
+            val fieldMCurrentDragChild = UtilKField.get(view, "mCurrentDragChild")
+            if (!fieldMCurrentDragChild.isAccessible)
+                fieldMCurrentDragChild.isAccessible = true
+            val childView = fieldMCurrentDragChild.get(view)
+            if (childView != null) {
+                fieldMCurrentDragChild.set(childView, null)
+                "fixLeak: set viewGroup ${childView.javaClass.simpleName} mCurrentDragChild null".d(TAG)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            e.message?.e(TAG)
         }
     }
 }

@@ -37,4 +37,6 @@ object CContext {
 
     @RequiresApi(CVersCode.V_21_5_L)
     const val CAMERA_SERVICE = Context.CAMERA_SERVICE
+
+    const val POWER_SERVICE = Context.POWER_SERVICE
 }

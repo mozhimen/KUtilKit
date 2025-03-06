@@ -37,7 +37,7 @@ object UtilKViewCompat {
     @JvmStatic
     fun applyWindowInsets_ofSystemBars(rootView: View) {
         applyOnApplyWindowInsetsListener(rootView) { view: View, windowInsetsCompat: WindowInsetsCompat ->
-            UtilKView.applyPadding(view, UtilKWindowInsetsCompat.getInsets_ofSystemBars(windowInsetsCompat))
+            UtilKView.applyPadding(view, UtilKWindowInsetsCompatWrapper.getInsets_systemBars(windowInsetsCompat))
             windowInsetsCompat
         }
     }

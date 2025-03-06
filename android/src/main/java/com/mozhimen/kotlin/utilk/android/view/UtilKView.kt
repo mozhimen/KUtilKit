@@ -17,6 +17,7 @@ import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.java.lang.UtilKClass
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 
 
 /**
@@ -62,12 +63,12 @@ fun View.applyLayoutParams(width: Int, height: Int) {
     UtilKView.applyLayoutParams(this, width, height)
 }
 
-fun View.applyLayoutParams_ofMatch() {
-    UtilKView.applyLayoutParams_ofMatch(this)
+fun View.applyLayoutParams_MATCH_MATCH() {
+    UtilKView.applyLayoutParams_MATCH_MATCH(this)
 }
 
-fun View.applyLayoutParams_ofHeightStatusBar() {
-    UtilKView.applyLayoutParams_ofHeightStatusBar(this)
+fun View.applyLayoutParamsHeight_ofStatusBar() {
+    UtilKView.applyLayoutParamsHeight_ofStatusBar(this)
 }
 
 inline fun <reified T : ViewGroup.LayoutParams> View.applyUpdateLayoutParams(block: IExt_Listener<T>) {
@@ -107,7 +108,7 @@ fun View.applyHapticOnTouchListener() {
 //////////////////////////////////////////////////////////////////////////////
 object UtilKView : BaseUtilK() {
     @JvmStatic
-    fun get_ofInflate(viewGroup: ViewGroup, @LayoutRes intResLayout: Int): View =
+    fun get_inflate(viewGroup: ViewGroup, @LayoutRes intResLayout: Int): View =
         UtilKLayoutInflater.from_inflate(viewGroup, intResLayout)
 
     //////////////////////////////////////////////////////////////////////////
@@ -165,6 +166,14 @@ object UtilKView : BaseUtilK() {
         view.visibility == CView.GONE
 
     //////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * android:keepScreenOn="true"
+     */
+    @JvmStatic
+    fun applyKeepScreenOn(view: View, keepScreenOn: Boolean) {
+        view.keepScreenOn = keepScreenOn
+    }
 
     @JvmStatic
     fun applyHapticOnTouchListener(view: View) {
@@ -258,12 +267,12 @@ object UtilKView : BaseUtilK() {
     }
 
     @JvmStatic
-    fun applyLayoutParams_ofMatch(view: View) {
+    fun applyLayoutParams_MATCH_MATCH(view: View) {
         view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
     }
 
     @JvmStatic
-    fun applyLayoutParams_ofHeightStatusBar(view: View) {
+    fun applyLayoutParamsHeight_ofStatusBar(view: View) {
         view.layoutParams = view.layoutParams.apply {
             height = UtilKStatusBar.getHeight()
         }

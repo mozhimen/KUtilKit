@@ -1,6 +1,9 @@
-package com.mozhimen.kotlin.utilk.android.view
+package com.mozhimen.kotlin.utilk.wrapper
 
 import android.app.Activity
+import com.mozhimen.kotlin.utilk.android.view.UtilKDecorViewWrapper
+import com.mozhimen.kotlin.utilk.android.view.UtilKNavigationBar
+import com.mozhimen.kotlin.utilk.android.view.UtilKTitleBar
 import com.mozhimen.kotlin.utilk.androidx.appcompat.UtilKActionBar
 
 /**
@@ -13,7 +16,7 @@ import com.mozhimen.kotlin.utilk.androidx.appcompat.UtilKActionBar
 object UtilKSystemBar {
     @JvmStatic
     fun applyStatusBarLowProfile(activity: Activity) {
-        UtilKStatusBarIcon.applyIconLowProfile(activity)
+        UtilKStatusBar.applyIconLowProfile(activity)
     }
 
     @JvmStatic

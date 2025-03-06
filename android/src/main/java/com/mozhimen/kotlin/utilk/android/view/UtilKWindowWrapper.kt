@@ -34,28 +34,24 @@ object UtilKWindowWrapper {
     }
 
     @JvmStatic
-    fun applyFlags_ofKeepScreen(activity: Activity, isKeepScreenOn: Boolean) {
-        if (isKeepScreenOn)
-            addFlags_ofKeepScreenOn(activity)
-        else
-            clearFlags_ofKeepScreenOn(activity)
-    }
-
-    @JvmStatic
     fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean, isBrightest: Boolean) {
-        applyFlags_ofKeepScreen(activity, isKeepScreenOn)
+        if (isKeepScreenOn){
+            addFlags_KEEP_SCREEN_ON(activity)
+        }else{
+            clearFlags_KEEP_SCREEN_ON(activity)
+        }
         applyAttributes_ofBrightest(activity, isBrightest)
     }
 
     ////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun addFlags_ofKeepScreenOn(activity: Activity) {
+    fun addFlags_KEEP_SCREEN_ON(activity: Activity) {
         UtilKWindow.addFlags(activity, CWinMgr.Lpf.KEEP_SCREEN_ON)
     }
 
     @JvmStatic
-    fun clearFlags_ofKeepScreenOn(activity: Activity) {
+    fun clearFlags_KEEP_SCREEN_ON(activity: Activity) {
         UtilKWindow.clearFlags(activity, CWinMgr.Lpf.KEEP_SCREEN_ON)
     }
 }

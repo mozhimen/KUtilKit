@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CWindow
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivity
 import com.mozhimen.kotlin.utilk.androidx.appcompat.UtilKAppCompatActivity
 import com.mozhimen.kotlin.utilk.commons.IUtilK
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 import kotlin.math.abs
 
 /**

@@ -17,6 +17,9 @@ import com.mozhimen.kotlin.utilk.android.view.UtilKDisplay
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowManager_LayoutParamsWrapper
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowMetrics
 import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper.addFlags_KEEP_SCREEN_ON
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper.applyAttributes_ofBrightest
+import com.mozhimen.kotlin.utilk.android.view.UtilKWindowWrapper.clearFlags_KEEP_SCREEN_ON
 
 /**
  * @ClassName ScreenUtil
@@ -262,12 +265,21 @@ object UtilKScreen : BaseUtilK() {
     //是否使屏幕常亮
     @JvmStatic
     fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean) {
-        UtilKWindowWrapper.applyFlags_ofKeepScreen(activity, isKeepScreenOn)
+        if (isKeepScreenOn) {
+            addFlags_KEEP_SCREEN_ON(activity)
+        } else {
+            clearFlags_KEEP_SCREEN_ON(activity)
+        }
     }
 
     @JvmStatic
     fun applyKeepScreen(activity: Activity, isKeepScreenOn: Boolean, isBrightest: Boolean) {
-        UtilKWindowWrapper.applyKeepScreen(activity, isKeepScreenOn, isBrightest)
+        if (isKeepScreenOn){
+            addFlags_KEEP_SCREEN_ON(activity)
+        }else{
+            clearFlags_KEEP_SCREEN_ON(activity)
+        }
+        applyAttributes_ofBrightest(activity, isBrightest)
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////

@@ -26,6 +26,7 @@ import android.media.AudioManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.net.wifi.WifiManager
+import android.os.PowerManager
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.telephony.TelephonyManager
@@ -243,6 +244,10 @@ object UtilKContext {
     @RequiresApi(CVersCode.V_21_5_L)
     fun getCameraManager(context: Context): CameraManager =
         getSystemService(context, CContext.CAMERA_SERVICE) as CameraManager
+
+    @JvmStatic
+    fun getPowerManager(context: Context): PowerManager =
+        getSystemService(context, CContext.POWER_SERVICE) as PowerManager
 
     ////////////////////////////////////////////////////////////////////////
 

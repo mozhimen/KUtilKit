@@ -43,10 +43,22 @@ fun Int.dp2sp(): Float =
 /////////////////////////////////////////////////////////////
 
 fun Float.px2dp(): Float =
-    UtilKDisplayMetricsWrapper.px2dp_ofSysDpi(this)
+    UtilKDisplayMetricsWrapper.px2dp(this)
 
 fun Int.px2dp(): Float =
-    UtilKDisplayMetricsWrapper.px2dp_ofSysDpi(this.toFloat())
+    UtilKDisplayMetricsWrapper.px2dp(this.toFloat())
+
+fun Number.px2dp(): Float =
+    UtilKDisplayMetricsWrapper.px2dp(this.toFloat())
+
+fun Float.px2dpI(): Int =
+    UtilKDisplayMetricsWrapper.px2dpI(this)
+
+fun Int.px2dpI(): Int =
+    UtilKDisplayMetricsWrapper.px2dpI(this.toFloat())
+
+fun Number.px2dpI(): Int =
+    UtilKDisplayMetricsWrapper.px2dpI(this.toFloat())
 
 /////////////////////////////////////////////////////////////
 
@@ -111,6 +123,14 @@ object UtilKDisplayMetricsWrapper {
     /////////////////////////////////////////////////////////////
 
     //region # px -> dp
+    @JvmStatic
+    fun px2dp(@FloatRange(from = 0.0) px: Float): Float =
+        px2dp_ofSysDpi(px)
+
+    @JvmStatic
+    fun px2dpI(@FloatRange(from = 0.0) px: Float): Int =
+        (px2dp(px) + 0.5f).toInt()
+
     @JvmStatic
     fun px2dp_ofSysDpi(@FloatRange(from = 0.0) px: Float): Float =
         px / (UtilKDisplayMetrics.getDensityDpi_ofSys() / CDisplayMetrics.DENSITY_DEFAULT)
