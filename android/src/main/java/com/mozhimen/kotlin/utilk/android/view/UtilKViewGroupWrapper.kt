@@ -4,7 +4,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.core.view.contains
+import androidx.core.view.forEach
 import androidx.recyclerview.widget.RecyclerView
+import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.androidx.recyclerview.isScroll2top
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -20,8 +22,12 @@ import java.util.Deque
  * @Version 1.0
  */
 
-fun ViewGroup.addViewSafe_ofMatchParent(view: View) {
-    UtilKViewGroupWrapper.addViewSafe_ofMatchParent(this, view)
+fun ViewGroup.addViewSafe_MATCH_MATCH(view: View) {
+    UtilKViewGroupWrapper.addViewSafe_MATCH_MATCH(this, view)
+}
+
+fun ViewGroup.addViewSafe_WRAP_WRAP(view: View) {
+    UtilKViewGroupWrapper.addViewSafe_WRAP_WRAP(this, view)
 }
 
 fun ViewGroup.addViewSafe(view: View, width: Int, height: Int) {
@@ -34,6 +40,10 @@ fun ViewGroup.addViewSafe(view: View) {
 
 fun ViewGroup.removeViewSafe(view: View) {
     UtilKViewGroupWrapper.removeViewSafe(this, view)
+}
+
+fun ViewGroup.forEachChild(block: IA_Listener<View>) {
+    UtilKViewGroupWrapper.forEachChild(this, block)
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -128,12 +138,12 @@ object UtilKViewGroupWrapper : IUtilK {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun addViewSafe_ofMatchParent(viewGroup: ViewGroup, view: View) {
+    fun addViewSafe_MATCH_MATCH(viewGroup: ViewGroup, view: View) {
         addViewSafe(viewGroup, view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
     }
 
     @JvmStatic
-    fun addViewSafe_ofWrapContent(viewGroup: ViewGroup, view: View) {
+    fun addViewSafe_WRAP_WRAP(viewGroup: ViewGroup, view: View) {
         addViewSafe(viewGroup, view, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
@@ -177,5 +187,12 @@ object UtilKViewGroupWrapper : IUtilK {
         } else {
             UtilKLogWrapper.w(TAG, "removeViewSafe(: !viewGroup.contains(view)")
         }
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun forEachChild(viewGroup: ViewGroup, block: IA_Listener<View>) {
+        viewGroup.forEach(block)
     }
 }

@@ -8,8 +8,8 @@ import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkGestureBinding
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
-import com.mozhimen.kotlin.utilk.android.view.UtilKViewLeak
 import com.mozhimen.kotlin.utilk.android.test.R
+import com.mozhimen.kotlin.utilk.android.view.UtilKViewWrapper
 
 
 /**
@@ -77,7 +77,7 @@ class ElemKGestureActivity : BaseActivityVDB<ActivityElemkGestureBinding>() {
     }
 
     override fun onPause() {
-        UtilKViewLeak.fixLeak_ofDragChild(findViewById(R.id.elemk_gesture_fragment_container))
+        UtilKViewWrapper.fixLeak_ofDragChild(findViewById(R.id.elemk_gesture_fragment_container))
         super.onPause()
     }
 }

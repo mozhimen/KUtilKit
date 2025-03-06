@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.view
 import android.app.Activity
 import android.view.View
 import android.view.Window
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 import kotlin.math.abs
 
 /**

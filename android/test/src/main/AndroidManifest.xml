@@ -36,7 +36,6 @@
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.kotlin.UtilKStrPathActivity"
             android:exported="true" />
-
         <receiver
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.InstallKReceiver"
             android:enabled="true"
@@ -163,11 +162,6 @@
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKContentViewActivity"
             android:exported="true"
             android:theme="@style/Theme.KUtilKit">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.kotlin.UtilKVerifyUrlActivity"
@@ -185,7 +179,15 @@
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.android.UtilKWindowActivity"
             android:exported="true">
+        </activity>
+        <activity
+            android:name="com.mozhimen.kotlin.utilk.android.test.utilk.androidx.UtilKComponentActivityActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

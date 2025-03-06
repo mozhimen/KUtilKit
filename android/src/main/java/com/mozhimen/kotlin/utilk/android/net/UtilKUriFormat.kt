@@ -17,6 +17,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.provider.UtilKDocumentsContract
 import com.mozhimen.kotlin.utilk.android.provider.UtilKMediaStore
 import com.mozhimen.kotlin.utilk.android.content.getMediaColumns
+import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.mozhimen.kotlin.utilk.android.webkit.UtilKMimeTypeMap
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
@@ -79,7 +80,7 @@ object UtilKUriFormat : BaseUtilK() {
     @RequiresApi(CVersCode.V_29_10_Q)
     fun uri2strFilePathName_after29(uri: Uri): String? =
         when (uri.scheme) {
-            CContentResolver.SCHEME_FILE -> uri.path
+            CContentResolver.SCHEME_FILE -> uri.path.also { UtilKLogWrapper.d(TAG, "uri2strFilePathName_after29: SCHEME_FILE $it") }
             CContentResolver.SCHEME_CONTENT -> {
                 //把文件保存到沙盒
                 val strFileName = UtilKContentResolverWrapper.getOpenableColumns(uri) ?:

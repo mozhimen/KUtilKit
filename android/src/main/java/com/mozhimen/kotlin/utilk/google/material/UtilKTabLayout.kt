@@ -7,7 +7,7 @@ import android.widget.TextView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.Tab
 import com.mozhimen.kotlin.elemk.google.material.commons.IOnTabSelectedListener
-import com.mozhimen.kotlin.utilk.android.view.applyLayoutParams_ofMatch
+import com.mozhimen.kotlin.utilk.android.view.applyLayoutParams_MATCH_MATCH
 import com.mozhimen.kotlin.utilk.android.widget.applyTypeface_BOLD
 import com.mozhimen.kotlin.utilk.android.widget.applyTypeface_DEFAULT_BOLD
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -37,7 +37,7 @@ object UtilKTabLayout : IUtilK {
                     tab.setCustomView(TextView(tabLayout.context).apply {
                         id = android.R.id.text1
                         gravity = Gravity.CENTER
-                        applyLayoutParams_ofMatch()
+                        applyLayoutParams_MATCH_MATCH()
                     })
                 tab.customView?.findViewById<TextView>(android.R.id.text1)?.apply {
                     setTextColor(tabLayout.tabTextColors)
@@ -52,7 +52,7 @@ object UtilKTabLayout : IUtilK {
                     tab.setCustomView(TextView(tabLayout.context).apply {
                         id = android.R.id.text1
                         gravity = Gravity.CENTER
-                        applyLayoutParams_ofMatch()
+                        applyLayoutParams_MATCH_MATCH()
                     })
                 tab.customView?.findViewById<TextView>(android.R.id.text1)?.let {
                     it.setTextColor(tabLayout.tabTextColors)

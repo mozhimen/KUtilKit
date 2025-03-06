@@ -35,14 +35,14 @@ object UtilKComponentActivity {
 
     //启动一个 Activity 并返回结果。
     @JvmStatic
-    fun registerForActivityResult_ofStartActivityForResult(
+    fun registerForActivityResult_StartActivityForResult(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<ActivityResult?>
     ): ActivityResultLauncher<Intent> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_StartActivityForResult(), callback)
 
     @JvmStatic
-    fun registerForActivityResult_ofStartIntentSenderForResult(
+    fun registerForActivityResult_StartIntentSenderForResult(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<ActivityResult?>
     ): ActivityResultLauncher<IntentSenderRequest> =
@@ -50,7 +50,7 @@ object UtilKComponentActivity {
 
     //请求多个权限。
     @JvmStatic
-    fun registerForActivityResult_ofRequestMultiplePermissions(
+    fun registerForActivityResult_RequestMultiplePermissions(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Map<String, @JvmSuppressWildcards Boolean>?>
     ): ActivityResultLauncher<Array<String>> =
@@ -58,7 +58,7 @@ object UtilKComponentActivity {
 
     //请求单个权限
     @JvmStatic
-    fun registerForActivityResult_ofRequestPermission(
+    fun registerForActivityResult_RequestPermission(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<String> =
@@ -66,7 +66,7 @@ object UtilKComponentActivity {
 
     //拍照并返回预览图（Bitmap）。
     @JvmStatic
-    fun registerForActivityResult_ofTakePicturePreview(
+    fun registerForActivityResult_TakePicturePreview(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Bitmap?>
     ): ActivityResultLauncher<Void?> =
@@ -74,7 +74,7 @@ object UtilKComponentActivity {
 
     //用途：拍照并将图片保存到指定 URI。
     @JvmStatic
-    fun registerForActivityResult_ofTakePicture(
+    fun registerForActivityResult_TakePicture(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<Uri> =
@@ -82,14 +82,14 @@ object UtilKComponentActivity {
 
     //用途:录制视频并返回缩略图。
     @JvmStatic
-    fun registerForActivityResult_ofTakeVideo(
+    fun registerForActivityResult_TakeVideo(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Bitmap?>
     ): ActivityResultLauncher<Uri> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_TakeVideo(), callback)
 
     @JvmStatic
-    fun registerForActivityResult_ofCaptureVideo(
+    fun registerForActivityResult_CaptureVideo(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Boolean?>
     ): ActivityResultLauncher<Uri> =
@@ -97,7 +97,7 @@ object UtilKComponentActivity {
 
     //从通讯录中选择一个联系人
     @JvmStatic
-    fun registerForActivityResult_ofPickContact(
+    fun registerForActivityResult_PickContact(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Void?> =
@@ -105,14 +105,14 @@ object UtilKComponentActivity {
 
     //选择单个文件并返回其 URI。
     @JvmStatic
-    fun registerForActivityResult_ofGetContent(
+    fun registerForActivityResult_GetContent(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<String> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_GetContent(), callback)
 
     @JvmStatic
-    fun registerForActivityResult_ofGetMultipleContents(
+    fun registerForActivityResult_GetMultipleContents(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<String> =
@@ -120,7 +120,7 @@ object UtilKComponentActivity {
 
     //打开单个文档并返回其 URI。
     @JvmStatic
-    fun registerForActivityResult_ofOpenDocument(
+    fun registerForActivityResult_OpenDocument(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Array<String>> =
@@ -128,7 +128,7 @@ object UtilKComponentActivity {
 
     //打开多个文档并返回其 URI 列表。
     @JvmStatic
-    fun registerForActivityResult_ofOpenMultipleDocuments(
+    fun registerForActivityResult_OpenMultipleDocuments(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<Array<String>> =
@@ -137,7 +137,7 @@ object UtilKComponentActivity {
     //选择目录并返回其 URI。
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
-    fun registerForActivityResult_ofOpenDocumentTree(
+    fun registerForActivityResult_OpenDocumentTree(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<Uri?> =
@@ -145,21 +145,21 @@ object UtilKComponentActivity {
 
     //创建新文档并返回其 URI。
     @JvmStatic
-    fun registerForActivityResult_ofCreateDocument(
+    fun registerForActivityResult_CreateDocument(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<String> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_CreateDocument(), callback)
 
     @JvmStatic
-    fun registerForActivityResult_ofPickVisualMedia(
+    fun registerForActivityResult_PickVisualMedia(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<Uri?>
     ): ActivityResultLauncher<PickVisualMediaRequest> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_PickVisualMedia(), callback)
 
     @JvmStatic
-    fun registerForActivityResult_ofPickMultipleVisualMedia(
+    fun registerForActivityResult_PickMultipleVisualMedia(
         componentActivity: ComponentActivity,
         callback: ActivityResultCallback<List<@JvmSuppressWildcards Uri>?>
     ): ActivityResultLauncher<PickVisualMediaRequest> =

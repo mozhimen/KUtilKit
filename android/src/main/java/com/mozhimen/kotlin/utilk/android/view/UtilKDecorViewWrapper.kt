@@ -2,7 +2,6 @@ package com.mozhimen.kotlin.utilk.android.view
 
 import android.app.Activity
 import android.graphics.Bitmap
-import android.view.View
 import android.view.Window
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.utilk.android.util.d
@@ -10,6 +9,7 @@ import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView.TAG
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView.applySystemUiVisibilityOr
 import com.mozhimen.kotlin.utilk.android.view.UtilKDecorView.get
+import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 import kotlin.math.abs
 
 /**

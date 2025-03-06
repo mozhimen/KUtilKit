@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import com.mozhimen.kotlin.elemk.commons.ISuspendExtA_BListener
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileFormat
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
@@ -8,6 +9,9 @@ import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
 import com.mozhimen.kotlin.utilk.java.io.write_flushClose
 import com.mozhimen.kotlin.utilk.java.io.write_use
 import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegex
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import java.io.File
 import java.io.RandomAccessFile
 import java.nio.charset.Charset
@@ -43,6 +47,11 @@ fun String.str2bytes(charset: Charset = Charsets.UTF_8): ByteArray =
 
 fun String.str2strUnicode(): String =
     UtilKStringFormat.str2strUnicode(this)
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+fun String.str2strsFlow(scope: CoroutineScope, block: ISuspendExtA_BListener<CoroutineScope, String, List<String>>): Flow<List<String>> =
+    UtilKStringFormat.str2strsFlow(this, scope, block)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -124,4 +133,10 @@ object UtilKStringFormat {
 
         return stringBuffer.toString()
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun str2strsFlow(str: String, scope: CoroutineScope, block: ISuspendExtA_BListener<CoroutineScope, String, List<String>>): Flow<List<String>> =
+        flow { emit(scope.block(str)) }
 }

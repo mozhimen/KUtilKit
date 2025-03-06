@@ -9,8 +9,16 @@ import androidx.core.view.WindowInsetsCompat
  * @Date 2024/3/26
  * @Version 1.0
  */
-object UtilKWindowInsetsCompatType {
+object UtilKWindowInsetsCompat_Type {
     @JvmStatic
-    fun systemBars(): Int =
+    fun get_systemBars(): Int =
         WindowInsetsCompat.Type.systemBars()
+
+    @JvmStatic
+    fun get_navigationBars(): Int =
+        WindowInsetsCompat.Type.navigationBars()
+
+    @JvmStatic
+    fun get_statusBars(): Int =
+        WindowInsetsCompat.Type.statusBars()
 }

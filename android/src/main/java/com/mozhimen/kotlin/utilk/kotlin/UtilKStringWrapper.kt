@@ -88,6 +88,8 @@ fun String.hideName(): String =
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKStringWrapper {
+
+
     @JvmStatic
     inline fun getEmptyOrDefault(str: String?, default: I_AListener<String> = { "" }): String =
         if (str.isNullOrEmpty())

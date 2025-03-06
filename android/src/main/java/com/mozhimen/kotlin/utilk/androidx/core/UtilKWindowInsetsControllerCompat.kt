@@ -1,20 +1,45 @@
 package com.mozhimen.kotlin.utilk.androidx.core
 
 import android.view.Window
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.mozhimen.kotlin.elemk.androidx.core.cons.CWindowInsetsControllerCompat
 
 /**
- * @ClassName UtilKWindowCompat
+ * @ClassName UtilKWindowInsetsControllerCompat
  * @Description TODO
- * @Author Mozhimen & Kolin Zhao
- * @Date 2024/6/26 22:28
+ * @Author mozhimen
+ * @Date 2025/3/4
  * @Version 1.0
  */
-object UtilKWindowCompat {
+object UtilKWindowInsetsControllerCompat {
     @JvmStatic
-    fun getWindowInsetsController(window: Window): WindowInsetsControllerCompat =
-        WindowCompat.getInsetsController(window, window.decorView)
+    fun get(window: Window): WindowInsetsControllerCompat =
+        UtilKWindowCompat.getWindowInsetsController(window)
+
+    @JvmStatic
+    fun show(window: Window, types: Int) {
+        get(window).show(types)
+    }
+
+    @JvmStatic
+    fun hide(window: Window, types: Int) {
+        get(window).hide(types)
+    }
+
+    @JvmStatic
+    fun isAppearanceLightStatusBars(window: Window, isLight: Boolean) {
+        get(window).isAppearanceLightStatusBars = isLight
+    }
+
+    @JvmStatic
+    fun isAppearanceLightNavigationBars(window: Window, isLight: Boolean) {
+        get(window).isAppearanceLightNavigationBars = isLight
+    }
+
+    @JvmStatic
+    fun applySystemBarsBehavior(window: Window, /*@Behavior*/ behavior: Int) {
+        get(window).systemBarsBehavior = behavior
+    }
 
 //        // Configure the behavior of the hidden system bars.
 //        windowInsetsController.systemBarsBehavior =

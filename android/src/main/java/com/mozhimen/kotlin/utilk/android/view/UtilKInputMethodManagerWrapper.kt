@@ -121,7 +121,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
     //关闭软键盘
     @JvmStatic
     fun hide(activity: Activity) {
-        if (((UtilKPeekDecorView.get(activity) != null || UtilKInputMethodManager.isActive(activity)) && UtilKActivity.getCurrentFocus(activity) != null) && isShow(activity))
+        if (((UtilKWindow.getPeekDecorView(activity) != null || UtilKInputMethodManager.isActive(activity)) && UtilKActivity.getCurrentFocus(activity) != null) && isShow(activity))
             hide(UtilKActivity.getCurrentFocus(activity)!!)
     }
 
