@@ -15,9 +15,11 @@ import com.mozhimen.kotlin.utilk.java.io.inputStream2bitmapAny_use
 import com.mozhimen.kotlin.utilk.java.net.UtilKHttpURLConnectionWrapper
 import com.mozhimen.kotlin.utilk.java.net.UtilKURI
 import com.mozhimen.kotlin.utilk.java.net.UtilKURL
+import com.mozhimen.kotlin.utilk.kotlin.text.UtilKStringsMatches
 import com.mozhimen.kotlin.utilk.kotlin.text.matches_domain
 import com.mozhimen.kotlin.utilk.kotlin.text.matches_ip
 import com.mozhimen.kotlin.utilk.kotlin.text.matches_port
+import com.mozhimen.kotlin.utilk.kotlin.text.matches_url
 import java.io.File
 import java.net.URL
 
@@ -62,60 +64,64 @@ fun String.strUrl2file(fileDest: File, isAppend: Boolean = false): File? =
 /////////////////////////////////////////////////////////////////////////
 
 object UtilKStrUrl : BaseUtilK() {
-
-    //判断url是否合法
     @JvmStatic
     @MainThread
-    fun isStrUrlValid(strUrl: String): Boolean {
-        UtilKLogWrapper.d(TAG, "isUrlValid: url $strUrl")
-        if (strUrl.isEmpty()) {
-            "输入为空".showToast()
-            return false
-        }
-        if (!strUrl.startsWith("http://") && !strUrl.startsWith("https://") && !strUrl.startsWith("tcp://")) {
-            "请输入正确的协议头".showToast()
-            return false
-        }
-        val splitArray = strUrl.split(":")
-        if (splitArray.size < 2) {
-            "请输入正确的端口格式".showToast()
-            return false
-        }
-        //first:http
-        if (splitArray.getOrNull(0) == null) {
-            "请输入正确的端口格式(http/https/tcp)接IP或域名".showToast()
-            return false
-        }
-        val first = splitArray[0]
-        if (first != "http" && first != "https" && first != "tcp") {
-            "请输入正确的协议(http/https/tcp)".showToast()
-            return false
-        }
-        //second:ip
-        if (splitArray.getOrNull(1) == null) {
-            "请输入正确的IP或域名".showToast()
-            return false
-        }
-        var second = splitArray[1].replace("//", "")
-        if (second.contains("/")) {
-            second = second.getSplitFirstIndexToStart("/")
-        }
-        if (!second.matches_ip() && !second.matches_domain()) {
-            "请输入正确的IP或域名".showToast()
-            return false
-        }
-        if (splitArray.getOrNull(2) != null) {
-            var third = splitArray[2]
-            if (third.contains("/")) {
-                third = third.getSplitFirstIndexToStart("/")
-            }
-            if (!third.matches_port()) {
-                "请输入正确的端口".showToast()
-                return false
-            }
-        }
-        return true
-    }
+    fun isStrUrlValid(strUrl: String): Boolean =
+        strUrl.matches_url()
+
+//    //判断url是否合法
+//    @JvmStatic
+//    @MainThread
+//    fun isStrUrlValid(strUrl: String): Boolean {
+//        UtilKLogWrapper.d(TAG, "isUrlValid: url $strUrl")
+//        if (strUrl.isEmpty()) {
+//            "输入为空".showToast()
+//            return false
+//        }
+//        if (!strUrl.startsWith("http://") && !strUrl.startsWith("https://") && !strUrl.startsWith("tcp://")) {
+//            "请输入正确的协议头".showToast()
+//            return false
+//        }
+//        val splitArray = strUrl.split(":")
+//        if (splitArray.size < 2) {
+//            "请输入正确的端口格式".showToast()
+//            return false
+//        }
+//        //first:http
+//        if (splitArray.getOrNull(0) == null) {
+//            "请输入正确的端口格式(http/https/tcp)接IP或域名".showToast()
+//            return false
+//        }
+//        val first = splitArray[0]
+//        if (first != "http" && first != "https" && first != "tcp") {
+//            "请输入正确的协议(http/https/tcp)".showToast()
+//            return false
+//        }
+//        //second:ip
+//        if (splitArray.getOrNull(1) == null) {
+//            "请输入正确的IP或域名".showToast()
+//            return false
+//        }
+//        var second = splitArray[1].replace("//", "")
+//        if (second.contains("/")) {
+//            second = second.getSplitFirstIndexToStart("/")
+//        }
+//        if (!second.matches_ip() && !second.matches_domain()) {
+//            "请输入正确的IP或域名".showToast()
+//            return false
+//        }
+//        if (splitArray.getOrNull(2) != null) {
+//            var third = splitArray[2]
+//            if (third.contains("/")) {
+//                third = third.getSplitFirstIndexToStart("/")
+//            }
+//            if (!third.matches_port()) {
+//                "请输入正确的端口".showToast()
+//                return false
+//            }
+//        }
+//        return true
+//    }
 
     @JvmStatic
     fun isStrUrlConnectable(strUrl: String): Boolean =

@@ -41,6 +41,9 @@ fun String.matches_domain(): Boolean =
 fun String.matches_port(): Boolean =
     UtilKStringsMatches.matches_port(this)
 
+fun String.matches_url(): Boolean =
+    UtilKStringsMatches.matches_url(this)
+
 //////////////////////////////////////////////////////////////////
 
 object UtilKStringsMatches {
@@ -103,16 +106,20 @@ object UtilKStringsMatches {
 
     //ip是否合法
     @JvmStatic
-    fun matches_ip(strIp: String) =
+    fun matches_ip(strIp: String): Boolean =
         strIp.matches(UtilKRegexGet.get_ip())
 
     //域名是否合法
     @JvmStatic
-    fun matches_domain(strDomain: String) =
+    fun matches_domain(strDomain: String): Boolean =
         strDomain.matches(UtilKRegexGet.get_domain())
 
     //端口是否合法
     @JvmStatic
-    fun matches_port(strPort: String) =
+    fun matches_port(strPort: String): Boolean =
         strPort.matches(UtilKRegexGet.get_port())
+
+    @JvmStatic
+    fun matches_url(strUrl: String): Boolean =
+        strUrl.matches(UtilKRegexGet.get_url())
 }

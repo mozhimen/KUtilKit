@@ -55,7 +55,7 @@ object UtilKRegexGet {
         "[vV]".str2regex()
 
     @JvmStatic
-    fun get_end_():Regex =
+    fun get_end_(): Regex =
         "-+$".str2regex()
 
     //////////////////////////////////////////////////////////////////
@@ -109,6 +109,15 @@ object UtilKRegexGet {
     @JvmStatic
     fun get_ip(): Regex =
         "((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)".str2regex()
+
+    @JvmStatic
+    fun get_url(): Regex =
+        ("^(https?|ftp|ws)://" + // 协议（http 或 https，可选）//"^(https?|ftp|ws)://" // 支持 http、https、ftp、ws
+                "([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})" + // 域名（支持子域名）
+                "(:[0-9]{1,5})?" + // 端口（可选）
+                "(/[\\w\\-./?%&=]*)?" + // 路径和查询参数（可选）
+                "(#[\\w\\-]*)?$" // 片段（可选）
+                ).str2regex()
 
     //////////////////////////////////////////////////////////////////
     // id card
