@@ -116,12 +116,12 @@ object UtilKPackage : BaseUtilK() {
      */
     @JvmStatic
     fun hasFrontCamera(): Boolean =
-        UtilKPackageManagerWrapper.hasSystemFeature_camera_front(_context)
+        UtilKPackageManagerWrapper.hasSystemFeature_CAMERA_FRONT(_context)
 
     /**
      * 是否有后置
      */
     @JvmStatic
     fun hasBackCamera(): Boolean =
-        UtilKPackageManagerWrapper.hasSystemFeature_camera(_context)
+        UtilKPackageManagerWrapper.hasSystemFeature_CAMERA(_context)
 }

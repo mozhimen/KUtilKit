@@ -25,7 +25,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Date 2024/8/21
  * @Version 1.0
  */
-object UtilKPackageManagerWrapper:IUtilK {
+object UtilKPackageManagerWrapper : IUtilK {
     @JvmStatic
     fun getPackageInfoSafe(context: Context, strPackageName: String, flags: Int): PackageInfo? =
         try {
@@ -176,27 +176,26 @@ object UtilKPackageManagerWrapper:IUtilK {
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    /**
-     * 是否有前置
-     */
+    //是否有前置
     @JvmStatic
-    fun hasSystemFeature_camera_front(context: Context): Boolean =
+    fun hasSystemFeature_CAMERA_FRONT(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_CAMERA_FRONT)
 
-    /**
-     * 是否有后置
-     */
+    //是否有后置
     @JvmStatic
-    fun hasSystemFeature_camera(context: Context): Boolean =
+    fun hasSystemFeature_CAMERA(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_CAMERA)
 
+    //是否有蓝牙
     @JvmStatic
-    fun hasSystemFeature_bluetooth(context: Context): Boolean =
+    fun hasSystemFeature_BLUETOOTH(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_BLUETOOTH)
 
-    /**
-     * 系统的下载组件是否可用
-     */
+    //是否有低功耗蓝牙
+    fun hasSystemFeature_BLUETOOTH_LE(context: Context): Boolean =
+        UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_BLUETOOTH_LE)
+
+    //系统的下载组件是否可用
     @JvmStatic
     fun isDownloadComponentEnabled(context: Context): Boolean {
         try {

@@ -13,6 +13,7 @@ object CBluetoothDevice {
     const val ACTION_ACL_DISCONNECTED = BluetoothDevice.ACTION_ACL_DISCONNECTED
     const val ACTION_FOUND = BluetoothDevice.ACTION_FOUND
     const val ACTION_BOND_STATE_CHANGED = BluetoothDevice.ACTION_BOND_STATE_CHANGED
+    const val ACTION_PAIRING_REQUEST = BluetoothDevice.ACTION_PAIRING_REQUEST
     const val EXTRA_DEVICE = BluetoothDevice.EXTRA_DEVICE
     const val BOND_BONDING = BluetoothDevice.BOND_BONDING
     const val BOND_BONDED = BluetoothDevice.BOND_BONDED

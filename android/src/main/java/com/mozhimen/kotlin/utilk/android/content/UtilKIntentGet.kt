@@ -370,7 +370,15 @@ object UtilKIntentGet {
     ///////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getBluetoothAdapter_ACTION_REQUEST_ENABLE():Intent=
+    fun getBluetoothAdapter_ACTION_REQUEST_ENABLE(): Intent =
         UtilKIntent.get(CBluetoothAdapter.ACTION_REQUEST_ENABLE)
 
+    /**
+     * 在ACTION_REQUEST_DISCOVERABLE中作为一个可选的int额外字段，用于请求以秒为单位的可发现性持续时间。当前的默认值是120秒，超过300秒的请求会被限制。这些值可以改变。
+     */
+    @JvmStatic
+    fun getBluetoothAdapter_ACTION_REQUEST_DISCOVERABLE(discoverableDuration: Int): Intent =
+        UtilKIntent.get(CBluetoothAdapter.ACTION_REQUEST_DISCOVERABLE).apply {
+            putExtra(CBluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, discoverableDuration)
+        }
 }

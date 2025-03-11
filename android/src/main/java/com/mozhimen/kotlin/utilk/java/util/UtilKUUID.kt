@@ -15,21 +15,20 @@ import java.util.UUID
  */
 object UtilKUUID {
     @JvmStatic
-    fun get(): String =
-        randomUUID().toString()
-
-    //生成随机字符串
-    @JvmStatic
-    fun get_ofFormat(): String =
-        get().replace("-", "")
+    fun get(key: String): UUID =
+        fromString(key)
 
     @JvmStatic
-    fun get_ofCompress():String =
-        get_ofFormat().strHex2bytes().bytes2bytesBase64(CBase64.URL_SAFE or CBase64.NO_PADDING or CBase64.NO_WRAP).bytes2str()
+    fun get_random(): UUID =
+        randomUUID()
 
     //////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun randomUUID(): UUID =
         UUID.randomUUID()
+
+    @JvmStatic
+    fun fromString(name: String): UUID =
+        UUID.fromString(name)
 }

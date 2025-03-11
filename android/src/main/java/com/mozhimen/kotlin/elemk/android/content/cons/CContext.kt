@@ -39,4 +39,5 @@ object CContext {
     const val CAMERA_SERVICE = Context.CAMERA_SERVICE
 
     const val POWER_SERVICE = Context.POWER_SERVICE
+    const val BLUETOOTH_SERVICE = Context.BLUETOOTH_SERVICE
 }

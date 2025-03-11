@@ -5,6 +5,7 @@ import android.app.ActivityManager
 import android.app.DownloadManager
 import android.app.NotificationManager
 import android.app.UiModeManager
+import android.bluetooth.BluetoothManager
 import android.content.ClipboardManager
 import android.content.ContentResolver
 import android.content.Context
@@ -248,6 +249,10 @@ object UtilKContext {
     @JvmStatic
     fun getPowerManager(context: Context): PowerManager =
         getSystemService(context, CContext.POWER_SERVICE) as PowerManager
+
+    @JvmStatic
+    fun getBluetoothManager(context: Context): BluetoothManager =
+        getSystemService(context, CContext.BLUETOOTH_SERVICE) as BluetoothManager
 
     ////////////////////////////////////////////////////////////////////////
 
