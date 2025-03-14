@@ -1,6 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.os
 
 import android.os.Parcel
+import android.os.Parcelable
 
 /**
  * @ClassName UtilKParcel
@@ -26,6 +27,11 @@ fun Parcel.applyReadStringList(): List<String> =
 /////////////////////////////////////////////////////////////////
 
 object UtilKParcelWrapper {
+    @JvmStatic
+    fun applyReadParcelable(parcel: Parcel, classLoader: ClassLoader): Parcelable? =
+        parcel.readParcelable(classLoader,)
+//        parcel.readParcelable(classLoader)
+
     @JvmStatic
     fun applyWriteBoolean(parcel: Parcel, value: Boolean) {
         if (UtilKBuildVersion.isAfterV_29_10_Q()) {

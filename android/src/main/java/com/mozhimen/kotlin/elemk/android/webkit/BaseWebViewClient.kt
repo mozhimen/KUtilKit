@@ -2,6 +2,7 @@ package com.mozhimen.kotlin.elemk.android.webkit
 
 import android.graphics.Bitmap
 import android.net.http.SslError
+import android.os.Build
 import android.os.Message
 import android.view.KeyEvent
 import android.webkit.ClientCertRequest
@@ -41,7 +42,11 @@ open class BaseWebViewClient : WebViewClient(), IUtilK {
 //    }
 
     override fun shouldInterceptRequest(view: WebView?, request: WebResourceRequest?): WebResourceResponse? {
-//        UtilKLogWrapper.v(TAG, "shouldInterceptRequest: ")
+        if (UtilKBuildVersion.isAfterV_21_5_L()) {
+            UtilKLogWrapper.v(TAG, "shouldInterceptRequest: ${request?.url}")
+        }else{
+            UtilKLogWrapper.v(TAG, "shouldInterceptRequest: $request")
+        }
         return super.shouldInterceptRequest(view, request)
     }
 

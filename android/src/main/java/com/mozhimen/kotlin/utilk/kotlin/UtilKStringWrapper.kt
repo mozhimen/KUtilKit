@@ -51,6 +51,9 @@ fun String.hasSpace(): Boolean =
 fun String.containStr(str: String): Boolean =
     UtilKStringWrapper.containStr(this, str)
 
+fun String.containsAny(vararg str: String): Boolean =
+    UtilKStringWrapper.containsAny(this, *str)
+
 fun String.containsAny(collection: Collection<String>): Boolean =
     UtilKStringWrapper.containsAny(this, collection)
 
@@ -222,6 +225,10 @@ object UtilKStringWrapper {
         if (strContent.isEmpty() || str.isEmpty()) return false
         return strContent.contains(str)
     }
+
+    @JvmStatic
+    fun containsAny(strContent: String, vararg str: String): Boolean =
+        str.any { strContent.containStr(it) }
 
     @JvmStatic
     fun containsAny(strContent: String, strs: Collection<String>): Boolean =
