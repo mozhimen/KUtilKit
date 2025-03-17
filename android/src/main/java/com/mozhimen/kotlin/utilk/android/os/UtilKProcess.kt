@@ -16,13 +16,15 @@ object UtilKProcess : BaseUtilK() {
     fun getMyPid(): Int =
         Process.myPid()
 
+    ///////////////////////////////////////////////////
+
     @JvmStatic
     fun killProcess(intPid: Int) {
         Process.killProcess(intPid)
     }
 
     @JvmStatic
-    fun killProcess_ofMyPid() {
+    fun killProcess_myPid() {
         killProcess(getMyPid())
     }
 }

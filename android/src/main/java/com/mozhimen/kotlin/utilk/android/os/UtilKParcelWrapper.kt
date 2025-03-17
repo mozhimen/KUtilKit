@@ -10,6 +10,9 @@ import android.os.Parcelable
  * @Date 2024/11/21
  * @Version 1.0
  */
+inline fun <reified T:Parcelable> Parcel.applyReadParcelable(): T? =
+    UtilKParcelWrapper.applyReadParcelable(this)
+
 fun Parcel.applyWriteBoolean(value: Boolean) {
     UtilKParcelWrapper.applyWriteBoolean(this, value)
 }
@@ -28,9 +31,11 @@ fun Parcel.applyReadStringList(): List<String> =
 
 object UtilKParcelWrapper {
     @JvmStatic
-    fun applyReadParcelable(parcel: Parcel, classLoader: ClassLoader): Parcelable? =
-        parcel.readParcelable(classLoader,)
-//        parcel.readParcelable(classLoader)
+    inline fun <reified T:Parcelable> applyReadParcelable(parcel: Parcel): T? =
+        if (UtilKBuildVersion.isAfterV_33_13_T())
+            parcel.readParcelable(T::class.java.classLoader, T::class.java)
+        else
+            parcel.readParcelable(T::class.java.classLoader)
 
     @JvmStatic
     fun applyWriteBoolean(parcel: Parcel, value: Boolean) {

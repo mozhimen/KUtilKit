@@ -53,8 +53,8 @@ object UtilKDevice : BaseUtilK() {
      * 设备内存空间
      */
     @JvmStatic
-    fun getMemorySize(): String? =
-        UtilKFileReader.getMemorySize()
+    fun getStorageSize(): String? =
+        UtilKFileReader.getStorageSize()
 
     /**
      * cpu使用率

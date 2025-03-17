@@ -14,8 +14,8 @@ import java.io.Reader
  */
 object UtilKBufferedReader {
     @JvmStatic
-    fun get(reader: Reader, bufferSize: Int): BufferedReader =
-        if (bufferSize == 0) BufferedReader(reader)
+    fun get(reader: Reader, bufferSize: Int? = null): BufferedReader =
+        if (bufferSize == null || bufferSize <= 0) BufferedReader(reader)
         else BufferedReader(reader, bufferSize)
 
     //////////////////////////////////////////////////////////////
@@ -25,11 +25,11 @@ object UtilKBufferedReader {
         val stringBuilder = StringBuilder()
         try {
             var line = ""
-            return if (isAddLineBreak){
+            return if (isAddLineBreak) {
                 while (bufferedReader.readLine()?.also { line = it } != null)
                     stringBuilder.append(line).append("\n")
                 stringBuilder.toString().replaceAfterLast("\n", "")
-            }else{
+            } else {
                 while (bufferedReader.readLine()?.also { line = it } != null)
                     stringBuilder.append(line)/*.append("\n")*/
                 stringBuilder.toString()/*.replaceAfterLast("\n", "")*/

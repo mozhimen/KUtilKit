@@ -6,6 +6,7 @@ import com.mozhimen.kotlin.utilk.android.text.formatFileSize
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
 import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegexGet
+import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 import java.io.IOException
@@ -39,12 +40,12 @@ object UtilKFileReader : IUtilK {
         }
 
     @JvmStatic
-    fun getMemorySize(): String? {
+    fun getStorageSize(): String? {
         try {
             val strLine: String = readLine_use(CPath.PROC_MEMINFO, 8192) ?: return null// 读取mem info第一行，系统总内存大小
             val strs: Array<String> = strLine.split(UtilKRegexGet.get_blanks()).toTypedArray()
-            val memorySize: Long = (Integer.valueOf(strs[1]).toInt() * 1024).toLong() // 获得系统总内存，单位是KB，乘以1024转换为Byte
-            return memorySize.formatFileSize() // Byte转换为KB或者MB，内存大小规格化
+            val storageSize: Long = (Integer.valueOf(strs[1]).toInt() * 1024).toLong() // 获得系统总内存，单位是KB，乘以1024转换为Byte
+            return storageSize.formatFileSize() // Byte转换为KB或者MB，内存大小规格化
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -60,13 +61,17 @@ object UtilKFileReader : IUtilK {
         readLine_use(get(file), bufferSize)
 
     @JvmStatic
-    fun readLine_use(fileReader: FileReader, bufferSize: Int = 1024): String? =
+    fun readLine_use(fileReader: FileReader, bufferSize: Int = 1024): String? {
+        var bufferedReader: BufferedReader? = null
         try {
-            UtilKBufferedReader.readLine_use(UtilKBufferedReader.get(fileReader, bufferSize))
+            bufferedReader = fileReader.inputStreamReader2bufferedReader(bufferSize)
+            return UtilKBufferedReader.readLine_use(bufferedReader)
         } catch (e: IOException) {
             e.printStackTrace()
-            null
+            return null
         } finally {
+            bufferedReader?.close()
             fileReader.close()
         }
+    }
 }

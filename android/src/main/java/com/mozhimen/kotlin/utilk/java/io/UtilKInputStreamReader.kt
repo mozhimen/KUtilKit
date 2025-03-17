@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.java.io
 
+import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.Charset
@@ -27,12 +28,15 @@ object UtilKInputStreamReader {
     @JvmStatic
     fun readLines_use(inputStream: InputStream, charset: String? = null, bufferSize: Int = 1024, isAddLineBreak: Boolean = false): String {
         var inputStreamReader: InputStreamReader? = null
+        var bufferedReader: BufferedReader? = null
         try {
-            inputStreamReader = get(inputStream, charset)
-            return UtilKBufferedReader.readLines_use(UtilKBufferedReader.get(inputStreamReader, bufferSize),isAddLineBreak)
+            inputStreamReader = inputStream.inputStream2inputStreamReader(charset)
+            bufferedReader = inputStreamReader.inputStreamReader2bufferedReader(bufferSize)
+            return UtilKBufferedReader.readLines_use(bufferedReader, isAddLineBreak)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
+            bufferedReader?.close()
             inputStreamReader?.close()
         }
         return ""
@@ -41,12 +45,15 @@ object UtilKInputStreamReader {
     @JvmStatic
     fun readLine_use(inputStream: InputStream, charset: String? = null, bufferSize: Int = 1024): String? {
         var inputStreamReader: InputStreamReader? = null
+        var bufferedReader: BufferedReader? = null
         try {
-            inputStreamReader = get(inputStream, charset)
-            return UtilKBufferedReader.readLine_use(UtilKBufferedReader.get(inputStreamReader, bufferSize))
+            inputStreamReader = inputStream.inputStream2inputStreamReader(charset)
+            bufferedReader = inputStreamReader.inputStreamReader2bufferedReader(bufferSize)
+            return UtilKBufferedReader.readLine_use(bufferedReader)
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
+            bufferedReader?.close()
             inputStreamReader?.close()
         }
         return null

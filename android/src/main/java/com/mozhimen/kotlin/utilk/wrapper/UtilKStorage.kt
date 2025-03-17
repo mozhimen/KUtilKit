@@ -1,8 +1,6 @@
 package com.mozhimen.kotlin.utilk.wrapper
 
-import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKStatFsWrapper
-import com.mozhimen.kotlin.utilk.java.io.getLastAccessTime
 import com.mozhimen.kotlin.utilk.wrapper.UtilKDevice.hasExternalStorage
 import java.io.File
 
@@ -25,42 +23,42 @@ object UtilKStorage {
      * 本地存储可用大小
      */
     @JvmStatic
-    fun getStrInternalMemorySize_ofFree(): String =
-        UtilKStatFsWrapper.getStrExternalDataMemorySize_ofFree()
+    fun getStrInternalStorageSize_ofFree(): String =
+        UtilKStatFsWrapper.getStrExternalDataStorageSize_ofFree()
 
     @JvmStatic
-    fun getStrInternalMemorySize_ofAvailable(): String =
-        UtilKStatFsWrapper.getStrExternalDataMemorySize_ofAvailable()
+    fun getStrInternalStorageSize_ofAvailable(): String =
+        UtilKStatFsWrapper.getStrExternalDataStorageSize_ofAvailable()
 
     /**
      * 获取手机内部空间大小
      */
     @JvmStatic
-    fun getStrInternalMemorySize_ofTotal(): String =
-        UtilKStatFsWrapper.getStrExternalDataMemorySize_ofTotal()
+    fun getStrInternalStorageSize_ofTotal(): String =
+        UtilKStatFsWrapper.getStrExternalDataStorageSize_ofTotal()
 
     /**
      * 获取手机空闲空间大小
      */
     @JvmStatic
-    fun getStrExternalMemorySize_ofFree(): String =
+    fun getStrExternalStorageSize_ofFree(): String =
         if (hasExternalStorage()) {
-            UtilKStatFsWrapper.getStrExternalStorageMemorySize_ofFree()
+            UtilKStatFsWrapper.getStrExternalStorageStorageSize_ofFree()
         } else "0"
 
     @JvmStatic
-    fun getStrExternalMemorySize_ofAvailable(): String =
+    fun getStrExternalStorageSize_ofAvailable(): String =
         if (hasExternalStorage()) {
-            UtilKStatFsWrapper.getStrExternalStorageMemorySize_ofAvailable()
+            UtilKStatFsWrapper.getStrExternalStorageStorageSize_ofAvailable()
         } else "0"
 
     /**
      * 获取手机外部空间大小
      */
     @JvmStatic
-    fun getStrExternalMemorySize_ofTotal(): String =
+    fun getStrExternalStorageSize_ofTotal(): String =
         if (hasExternalStorage()) {
-            UtilKStatFsWrapper.getStrExternalStorageMemorySize_ofTotal()
+            UtilKStatFsWrapper.getStrExternalStorageStorageSize_ofTotal()
         } else "0"
 
     /////////////////////////////////////////////////////////////////////
@@ -68,41 +66,41 @@ object UtilKStorage {
      * 本地存储可用大小
      */
     @JvmStatic
-    fun getInternalMemorySize_ofFree(): Long =
-        UtilKStatFsWrapper.getExternalDataMemorySize_ofFree()
+    fun getInternalStorageSize_ofFree(): Long =
+        UtilKStatFsWrapper.getExternalDataStorageSize_ofFree()
 
     @JvmStatic
-    fun getInternalMemorySize_ofAvailable(): Long =
-        UtilKStatFsWrapper.getExternalDataMemorySize_ofAvailable()
+    fun getInternalStorageSize_ofAvailable(): Long =
+        UtilKStatFsWrapper.getExternalDataStorageSize_ofAvailable()
 
     /**
      * 获取手机内部空间大小
      */
     @JvmStatic
-    fun getInternalMemorySize_ofTotal(): Long =
-        UtilKStatFsWrapper.getExternalDataMemorySize_ofTotal()
+    fun getInternalStorageSize_ofTotal(): Long =
+        UtilKStatFsWrapper.getExternalDataStorageSize_ofTotal()
 
     /**
      * 获取手机空闲空间大小
      */
     @JvmStatic
-    fun getExternalMemorySize_ofFree(): Long =
+    fun getExternalStorageSize_ofFree(): Long =
         if (hasExternalStorage())
-            UtilKStatFsWrapper.getExternalStorageMemorySize_ofFree()
+            UtilKStatFsWrapper.getExternalStorageStorageSize_ofFree()
         else 0L
 
     @JvmStatic
-    fun getExternalMemorySize_ofAvailable(): Long =
+    fun getExternalStorageSize_ofAvailable(): Long =
         if (hasExternalStorage())
-            UtilKStatFsWrapper.getExternalStorageMemorySize_ofAvailable()
+            UtilKStatFsWrapper.getExternalStorageStorageSize_ofAvailable()
         else 0L
 
     /**
      * 获取手机外部空间大小
      */
     @JvmStatic
-    fun getExternalMemorySize_ofTotal(): Long =
+    fun getExternalStorageSize_ofTotal(): Long =
         if (hasExternalStorage())
-            UtilKStatFsWrapper.getExternalStorageMemorySize_ofTotal()
+            UtilKStatFsWrapper.getExternalStorageSize_ofTotal()
         else 0L
 }

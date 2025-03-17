@@ -43,8 +43,11 @@ import java.util.zip.GZIPInputStream
 fun InputStream.inputStream2bufferedInputStream(): BufferedInputStream =
     UtilKInputStreamFormat.inputStream2bufferedInputStream(this)
 
-fun InputStream.inputStream2inputStreamReader(): InputStreamReader =
-    UtilKInputStreamFormat.inputStream2inputStreamReader(this)
+fun InputStream.inputStream2inputStreamReader(charset: Charset? = Charsets.UTF_8): InputStreamReader =
+    UtilKInputStreamFormat.inputStream2inputStreamReader(this, charset)
+
+fun InputStream.inputStream2inputStreamReader(charset: String? = "UTF-8"): InputStreamReader =
+    UtilKInputStreamFormat.inputStream2inputStreamReader(this, charset)
 
 fun InputStream.inputStream2pushbackInputStream(size: Int? = null): PushbackInputStream =
     UtilKInputStreamFormat.inputStream2pushbackInputStream(this, size)
@@ -151,6 +154,10 @@ object UtilKInputStreamFormat : IUtilK {
 
     @JvmStatic
     fun inputStream2inputStreamReader(inputStream: InputStream, charset: Charset? = Charsets.UTF_8): InputStreamReader =
+        UtilKInputStreamReader.get(inputStream, charset)
+
+    @JvmStatic
+    fun inputStream2inputStreamReader(inputStream: InputStream, charset: String? = "UTF-8"): InputStreamReader =
         UtilKInputStreamReader.get(inputStream, charset)
 
     @JvmStatic
@@ -272,7 +279,7 @@ object UtilKInputStreamFormat : IUtilK {
     @JvmStatic
     fun inputStream2strs_use_bufferedReader_forEachLine(inputStream: InputStream, charset: Charset = Charsets.UTF_8): List<String> {
         val strs = mutableListOf<String>()
-        inputStream.inputStream2inputStreamReader().inputStreamReader2bufferedReader().forEachLine_use(charset) { strs.add(it) }
+        inputStream.inputStream2inputStreamReader(charset).inputStreamReader2bufferedReader().forEachLine_use(charset) { strs.add(it) }
         return strs
     }
 
