@@ -30,11 +30,13 @@ import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
 import com.mozhimen.kotlin.utilk.java.io.flushClose
 import com.mozhimen.kotlin.utilk.java.io.outputStream2bufferedOutputStream
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrFile
+import com.mozhimen.kotlin.utilk.kotlin.bytes2byteArrayInputStream
 import com.mozhimen.kotlin.utilk.kotlin.bytes2file
 import com.mozhimen.kotlin.utilk.kotlin.bytes2strBase64
 import com.mozhimen.kotlin.utilk.kotlin.createFile
 import com.mozhimen.kotlin.utilk.kotlin.strFilePath2file
 import java.io.BufferedOutputStream
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.OutputStream
@@ -76,6 +78,9 @@ fun Bitmap.bitmapAny2fileBmp(strBitmapPathNameDest: String): File =
 
 fun Bitmap.bitmapAny2bytesAny_use(compressFormat: CompressFormat = CompressFormat.JPEG, @IntRange(from = 0, to = 100) quality: Int = 100): ByteArray =
     UtilKBitmapFormat.bitmapAny2bytesAny_use(this, compressFormat, quality)
+
+fun Bitmap.bitmapAny2byteArrayInputStream(compressFormat: CompressFormat = CompressFormat.JPEG, @IntRange(from = 0, to = 100) quality: Int = 100): ByteArrayInputStream =
+    UtilKBitmapFormat.bitmapAny2byteArrayInputStream(this, compressFormat, quality)
 
 fun Bitmap.bitmapAny2bytesJpeg(): ByteArray =
     UtilKBitmapFormat.bitmapAny2bytesJpeg(this)
@@ -208,6 +213,11 @@ object UtilKBitmapFormat : BaseUtilK() {
         val byteArrayOutputStream = ByteArrayOutputStream(sourceBitmap.width * sourceBitmap.height * 4)
         sourceBitmap.applyBitmapAnyCompress(compressFormat, quality, byteArrayOutputStream)
         return byteArrayOutputStream.byteArrayOutputStream2bytes_use()
+    }
+
+    @JvmStatic
+    fun bitmapAny2byteArrayInputStream(sourceBitmap: Bitmap, compressFormat: CompressFormat = CompressFormat.JPEG, @IntRange(from = 0, to = 100) quality: Int = 100): ByteArrayInputStream {
+        return bitmapAny2bytesAny_use(sourceBitmap, compressFormat, quality).bytes2byteArrayInputStream()
     }
 
     @JvmStatic
