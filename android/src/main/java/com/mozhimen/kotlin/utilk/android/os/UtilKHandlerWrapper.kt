@@ -30,4 +30,9 @@ object UtilKHandlerWrapper {
     fun postDelayed(delayMillis: Long, runnable: Runnable) {
         _handler.postDelayed(runnable, delayMillis)
     }
+
+    @JvmStatic
+    fun removeCallbacks(runnable: Runnable) {
+        _handler.removeCallbacks(runnable)
+    }
 }

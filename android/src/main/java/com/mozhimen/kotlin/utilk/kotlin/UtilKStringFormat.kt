@@ -8,6 +8,7 @@ import com.mozhimen.kotlin.utilk.java.io.createFile
 import com.mozhimen.kotlin.utilk.java.io.file2fileOutputStream
 import com.mozhimen.kotlin.utilk.java.io.write_flushClose
 import com.mozhimen.kotlin.utilk.java.io.write_use
+import com.mozhimen.kotlin.utilk.java.util.UtilKUUID
 import com.mozhimen.kotlin.utilk.kotlin.text.UtilKRegex
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.flow
 import java.io.File
 import java.io.RandomAccessFile
 import java.nio.charset.Charset
+import java.util.UUID
 
 /**
  * @ClassName UtilKStringFormat
@@ -47,6 +49,11 @@ fun String.str2bytes(charset: Charset = Charsets.UTF_8): ByteArray =
 
 fun String.str2strUnicode(): String =
     UtilKStringFormat.str2strUnicode(this)
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+fun String.str2uUID(): UUID =
+    UtilKStringFormat.str2uUID(this)
 
 ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -133,6 +140,12 @@ object UtilKStringFormat {
 
         return stringBuffer.toString()
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun str2uUID(str: String): UUID =
+        UtilKUUID.get(str)
 
     ////////////////////////////////////////////////////////////////////////////////////////
 

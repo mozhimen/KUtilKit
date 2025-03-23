@@ -69,6 +69,9 @@ fun String.startsWithAny(strs: Collection<String>): Boolean =
 fun String.endsWithAny(strs: Collection<String>): Boolean =
     UtilKStringWrapper.endsWithAny(this, strs)
 
+fun String.endsWithAny(vararg strs: String): Boolean =
+    UtilKStringWrapper.endsWithAny(this, *strs)
+
 /////////////////////////////////////////////////////////////////////////////
 
 fun String.findFirst(char: Char): Int =
@@ -221,23 +224,23 @@ object UtilKStringWrapper {
      * 包含String
      */
     @JvmStatic
-    fun containStr(strContent: String, str: String): Boolean {
-        if (strContent.isEmpty() || str.isEmpty()) return false
-        return strContent.contains(str)
+    fun containStr(str: String, strs: String): Boolean {
+        if (str.isEmpty() || strs.isEmpty()) return false
+        return str.contains(strs)
     }
 
     @JvmStatic
-    fun containsAny(strContent: String, vararg str: String): Boolean =
-        str.any { strContent.containStr(it) }
+    fun containsAny(str: String, vararg strs: String): Boolean =
+        strs.any { str.containStr(it) }
 
     @JvmStatic
-    fun containsAny(strContent: String, strs: Collection<String>): Boolean =
-        strs.any { strContent.containStr(it) }
+    fun containsAny(str: String, strs: Collection<String>): Boolean =
+        strs.any { str.containStr(it) }
 
     @JvmStatic
-    fun containsAny_return(strContent: String, strs: List<String>, ignoreCache: Boolean = false): String? {
+    fun containsAny_return(str: String, strs: List<String>, ignoreCache: Boolean = false): String? {
         for (i in strs.indices) {
-            if ((if (ignoreCache) strContent.lowercase(Locale.getDefault()) else strContent).contains(if (ignoreCache) strs[i].lowercase(Locale.getDefault()) else strs[i])) {
+            if ((if (ignoreCache) str.lowercase(Locale.getDefault()) else str).contains(if (ignoreCache) strs[i].lowercase(Locale.getDefault()) else strs[i])) {
                 return strs[i] // 如果发现任何一个关键词出现，则返回true
             }
         }
@@ -255,6 +258,10 @@ object UtilKStringWrapper {
     @JvmStatic
     fun endsWithAny(str: String, strs: Collection<String>): Boolean =
         strs.any { str.endsWith(it) }
+
+    @JvmStatic
+    fun endsWithAny(strContent: String, vararg strs: String): Boolean =
+        strs.any { strContent.endsWith(it) }
 
     /////////////////////////////////////////////////////////////////////////////
 
