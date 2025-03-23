@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.utilk.kotlin.text.matches_digits_alphabets
 import com.mozhimen.kotlin.utilk.kotlin.text.replace_2alphabets
 import com.mozhimen.kotlin.utilk.kotlin.text.replace_2chinese
 import com.mozhimen.kotlin.utilk.kotlin.text.replace_2digits
+import com.mozhimen.kotlin.utilk.kotlin.text.replace_2digits_alphabets
 import com.mozhimen.kotlin.utilk.kotlin.text.replace_2digits_alphabets_chinese
 import org.junit.Test
 
@@ -44,6 +45,7 @@ class TestUtilKFilter {
     @Test
     fun filter() {
         "123我是谁AAA&&".replace_2digits().printlog()
+        "123我是谁AAA&&".replace_2digits_alphabets().printlog()
         "123我是谁AAA&&".replace_2alphabets().printlog()
         "123我是谁AAA&&".replace_2chinese().printlog()
         "123我是谁AAA&&".replace_2digits_alphabets_chinese().printlog()

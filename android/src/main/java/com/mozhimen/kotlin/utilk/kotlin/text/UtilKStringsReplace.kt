@@ -29,6 +29,9 @@ fun String.replace_2digits(): String =
 fun String.replace_2alphabets(): String =
     UtilKStringsReplace.replace_2alphabets(this)
 
+fun String.replace_2digits_alphabets(): String =
+    UtilKStringsReplace.replace_2digits_alphabets(this)
+
 fun String.replace_2chinese(): String =
     UtilKStringsReplace.replace_2chinese(this)
 
@@ -67,6 +70,13 @@ object UtilKStringsReplace {
     @JvmStatic
     fun replace_2alphabets(str: String): String =
         str.replace(UtilKRegexGet.get_alphabets(), "")
+
+    /**
+     * 过滤出数字,字母
+     */
+    @JvmStatic
+    fun replace_2digits_alphabets(str: String): String =
+        str.replace(UtilKRegexGet.get_digits_alphabets(), "")
 
     /**
      * 过滤出中文
