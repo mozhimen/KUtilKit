@@ -192,6 +192,7 @@ object UtilKPackageManagerWrapper : IUtilK {
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_BLUETOOTH)
 
     //是否有低功耗蓝牙
+    @JvmStatic
     fun hasSystemFeature_BLUETOOTH_LE(context: Context): Boolean =
         UtilKPackageManager.hasSystemFeature(context, CPackageManager.FEATURE_BLUETOOTH_LE)
 
