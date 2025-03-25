@@ -12,4 +12,5 @@ import android.bluetooth.BluetoothGatt
 object CBluetoothGatt {
     const val GATT_SUCCESS = BluetoothGatt.GATT_SUCCESS
     const val STATE_CONNECTED = BluetoothGatt.STATE_CONNECTED
+    const val STATE_DISCONNECTED = BluetoothGatt.STATE_DISCONNECTED
 }

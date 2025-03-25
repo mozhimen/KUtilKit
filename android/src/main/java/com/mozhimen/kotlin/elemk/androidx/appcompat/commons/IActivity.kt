@@ -19,4 +19,6 @@ interface IActivity {
     fun initView(savedInstanceState: Bundle?) {}
 
     fun initObserver() {}
+
+    fun initEvent() {}
 }
