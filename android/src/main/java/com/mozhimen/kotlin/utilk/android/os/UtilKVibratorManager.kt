@@ -5,6 +5,7 @@ import android.os.VibratorManager
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKVibratorManager
@@ -16,5 +17,5 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKVibratorManager {
     @RequiresApi(CVersCode.V_31_12_S)
     fun get(context: Context): VibratorManager =
-        UtilKContext.getVibratorManager(context)
+        UtilKContextGet.getSystemService_VIBRATOR_MANAGER(context)
 }

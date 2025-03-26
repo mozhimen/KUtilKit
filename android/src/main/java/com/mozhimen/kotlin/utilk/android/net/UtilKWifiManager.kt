@@ -10,6 +10,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCAT
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKWifiManager
@@ -23,7 +24,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKWifiManager {
     @JvmStatic
     fun get(context: Context): WifiManager =
-        UtilKContext.getWifiManager(context)
+        UtilKContextGet.getSystemService_WIFI(context)
 
     /////////////////////////////////////////////////////////////////////////////
 

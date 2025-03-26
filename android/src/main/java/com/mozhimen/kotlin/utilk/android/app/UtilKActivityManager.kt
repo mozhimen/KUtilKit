@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.pm.ConfigurationInfo
 import android.os.Debug
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.android.os.UtilKProcess
 
 /**
@@ -19,7 +20,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKProcess
 object UtilKActivityManager {
     @JvmStatic
     fun get(context: Context): ActivityManager =
-        UtilKContext.getActivityManager(context)
+        UtilKContextGet.getSystemService_ACTIVITY(context)
 
     @JvmStatic
     fun getMemoryInfo(context: Context, memoryInfo: MemoryInfo) {

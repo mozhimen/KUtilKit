@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.hardware
 import android.content.Context
 import android.hardware.input.InputManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKInputManager
@@ -14,5 +15,5 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKInputManager {
     @JvmStatic
     fun get(context: Context): InputManager =
-        UtilKContext.getInputManager(context)
+        UtilKContextGet.getSystemService_INPUT(context)
 }

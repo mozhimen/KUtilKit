@@ -12,6 +12,7 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 
@@ -25,7 +26,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 object UtilKTelephonyManager : IUtilK {
     @JvmStatic
     fun get(context: Context): TelephonyManager =
-        UtilKContext.getTelephonyManager(context)
+        UtilKContextGet.getSystemService_TELEPHONY(context)
 
     /**
      * API 23-28

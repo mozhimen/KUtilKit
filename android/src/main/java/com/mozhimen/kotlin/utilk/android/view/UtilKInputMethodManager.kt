@@ -5,6 +5,7 @@ import android.os.IBinder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKInputMethodManager
@@ -16,7 +17,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKInputMethodManager {
     @JvmStatic
     fun get(context: Context): InputMethodManager =
-        UtilKContext.getInputMethodManager(context)
+        UtilKContextGet.getSystemService_INPUT_METHOD(context)
 
     //////////////////////////////////////////////////////////////////
 

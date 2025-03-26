@@ -7,6 +7,7 @@ import android.view.WindowMetrics
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 
 /**
@@ -20,7 +21,7 @@ object UtilKWindowManager {
 
     @JvmStatic
     fun get(context: Context): WindowManager =
-        UtilKContext.getWindowManager(context)
+        UtilKContextGet.getSystemService_WINDOW(context)
 
     @RequiresApi(CVersCode.V_30_11_R)
     @JvmStatic

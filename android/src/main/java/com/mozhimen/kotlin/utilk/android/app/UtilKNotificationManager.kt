@@ -7,6 +7,7 @@ import android.content.Context
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 
 /**
@@ -19,7 +20,7 @@ import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 object UtilKNotificationManager {
     @JvmStatic
     fun get(context: Context): NotificationManager =
-        UtilKContext.getNotificationManager(context)
+        UtilKContextGet.getSystemService_NOTIFICATION(context)
 
     /////////////////////////////////////////////////////////////////////////////
 

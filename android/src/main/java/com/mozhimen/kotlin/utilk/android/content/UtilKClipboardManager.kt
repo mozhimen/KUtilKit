@@ -15,7 +15,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKClipboardManager {
     @JvmStatic
     fun get(context: Context): ClipboardManager =
-        UtilKContext.getClipboardManager(context)
+        UtilKContextGet.getSystemService_CLIPBOARD(context)
 
     @JvmStatic
     fun getPrimaryClip(context: Context): ClipData? =

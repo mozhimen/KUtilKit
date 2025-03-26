@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.hardware
 import android.content.Context
 import android.hardware.display.DisplayManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 
 /**
@@ -15,5 +16,5 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKDisplayManager {
     @JvmStatic
     fun get(context: Context): DisplayManager =
-        UtilKContext.getDisplayManager(context)
+        UtilKContextGet.getSystemService_DISPLAY(context)
 }

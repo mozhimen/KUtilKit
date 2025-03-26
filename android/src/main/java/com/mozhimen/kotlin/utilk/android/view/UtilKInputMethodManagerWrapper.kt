@@ -239,7 +239,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
     @JvmStatic
     fun fixInputLeak_before29(context: Context, tag: String) {
         if (UtilKBuildVersion.isAfterV_29_10_Q()) return
-        val inputMethodManager = UtilKContext.getInputMethodManager(context)
+        val inputMethodManager = UtilKInputMethodManager.get(context)
         val leakViews = arrayOf("mCurRootView", "mServedView", "mNextServedView")
         var fieldLeakView: Field
         var view: Any?

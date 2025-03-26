@@ -11,6 +11,7 @@ import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOC
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
@@ -25,7 +26,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 object UtilKLocationManager : IUtilK {
     @JvmStatic
     fun get(context: Context): LocationManager =
-        UtilKContext.getLocationManager(context)
+        UtilKContextGet.getSystemService_LOCATION(context)
 
     @JvmStatic
     @OPermission_ACCESS_COARSE_LOCATION

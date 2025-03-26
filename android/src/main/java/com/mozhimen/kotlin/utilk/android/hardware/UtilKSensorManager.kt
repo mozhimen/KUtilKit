@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.hardware
 import android.content.Context
 import android.hardware.SensorManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKSensorManager
@@ -14,5 +15,5 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKSensorManager {
     @JvmStatic
     fun get(context: Context): SensorManager =
-        UtilKContext.getSensorManager(context)
+        UtilKContextGet.getSystemService_SENSOR(context)
 }

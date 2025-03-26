@@ -6,6 +6,7 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_VIBRATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 
 /**
@@ -18,7 +19,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKVibrator {
     @JvmStatic
     fun get(context: Context): Vibrator =
-        UtilKContext.getVibrator(context)
+        UtilKContextGet.getSystemService_VIBRATOR(context)
 
     ////////////////////////////////////////////////////////////////
 

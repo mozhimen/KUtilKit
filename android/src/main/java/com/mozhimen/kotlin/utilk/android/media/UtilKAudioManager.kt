@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioManager
 import com.mozhimen.kotlin.elemk.android.media.cons.CAudioManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKAudioManager
@@ -15,7 +16,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKAudioManager {
     @JvmStatic
     fun get(context: Context): AudioManager =
-        UtilKContext.getAudioManager(context)
+        UtilKContextGet.getSystemService_AUDIO(context)
 
     @JvmStatic
     fun getStreamVolume(context: Context, streamType: Int): Int =

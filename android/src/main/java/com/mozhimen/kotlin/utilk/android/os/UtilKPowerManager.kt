@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.os
 import android.content.Context
 import android.os.PowerManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKPowerManager
@@ -14,5 +15,5 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKPowerManager {
     @JvmStatic
     fun get(context: Context): PowerManager =
-        UtilKContext.getPowerManager(context)
+        UtilKContextGet.getSystemService_POWER(context)
 }

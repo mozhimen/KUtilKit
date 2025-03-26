@@ -4,6 +4,7 @@ import android.app.DownloadManager
 import android.content.Context
 import android.net.Uri
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKDownloadManager
@@ -15,7 +16,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKDownloadManager {
     @JvmStatic
     fun get(context: Context): DownloadManager =
-        UtilKContext.getDownloadManager(context)
+        UtilKContextGet.getSystemService_DOWNLOAD(context)
 
     @JvmStatic
     fun getUriForDownloadedFile(context: Context, id: Long): Uri? =

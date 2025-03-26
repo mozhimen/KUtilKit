@@ -4,6 +4,7 @@ import android.content.Context
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 
 /**
@@ -17,7 +18,7 @@ object UtilKUsbManager {
 
     @JvmStatic
     fun get(context: Context): UsbManager =
-        UtilKContext.getUsbManager(context)
+        UtilKContextGet.getSystemService_USB(context)
 
     @JvmStatic
     fun getDeviceList(context: Context): HashMap<String, UsbDevice> =

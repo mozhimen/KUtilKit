@@ -13,6 +13,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKConnManager
@@ -25,7 +26,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKConnectivityManager {
     @JvmStatic
     fun get(context: Context): ConnectivityManager =
-        UtilKContext.getConnectivityManager(context)
+        UtilKContextGet.getSystemService_CONNECTIVITY(context)
 
     @JvmStatic
     @OPermission_ACCESS_NETWORK_STATE

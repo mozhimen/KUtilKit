@@ -4,6 +4,7 @@ import android.app.UiModeManager
 import android.content.Context
 import com.mozhimen.kotlin.elemk.android.content.cons.CConfiguration
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
  * @ClassName UtilKUiModeManager
@@ -15,7 +16,7 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 object UtilKUiModeManager {
     @JvmStatic
     fun get(context: Context): UiModeManager =
-        UtilKContext.getUiModeManager(context)
+        UtilKContextGet.getSystemService_UI_MODE(context)
 
     @JvmStatic
     fun getCurrentModeType(context: Context): Int =
