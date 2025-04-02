@@ -28,6 +28,10 @@ inline fun <T, R> T.applyTry(block: IA_BListener<T, R>, onFinally: IA_Listener<T
     UtilKT.applyTry(this, block, onFinally)
 }
 
+fun <T> T?.ifNotNull(block: IA_Listener<T>) {
+    UtilKT.ifNotNull(this, block)
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 
 object UtilKT {
@@ -83,4 +87,13 @@ object UtilKT {
 
     inline fun <T> filterNullable(obj: T?, predicate: IA_BListener<T, Boolean>): T? =
         if (obj != null && predicate(obj)) obj else null
+
+    /////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun <T> ifNotNull(obj: T?, block: IA_Listener<T>) {
+        if (obj != null) {
+            block.invoke(obj)
+        }
+    }
 }
