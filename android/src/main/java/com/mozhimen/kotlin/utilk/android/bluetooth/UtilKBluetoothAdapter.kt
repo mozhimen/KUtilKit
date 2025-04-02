@@ -3,6 +3,7 @@ package com.mozhimen.kotlin.utilk.android.bluetooth
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothServerSocket
+import android.content.Context
 import androidx.annotation.RequiresPermission
 import java.util.UUID
 
@@ -15,14 +16,32 @@ import java.util.UUID
  */
 object UtilKBluetoothAdapter {
     @JvmStatic
-    fun get(): BluetoothAdapter? =
+    fun get(context: Context): BluetoothAdapter? =
+        UtilKBluetoothManager.getAdapter(context)
+
+    @JvmStatic
+    fun getDefault(): BluetoothAdapter? =
         BluetoothAdapter.getDefaultAdapter()
 
     ////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun isSupport(): Boolean =
-        get() != null
+    fun isDefaultSupport(): Boolean =
+        isSupport(getDefault())
+
+    @JvmStatic
+    fun isSupport(context: Context): Boolean =
+        isSupport(get(context))
+
+    @JvmStatic
+    fun isSupport(adapter: BluetoothAdapter?): Boolean =
+        adapter != null
+
+    @JvmStatic
+    fun isEnabled(adapter: BluetoothAdapter): Boolean =
+        adapter.isEnabled
+
+    ////////////////////////////////////////////////////////////////////
 
     //获取已经配对的设备
     @JvmStatic
