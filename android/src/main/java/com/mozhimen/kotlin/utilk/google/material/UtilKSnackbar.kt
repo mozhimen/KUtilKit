@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.SnackbarContentLayout
-import com.mozhimen.kotlin.elemk.google.material.CSnackbar
+import com.mozhimen.kotlin.elemk.google.material.cons.CSnackbar
 
 /**
  * @ClassName UtilKSnackbar

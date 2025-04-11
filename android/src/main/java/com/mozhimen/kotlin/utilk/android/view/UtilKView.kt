@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.Insets
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.elemk.android.view.HapticOnTouchCallback
+import com.mozhimen.kotlin.elemk.android.view.impls.HapticOnTouchCallback
 import com.mozhimen.kotlin.elemk.android.view.cons.CHapticFeedbackConstants
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener

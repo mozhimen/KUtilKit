@@ -7,7 +7,7 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.net.cons.CConnectivityManager
 import com.mozhimen.kotlin.elemk.android.net.cons.ENetType
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.elemk.android.telephony.CTelephonyManager
+import com.mozhimen.kotlin.elemk.android.telephony.cons.CTelephonyManager
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.util.d
