@@ -17,6 +17,7 @@ import com.mozhimen.kotlin.elemk.cons.CStrPackage
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.java.lang.UtilKClass
+import com.mozhimen.kotlin.utilk.kotlin.ifNotNull
 import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
 
 
@@ -27,6 +28,11 @@ import com.mozhimen.kotlin.utilk.wrapper.UtilKStatusBar
  * @Date 2022/2/27 16:50
  * @Version 1.0
  */
+
+fun View.getLongTag(key: Int, defaultValue: Long): Long =
+    UtilKView.getLongTag(this, key, defaultValue)
+
+//////////////////////////////////////////////////////////////////////////////
 
 fun View.isVisible(): Boolean =
     UtilKView.isVisible(this)
@@ -126,7 +132,7 @@ object UtilKView : BaseUtilK() {
 
     @JvmStatic
     fun getLongTag(view: View, key: Int, defaultValue: Long): Long =
-        if (view.getTag(key) != null) view.getTag(key) as Long else defaultValue
+        view.getTag(key).ifNotNull { it as? Long } ?: defaultValue
 
     @JvmStatic
     fun getWindowVisibleDisplayFrame(view: View, rect: Rect) {

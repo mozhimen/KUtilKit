@@ -124,9 +124,10 @@ object UtilKByteArrayFormat : IUtilK {
      */
     @JvmStatic
     fun bytes2strHex(bytes: ByteArray, size: Int): String {
+        if (bytes.isEmpty()) return ""
         val stringBuilder = StringBuilder()
-        for (i in 0 until size) {
-            val hex = Integer.toHexString(0xFF and bytes[i].toInt())
+        for (byte in bytes) {
+            val hex = Integer.toHexString(0xFF and byte.toInt())
             if (hex.length == 1)
                 stringBuilder.append('0')
             stringBuilder.append(hex)
@@ -141,8 +142,8 @@ object UtilKByteArrayFormat : IUtilK {
      */
     @JvmStatic
     fun bytes2strHex(bytes: ByteArray): String {
-        val stringBuilder = StringBuilder()
         if (bytes.isEmpty()) return ""
+        val stringBuilder = StringBuilder()
         for (byte in bytes) {
             stringBuilder.append(byte.byte2strHex())
             // 也可以使用下面的方式。 X 表示大小字母，x 表示小写字母，对应的是 HEX_DIGITS 中字母
@@ -153,8 +154,8 @@ object UtilKByteArrayFormat : IUtilK {
 
     @JvmStatic
     fun bytes2strHex_ofHexString(bytes: ByteArray): String {
-        val stringBuilder = StringBuilder()
         if (bytes.isEmpty()) return ""
+        val stringBuilder = StringBuilder()
         for (byte in bytes) {
             stringBuilder.append(byte.byte2strHex_ofHexString())
         }

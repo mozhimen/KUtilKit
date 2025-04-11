@@ -7,6 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Rect
+import android.os.SystemClock
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -153,6 +154,7 @@ fun View.addAndRemoveOnAttachStateChangeListener(invoke: I_Listener) {
 //////////////////////////////////////////////////////////////////
 
 object UtilKViewWrapper : IUtilK {
+    const val DEBOUNCE_LAST_CLICK_TIME = 1123461123
 
     @JvmStatic
     fun getOnClickFlow(view: View): Flow<Unit> =
@@ -214,6 +216,14 @@ object UtilKViewWrapper : IUtilK {
             awaitClose { view.setOnTouchListener(null) }
         }
 
+    @JvmStatic
+    fun getThrottleOnClickListener(block: IA_Listener<View>, thresholdMillis: Long = 500): View.OnClickListener {
+        return View.OnClickListener { v ->
+            if (isDebounceClickable(v, thresholdMillis)) {
+                block.invoke(v)
+            }
+        }
+    }
 
     //////////////////////////////////////////////////////////////////
 
@@ -314,11 +324,10 @@ object UtilKViewWrapper : IUtilK {
     @JvmStatic
     fun <V : View> isDebounceClickable(view: V, thresholdMillis: Long = 500): Boolean {
         var isClickable = false
-        val currentClickTime = System.currentTimeMillis()
-        val lastClickTime = UtilKView.getLongTag(view, CCons.DEBOUNCE_LAST_CLICK_TIME, currentClickTime)
+        val currentClickTime = SystemClock.uptimeMillis()
+        val lastClickTime = view.getLongTag(DEBOUNCE_LAST_CLICK_TIME, 0)
         if (kotlin.math.abs(currentClickTime - lastClickTime) >= thresholdMillis) {
-            isClickable = true
-            view.setTag(CCons.DEBOUNCE_LAST_CLICK_TIME, currentClickTime)
+            view.setTag(DEBOUNCE_LAST_CLICK_TIME, currentClickTime).also { isClickable = true }
         }
         return isClickable
     }
@@ -343,11 +352,7 @@ object UtilKViewWrapper : IUtilK {
 
     @JvmStatic
     fun applyDebounceClickListener(view: View, block: IA_Listener<View>, thresholdMillis: Long = 500) {
-        view.setOnClickListener {
-            if (isDebounceClickable(view, thresholdMillis)) {
-                block.invoke(view)
-            }
-        }
+        view.setOnClickListener(getThrottleOnClickListener(block, thresholdMillis))
     }
 
 //////////////////////////////////////////////////////////////////

@@ -39,7 +39,7 @@ object CDateFormat {
         const val ss = "ss"
     }
 
-    object SKELETON {
+    object Skeleton {
         const val YYYYMMMMd = "YYYYMMMMd"
     }
 

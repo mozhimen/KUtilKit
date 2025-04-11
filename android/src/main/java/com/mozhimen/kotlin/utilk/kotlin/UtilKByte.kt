@@ -22,26 +22,33 @@ fun Byte.byte2int(): Int =
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKByte {
-    val strHexs by lazy_ofNone { arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f") }
+    private const val HEX_CHARS = "0123456789abcdef"
+    private const val HEX_CHARS_UPPER = "0123456789ABCDEF"
 
-    //字节转成字符
+    //字节转成字符(性能)
     @JvmStatic
-    fun byte2strHex(byte: Byte): String =
-        strHexs[(byte.toInt() and 0xf0) shr 4] + strHexs[byte.toInt() and 0x0f]
+    fun byte2strHex(byte: Byte, uppercase: Boolean = false): String =
+        if (uppercase)
+            "${HEX_CHARS_UPPER[(byte.toInt() and 0xF0) shr 4]}${HEX_CHARS_UPPER[byte.toInt() and 0x0F]}"
+        else
+            "${HEX_CHARS[(byte.toInt() and 0xF0) shr 4]}${HEX_CHARS[byte.toInt() and 0x0F]}"
 
     @JvmStatic
     fun byte2strHex_ofHexString(byte: Byte): String {
-        val v: Int = ((byte and 0xFF.toByte()).toInt())
-        val hv: String = Integer.toHexString(v)
-        return if (hv.length < 2)
-            "0"
-        else hv
+        val hv: String = Integer.toHexString(byte.toInt() and 0xFF)
+        return if (hv.length < 2) "0" else hv
     }
 
     @JvmStatic
     fun byte2int(byte: Byte): Int =
-        if (byte <= '9'.toByte())
-            byte - '0'.toByte()
-        else
-            byte - 'a'.toByte() + 10
+//        if (byte <= '9'.toByte())
+//            byte - '0'.toByte()
+//        else
+//            byte - 'a'.toByte() + 10
+        when (byte) {
+            in '0'.toByte()..'9'.toByte() -> byte - '0'.toByte()
+            in 'a'.toByte()..'f'.toByte() -> byte - 'a'.toByte() + 10
+            in 'A'.toByte()..'F'.toByte() -> byte - 'A'.toByte() + 10
+            else -> throw IllegalArgumentException("Invalid hex character: ${byte.toChar()}")
+        }
 }

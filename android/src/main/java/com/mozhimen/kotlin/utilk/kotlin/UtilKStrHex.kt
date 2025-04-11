@@ -13,14 +13,14 @@ fun String.strHex2bytes(): ByteArray =
 object UtilKStrHex {
     @JvmStatic
     fun strHex2bytes(strHex: String): ByteArray {
-        if (strHex.isEmpty()) return ByteArray(0)
-        val bytesHex = strHex.toByteArray()
-        val n = bytesHex.size shr 1
-        val bytes = ByteArray(n)
-        for (i in 0 until n) {
-            val index = i shl 1
-            bytes[i] = (bytesHex[index].byte2int() shl 4 or bytesHex[index + 1].byte2int()).toByte()
+        val strHexNew = strHex.removePrefix("0x").filter { it != ':' }
+        val len = strHexNew.length
+        val data = ByteArray(len / 2)
+        var i = 0
+        while (i < len) {
+            data[i / 2] = ((Character.digit(strHexNew[i], 16) shl 4) + Character.digit(strHexNew[i + 1], 16)).toByte()
+            i += 2
         }
-        return bytes
+        return data
     }
 }

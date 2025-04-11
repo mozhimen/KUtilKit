@@ -1,5 +1,6 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import com.mozhimen.kotlin.elemk.commons.IA_AListener
 import com.mozhimen.kotlin.elemk.commons.IA_BListener
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
@@ -28,9 +29,8 @@ inline fun <T, R> T.applyTry(block: IA_BListener<T, R>, onFinally: IA_Listener<T
     UtilKT.applyTry(this, block, onFinally)
 }
 
-fun <T> T?.ifNotNull(block: IA_Listener<T>) {
+fun <T, R> T?.ifNotNull(block: IA_BListener<T, R?>): R? =
     UtilKT.ifNotNull(this, block)
-}
 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -91,9 +91,6 @@ object UtilKT {
     /////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun <T> ifNotNull(obj: T?, block: IA_Listener<T>) {
-        if (obj != null) {
-            block.invoke(obj)
-        }
-    }
+    fun <T, R> ifNotNull(obj: T?, block: IA_BListener<T, R?>): R? =
+        if (obj != null) block.invoke(obj) else null
 }

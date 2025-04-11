@@ -2,6 +2,7 @@ package com.mozhimen.kotlin.utilk.java.text
 
 import android.content.Context
 import com.mozhimen.kotlin.elemk.android.view.cons.CMotionEvent
+import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.lintk.annors.AFormatStyle
 import com.mozhimen.kotlin.utilk.android.text.UtilKDateFormat
 import com.mozhimen.kotlin.utilk.java.util.UtilKDate
@@ -16,6 +17,11 @@ import java.util.Locale
  * @Date 2024/8/13
  * @Version 1.0
  */
+fun main() {
+    println("1744026520")
+    println(System.currentTimeMillis())
+    println(1744026520000L.longDate2strDate(CDateFormat.Format.`yyyy-MM-dd_HH_mm_ss`,Locale.CHINA))
+}
 fun Long.longDate2strDate(strFormatDate: String): String =
     UtilKSimpleDateFormatFormat.longDate2strDate(this, strFormatDate)
 
