@@ -11,7 +11,7 @@ import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
-import com.mozhimen.kotlin.elemk.android.view.ColorfulStatusBar
+import com.mozhimen.kotlin.elemk.android.view.impls.ColorfulStatusBar
 import com.mozhimen.kotlin.elemk.cons.CPackage
 import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper

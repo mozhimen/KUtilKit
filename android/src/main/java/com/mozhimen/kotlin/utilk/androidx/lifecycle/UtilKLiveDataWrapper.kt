@@ -2,8 +2,8 @@ package com.mozhimen.kotlin.utilk.androidx.lifecycle
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.mozhimen.kotlin.elemk.androidx.lifecycle.MediatorLiveDataCombined
-import com.mozhimen.kotlin.elemk.androidx.lifecycle.MediatorLiveDataThrottled
+import com.mozhimen.kotlin.elemk.androidx.lifecycle.impls.MediatorLiveDataCombined
+import com.mozhimen.kotlin.elemk.androidx.lifecycle.impls.MediatorLiveDataThrottled
 import com.mozhimen.kotlin.elemk.commons.IAB_CListener
 import com.mozhimen.kotlin.elemk.commons.IA_BListener
 import com.mozhimen.kotlin.utilk.kotlin.obj2str_trim

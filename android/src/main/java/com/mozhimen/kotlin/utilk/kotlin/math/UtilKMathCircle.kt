@@ -9,6 +9,6 @@ package com.mozhimen.kotlin.utilk.kotlin.math
  */
 object UtilKMathCircle {
     @JvmStatic
-    fun get2PI():Float =
+    fun get2pI():Float =
         2 * Math.PI.toFloat()
 }

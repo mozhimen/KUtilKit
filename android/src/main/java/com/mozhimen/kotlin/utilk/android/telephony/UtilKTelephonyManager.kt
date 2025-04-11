@@ -6,7 +6,7 @@ import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.elemk.android.telephony.CTelephonyManager
+import com.mozhimen.kotlin.elemk.android.telephony.cons.CTelephonyManager
 import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P

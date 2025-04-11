@@ -15,19 +15,6 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Date 2024/5/16
  * @Version 1.0
  */
-//fun Fragment.runOnViewLifecycleState(state: Lifecycle.State, coroutineContext: CoroutineContext = EmptyCoroutineContext, block: ISuspendExt_Listener<CoroutineScope>) {
-//    UtilKFragmentWrapper.runOnViewLifecycleState(this, state, coroutineContext, block)
-//}
-
-fun FragmentActivity.addHideFragments(currentFragment: Fragment, currentTag: String, lastFragment: Fragment?, lastTag: String?, @IdRes containerViewId: Int) {
-    UtilKFragmentWrapper.addHideFragments(this, currentFragment, currentTag, lastFragment, lastTag, containerViewId)
-}
-
-fun FragmentActivity.showHideFragments(currentFragment: Fragment, currentTag: String, lastFragment: Fragment?, lastTag: String?, @IdRes containerViewId: Int) {
-    UtilKFragmentWrapper.showHideFragments(this, currentFragment, currentTag, lastFragment, lastTag, containerViewId)
-}
-
-////////////////////////////////////////////////////////////////////
 
 object UtilKFragmentWrapper : IUtilK {
 //    @JvmStatic
@@ -56,61 +43,12 @@ object UtilKFragmentWrapper : IUtilK {
     }
 
     @JvmStatic
-    fun onFragmentRestoreInstanceState(fragmentActivity: FragmentActivity, outState: Bundle?, vararg fragmentName: String): HashMap<String, Fragment?> {
+    fun onFragmentRestoreInstanceState(fragmentActivity: FragmentActivity, outState: Bundle?, vararg fragmentKey: String): HashMap<String, Fragment?> {
         val map: HashMap<String, Fragment?> = HashMap()
         if (outState == null) return map
-        fragmentName.forEach {
+        fragmentKey.forEach {
             map[it] = UtilKFragmentManager.getFragment(fragmentActivity, outState, it)
         }
         return map.also { UtilKLogWrapper.d(TAG, "onRestoreInstanceState: getFragment $it") }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-
-    /**
-     *         //设置容器
-     *         var nextFragment: Fragment? = findFragmentByTag(navigateKDes.id)
-     *         if (null == nextFragment) {
-     *             nextFragment = _fragmentMap[navigateKDes.id] ?: run {
-     *                 navigateKDes.onInvokeFragment.invoke().also { _fragmentMap[navigateKDes.id] = it }
-     *             }
-     *             addHideFragments(nextFragment, navigateKDes.id, lastFragment, _navigateKDes?.id, R.id.main_fragment_container)
-     *         } else {
-     *             showHideFragments(nextFragment, navigateKDes.id, lastFragment, _navigateKDes?.id, R.id.main_fragment_container)
-     *         }
-     *         _navigateKDes = navigateKDes
-     */
-    @JvmStatic
-    fun addHideFragments(fragmentActivity: FragmentActivity, currentFragment: Fragment, currentTag: String, lastFragment: Fragment?, lastTag: String?, @IdRes containerViewId: Int) {
-        val fragmentTransaction = UtilKFragmentTransaction.get(fragmentActivity)
-        if (fragmentActivity.findFragmentByTag(currentTag) == null && !currentFragment.isAdded) {
-            fragmentTransaction.add(containerViewId, currentFragment, currentTag)
-            fragmentTransaction.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
-        } else {
-            fragmentTransaction.show(currentFragment)
-            fragmentTransaction.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
-        }
-        if (lastFragment != null && lastTag != null && fragmentActivity.findFragmentByTag(lastTag) != null && lastFragment.isAdded) {
-            fragmentTransaction.hide(lastFragment)
-            fragmentTransaction.setMaxLifecycle(lastFragment, Lifecycle.State.STARTED)
-        }
-        fragmentTransaction.commitAllowingStateLoss()
-    }
-
-    @JvmStatic
-    fun showHideFragments(fragmentActivity: FragmentActivity, currentFragment: Fragment, currentTag: String, lastFragment: Fragment?, lastTag: String?, @IdRes containerViewId: Int) {
-        val fragmentTransaction = UtilKFragmentTransaction.get(fragmentActivity)
-        if (fragmentActivity.findFragmentByTag(currentTag) != null && currentFragment.isAdded) {
-            fragmentTransaction.show(currentFragment)
-            fragmentTransaction.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
-        } else {
-            fragmentTransaction.add(containerViewId, currentFragment, currentTag)
-            fragmentTransaction.setMaxLifecycle(currentFragment, Lifecycle.State.RESUMED)
-        }
-        if (lastFragment != null && lastTag != null && fragmentActivity.findFragmentByTag(lastTag) != null && lastFragment.isAdded) {
-            fragmentTransaction.hide(lastFragment)
-            fragmentTransaction.setMaxLifecycle(lastFragment, Lifecycle.State.STARTED)
-        }
-        fragmentTransaction.commitAllowingStateLoss()
     }
 }

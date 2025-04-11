@@ -25,37 +25,62 @@ fun FragmentActivity.findFragmentByTag(tag: String): Fragment? =
 
 object UtilKFragmentManager : IUtilK {
     @JvmStatic
-    fun get_ofSupport(fragmentActivity: FragmentActivity): FragmentManager =
+    fun get_support(fragmentActivity: FragmentActivity): FragmentManager =
         UtilKFragmentActivity.getSupportFragmentManager(fragmentActivity)
 
     @JvmStatic
-    fun get_ofChild(fragment: Fragment): FragmentManager =
+    fun get_child(fragment: Fragment): FragmentManager =
         UtilKFragment.getChildFragmentManager(fragment)
 
     /////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun findFragmentByTag(fragmentActivity: FragmentActivity, tag: String): Fragment? =
-        get_ofSupport(fragmentActivity).findFragmentByTag(tag)
+        get_support(fragmentActivity).findFragmentByTag(tag)
+
+    @JvmStatic
+    fun findFragmentByTag(fragment: Fragment, tag: String): Fragment? =
+        get_child(fragment).findFragmentByTag(tag)
 
     @JvmStatic
     fun findFragmentById(fragmentActivity: FragmentActivity, @IdRes intResId: Int): Fragment? =
-        get_ofSupport(fragmentActivity).findFragmentById(intResId)
+        get_support(fragmentActivity).findFragmentById(intResId)
+
+    @JvmStatic
+    fun findFragmentById(fragment: Fragment, @IdRes intResId: Int): Fragment? =
+        get_child(fragment).findFragmentById(intResId)
 
     @JvmStatic
     fun beginTransaction(fragmentActivity: FragmentActivity): FragmentTransaction =
-        get_ofSupport(fragmentActivity).beginTransaction()
+        get_support(fragmentActivity).beginTransaction()
 
     @JvmStatic
     fun beginTransaction(fragment: Fragment): FragmentTransaction =
-        get_ofChild(fragment).beginTransaction()
+        get_child(fragment).beginTransaction()
 
     @JvmStatic
     fun putFragment(fragmentActivity: FragmentActivity, bundle: Bundle, key: String, fragment: Fragment) {
-        get_ofSupport(fragmentActivity).putFragment(bundle, key, fragment)
+        get_support(fragmentActivity).putFragment(bundle, key, fragment)
+    }
+
+    @JvmStatic
+    fun putFragment(fragment: Fragment, bundle: Bundle, key: String, fragment1: Fragment) {
+        get_child(fragment).putFragment(bundle, key, fragment1)
     }
 
     @JvmStatic
     fun getFragment(fragmentActivity: FragmentActivity, bundle: Bundle, key: String): Fragment? =
-        get_ofSupport(fragmentActivity).getFragment(bundle, key)
+        get_support(fragmentActivity).getFragment(bundle, key)
+
+    @JvmStatic
+    fun getFragment(fragment: Fragment, bundle: Bundle, key: String): Fragment? =
+        get_child(fragment).getFragment(bundle, key)
+
+    @JvmStatic
+    fun getFragments(fragmentActivity: FragmentActivity): List<Fragment> =
+        get_support(fragmentActivity).fragments
+
+    @JvmStatic
+    fun getFragments(fragment: Fragment): List<Fragment> =
+        get_child(fragment).fragments
 }

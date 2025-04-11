@@ -33,6 +33,6 @@ object UtilKGridView {
 
     @JvmStatic
     fun applyItemClick(gridView: GridView, position: Int) {
-        gridView.performItemClick(gridView.getChildAt(position), position, gridView.getItemIdAtPosition(position))
+//        gridView.performItemClick(gridView.getChildAt(position), position, gridView.getItemIdAtPosition(position))
     }
 }

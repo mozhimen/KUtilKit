@@ -1,8 +1,8 @@
 package com.mozhimen.kotlin.elemk
 
-import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
-import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_SetSameNonnull
-import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_SetVaryNullable
+import com.mozhimen.kotlin.elemk.kotlin.impls.properties.VarProperty_Set
+import com.mozhimen.kotlin.elemk.kotlin.impls.properties.VarProperty_SetSameNonnull
+import com.mozhimen.kotlin.elemk.kotlin.impls.properties.VarProperty_SetVaryNullable
 import com.mozhimen.kotlin.utilk.kotlin.io.printlog
 import org.junit.Test
 

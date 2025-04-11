@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.google.material
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.annotation.StringRes
-import com.mozhimen.kotlin.elemk.google.material.CSnackbar
+import com.mozhimen.kotlin.elemk.google.material.cons.CSnackbar
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.android.os.UtilKHandler
 import com.mozhimen.kotlin.utilk.android.os.UtilKLooper
