@@ -17,7 +17,6 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CGravity
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.elemk.cons.CCons
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLongLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.d
@@ -271,7 +270,7 @@ object UtilKViewWrapper : IUtilK {
             UtilKLongLogWrapper.e("getViewBitmap  >>  宽或者高为空")
             return null
         }
-        val statusBarHeight = UtilKStatusBar.getHeight(false)
+        val statusBarHeight = UtilKStatusBar.getHeight_resources_check(false)
         var tempBitmap: Bitmap
         UtilKLongLogWrapper.i("getViewBitmap 模糊原始图像分辨率 [" + view.width + " x " + view.height + "]")
         tempBitmap = try {

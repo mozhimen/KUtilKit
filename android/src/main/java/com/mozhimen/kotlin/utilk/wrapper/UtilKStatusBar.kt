@@ -39,7 +39,7 @@ object UtilKStatusBar : BaseUtilK() {
      */
     @SuppressLint("InternalInsetResource", "DiscouragedApi")
     @JvmStatic
-    fun getHeight(): Int {
+    fun getHeight_resources(): Int {
         val dimensionId = UtilKResources.getIdentifier_ofSys("status_bar_height", "dimen", "android")
         return if (dimensionId != 0) UtilKRes.getDimensionPixelSize_ofResources(dimensionId) else 0
     }
@@ -52,9 +52,9 @@ object UtilKStatusBar : BaseUtilK() {
      * @return Int
      */
     @JvmStatic
-    fun getHeight(isCheckFullScreen: Boolean): Int {
+    fun getHeight_resources_check(isCheckFullScreen: Boolean): Int {
         if (isCheckFullScreen && UtilKScreen.isFullScreen_ofTheme()) return 0
-        return getHeight()
+        return getHeight_resources()
     }
 
     /**
@@ -65,7 +65,7 @@ object UtilKStatusBar : BaseUtilK() {
      * @return Int
      */
     @JvmStatic
-    fun getHeight(activity: Activity): Int =
+    fun getHeight_runtime(activity: Activity): Int =
         UtilKDecorView.getWindowVisibleDisplayFrame(activity).top
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

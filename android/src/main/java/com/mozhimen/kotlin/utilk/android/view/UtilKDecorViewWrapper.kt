@@ -30,7 +30,7 @@ object UtilKDecorViewWrapper {
         val decorView = UtilKDecorView.get(window)
         val outRect = UtilKDecorView.getWindowVisibleDisplayFrame(window)
         val delta = abs(decorView.bottom - outRect.bottom)
-        return (if (delta <= UtilKNavigationBar.getHeight() + UtilKStatusBar.getHeight()) 0 else delta).also { ("getInvisibleHeight: " + (decorView.bottom - outRect.bottom)).d(UtilKDecorView.TAG) }
+        return (if (delta <= UtilKNavigationBar.getHeight() + UtilKStatusBar.getHeight_resources()) 0 else delta).also { ("getInvisibleHeight: " + (decorView.bottom - outRect.bottom)).d(UtilKDecorView.TAG) }
     }
 
     //截屏

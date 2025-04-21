@@ -280,7 +280,7 @@ object UtilKView : BaseUtilK() {
     @JvmStatic
     fun applyLayoutParamsHeight_ofStatusBar(view: View) {
         view.layoutParams = view.layoutParams.apply {
-            height = UtilKStatusBar.getHeight()
+            height = UtilKStatusBar.getHeight_resources()
         }
     }
 

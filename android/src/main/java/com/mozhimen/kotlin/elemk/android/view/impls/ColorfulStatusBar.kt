@@ -39,7 +39,7 @@ class ColorfulStatusBar(private val _activity: Activity) {
         _colorfulStatusBarView = View(activity)
         //设置高度匹配StatusBar的高度
         val layoutParams =
-            FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, UtilKStatusBar.getHeight(false)).apply {
+            FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, UtilKStatusBar.getHeight_resources_check(false)).apply {
                 gravity = Gravity.TOP
             }
         _colorfulStatusBarView.layoutParams = layoutParams

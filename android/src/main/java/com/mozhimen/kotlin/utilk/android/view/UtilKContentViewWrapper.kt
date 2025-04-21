@@ -24,7 +24,7 @@ object UtilKContentViewWrapper {
         val contentView = UtilKContentView.get_window<View>(window)
         val outRect = UtilKContentView.getWindowVisibleDisplayFrame(window)
         val delta = abs(contentView.bottom - outRect.bottom)
-        return if (delta <= UtilKStatusBar.getHeight() + UtilKNavigationBar.getHeight()) 0
+        return if (delta <= UtilKStatusBar.getHeight_resources() + UtilKNavigationBar.getHeight()) 0
         else delta
     }
 
