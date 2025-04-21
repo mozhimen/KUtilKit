@@ -1,5 +1,7 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
+import android.text.Html.ImageGetter
+import android.text.Html.TagHandler
 import android.text.Spanned
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
@@ -21,6 +23,9 @@ fun String.strHtml2chars(flags: Int): Spanned =
 fun String.strHtml2chars(): Spanned =
     UtilKStrHtml.strHtml2chars(this)
 
+fun String.strHtml2chars(imageGetter: ImageGetter, tagHandler: TagHandler?): Spanned =
+    UtilKStrHtml.strHtml2chars(this, imageGetter, tagHandler)
+
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKStrHtml {
@@ -31,9 +36,21 @@ object UtilKStrHtml {
         UtilKHtml.fromHtml(strHtml, flags)
 
     @JvmStatic
+    @RequiresApi(CVersCode.V_24_7_N)
+    fun strHtml2chars(strHtml: String, flags: Int, imageGetter: ImageGetter, tagHandler: TagHandler?): Spanned =
+        UtilKHtml.fromHtml(strHtml, flags, imageGetter, tagHandler)
+
+    @JvmStatic
     fun strHtml2chars(strHtml: String): Spanned =
         if (UtilKBuildVersion.isAfterV_24_7_N())
             strHtml2chars(strHtml, CHtml.FROM_HTML_MODE_COMPACT)
         else
             UtilKHtml.fromHtml(strHtml)
+
+    @JvmStatic
+    fun strHtml2chars(strHtml: String, imageGetter: ImageGetter, tagHandler: TagHandler?): Spanned =
+        if (UtilKBuildVersion.isAfterV_24_7_N())
+            strHtml2chars(strHtml, CHtml.FROM_HTML_MODE_COMPACT, imageGetter, tagHandler)
+        else
+            UtilKHtml.fromHtml(strHtml, imageGetter, tagHandler)
 }

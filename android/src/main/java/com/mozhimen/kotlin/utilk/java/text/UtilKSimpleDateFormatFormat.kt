@@ -99,8 +99,7 @@ object UtilKSimpleDateFormatFormat {
      */
     @JvmStatic
     fun date2strDate(date: Date, locale: Locale, skeleton: String): String {
-        val newSkeleton = UtilKDateFormat.getBestDateTimePattern(locale, skeleton)
-        return UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(newSkeleton, locale), date)
+        return UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(UtilKDateFormat.getBestDateTimePattern(locale, skeleton), locale), date)
     }
 
     //date转long

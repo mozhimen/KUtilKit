@@ -18,15 +18,15 @@ import java.util.Locale
 @SuppressLint("SimpleDateFormat")
 object UtilKSimpleDateFormat {
     @JvmStatic
-    fun get_ofShort(context: Context): SimpleDateFormat =
+    fun get_short(context: Context): SimpleDateFormat =
         UtilKDateFormat.getDateFormat(context) as SimpleDateFormat
 
     @JvmStatic
-    fun get_ofMedium(context: Context): SimpleDateFormat =
+    fun get_medium(context: Context): SimpleDateFormat =
         UtilKDateFormat.getMediumDateFormat(context) as SimpleDateFormat
 
     @JvmStatic
-    fun get_ofLong(context: Context): SimpleDateFormat =
+    fun get_long(context: Context): SimpleDateFormat =
         UtilKDateFormat.getLongDateFormat(context) as SimpleDateFormat
 
     @JvmStatic

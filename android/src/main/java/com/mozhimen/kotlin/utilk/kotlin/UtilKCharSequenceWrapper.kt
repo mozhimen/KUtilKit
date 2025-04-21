@@ -19,7 +19,7 @@ fun <C : CharSequence> C.ifNotEmpty(block: IA_Listener<C>) {
     UtilKCharSequenceWrapper.ifNotEmpty(this, block)
 }
 
-fun <C : CharSequence> C.ifNotEmptyOr(onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
+fun <C : CharSequence> C?.ifNotEmptyOr(onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
     UtilKCharSequenceWrapper.ifNotEmptyOr(this, onNotEmpty, onEmpty)
 }
 
@@ -79,8 +79,8 @@ object UtilKCharSequenceWrapper {
     }
 
     @JvmStatic
-    fun <C : CharSequence> ifNotEmptyOr(chars: C, onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
-        if (chars.isNotEmpty())
+    fun <C : CharSequence> ifNotEmptyOr(chars: C?, onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
+        if (!chars.isNullOrEmpty())
             onNotEmpty.invoke(chars)
         else
             onEmpty.invoke()

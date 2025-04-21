@@ -43,9 +43,11 @@ object CDateFormat {
         const val YYYYMMMMd = "YYYYMMMMd"
     }
 
-    const val FULL = DateFormat.FULL
-    const val LONG = DateFormat.LONG
-    const val MEDIUM = DateFormat.MEDIUM
-    const val SHORT = DateFormat.SHORT
-    const val DEFAULT = DateFormat.DEFAULT
+    object Style {
+        const val FULL = DateFormat.FULL
+        const val LONG = DateFormat.LONG
+        const val MEDIUM = DateFormat.MEDIUM
+        const val SHORT = DateFormat.SHORT
+        const val DEFAULT = DateFormat.DEFAULT
+    }
 }

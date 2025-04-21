@@ -11,11 +11,11 @@ import android.view.ViewGroup
  */
 object UtilKViewGroup_LayoutParamsGet {
     @JvmStatic
-    fun get_MATCHs(): ViewGroup.LayoutParams =
+    fun get_MATCH_MATCH(): ViewGroup.LayoutParams =
         UtilKViewGroup_LayoutParams.get(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
     @JvmStatic
-    fun get_WRAPs(): ViewGroup.LayoutParams =
+    fun get_WRAP_WRAP(): ViewGroup.LayoutParams =
         UtilKViewGroup_LayoutParams.get(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
     @JvmStatic

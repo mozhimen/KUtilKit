@@ -10,5 +10,5 @@ import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
  * @Date 2024/8/14
  * @Version 1.0
  */
-@IntDef(CDateFormat.FULL, CDateFormat.LONG, CDateFormat.MEDIUM, CDateFormat.SHORT)
+@IntDef(CDateFormat.Style.FULL, CDateFormat.Style.LONG, CDateFormat.Style.MEDIUM, CDateFormat.Style.SHORT)
 annotation class AFormatStyle

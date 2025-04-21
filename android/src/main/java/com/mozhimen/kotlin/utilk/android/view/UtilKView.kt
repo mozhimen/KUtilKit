@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.view.*
+import android.view.ViewGroup.LayoutParams
 import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
 import androidx.core.graphics.Insets
@@ -61,25 +62,6 @@ fun View.applyPaddingVertical(padding: Int) {
     UtilKView.applyPaddingVertical(this, padding)
 }
 
-fun View.applyLayoutParams(size: Int) {
-    UtilKView.applyLayoutParams(this, size)
-}
-
-fun View.applyLayoutParams(width: Int, height: Int) {
-    UtilKView.applyLayoutParams(this, width, height)
-}
-
-fun View.applyLayoutParams_MATCH_MATCH() {
-    UtilKView.applyLayoutParams_MATCH_MATCH(this)
-}
-
-fun View.applyLayoutParamsHeight_ofStatusBar() {
-    UtilKView.applyLayoutParamsHeight_ofStatusBar(this)
-}
-
-inline fun <reified T : ViewGroup.LayoutParams> View.applyUpdateLayoutParams(block: IExt_Listener<T>) {
-    UtilKView.applyUpdateLayoutParams(this, block)
-}
 //////////////////////////////////////////////////////////////////////////////
 
 fun View.applyBackgroundNull() =
@@ -112,6 +94,7 @@ fun View.applyHapticOnTouchListener() {
 }
 
 //////////////////////////////////////////////////////////////////////////////
+
 object UtilKView : BaseUtilK() {
     @JvmStatic
     fun get_inflate(viewGroup: ViewGroup, @LayoutRes intResLayout: Int): View =
@@ -148,6 +131,10 @@ object UtilKView : BaseUtilK() {
     @JvmStatic
     fun getGlobalVisibleRect(view: View): Rect =
         getGlobalVisibleRect(view, Rect())
+
+    @JvmStatic
+    fun getLayoutParams(view: View):ViewGroup.LayoutParams =
+        view.layoutParams
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -257,40 +244,9 @@ object UtilKView : BaseUtilK() {
 
     //////////////////////////////////////////////////////////////////////////////
 
-    //重置大小
     @JvmStatic
-    fun applyLayoutParams(view: View, width: Int, height: Int) {
-        val layoutParams = view.layoutParams
-        layoutParams.width = width
-        layoutParams.height = height
+    fun applyLayoutParams(view: View, layoutParams: LayoutParams) {
         view.layoutParams = layoutParams
-    }
-
-    //重置大小
-    @JvmStatic
-    fun applyLayoutParams(view: View, size: Int) {
-        applyLayoutParams(view, size, size)
-    }
-
-    @JvmStatic
-    fun applyLayoutParams_MATCH_MATCH(view: View) {
-        view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-    }
-
-    @JvmStatic
-    fun applyLayoutParamsHeight_ofStatusBar(view: View) {
-        view.layoutParams = view.layoutParams.apply {
-            height = UtilKStatusBar.getHeight_resources()
-        }
-    }
-
-    inline fun <reified T : ViewGroup.LayoutParams> applyUpdateLayoutParams(view: View, block: IExt_Listener<T>) {
-        view.layoutParams = (view.layoutParams as? T)?.apply(block) ?: kotlin.run {
-            val width = view.layoutParams?.width ?: 0
-            val height = view.layoutParams?.height ?: 0
-            val lp = ViewGroup.LayoutParams(width, height)
-            UtilKClass.newInstance<T>(lp).apply(block)
-        }
     }
 
     //////////////////////////////////////////////////////////////////////////////

@@ -2,8 +2,6 @@ package com.mozhimen.kotlin.utilk.java.text
 
 import android.content.Context
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
-import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
-import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.util.UtilKLocale
 import java.text.SimpleDateFormat
@@ -29,10 +27,10 @@ object UtilKSimpleDateFormatWrapper : IUtilK {
             return _simpleDateFormats[key]!!
         else {
             val simpleDateFormat = when (style) {
-                CDateFormat.LONG -> UtilKSimpleDateFormat.get_ofLong(context)
-                CDateFormat.MEDIUM -> UtilKSimpleDateFormat.get_ofMedium(context)
-                CDateFormat.SHORT -> UtilKSimpleDateFormat.get_ofShort(context)
-                else -> UtilKSimpleDateFormat.get_ofMedium(context)
+                CDateFormat.Style.LONG -> UtilKSimpleDateFormat.get_long(context)
+                CDateFormat.Style.MEDIUM -> UtilKSimpleDateFormat.get_medium(context)
+                CDateFormat.Style.SHORT -> UtilKSimpleDateFormat.get_short(context)
+                else -> UtilKSimpleDateFormat.get_medium(context)
             }
             _simpleDateFormats[key] = simpleDateFormat
             return simpleDateFormat
