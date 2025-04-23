@@ -158,7 +158,7 @@ object UtilKViewGroup_LayoutParamsWrapper {
 
     @JvmStatic
     fun applyLayoutParamsHeight_statusBar(view: View) {
-        applyLayoutParamsHeight(view, UtilKStatusBar.getHeight())
+        applyLayoutParamsHeight(view, UtilKStatusBar.getHeight_resources())
     }
 
     inline fun <reified T : ViewGroup.LayoutParams> applyUpdateLayoutParams(view: View, block: IExt_Listener<T>) {
