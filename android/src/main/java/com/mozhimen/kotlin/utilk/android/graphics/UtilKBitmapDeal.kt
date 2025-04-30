@@ -178,7 +178,7 @@ object UtilKBitmapDeal : BaseUtilK() {
     //滤镜图片
     @JvmStatic
     fun applyAnyBitmapFilter(bitmapSource: Bitmap, @ColorInt filterColorInt: Int): Bitmap {
-        val destBitmap = UtilKBitmap.createBitmap(bitmapSource.width, bitmapSource.height, bitmapSource.config)
+        val destBitmap = UtilKBitmap.createBitmap(bitmapSource.width, bitmapSource.height, bitmapSource.config ?: Bitmap.Config.ARGB_8888)
         Canvas(destBitmap).drawBitmap(bitmapSource, 0f, 0f, Paint().apply {
             colorFilter = PorterDuffColorFilter(filterColorInt, PorterDuff.Mode.SRC_IN)
         })

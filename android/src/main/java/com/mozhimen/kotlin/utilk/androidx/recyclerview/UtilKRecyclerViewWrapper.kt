@@ -188,9 +188,9 @@ object UtilKRecyclerViewWrapper : IUtilK {
         when (val layoutManager = recyclerView.layoutManager) {
             is LinearLayoutManager, is StaggeredGridLayoutManager -> {
                 return (UtilKRecyclerView.getChildAt(recyclerView, 0)?.y.also {
-                    UtilKLogWrapper.d(TAG, "UtilKRecyclerView.getChildAt(recyclerView, 0)?.y ${UtilKRecyclerView.getChildAt(recyclerView, 0)?.y}")
+//                    UtilKLogWrapper.d(TAG, "UtilKRecyclerView.getChildAt(recyclerView, 0)?.y ${UtilKRecyclerView.getChildAt(recyclerView, 0)?.y}")
                 } == 0f) && layoutManager.getFirstVisibleItemPosition().also {
-                    UtilKLogWrapper.d(TAG, "layoutManager.getFirstVisibleItemPosition() ${layoutManager.getFirstVisibleItemPosition()}")
+//                    UtilKLogWrapper.d(TAG, "layoutManager.getFirstVisibleItemPosition() ${layoutManager.getFirstVisibleItemPosition()}")
                 } == 0
             }
         }

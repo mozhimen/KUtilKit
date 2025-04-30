@@ -15,6 +15,9 @@ fun String.replace_lineBreak2lineBreak(): String =
 fun String.replace_doubleQuote2none(): String =
     UtilKStringsReplace.replace_doubleQuote2none(this)
 
+fun String.replace_doubleQuoteStr2doubleQuote(): String =
+    UtilKStringsReplace.replace_doubleQuoteStr2doubleQuote(this)
+
 fun String.replace_brackets_content2none(): String =
     UtilKStringsReplace.replace_brackets_content2none(this)
 
@@ -48,6 +51,10 @@ object UtilKStringsReplace {
     @JvmStatic
     fun replace_doubleQuote2none(str: String): String =
         str.replace(UtilKRegexGet.get_doubleQuote(), "")
+
+    @JvmStatic
+    fun replace_doubleQuoteStr2doubleQuote(str: String): String =
+        str.replace("\\", "\"")
 
     @JvmStatic
     fun replace_brackets_content2none(str: String): String =

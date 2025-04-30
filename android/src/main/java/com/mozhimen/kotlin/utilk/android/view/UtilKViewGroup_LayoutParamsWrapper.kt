@@ -52,6 +52,10 @@ fun View.applyLayoutParamsHeight_statusBar() {
     UtilKViewGroup_LayoutParamsWrapper.applyLayoutParamsHeight_statusBar(this)
 }
 
+fun View.applyLayoutParamsWidth(layoutParamsWidth: Int) {
+    UtilKViewGroup_LayoutParamsWrapper.applyLayoutParamsWidth(this, layoutParamsWidth)
+}
+
 fun View.applyLayoutParamsHeight(layoutParamsHeight: Int) {
     UtilKViewGroup_LayoutParamsWrapper.applyLayoutParamsHeight(this, layoutParamsHeight)
 }
@@ -147,6 +151,14 @@ object UtilKViewGroup_LayoutParamsWrapper {
     @JvmStatic
     fun applyLayoutParams_MATCH_MATCH(view: View) {
         view.layoutParams = UtilKViewGroup_LayoutParamsGet.get_MATCH_MATCH()
+    }
+
+
+    @JvmStatic
+    fun applyLayoutParamsWidth(view: View, layoutParamsWidth: Int) {
+        view.layoutParams = view.layoutParams.apply {
+            width = layoutParamsWidth
+        }
     }
 
     @JvmStatic

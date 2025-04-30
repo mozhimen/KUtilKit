@@ -139,7 +139,7 @@ object UtilKPackageManagerWrapper : IUtilK {
             val iterator = installedPackages.iterator()
             while (iterator.hasNext()) {
                 val next = iterator.next()
-                if (UtilKApplicationInfoWrapper.isSystemApp(next.applicationInfo))
+                if (next.applicationInfo != null && UtilKApplicationInfoWrapper.isSystemApp(next.applicationInfo!!))
                     iterator.remove()
             }
         }

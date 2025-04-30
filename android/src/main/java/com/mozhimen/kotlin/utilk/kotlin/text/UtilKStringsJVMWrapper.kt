@@ -18,6 +18,9 @@ fun String.replace_sqliteSpecialCharacters(): String =
 fun String.replace_lineBreak2strHtmlBr(): String =
     UtilKStringsJVMWrapper.replace_lineBreak2strHtmlBr(this)
 
+fun String.replace_lineBreakStr2strHtmlBr(): String =
+    UtilKStringsJVMWrapper.replace_lineBreakStr2strHtmlBr(this)
+
 fun String.replace_dot2period(): String =
     UtilKStringsJVMWrapper.replace_dot2period(this)
 
@@ -92,6 +95,10 @@ object UtilKStringsJVMWrapper : IUtilK {
     @JvmStatic
     fun replace_lineBreak2strHtmlBr(str: String): String =
         str.replace(CMsg.LINE_BREAK, "<br>")
+
+    @JvmStatic
+    fun replace_lineBreakStr2strHtmlBr(str: String): String =
+        str.replace(CMsg.LINE_BREAK_STR, "<br>")
 
     @JvmStatic
     fun replace_dot2period(str: String): String =

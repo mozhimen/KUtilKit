@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.CallSuper
 import androidx.fragment.app.DialogFragment
+import com.mozhimen.kotlin.utilk.androidx.fragment.UtilKFragment
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**
@@ -15,6 +16,10 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
  * @Version 1.0
  */
 open class BaseDialogFragment : DialogFragment(), IUtilK {
+    fun isAlive(): Boolean = UtilKFragment.isAlive(this)
+
+    //////////////////////////////////////////////////////////////////////////////
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         UtilKLogWrapper.v(TAG, "onAttach")

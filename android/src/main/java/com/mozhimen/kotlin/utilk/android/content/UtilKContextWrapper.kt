@@ -1,7 +1,9 @@
 package com.mozhimen.kotlin.utilk.android.content
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -35,6 +37,11 @@ fun Context.get_of_config_mediumAnimTime(): Int =
 fun Context.get_of_config_longAnimTime(): Int =
     UtilKContextWrapper.get_of_config_longAnimTime(this)
 
+fun Context.getActivity(): Activity? =
+    UtilKContextWrapper.getActivity(this)
+
+///////////////////////////////////////////////////////////////////////
+
 fun Context.isMainProcess(): Boolean =
     UtilKContextWrapper.isMainProcess(this)
 
@@ -52,6 +59,18 @@ object UtilKContextWrapper {
     @JvmStatic
     fun get_of_config_longAnimTime(context: Context): Int =
         UtilKResourcesWrapper.getInt_config_longAnimTime(context.resources)
+
+    ///////////////////////////////////////////////////////////////////////
+
+    @JvmStatic
+    fun getActivity(context: Context): Activity? {
+        var context1 = context
+        while (context1 is ContextWrapper) {
+            if (context1 is Activity) return context1
+            context1 = context1.baseContext
+        }
+        return null
+    }
 
     ///////////////////////////////////////////////////////////////////////
 
