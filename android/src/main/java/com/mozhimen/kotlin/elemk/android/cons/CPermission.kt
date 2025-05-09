@@ -71,14 +71,14 @@ object CPermission {
 
     @RequiresApi(CVersCode.V_22_51_LM1)
     @Deprecated("android.permission.BIND_CARRIER_MESSAGING_SERVICE")
-    val BIND_CARRIER_MESSAGING_SERVICE = Manifest.permission.BIND_CARRIER_MESSAGING_SERVICE
+    const val BIND_CARRIER_MESSAGING_SERVICE = Manifest.permission.BIND_CARRIER_MESSAGING_SERVICE
 
     @RequiresApi(CVersCode.V_23_6_M)
     const val BIND_CARRIER_SERVICES = Manifest.permission.BIND_CARRIER_SERVICES
 
     @RequiresApi(CVersCode.V_23_6_M)
     @Deprecated("android.permission.BIND_CHOOSER_TARGET_SERVICE")
-    val BIND_CHOOSER_TARGET_SERVICE = Manifest.permission.BIND_CHOOSER_TARGET_SERVICE
+    const val BIND_CHOOSER_TARGET_SERVICE = Manifest.permission.BIND_CHOOSER_TARGET_SERVICE
 
     @RequiresApi(CVersCode.V_31_12_S)
     const val BIND_COMPANION_DEVICE_SERVICE = Manifest.permission.BIND_COMPANION_DEVICE_SERVICE
@@ -258,14 +258,14 @@ object CPermission {
     const val PACKAGE_USAGE_STATS = Manifest.permission.PACKAGE_USAGE_STATS
 
     @Deprecated("android.permission.PERSISTENT_ACTIVITY")
-    val PERSISTENT_ACTIVITY = Manifest.permission.PERSISTENT_ACTIVITY
+    const val PERSISTENT_ACTIVITY = Manifest.permission.PERSISTENT_ACTIVITY
 
     @RequiresApi(CVersCode.V_33_13_T)
     @RequiresPermission(CPermission.POST_NOTIFICATIONS)
     const val POST_NOTIFICATIONS = Manifest.permission.POST_NOTIFICATIONS
 
     @Deprecated("android.permission.PROCESS_OUTGOING_CALLS")
-    val PROCESS_OUTGOING_CALLS = Manifest.permission.PROCESS_OUTGOING_CALLS
+    const val PROCESS_OUTGOING_CALLS = Manifest.permission.PROCESS_OUTGOING_CALLS
 
     @RequiresApi(CVersCode.V_30_11_R)
     const val QUERY_ALL_PACKAGES = Manifest.permission.QUERY_ALL_PACKAGES
@@ -289,7 +289,7 @@ object CPermission {
     const val READ_HOME_APP_SEARCH_DATA = Manifest.permission.READ_HOME_APP_SEARCH_DATA
 
     @Deprecated("android.permission.READ_INPUT_STATE")
-    val READ_INPUT_STATE = Manifest.permission.READ_INPUT_STATE
+    const val READ_INPUT_STATE = Manifest.permission.READ_INPUT_STATE
     const val READ_LOGS = Manifest.permission.READ_LOGS
 
     @RequiresApi(CVersCode.V_33_13_T)
@@ -363,7 +363,7 @@ object CPermission {
     const val REQUEST_PASSWORD_COMPLEXITY = Manifest.permission.REQUEST_PASSWORD_COMPLEXITY
 
     @Deprecated("android.permission.RESTART_PACKAGES")
-    val RESTART_PACKAGES = Manifest.permission.RESTART_PACKAGES
+    const val RESTART_PACKAGES = Manifest.permission.RESTART_PACKAGES
 
     @RequiresApi(CVersCode.V_31_12_S)
     const val SCHEDULE_EXACT_ALARM = Manifest.permission.SCHEDULE_EXACT_ALARM
@@ -375,7 +375,7 @@ object CPermission {
     const val SET_DEBUG_APP = Manifest.permission.SET_DEBUG_APP
 
     @Deprecated("android.permission.SET_PREFERRED_APPLICATIONS")
-    val SET_PREFERRED_APPLICATIONS = Manifest.permission.SET_PREFERRED_APPLICATIONS
+    const val SET_PREFERRED_APPLICATIONS = Manifest.permission.SET_PREFERRED_APPLICATIONS
     const val SET_PROCESS_LIMIT = Manifest.permission.SET_PROCESS_LIMIT
     const val SET_TIME = Manifest.permission.SET_TIME
     const val SET_TIME_ZONE = Manifest.permission.SET_TIME_ZONE
@@ -385,7 +385,7 @@ object CPermission {
 
     @RequiresApi(CVersCode.V_29_10_Q)
     @Deprecated("android.permission.SMS_FINANCIAL_TRANSACTIONS")
-    val SMS_FINANCIAL_TRANSACTIONS = Manifest.permission.SMS_FINANCIAL_TRANSACTIONS
+    const val SMS_FINANCIAL_TRANSACTIONS = Manifest.permission.SMS_FINANCIAL_TRANSACTIONS
 
     @RequiresApi(CVersCode.V_31_12_S)
     const val START_FOREGROUND_SERVICES_FROM_BACKGROUND = Manifest.permission.START_FOREGROUND_SERVICES_FROM_BACKGROUND
@@ -415,7 +415,7 @@ object CPermission {
 
     @RequiresApi(CVersCode.V_23_6_M)
     @Deprecated("android.permission.USE_FINGERPRINT")
-    val USE_FINGERPRINT = Manifest.permission.USE_FINGERPRINT
+    const val USE_FINGERPRINT = Manifest.permission.USE_FINGERPRINT
 
     @RequiresApi(CVersCode.V_29_10_Q)
     const val USE_FULL_SCREEN_INTENT = Manifest.permission.USE_FULL_SCREEN_INTENT

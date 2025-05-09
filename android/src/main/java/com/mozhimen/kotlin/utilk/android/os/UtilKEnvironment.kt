@@ -56,12 +56,12 @@ object UtilKEnvironment {
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
     fun getExternalStoragePublicDir_ofScreenshots(): File =
-        Environment.getExternalStoragePublicDirectory(CEnvironment.getDirectoryScreenShots())
+        Environment.getExternalStoragePublicDirectory(CEnvironment.DIRECTORY_SCREENSHOTS)
 
     @JvmStatic
     @RequiresApi(CVersCode.V_31_12_S)
     fun getExternalStoragePublicDir_ofRecordings(): File =
-        Environment.getExternalStoragePublicDirectory(CEnvironment.getDirectoryRecordings())
+        Environment.getExternalStoragePublicDirectory(CEnvironment.DIRECTORY_RECORDINGS)
 
     @JvmStatic
     fun getExternalStoragePublicDir_ofPodcasts(): File =
@@ -98,7 +98,7 @@ object UtilKEnvironment {
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
     fun getExternalStoragePublicDir_ofAudiobooks(): File =
-        Environment.getExternalStoragePublicDirectory(CEnvironment.getDirectoryAudioBooks())
+        Environment.getExternalStoragePublicDirectory(CEnvironment.DIRECTORY_AUDIOBOOKS)
 
     @JvmStatic
     fun getExternalStoragePublicDir_ofRingtones(): File =

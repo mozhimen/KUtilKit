@@ -1,6 +1,8 @@
 package com.mozhimen.kotlin.elemk.android.content.cons
 
 import android.content.pm.PackageInstaller
+import androidx.annotation.RequiresApi
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 
 /**
  * @ClassName CPackageInstaller
@@ -11,6 +13,7 @@ import android.content.pm.PackageInstaller
  */
 object CPackageInstaller {
     object SessionParams {
+        @RequiresApi(CVersCode.V_21_5_L)
         const val MODE_FULL_INSTALL = PackageInstaller.SessionParams.MODE_FULL_INSTALL
     }
 }

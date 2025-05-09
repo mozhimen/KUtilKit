@@ -144,16 +144,16 @@ object UtilKContextDir {
         @JvmStatic
         @RequiresApi(CVersCode.V_29_10_Q)
         fun getFilesScreenshotsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.getDirectoryScreenShots())
+            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_SCREENSHOTS)
 
         @JvmStatic
         @RequiresApi(CVersCode.V_29_10_Q)
         fun getFilesAudiobooksDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.getDirectoryAudioBooks())
+            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_AUDIOBOOKS)
 
         @JvmStatic
         @RequiresApi(CVersCode.V_31_12_S)
         fun getFilesRecordingsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.getDirectoryRecordings())
+            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_RECORDINGS)
     }
 }

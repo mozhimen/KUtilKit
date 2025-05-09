@@ -1,6 +1,8 @@
 package com.mozhimen.kotlin.elemk.android.view.cons
 
 import android.view.MotionEvent
+import androidx.annotation.RequiresApi
+import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 
 
 /**
@@ -35,7 +37,9 @@ object CMotionEvent {
     const val ACTION_SCROLL = MotionEvent.ACTION_SCROLL
     const val ACTION_HOVER_ENTER = MotionEvent.ACTION_HOVER_ENTER
     const val ACTION_HOVER_EXIT = MotionEvent.ACTION_HOVER_EXIT
+    @RequiresApi(CVersCode.V_23_6_M)
     const val ACTION_BUTTON_PRESS = MotionEvent.ACTION_BUTTON_PRESS
+    @RequiresApi(CVersCode.V_23_6_M)
     const val ACTION_BUTTON_RELEASE = MotionEvent.ACTION_BUTTON_RELEASE
     const val ACTION_POINTER_INDEX_MASK = MotionEvent.ACTION_POINTER_INDEX_MASK
     const val ACTION_POINTER_INDEX_SHIFT = MotionEvent.ACTION_POINTER_INDEX_SHIFT

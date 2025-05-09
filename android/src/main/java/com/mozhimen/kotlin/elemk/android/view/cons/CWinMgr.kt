@@ -75,6 +75,7 @@ object CWinMgr {
          * 原理：将StatusBar和NavigationBar设置为透明背景，并且将StatusBar和NavigationBar所在空间设置为
          * Window.getStatusBarColor() 和Window.getNavigationBarColor()方法获得的颜色。
          */
+        @RequiresApi(CVersCode.V_21_5_L)
         const val DRAWS_SYSTEM_BAR_BACKGROUNDS = WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
     }
 

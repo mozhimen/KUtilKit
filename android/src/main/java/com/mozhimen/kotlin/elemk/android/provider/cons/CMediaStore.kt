@@ -22,27 +22,27 @@ object CMediaStore {
 
     object Images {
         object Media {
-            val EXTERNAL_CONTENT_URI = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-            val DATA = MediaStore.Images.Media.DATA
+            val EXTERNAL_CONTENT_URI get() = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            val DATA get() = MediaStore.Images.Media.DATA
         }
 
         object ImageColumns {
-            val DATA = MediaStore.Images.ImageColumns.DATA
-            val DISPLAY_NAME = MediaStore.Images.ImageColumns.DISPLAY_NAME
-            val MIME_TYPE = MediaStore.Images.ImageColumns.MIME_TYPE
-            val DATE_TAKEN = MediaStore.Images.ImageColumns.DATE_TAKEN
+            val DATA get() = MediaStore.Images.ImageColumns.DATA
+            val DISPLAY_NAME get() = MediaStore.Images.ImageColumns.DISPLAY_NAME
+            val MIME_TYPE get() = MediaStore.Images.ImageColumns.MIME_TYPE
+            val DATE_TAKEN get() = MediaStore.Images.ImageColumns.DATE_TAKEN
         }
     }
 
     object Video {
         object Media {
-            val EXTERNAL_CONTENT_URI = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+            val EXTERNAL_CONTENT_URI get() = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
         }
     }
 
     object Audio {
         object Media {
-            val EXTERNAL_CONTENT_URI = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+            val EXTERNAL_CONTENT_URI get() = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         }
     }
 

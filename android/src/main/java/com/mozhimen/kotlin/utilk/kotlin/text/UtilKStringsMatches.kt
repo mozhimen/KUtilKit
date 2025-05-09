@@ -1,5 +1,7 @@
 package com.mozhimen.kotlin.utilk.kotlin.text
 
+import android.util.Patterns
+
 /**
  * @ClassName UtilKStringsMatch
  * @Description TODO

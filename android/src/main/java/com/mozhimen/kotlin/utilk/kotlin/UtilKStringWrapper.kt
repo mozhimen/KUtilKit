@@ -91,6 +91,9 @@ fun String.hidePhone(): String =
 fun String.hideName(): String =
     UtilKStringWrapper.hideName(this)
 
+fun String.hideAll(char: Char = '*'): String =
+    UtilKStringWrapper.hideAll(this, char)
+
 /////////////////////////////////////////////////////////////////////////////
 
 object UtilKStringWrapper {
@@ -308,4 +311,11 @@ object UtilKStringWrapper {
         }
         return str.first() + stringBuilder.toString() + str.last()
     }
+
+    /**
+     * 密码脱敏
+     */
+    @JvmStatic
+    fun hideAll(str: String, char: Char = '*'): String =
+        str.map { char }.joinToString("")
 }
