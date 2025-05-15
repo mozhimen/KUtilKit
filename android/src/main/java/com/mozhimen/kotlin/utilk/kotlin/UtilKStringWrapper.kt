@@ -317,5 +317,8 @@ object UtilKStringWrapper {
      */
     @JvmStatic
     fun hideAll(str: String, char: Char = '*'): String =
-        str.map { char }.joinToString("")
+        if (str.isNotEmpty())
+            str.map { char }.joinToString("")
+        else
+            ""
 }
