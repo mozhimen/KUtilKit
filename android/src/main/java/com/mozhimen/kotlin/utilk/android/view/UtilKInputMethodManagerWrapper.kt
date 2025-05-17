@@ -40,8 +40,8 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      * override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
      *      if (event?.action == MotionEvent.ACTION_DOWN) {
      *          val focusView: View? = currentFocus
-     *          if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
-     *              UtilKKeyBoard.hide(this)
+     *          if (focusView != null && UtilKInputMethodManagerWrapper.isShouldHide(focusView, event)) {
+     *              UtilKInputMethodManagerWrapper.hide(this)
      *              focusView!!.clearFocus()
      *          }
      *      }
@@ -55,8 +55,8 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      *      viewGroup?.setOnTouchListener { _, event ->
      *          if (event?.action == MotionEvent.ACTION_DOWN) {
      *              val focusView: View? = requireActivity().currentFocus
-     *              if (focusView != null && UtilKKeyBoard.isShouldHide(focusView, event)) {
-     *                  UtilKKeyBoard.hide(requireActivity())
+     *              if (focusView != null && UtilKInputMethodManagerWrapper.isShouldHide(focusView, event)) {
+     *                  UtilKInputMethodManagerWrapper.hide(requireActivity())
      *                  focusView!!.clearFocus()
      *              }
      *          }
