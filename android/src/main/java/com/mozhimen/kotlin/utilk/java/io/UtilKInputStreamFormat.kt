@@ -29,6 +29,7 @@ import java.io.PushbackInputStream
 import java.nio.charset.Charset
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.Scanner
 import java.util.zip.GZIPInputStream
 
 
@@ -86,8 +87,11 @@ fun InputStream.inputStream2str_use_bytesOutStream(byteArrayOutputStream: ByteAr
 fun InputStream.inputStream2str_use_bytesOutStream(): String =
     UtilKInputStreamFormat.inputStream2str_use_bytesOutStream(this)
 
-fun InputStream.inputStream2str_use_bytes(): String? =
+fun InputStream.inputStream2str_use_bytes(): String =
     UtilKInputStreamFormat.inputStream2str_use_bytes(this)
+
+fun InputStream.inputStream2str_use_scanner(): String =
+    UtilKInputStreamFormat.inputStream2str_use_scanner(this)
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -271,6 +275,14 @@ object UtilKInputStreamFormat : IUtilK {
             while (inputStream.read(bytes).also { readCount = it } != -1)
                 stringBuilder.append(bytes.bytes2str(0, readCount))
             return stringBuilder.toString()
+        }
+    }
+
+    @JvmStatic
+    fun inputStream2str_use_scanner(inputStream: InputStream):String{
+        inputStream.use {
+            val s = Scanner(inputStream).useDelimiter("\\A")
+            return if (s.hasNext()) s.next() else ""
         }
     }
 

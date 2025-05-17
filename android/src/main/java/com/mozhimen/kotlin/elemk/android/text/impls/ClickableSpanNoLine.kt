@@ -12,7 +12,7 @@ import com.mozhimen.kotlin.elemk.commons.IA_Listener
  * @Date 2024/1/12
  * @Version 1.0
  */
-class NoLineClickableSpan(private val _onClick: IA_Listener<View>) : ClickableSpan() {
+class ClickableSpanNoLine(private val _onClick: IA_Listener<View>) : ClickableSpan() {
     override fun onClick(widget: View) {
         _onClick.invoke(widget)
     }

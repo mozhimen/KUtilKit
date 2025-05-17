@@ -45,7 +45,7 @@ fun <T> List<T>.ifNotEmpty(block: IA_Listener<List<T>>) {
     UtilKCollections.ifNotEmpty(this, block)
 }
 
-fun <T> List<T>.ifNotEmptyOr(onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
+fun <T> List<T>?.ifNotEmptyOr(onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
     UtilKCollections.ifNotEmptyOr(this, onNotEmpty, onEmpty)
 }
 
@@ -184,8 +184,8 @@ object UtilKCollections : IUtilK {
     }
 
     @JvmStatic
-    fun <T> ifNotEmptyOr(list: List<T>, onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
-        if (list.isNotEmpty())
+    fun <T> ifNotEmptyOr(list: List<T>?, onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
+        if (!list.isNullOrEmpty())
             onNotEmpty.invoke(list)
         else
             onEmpty.invoke()
