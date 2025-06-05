@@ -23,7 +23,7 @@ object UtilKDateFormatWrapper {
 
     @JvmStatic
     fun get(style: Int): DateFormat =
-        get(style, UtilKLocale.get_ofDefault())
+        get(style, UtilKLocale.get_default())
 
     @JvmStatic
     fun get(style: Int, locale: Locale): DateFormat {

@@ -6,6 +6,7 @@ import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.java.util.UtilKLocale
 import java.text.SimpleDateFormat
 import java.util.Locale
+import java.util.TimeZone
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -38,23 +39,32 @@ object UtilKSimpleDateFormatWrapper : IUtilK {
     }
 
     @JvmStatic
-    fun get(pattern: String, locale: Locale): SimpleDateFormat {
-        val key = "$pattern$locale"
+    fun get(pattern: String, locale: Locale, timeZone: TimeZone? = null): SimpleDateFormat {
+        val key = if (timeZone != null) {
+            "$pattern$locale$timeZone"
+        } else
+            "$pattern$locale"
 //        return _simpleDateFormats[key] ?: run {
 //            val simpleDateFormat = UtilKSimpleDateFormat.get(pattern, locale)
 //            _simpleDateFormats[key] = simpleDateFormat
 //            simpleDateFormat
 //        }
-        if (_simpleDateFormats.containsKey(key))
-            return _simpleDateFormats[key]!!
+        return if (_simpleDateFormats.containsKey(key))
+            _simpleDateFormats[key]!!
         else {
-            val simpleDateFormat = UtilKSimpleDateFormat.get(pattern, locale)
-            _simpleDateFormats[key] = simpleDateFormat
-            return simpleDateFormat
+            UtilKSimpleDateFormat.get(pattern, locale).apply {
+                if (timeZone != null) {
+                    setTimeZone(timeZone)
+                }
+            }.also { _simpleDateFormats[key] = it }
         }
     }
 
     @JvmStatic
     fun get(pattern: String): SimpleDateFormat =
-        get(pattern, UtilKLocale.get_ofDefault())
+        get(pattern, UtilKLocale.get_default())
+
+    @JvmStatic
+    fun get(pattern: String, timeZone: TimeZone): SimpleDateFormat =
+        get(pattern, UtilKLocale.get_default(), timeZone)
 }

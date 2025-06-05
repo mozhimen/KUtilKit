@@ -3,8 +3,7 @@ package com.mozhimen.kotlin.utilk.android.test.elemk.androidx
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mozhimen.kotlin.elemk.androidx.lifecycle.bases.BaseViewModel
-import com.mozhimen.kotlin.elemk.androidx.lifecycle.sticky.MutableLiveDataSticky
-import com.mozhimen.kotlin.utilk.android.test.elemk.androidx.Starter
+import com.mozhimen.kotlin.elemk.androidx.lifecycle.impls.sticky.MutableLiveDataSticky
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 

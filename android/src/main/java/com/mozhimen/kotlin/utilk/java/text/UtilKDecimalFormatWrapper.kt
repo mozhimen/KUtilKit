@@ -19,7 +19,7 @@ object UtilKDecimalFormatWrapper {
 
     @JvmStatic
     fun get(pattern: String): DecimalFormat =
-        get(pattern, UtilKLocale.get_ofDefault())
+        get(pattern, UtilKLocale.get_default())
 
     @JvmStatic
     fun get(pattern: String, locale: Locale): DecimalFormat {

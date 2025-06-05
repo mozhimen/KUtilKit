@@ -35,9 +35,8 @@ object UtilKActivityStart {
 
     //打开外部浏览器
     @JvmStatic
-    fun startView(context: Context, strUrl: String) {
+    fun startView(context: Context, strUrl: String) :Boolean=
         context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW(strUrl)/*Intent(Intent.ACTION_VIEW, Uri.parse(strUrl)*/)
-    }
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)

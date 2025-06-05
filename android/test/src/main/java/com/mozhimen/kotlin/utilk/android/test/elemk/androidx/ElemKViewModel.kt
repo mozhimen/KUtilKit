@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.android.test.elemk.androidx
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.mozhimen.kotlin.elemk.androidx.lifecycle.bases.BaseViewModel
-import com.mozhimen.kotlin.elemk.kotlin.properties.VarProperty_Set
+import com.mozhimen.kotlin.elemk.kotlin.impls.properties.VarProperty_Set
 
 /**
  * @ClassName ElemKDemoViewModel

@@ -101,6 +101,15 @@
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.UtilKActivity"
             android:exported="false" />
         <activity
+            android:name="com.mozhimen.kotlin.utilk.android.test.utilk.wrapper.UtilKDeviceActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.androidx.UtilKActionBarActivity"
             android:exported="false" />
         <activity
@@ -183,11 +192,7 @@
         <activity
             android:name="com.mozhimen.kotlin.utilk.android.test.utilk.androidx.UtilKComponentActivityActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

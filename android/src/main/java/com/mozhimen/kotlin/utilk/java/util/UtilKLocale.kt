@@ -14,7 +14,7 @@ import java.util.Locale
  */
 object UtilKLocale {
     @JvmStatic
-    fun get_ofDefault(): Locale =
+    fun get_default(): Locale =
         if (UtilKBuildVersion.isAfterV_26_8_O())
             getDefault(Locale.Category.FORMAT)
         else
