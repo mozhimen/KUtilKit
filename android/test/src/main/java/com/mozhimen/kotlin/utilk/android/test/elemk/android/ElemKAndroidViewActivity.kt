@@ -2,8 +2,9 @@ package com.mozhimen.kotlin.utilk.android.test.elemk.android
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mozhimen.basick.helpers.ScreenOrientationOfSensorProxy
+import com.mozhimen.basick.impls.proxys.ScreenOrientationOfSensorProxy
 import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
@@ -15,10 +16,10 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
  * @Version 1.0
  */
 class ElemKAndroidViewActivity : AppCompatActivity() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     private val _screenOrientationOfSensorProxy: ScreenOrientationOfSensorProxy<ElemKAndroidViewActivity> by lazy_ofNone { ScreenOrientationOfSensorProxy(this) }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

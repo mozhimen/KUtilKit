@@ -6,6 +6,7 @@ import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.lintk.annors.AFormatStyle
 import com.mozhimen.kotlin.utilk.android.text.UtilKDateFormat
 import com.mozhimen.kotlin.utilk.java.util.UtilKDate
+import com.mozhimen.kotlin.utilk.java.util.UtilKTimeZone
 import java.time.format.FormatStyle
 import java.util.Date
 import java.util.Locale
@@ -20,13 +21,20 @@ import java.util.Locale
 fun main() {
     println("1744026520")
     println(System.currentTimeMillis())
-    println(1744026520000L.longDate2strDate(CDateFormat.Format.`yyyy-MM-dd_HH_mm_ss`,Locale.CHINA))
+    println(1744026520000L.longDate2strDate(CDateFormat.Format.`yyyy-MM-dd_HH_mm_ss`, Locale.CHINA))
 }
+
 fun Long.longDate2strDate(strFormatDate: String): String =
     UtilKSimpleDateFormatFormat.longDate2strDate(this, strFormatDate)
 
+fun Long.longDate2strDateUTC(strFormatDate: String): String =
+    UtilKSimpleDateFormatFormat.longDate2strDateUTC(this, strFormatDate)
+
 fun Long.longDate2strDate(strFormatDate: String, locale: Locale): String =
     UtilKSimpleDateFormatFormat.longDate2strDate(this, strFormatDate, locale)
+
+fun Long.longDate2strDateUTC(strFormatDate: String, locale: Locale): String =
+    UtilKSimpleDateFormatFormat.longDate2strDateUTC(this, strFormatDate, locale)
 
 fun Long.longDate2date(): Date =
     UtilKSimpleDateFormatFormat.longDate2date(this)
@@ -36,8 +44,14 @@ fun Long.longDate2date(): Date =
 fun Date.date2strDate(strFormatDate: String): String =
     UtilKSimpleDateFormatFormat.date2strDate(this, strFormatDate)
 
+fun Date.date2strDateUTC(strFormatDate: String): String =
+    UtilKSimpleDateFormatFormat.date2strDateUTC(this, strFormatDate)
+
 fun Date.date2strDate(strFormatDate: String, locale: Locale): String =
     UtilKSimpleDateFormatFormat.date2strDate(this, strFormatDate, locale)
+
+fun Date.date2strDateUTC(strFormatDate: String, locale: Locale): String =
+    UtilKSimpleDateFormatFormat.date2strDateUTC(this, strFormatDate, locale)
 
 fun Date.date2strDate(context: Context, @AFormatStyle style: Int): String =
     UtilKSimpleDateFormatFormat.date2strDate(this, context, style)
@@ -71,8 +85,16 @@ object UtilKSimpleDateFormatFormat {
         UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate), longDate)
 
     @JvmStatic
+    fun longDate2strDateUTC(longDate: Long, strFormatDate: String): String =
+        UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, UtilKTimeZone.get_UTC()), longDate)
+
+    @JvmStatic
     fun longDate2strDate(longDate: Long, strFormatDate: String, locale: Locale): String =
         UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, locale), longDate)
+
+    @JvmStatic
+    fun longDate2strDateUTC(longDate: Long, strFormatDate: String, locale: Locale): String =
+        UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, locale, UtilKTimeZone.get_UTC()), longDate)
 
     //long转date
     @JvmStatic
@@ -87,8 +109,16 @@ object UtilKSimpleDateFormatFormat {
         UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate), date)
 
     @JvmStatic
+    fun date2strDateUTC(date: Date, strFormatDate: String): String =
+        UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, UtilKTimeZone.get_UTC()), date)
+
+    @JvmStatic
     fun date2strDate(date: Date, strFormatDate: String, locale: Locale): String =
         UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, locale), date)
+
+    @JvmStatic
+    fun date2strDateUTC(date: Date, strFormatDate: String, locale: Locale): String =
+        UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(strFormatDate, locale, UtilKTimeZone.get_UTC()), date)
 
     @JvmStatic
     fun date2strDate(date: Date, context: Context, @AFormatStyle style: Int): String =
@@ -98,9 +128,8 @@ object UtilKSimpleDateFormatFormat {
      * @param skeleton "YYYYMMMMd"示例
      */
     @JvmStatic
-    fun date2strDate(date: Date, locale: Locale, skeleton: String): String {
-        return UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(UtilKDateFormat.getBestDateTimePattern(locale, skeleton), locale), date)
-    }
+    fun date2strDate(date: Date, locale: Locale, skeleton: String): String =
+        UtilKSimpleDateFormat.format(UtilKSimpleDateFormatWrapper.get(UtilKDateFormat.getBestDateTimePattern(locale, skeleton), locale), date)
 
     //date转long
     @JvmStatic
