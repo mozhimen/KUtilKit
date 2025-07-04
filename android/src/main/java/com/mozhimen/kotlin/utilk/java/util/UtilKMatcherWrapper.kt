@@ -3,7 +3,6 @@ package com.mozhimen.kotlin.utilk.java.util
 import com.mozhimen.kotlin.utilk.kotlin.str2regex
 import java.util.Locale
 import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 /**
  * @ClassName UtilKPattern
