@@ -48,8 +48,8 @@ fun String.isNotEmptyOrElse(isNotEmptyBlock: I_Listener, orElseBlock: I_Listener
 fun String.hasSpace(): Boolean =
     UtilKStringWrapper.hasSpace(this)
 
-fun String.containStr(str: String): Boolean =
-    UtilKStringWrapper.containStr(this, str)
+fun String.containsSafe(str: String): Boolean =
+    UtilKStringWrapper.containsSafe(this, str)
 
 fun String.containsAny(vararg str: String): Boolean =
     UtilKStringWrapper.containsAny(this, *str)
@@ -227,18 +227,18 @@ object UtilKStringWrapper {
      * 包含String
      */
     @JvmStatic
-    fun containStr(str: String, strs: String): Boolean {
-        if (str.isEmpty() || strs.isEmpty()) return false
-        return str.contains(strs)
+    fun containsSafe(str: String, other: String): Boolean {
+        if (str.isEmpty() || other.isEmpty()) return false
+        return str.contains(other)
     }
 
     @JvmStatic
     fun containsAny(str: String, vararg strs: String): Boolean =
-        strs.any { str.containStr(it) }
+        strs.any { str.containsSafe(it) }
 
     @JvmStatic
     fun containsAny(str: String, strs: Collection<String>): Boolean =
-        strs.any { str.containStr(it) }
+        strs.any { str.containsSafe(it) }
 
     @JvmStatic
     fun containsAny_return(str: String, strs: List<String>, ignoreCache: Boolean = false): String? {

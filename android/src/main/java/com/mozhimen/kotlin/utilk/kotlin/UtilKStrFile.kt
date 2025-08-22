@@ -196,12 +196,12 @@ object UtilKStrFile : IUtilK {
     @JvmStatic
     fun getStrFileExtension(strFilePathName: String): String? =
         if (strFilePathName.isEmpty()) null
-        else if (strFilePathName.containStr(".")) strFilePathName.getSplitLastIndexToEnd(".") else null
+        else if (strFilePathName.containsSafe(".")) strFilePathName.getSplitLastIndexToEnd(".") else null
 
     @JvmStatic
     fun getStrFilePathNoExtension(strFilePathName: String): String? =
         if (strFilePathName.isEmpty()) null
-        else if (strFilePathName.containStr(".")) strFilePathName.getSplitLastIndexToStart(".", false) else null
+        else if (strFilePathName.containsSafe(".")) strFilePathName.getSplitLastIndexToStart(".", false) else null
 
     @JvmStatic
     fun getStrFileNameNoExtension(strFilePathName: String): String? =

@@ -61,12 +61,12 @@ fun String.strAssetName2bitmap_use(): Bitmap? =
 object UtilKStrAsset : BaseUtilK() {
     @JvmStatic
     fun getStrAssetName(strAssetName: String): String =
-        if (strAssetName.containStr("/")) strAssetName.getSplitLastIndexToEnd("/")
+        if (strAssetName.containsSafe("/")) strAssetName.getSplitLastIndexToEnd("/")
         else ""
 
     @JvmStatic
     fun getStrAssetParentPath(strAssetName: String): String =
-        if (strAssetName.containStr("/")) strAssetName.getSplitLastIndexToStart("/")
+        if (strAssetName.containsSafe("/")) strAssetName.getSplitLastIndexToStart("/")
         else ""
 
     @JvmStatic
