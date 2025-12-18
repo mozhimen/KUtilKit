@@ -128,8 +128,12 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
     //隐藏软键盘
     @JvmStatic
     fun hide(view: View) {
-        if (UtilKInputMethodManager.isActive(view.context))
-            UtilKInputMethodManager.hideSoftInputFromWindow(view)
+        try {
+            if (UtilKInputMethodManager.isActive(view.context))
+                UtilKInputMethodManager.hideSoftInputFromWindow(view)
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
     /**

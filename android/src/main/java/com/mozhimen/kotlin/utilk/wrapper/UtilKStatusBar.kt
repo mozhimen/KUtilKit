@@ -36,6 +36,7 @@ object UtilKStatusBar : BaseUtilK() {
     /**
      * Return the status bar's height.
      * @return Int
+     * getHeight
      */
     @SuppressLint("InternalInsetResource", "DiscouragedApi")
     @JvmStatic
