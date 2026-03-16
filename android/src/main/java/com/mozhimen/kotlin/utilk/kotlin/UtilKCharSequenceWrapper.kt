@@ -1,6 +1,7 @@
 package com.mozhimen.kotlin.utilk.kotlin
 
 import com.mozhimen.kotlin.elemk.commons.IA_AListener
+import com.mozhimen.kotlin.elemk.commons.IA_BListener
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_AListener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
@@ -15,16 +16,14 @@ import com.mozhimen.kotlin.elemk.commons.I_Listener
 fun CharSequence.isEquals(chars: CharSequence): Boolean =
     UtilKCharSequenceWrapper.isEquals(this, chars)
 
-fun <C : CharSequence> C.ifNotEmpty(block: IA_Listener<C>) {
-    UtilKCharSequenceWrapper.ifNotEmpty(this, block)
+//////////////////////////////////////////////////////////////////////////////
+
+fun <C : CharSequence> C?.ifNotNullOrEmptyOr(onIf: IA_Listener<C>, onElse: I_Listener? = null) {
+    UtilKCharSequenceWrapper.ifNotNullOrEmptyOr(this, onIf, onElse)
 }
 
-fun <C : CharSequence> C?.ifNotEmptyOr(onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
-    UtilKCharSequenceWrapper.ifNotEmptyOr(this, onNotEmpty, onEmpty)
-}
-
-fun <C : CharSequence> C.ifNotEmptyOr2(onNotEmpty: IA_AListener<C>, onEmpty: I_AListener<C>): C =
-    UtilKCharSequenceWrapper.ifNotEmptyOr2(this, onNotEmpty, onEmpty)
+fun <C : CharSequence, D> C?.ifNotNullOrEmptyOrWithResult(onIf: IA_BListener<C, D>, onElse: I_AListener<D>? = null): D? =
+    UtilKCharSequenceWrapper.ifNotNullOrEmptyOrWithResult(this, onIf, onElse)
 
 fun <C : CharSequence> C?.ifNullOrEmpty(default: C): C =
     UtilKCharSequenceWrapper.ifNullOrEmpty(this, default)
@@ -73,25 +72,19 @@ object UtilKCharSequenceWrapper {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun <C : CharSequence> ifNotEmpty(chars: C, block: IA_Listener<C>) {
-        if (chars.isNotEmpty())
-            block.invoke(chars)
-    }
-
-    @JvmStatic
-    fun <C : CharSequence> ifNotEmptyOr(chars: C?, onNotEmpty: IA_Listener<C>, onEmpty: I_Listener) {
+    fun <C : CharSequence> ifNotNullOrEmptyOr(chars: C?, onIf: IA_Listener<C>, onElse: I_Listener? = null) {
         if (!chars.isNullOrEmpty())
-            onNotEmpty.invoke(chars)
+            onIf.invoke(chars)
         else
-            onEmpty.invoke()
+            onElse?.invoke()
     }
 
     @JvmStatic
-    fun <C : CharSequence> ifNotEmptyOr2(chars: C, onNotEmpty: IA_AListener<C>, onEmpty: I_AListener<C>) =
-        if (chars.isNotEmpty())
-            onNotEmpty.invoke(chars)
+    fun <C : CharSequence, D> ifNotNullOrEmptyOrWithResult(chars: C?, onIf: IA_BListener<C, D>, onElse: I_AListener<D>? = null): D? =
+        if (!chars.isNullOrEmpty())
+            onIf.invoke(chars)
         else
-            onEmpty.invoke()
+            onElse?.invoke()
 
     @JvmStatic
     fun <C : CharSequence> ifNullOrEmpty(chars: C?, default: C): C =
