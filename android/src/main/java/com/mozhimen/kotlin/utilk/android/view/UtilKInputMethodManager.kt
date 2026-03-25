@@ -44,7 +44,8 @@ object UtilKInputMethodManager {
 
     @JvmStatic
     fun hideSoftInputFromWindow(view: View) {
-        hideSoftInputFromWindow(view.context, view.windowToken)
+        val windowToken = view.windowToken ?: return
+        hideSoftInputFromWindow(view.context, windowToken)
     }
 
     @JvmStatic

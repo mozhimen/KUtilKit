@@ -18,11 +18,18 @@ fun CharSequence.isEquals(chars: CharSequence): Boolean =
 
 //////////////////////////////////////////////////////////////////////////////
 
-fun <C : CharSequence> C?.ifNotNullOrEmptyOr(onIf: IA_Listener<C>, onElse: I_Listener? = null) {
+fun <C : CharSequence> C?.ifNotNullOrEmptyOr(onIf: IA_Listener<C>) {
+    UtilKCharSequenceWrapper.ifNotNullOrEmptyOr(this, onIf, null)
+}
+
+fun <C : CharSequence> C?.ifNotNullOrEmptyOr(onIf: IA_Listener<C>, onElse: I_Listener?) {
     UtilKCharSequenceWrapper.ifNotNullOrEmptyOr(this, onIf, onElse)
 }
 
-fun <C : CharSequence, D> C?.ifNotNullOrEmptyOrWithResult(onIf: IA_BListener<C, D>, onElse: I_AListener<D>? = null): D? =
+fun <C : CharSequence, D> C?.ifNotNullOrEmptyOrWithResult(onIf: IA_BListener<C, D>): D? =
+    UtilKCharSequenceWrapper.ifNotNullOrEmptyOrWithResult(this, onIf, null)
+
+fun <C : CharSequence, D> C?.ifNotNullOrEmptyOrWithResult(onIf: IA_BListener<C, D>, onElse: I_AListener<D>?): D? =
     UtilKCharSequenceWrapper.ifNotNullOrEmptyOrWithResult(this, onIf, onElse)
 
 fun <C : CharSequence> C?.ifNullOrEmpty(default: C): C =

@@ -41,12 +41,12 @@ fun <T, I> Iterable<T>.joinT2listIgnoreNull(predicate: IA_BListener<T?, I>): Lis
 
 ///////////////////////////////////////////////////////////////////////
 
-fun <T> List<T>.ifNotEmpty(block: IA_Listener<List<T>>) {
-    UtilKCollections.ifNotEmpty(this, block)
+fun <T> List<T>?.ifNotNullOrEmptyOr(onIf: IA_Listener<List<T>>) {
+    UtilKCollections.ifNotNullOrEmptyOr(this, onIf, null)
 }
 
-fun <T> List<T>?.ifNotEmptyOr(onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
-    UtilKCollections.ifNotEmptyOr(this, onNotEmpty, onEmpty)
+fun <T> List<T>?.ifNotNullOrEmptyOr(onIf: IA_Listener<List<T>>, onElse: I_Listener?) {
+    UtilKCollections.ifNotNullOrEmptyOr(this, onIf, onElse)
 }
 
 fun <T> List<T>.list2str(): String =
@@ -178,17 +178,11 @@ object UtilKCollections : IUtilK {
     ///////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun <T> ifNotEmpty(list: List<T>, block: IA_Listener<List<T>>) {
-        if (list.isNotEmpty())
-            block.invoke(list)
-    }
-
-    @JvmStatic
-    fun <T> ifNotEmptyOr(list: List<T>?, onNotEmpty: IA_Listener<List<T>>, onEmpty: I_Listener) {
+    fun <T> ifNotNullOrEmptyOr(list: List<T>?, onIf: IA_Listener<List<T>>, onElse: I_Listener? = null) {
         if (!list.isNullOrEmpty())
-            onNotEmpty.invoke(list)
+            onIf.invoke(list)
         else
-            onEmpty.invoke()
+            onElse?.invoke()
     }
 
     @JvmStatic

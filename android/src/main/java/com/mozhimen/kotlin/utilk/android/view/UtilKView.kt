@@ -12,6 +12,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.view.impls.HapticOnTouchCallback
 import com.mozhimen.kotlin.elemk.android.view.cons.CHapticFeedbackConstants
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
+import com.mozhimen.kotlin.elemk.android.view.impls.SafeHapticOnTouchCallback
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.elemk.cons.CPackage
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
@@ -93,6 +94,17 @@ fun View.applyHapticOnTouchListener() {
     UtilKView.applyHapticOnTouchListener(this)
 }
 
+//修复小米机型要权限的问题
+fun View.applySafeHapticOnTouchListener(){
+    UtilKView.applySafeHapticOnTouchListener(this)
+}
+
+//////////////////////////////////////////////////////////////////////////////
+
+fun View.safePerformHapticFeedback(feedbackConstant: Int){
+    UtilKView.safePerformHapticFeedback(this,feedbackConstant)
+}
+
 //////////////////////////////////////////////////////////////////////////////
 
 object UtilKView : BaseUtilK() {
@@ -171,6 +183,20 @@ object UtilKView : BaseUtilK() {
     @JvmStatic
     fun applyHapticOnTouchListener(view: View) {
         view.setOnTouchListener(HapticOnTouchCallback())
+    }
+
+    @JvmStatic
+    fun applySafeHapticOnTouchListener(view: View){
+        view.setOnTouchListener(SafeHapticOnTouchCallback())
+    }
+
+    @JvmStatic
+    fun safePerformHapticFeedback(view: View,feedbackConstant: Int){
+        try {
+            view.performHapticFeedback(feedbackConstant)
+        } catch (e: SecurityException) {
+        } catch (e: Exception) {
+        }
     }
 
     @JvmStatic

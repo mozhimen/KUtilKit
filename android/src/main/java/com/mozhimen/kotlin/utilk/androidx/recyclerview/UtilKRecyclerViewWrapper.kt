@@ -321,9 +321,12 @@ object UtilKRecyclerViewWrapper : IUtilK {
         gapInnerHorizontal: Int,
         gapInnerVertical: Int = gapInnerHorizontal,
     ) {
-        val itemCount = recyclerView.gainItemCount()// item 的个数
-        val spanCount = recyclerView.gainSpanCount()// 网格布局的跨度数
+        val itemCount = recyclerView.gainItemCount().coerceAtLeast(1)// item 的个数
+        val spanCount = recyclerView.gainSpanCount().coerceAtLeast(1)// 网格布局的跨度数
         val itemPosition = recyclerView.getChildAdapterPosition(itemView)// 当前 item 的 position
+
+        if (itemPosition == RecyclerView.NO_POSITION) return        // 安全检查
+
         if (spanCount < 2) {
             equilibriumAssignment_ofLinearLayoutManager(recyclerView, itemView, outRect, 0, gapInnerHorizontal, 0)
             return
