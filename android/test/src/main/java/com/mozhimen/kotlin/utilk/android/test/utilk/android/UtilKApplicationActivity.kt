@@ -17,7 +17,7 @@ import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkApplicati
 class UtilKApplicationActivity : BaseActivityVB<ActivityUtilkApplicationBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         UtilKLogWrapper.d(TAG, "initView: ${UtilKApplicationInfo.get(this)}")
-        UtilKLogWrapper.d(TAG, "initView: ${UtilKApplicationInfo.get_ofPackageInfo(this, this.packageName, 0)}")
-        UtilKLogWrapper.d(TAG, "initView: ${UtilKApplicationInfo.get_ofPackageManager(this, this.packageName, 0)}")
+        UtilKLogWrapper.d(TAG, "initView: ${UtilKApplicationInfo.get_ofPackageInfo( this.packageName, 0,this)}")
+        UtilKLogWrapper.d(TAG, "initView: ${UtilKApplicationInfo.get_ofPackageManager( this.packageName, 0,this)}")
     }
 }

@@ -7,6 +7,7 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
 import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
 import com.mozhimen.kotlin.lintk.optins.api.OApiCall_RegisterDynamic
 import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkReceiverBinding
 
@@ -19,9 +20,10 @@ import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityElemkReceiverB
  * @Version 1.0
  */
 class ElemKReceiverActivity : BaseActivityVDB<ActivityElemkReceiverBinding>() {
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_RegisterDynamic::class)
-    private val _receiverProxy: BaseBroadcastReceiverProxy<ElemKReceiverActivity> by lazy {
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_RegisterDynamic::class, OApiCall_BindViewLifecycle::class)
+    private val _receiverProxy: BaseBroadcastReceiverProxy by lazy {
         BaseBroadcastReceiverProxy(
+            this,
             this,
             com.mozhimen.kotlin.utilk.android.test.elemk.android.ElemKTimeReceiver(),
             arrayOf(
@@ -32,7 +34,7 @@ class ElemKReceiverActivity : BaseActivityVDB<ActivityElemkReceiverBinding>() {
         )
     }
 
-    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class)
+    @OptIn(OApiInit_ByLazy::class, OApiCall_BindLifecycle::class, OApiCall_BindViewLifecycle::class)
     override fun initView(savedInstanceState: Bundle?) {
         UtilKLogWrapper.d(TAG, "initView: start")
         _receiverProxy.bindLifecycle(this)

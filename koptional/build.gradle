@@ -8,6 +8,13 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+// 添加 Kotlin 编译配置
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     api "com.gojuno.koptional:koptional:1.6.0"
     api "com.gojuno.koptional:koptional-rxjava2-extensions:1.6.0"

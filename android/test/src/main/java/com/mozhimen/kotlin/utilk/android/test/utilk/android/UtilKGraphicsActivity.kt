@@ -16,6 +16,6 @@ import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkGraphicsB
  */
 class UtilKGraphicsActivity : BaseActivityVDB<ActivityUtilkGraphicsBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
-        vdb.utilkGraphicsImg.setImageDrawable(UtilKRoundedBitmapDrawable.get(this, R.drawable.utilk_img, 16f.dp2px()))
+        vdb.utilkGraphicsImg.setImageDrawable(UtilKRoundedBitmapDrawable.get( R.drawable.utilk_img, 16f.dp2px(),this))
     }
 }
