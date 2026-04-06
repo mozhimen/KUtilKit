@@ -18,12 +18,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "KUtilKit"
-include ':android'
-include ':android:test'
-include ':koptional'
-include ':koptional:rxjava2'
-include ':kotlin'
+
 //ALibKit_Jetpack
 include ":ALibKit_Jetpack"
 project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
@@ -67,3 +62,10 @@ include ':AXmlKit:vhk'
 include ":APermissionKit"
 project(':APermissionKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APermissionKit")
 include ':APermissionKit:permissionk'
+//
+rootProject.name = "KUtilKit"
+include ':android'
+include ':android:test'
+include ':koptional'
+include ':koptional:koptional-rxjava2'
+include ':kotlin'
