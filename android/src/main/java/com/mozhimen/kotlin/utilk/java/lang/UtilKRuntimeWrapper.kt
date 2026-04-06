@@ -3,13 +3,12 @@ package com.mozhimen.kotlin.utilk.java.lang
 import android.util.Log
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.elemk.cons.CCmd
 import com.mozhimen.kotlin.elemk.cons.CPath
 import com.mozhimen.kotlin.elemk.kotlin.text.cons.CCharsets
 import com.mozhimen.kotlin.elemk.mos.MResultISS
-import com.mozhimen.kotlin.lintk.optins.ODeviceRoot
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_FLASHLIGHT
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.device.ODeviceRoot
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_FLASHLIGHT
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_INSTALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -88,8 +87,6 @@ object UtilKRuntimeWrapper : IUtilK {
     @JvmStatic
     @Throws(Exception::class)
     @ODeviceRoot
-    @OPermission_INSTALL_PACKAGES
-    @RequiresPermission(CPermission.INSTALL_PACKAGES)
     fun exec_su_pm_install(strApkPathName: String): Boolean {
         require(strApkPathName.isNotEmpty()) { "$TAG please check apk file path" }
 
@@ -123,7 +120,7 @@ object UtilKRuntimeWrapper : IUtilK {
      * 静默安装适配 SDK28 之前的安装方法
      */
     @JvmStatic
-    @OPermission_INSTALL_PACKAGES
+    @OUsesPermission_INSTALL_PACKAGES
     @RequiresPermission(CPermission.INSTALL_PACKAGES)
     fun exec_pm_install_before28(strApkPathName: String): Boolean {
         val command: Array<String> =
@@ -148,7 +145,7 @@ object UtilKRuntimeWrapper : IUtilK {
      * 静默安装
      */
     @JvmStatic
-    @OPermission_INSTALL_PACKAGES
+    @OUsesPermission_INSTALL_PACKAGES
     @RequiresPermission(CPermission.INSTALL_PACKAGES)
     fun exec_pm_install_before28_ofBytesOutStream(strApkPathName: String): Boolean {
         val command =
@@ -189,18 +186,18 @@ object UtilKRuntimeWrapper : IUtilK {
 
     //开补光灯
     @JvmStatic
-    @OPermission_FLASHLIGHT
+    @OUsesPermission_FLASHLIGHT
     @RequiresPermission(CPermission.FLASHLIGHT)
     fun openFlashLight() {
-        exec_sh_c(CCmd.FILL_LIGHT_OPEN)
+        exec_sh_c("echo 255 > /sys/devices/platform/pwm-leds/leds/rgb:leds/brightness")
     }
 
     //关补光灯
     @JvmStatic
-    @OPermission_FLASHLIGHT
+    @OUsesPermission_FLASHLIGHT
     @RequiresPermission(CPermission.FLASHLIGHT)
     fun closeFlashLight() {
-        exec_sh_c(CCmd.FILL_LIGHT_CLOSE)
+        exec_sh_c("echo 0 > /sys/devices/platform/pwm-leds/leds/rgb:leds/brightness")
     }
 
     /**

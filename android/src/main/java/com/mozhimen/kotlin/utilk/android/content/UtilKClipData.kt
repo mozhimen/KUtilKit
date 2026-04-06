@@ -17,6 +17,6 @@ object UtilKClipData {
         ClipData.newPlainText(label, text)
 
     @JvmStatic
-    fun getNewUri(context: Context, label: CharSequence, uri: Uri): ClipData =
+    fun getNewUri(label: CharSequence, uri: Uri, context: Context): ClipData =
         ClipData.newUri(context.contentResolver, label, uri)
 }

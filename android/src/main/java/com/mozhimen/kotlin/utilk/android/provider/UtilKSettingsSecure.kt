@@ -22,7 +22,7 @@ object UtilKSettingsSecure {
 
     @JvmStatic
     @Throws(Settings.SettingNotFoundException::class)
-    fun getInt(context: Context, name: String): Int =
+    fun getInt(name: String, context: Context): Int =
         Settings.Secure.getInt(UtilKContentResolver.get(context), name)
 
     @JvmStatic
@@ -30,6 +30,6 @@ object UtilKSettingsSecure {
         Settings.Secure.getString(contentResolver, name)
 
     @JvmStatic
-    fun getString(context: Context, name: String): String =
+    fun getString(name: String, context: Context): String =
         Settings.Secure.getString(UtilKContentResolver.get(context), name)
 }

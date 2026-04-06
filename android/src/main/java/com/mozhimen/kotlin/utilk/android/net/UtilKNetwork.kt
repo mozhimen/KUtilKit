@@ -5,7 +5,7 @@ import android.net.Network
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_NETWORK_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 
 /**
@@ -18,7 +18,7 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
 object UtilKNetwork {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun get_ofActive(context: Context): Network? =
         UtilKConnectivityManager.getActiveNetwork(context)

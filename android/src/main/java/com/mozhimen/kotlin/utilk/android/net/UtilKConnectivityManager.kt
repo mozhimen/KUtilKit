@@ -10,9 +10,8 @@ import android.net.NetworkRequest
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_NETWORK_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 /**
@@ -22,44 +21,44 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
  * @Date 2023/3/20 22:11
  * @Version 1.0
  */
-@OPermission_ACCESS_NETWORK_STATE
+@OUsesPermission_ACCESS_NETWORK_STATE
 object UtilKConnectivityManager {
     @JvmStatic
     fun get(context: Context): ConnectivityManager =
         UtilKContextGet.getSystemService_CONNECTIVITY(context)
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
-    fun getNetworkInfo(context: Context, networkType: Int): NetworkInfo? =
+    fun getNetworkInfo(networkType: Int, context: Context): NetworkInfo? =
         get(context).getNetworkInfo(networkType)
 
     //获取可获得的网络信息
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun getActiveNetworkInfo(context: Context): NetworkInfo? =
         get(context).activeNetworkInfo
 
     //获取所有网络信息
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun getAllNetworkInfo(context: Context): Array<NetworkInfo> =
         get(context).allNetworkInfo
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_23_6_M)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun getActiveNetwork(context: Context): Network? =
         get(context).activeNetwork
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_21_5_L)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
-    fun getNetworkCapabilities(context: Context, network: Network): NetworkCapabilities? =
+    fun getNetworkCapabilities(network: Network, context: Context): NetworkCapabilities? =
         get(context).getNetworkCapabilities(network)
 
     ////////////////////////////////////////////////////////////////////
@@ -72,10 +71,10 @@ object UtilKConnectivityManager {
     }
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_21_5_L)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
-    fun registerNetworkCallback(context: Context, request: NetworkRequest, networkCallback: NetworkCallback) {
+    fun registerNetworkCallback(request: NetworkRequest, context: Context, networkCallback: NetworkCallback) {
         get(context).registerNetworkCallback(request, networkCallback)
     }
 

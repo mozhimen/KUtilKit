@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.elemk.android.app.cons
 import android.app.PendingIntent
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_31_11_S
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_31_11_S
 
 /**
  * @ClassName CPendingIntent

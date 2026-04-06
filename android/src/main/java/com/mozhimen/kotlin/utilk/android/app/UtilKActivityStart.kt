@@ -6,12 +6,10 @@ import android.net.Uri
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
 import com.mozhimen.kotlin.utilk.android.content.createChooser
-import com.mozhimen.kotlin.utilk.android.content.startActivityForResult
 import com.mozhimen.kotlin.utilk.android.content.startContext
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.java.lang.UtilKRuntimeWrapper
@@ -27,7 +25,7 @@ import java.io.File
 object UtilKActivityStart {
     //分享文本
     @JvmStatic
-    fun startSendTextChooser(context: Context, title: String, str: String) {
+    fun startSendTextChooser(title: String, str: String, context: Context) {
         context.startContext(UtilKIntentGet.getIntent_ACTION_SEND_TYPE_TEXT(str).createChooser(title))
     }
 
@@ -35,14 +33,14 @@ object UtilKActivityStart {
 
     //打开外部浏览器
     @JvmStatic
-    fun startView(context: Context, strUrl: String) :Boolean=
+    fun startView(strUrl: String, context: Context): Boolean =
         context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW(strUrl)/*Intent(Intent.ACTION_VIEW, Uri.parse(strUrl)*/)
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewApk(context: Context, strPathNameApk: String): Boolean {
+    fun startViewApk(strPathNameApk: String, context: Context): Boolean {
         context.startContext(
             UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(strPathNameApk.apply {
                 if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_24_7_N))
@@ -54,17 +52,17 @@ object UtilKActivityStart {
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewApk(context: Context, fileApk: File) {
+    fun startViewApk(fileApk: File, context: Context) {
         context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(fileApk) ?: return)
     }
 
     //安装 if sdk >= 24 add provider
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     @JvmStatic
-    fun startViewApk(context: Context, uriApk: Uri) {
+    fun startViewApk(uriApk: Uri, context: Context) {
         context.startContext(UtilKIntentGet.getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(uriApk))
     }
 
@@ -140,7 +138,7 @@ object UtilKActivityStart {
     ///////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun startBluetoothAdapterRequestEnable(context: Context){
+    fun startBluetoothAdapterRequestEnable(context: Context) {
         context.startContext(UtilKIntentGet.getBluetoothAdapter_ACTION_REQUEST_ENABLE())
     }
 }

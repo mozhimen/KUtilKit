@@ -14,14 +14,14 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKPackageInfo.get
  */
 object UtilKPackageInfoGet {
     @JvmStatic
-    fun get_0(context: Context, strPackageName: String): PackageInfo? =
-        get(context, strPackageName, 0)//0
+    fun get_0(strPackageName: String, context: Context): PackageInfo? =
+        get(strPackageName, 0, context)//0
 
     @JvmStatic
-    fun get_GET_CONFIGURATIONS(context: Context, strPackageName: String): PackageInfo? =
-        get(context, strPackageName, CPackageManager.GET_CONFIGURATIONS)
+    fun get_GET_CONFIGURATIONS(strPackageName: String, context: Context): PackageInfo? =
+        get(strPackageName, CPackageManager.GET_CONFIGURATIONS, context)
 
     @JvmStatic
-    fun get_GET_ACTIVITIES(context: Context, strPackageName: String): PackageInfo? =
-        get(context, strPackageName, CPackageManager.GET_ACTIVITIES)
+    fun get_GET_ACTIVITIES(strPackageName: String, context: Context): PackageInfo? =
+        get(strPackageName, CPackageManager.GET_ACTIVITIES, context)
 }

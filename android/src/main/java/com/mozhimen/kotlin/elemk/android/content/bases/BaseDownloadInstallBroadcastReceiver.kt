@@ -5,9 +5,9 @@ import android.content.Intent
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.app.cons.CDownloadManager
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_INSTALL_SESSIONS
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REPLACE_EXISTING_PACKAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_INSTALL_SESSIONS
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REPLACE_EXISTING_PACKAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.utilk.wrapper.UtilKAppInstall
 
 
@@ -38,9 +38,9 @@ android:exported="true">
  * @Author Kolin Zhao / Mozhimen
  * @Version 1.0
  */
-@OPermission_REQUEST_INSTALL_PACKAGES
-@OPermission_READ_INSTALL_SESSIONS
-@OPermission_REPLACE_EXISTING_PACKAGE
+@OUsesPermission_REQUEST_INSTALL_PACKAGES
+@OUsesPermission_READ_INSTALL_SESSIONS
+@OUsesPermission_REPLACE_EXISTING_PACKAGE
 open class BaseDownloadInstallBroadcastReceiver(private val _strPathNameApk: String) : BaseBroadcastReceiver() {
 
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)

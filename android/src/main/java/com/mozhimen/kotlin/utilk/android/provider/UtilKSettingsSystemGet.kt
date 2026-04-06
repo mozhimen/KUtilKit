@@ -16,5 +16,5 @@ object UtilKSettingsSystemGet {
      */
     @JvmStatic
     fun getString_ANDROID_ID(context: Context): String =
-        UtilKSettingsSystem.getString(context, CSettings.System.ANDROID_ID)
+        UtilKSettingsSystem.getString(CSettings.System.ANDROID_ID, context)
 }

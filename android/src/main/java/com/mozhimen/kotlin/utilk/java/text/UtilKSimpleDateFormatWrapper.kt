@@ -22,7 +22,7 @@ object UtilKSimpleDateFormatWrapper : IUtilK {
     //////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun get(context: Context, style: Int): SimpleDateFormat {
+    fun get(style: Int, context: Context): SimpleDateFormat {
         val key = "$style"
         if (_simpleDateFormats.containsKey(key))
             return _simpleDateFormats[key]!!

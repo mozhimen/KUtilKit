@@ -50,14 +50,14 @@ object UtilKFileDir : BaseUtilK() {
 
         @JvmStatic
         fun getFileStream(name: String): File =
-            UtilKContextDir.Internal.getFileStreamDir(_context, name)
+            UtilKContextDir.Internal.getFileStreamDir( name,_context)
 
         /**
          * 内部使用，外部程序无法访问。主要是 SQLite 数据库的目录
          */
         @JvmStatic
         fun getDatabase(name: String): File =
-            UtilKContextDir.Internal.getDatabaseDir(_context, name)
+            UtilKContextDir.Internal.getDatabaseDir( name,_context)
 
         @JvmStatic
         fun getPackageCode(): String =

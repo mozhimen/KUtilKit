@@ -13,7 +13,7 @@ import android.media.MediaScannerConnection.OnScanCompletedListener
  */
 object UtilKMediaScannerConnection {
     @JvmStatic
-    fun scanFile(context: Context, paths: Array<String>, mimeTypes: Array<String>, callback: OnScanCompletedListener) {
+    fun scanFile(paths: Array<String>, mimeTypes: Array<String>, context: Context, callback: OnScanCompletedListener) {
         MediaScannerConnection.scanFile(context, paths, mimeTypes, callback)
     }
 }

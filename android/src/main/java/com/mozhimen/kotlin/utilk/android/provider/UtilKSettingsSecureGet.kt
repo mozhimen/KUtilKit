@@ -16,5 +16,5 @@ object UtilKSettingsSecureGet {
      */
     @JvmStatic
     fun getString_ANDROID_ID(context: Context): String =
-        UtilKSettingsSecure.getString(context, CSettings.Secure.ANDROID_ID)
+        UtilKSettingsSecure.getString(CSettings.Secure.ANDROID_ID, context)
 }

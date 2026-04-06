@@ -88,7 +88,7 @@ object UtilKFileFormat : BaseUtilK() {
             return null
         }
         return if (UtilKBuildVersion.isAfterV_29_10_Q()) {
-            UtilKContentResolverWrapper.insertImage_after29(_context, file)
+            UtilKContentResolverWrapper.insertImage_after29(file, _context)
         } else file2uri(file)
     }
 
@@ -100,8 +100,8 @@ object UtilKFileFormat : BaseUtilK() {
         }
         return if (UtilKBuildVersion.isAfterV_24_7_N()) {
             val authority = "${UtilKPackage.getPackageName()}.fileProvider".also { UtilKLogWrapper.d(TAG, "file2Uri: authority $it") }
-            UtilKFileProvider.getUriForFile(_context, authority, file).also {
-                UtilKContext.grantUriPermission(_context, it, CIntent.FLAG_GRANT_READ_URI_PERMISSION)
+            UtilKFileProvider.getUriForFile(authority, file, _context).also {
+                UtilKContext.grantUriPermission(it, CIntent.FLAG_GRANT_READ_URI_PERMISSION, _context)
             }
         } else UtilKUri.get(file)
     }
@@ -163,7 +163,7 @@ object UtilKFileFormat : BaseUtilK() {
     @JvmStatic
     fun file2bytes_use_ofReadWrite(file: File, bufferSize: Int = 1024): ByteArray? {
         return if (!UtilKFileWrapper.isFileExist(file)) return null
-        else UtilKInputStream.read_write_use(file.file2fileInputStream()?.fileInputStream2bufferedInputStream()?:return null, UtilKByteArrayOutputStream.get(file), bufferSize)
+        else UtilKInputStream.read_write_use(file.file2fileInputStream()?.fileInputStream2bufferedInputStream() ?: return null, UtilKByteArrayOutputStream.get(file), bufferSize)
     }
 
     @JvmStatic

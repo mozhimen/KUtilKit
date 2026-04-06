@@ -4,7 +4,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import com.mozhimen.kotlin.elemk.android.app.cons.CPendingIntent
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_31_11_S
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_31_11_S
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -21,22 +21,22 @@ object UtilKPendingIntentGet : IUtilK {
     /////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getActivity_IMMUTABLE(context: Context, requestCode: Int, intent: Intent): PendingIntent =
-        UtilKPendingIntent.getActivity(context, requestCode, intent, getFlag_IMMUTABLE())
+    fun getActivity_IMMUTABLE(requestCode: Int, intent: Intent, context: Context): PendingIntent =
+        UtilKPendingIntent.getActivity( requestCode, intent, getFlag_IMMUTABLE(),context)
 
     @JvmStatic
-    fun getActivity_UPDATE_CURRENT(context: Context, requestCode: Int, intent: Intent): PendingIntent =
-        UtilKPendingIntent.getActivity(context, requestCode, intent, getFlag_UPDATE_CURRENT())
+    fun getActivity_UPDATE_CURRENT(requestCode: Int, intent: Intent, context: Context): PendingIntent =
+        UtilKPendingIntent.getActivity( requestCode, intent, getFlag_UPDATE_CURRENT(),context)
 
     /////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getBroadcast_IMMUTABLE(context: Context, requestCode: Int, intent: Intent): PendingIntent =
-        UtilKPendingIntent.getBroadcast(context, requestCode, intent, getFlag_IMMUTABLE())
+    fun getBroadcast_IMMUTABLE(requestCode: Int, intent: Intent, context: Context): PendingIntent =
+        UtilKPendingIntent.getBroadcast( requestCode, intent, getFlag_IMMUTABLE(),context)
 
     @JvmStatic
-    fun getBroadcast_UPDATE_CURRENT(context: Context, requestCode: Int, intent: Intent): PendingIntent =
-        UtilKPendingIntent.getBroadcast(context, requestCode, intent, getFlag_UPDATE_CURRENT())
+    fun getBroadcast_UPDATE_CURRENT(requestCode: Int, intent: Intent, context: Context): PendingIntent =
+        UtilKPendingIntent.getBroadcast( requestCode, intent, getFlag_UPDATE_CURRENT(),context)
 
     /////////////////////////////////////////////////////////////////
 

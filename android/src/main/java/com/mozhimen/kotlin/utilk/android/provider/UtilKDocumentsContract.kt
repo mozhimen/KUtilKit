@@ -19,6 +19,6 @@ object UtilKDocumentsContract {
     /////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun isDocumentUri(context: Context, uri: Uri): Boolean =
+    fun isDocumentUri(uri: Uri, context: Context): Boolean =
         DocumentsContract.isDocumentUri(context, uri)
 }

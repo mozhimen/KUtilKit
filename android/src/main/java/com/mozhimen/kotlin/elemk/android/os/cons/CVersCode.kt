@@ -44,4 +44,5 @@ object CVersCode {
     const val V_32_12_SV2 = Build.VERSION_CODES.S_V2//S_V2
     const val V_33_13_T = Build.VERSION_CODES.TIRAMISU//TIRAMISU
     const val V_34_14_UDC = Build.VERSION_CODES.UPSIDE_DOWN_CAKE
+    const val V_35_15_VIC = Build.VERSION_CODES.VANILLA_ICE_CREAM
 }

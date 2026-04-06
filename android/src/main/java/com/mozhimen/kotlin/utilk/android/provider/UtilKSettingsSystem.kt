@@ -19,10 +19,10 @@ object UtilKSettingsSystem {
         Settings.System.getString(contentResolver, name)
 
     @JvmStatic
-    fun getString(context: Context, name: String): String =
+    fun getString(name: String, context: Context): String =
         Settings.System.getString(UtilKContentResolver.get(context), name)
 
     @JvmStatic
     fun getAndroidId(context: Context): String =
-        getString(context, CSettings.Secure.ANDROID_ID)
+        getString(CSettings.Secure.ANDROID_ID, context)
 }

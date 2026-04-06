@@ -5,10 +5,10 @@ import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_28_9_P
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.os.UtilKSystemPropertiesWrapper
 import com.mozhimen.kotlin.utilk.android.telephony.UtilKTelephonyManagerWrapper
@@ -31,10 +31,10 @@ object UtilKImeiOrMeid : IUtilK {
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     fun getImeiOrMeid(context: Context): String =
-        getImeiOrMeid(context, 0)
+        getImeiOrMeid(0, context)
 
     /**
      * 获取 Imei/Meid    优先获取IMEI(即使是电信卡)  不行的话就获取MEID
@@ -44,28 +44,28 @@ object UtilKImeiOrMeid : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
-    fun getImeiOrMeid(context: Context, slotId: Int): String {
+    fun getImeiOrMeid(slotId: Int, context: Context): String {
         var imei = ""
         //Android 6.0 以后需要获取动态权限  检查权限
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))
             return imei
         try {
             imei = if (UtilKBuildVersion.isAfterV_26_8_O())
-                UtilKTelephonyManagerWrapper.getImei(context, slotId)
+                UtilKTelephonyManagerWrapper.getImei( slotId,context)
             else if (UtilKBuildVersion.isAfterV_21_5_L())
                 UtilKSystemPropertiesWrapper.getImei()//5.0的系统如果想获取MEID/IMEI1/IMEI2  ----framework层提供了两个属性值“ril.cdma.meid"和“ril.gsm.imei"获取
             else
-                UtilKDeviceId.get(context, slotId)//如果获取不到 就调用 getDeviceId 方法获取//5.0以下获取imei/meid只能通过 getDeviceId  方法去取
+                UtilKDeviceId.get( slotId,context)//如果获取不到 就调用 getDeviceId 方法获取//5.0以下获取imei/meid只能通过 getDeviceId  方法去取
         } catch (e: Exception) {
             e.printStackTrace()
             e.message?.i(TAG)
         }
         if (imei.isEmpty())
-            imei = UtilKDeviceId.get(context, slotId)
+            imei = UtilKDeviceId.get( slotId,context)
         return imei
     }
 
@@ -74,8 +74,8 @@ object UtilKImeiOrMeid : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getImei_of2(context: Context): String {
@@ -87,8 +87,8 @@ object UtilKImeiOrMeid : IUtilK {
             return ""
         }
         //注意，拿第一个 IMEI 是传0，第2个 IMEI 是传1，别搞错了
-        val imei1 = getImeiOrMeid(context, 0)
-        val imei2 = getImeiOrMeid(context, 1)
+        val imei1 = getImeiOrMeid( 0,context)
+        val imei2 = getImeiOrMeid( 1,context)
         //sim 卡换卡位时，imei1与 imei2有可能互换，而 imeidefault 有可能不变
         return if (!TextUtils.equals(imei2, imeiDefault)) {
             //返回与 imeiDefault 不一样的
@@ -105,21 +105,21 @@ object UtilKImeiOrMeid : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
-    fun getImei(context: Context, slotIndex: Int): String {
+    fun getImei(slotIndex: Int, context: Context): String {
         //Android 6.0 以后需要获取动态权限  检查权限
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))
             return ""
         return try {
             if (UtilKBuildVersion.isAfterV_26_8_O()) { // android 8 即以后建议用getImei 方法获取 不会获取到MEID
-                UtilKTelephonyManagerWrapper.getImei(context, slotIndex)
+                UtilKTelephonyManagerWrapper.getImei(slotIndex, context)
             } else if (UtilKBuildVersion.isAfterV_21_5_L()) {
                 UtilKSystemPropertiesWrapper.getImei()//如果获取不到 就调用 getDeviceId 方法获取
             } else { //5.0以下获取imei/meid只能通过 getDeviceId  方法去取
-                UtilKDeviceId.getImei(context, slotIndex) ?: ""
+                UtilKDeviceId.getImei(slotIndex, context) ?: ""
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -135,21 +135,21 @@ object UtilKImeiOrMeid : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
-    fun getMeid(context: Context, slotIndex: Int): String {
+    fun getMeid(slotIndex: Int, context: Context): String {
         //Android 6.0 以后需要获取动态权限  检查权限
         if (!UtilKPermission.isSelfGranted(CPermission.READ_PHONE_STATE))
             return ""
         return try {
             if (UtilKBuildVersion.isAfterV_26_8_O()) { // android 8 即以后建议用getMeid 方法获取 不会获取到Imei
-                UtilKTelephonyManagerWrapper.getMeid(context, slotIndex)
+                UtilKTelephonyManagerWrapper.getMeid( slotIndex,context)
             } else if (UtilKBuildVersion.isAfterV_21_5_L()) {
                 UtilKSystemPropertiesWrapper.getMeid()//如果获取不到 就调用 getDeviceId 方法获取
             } else { //5.0以下获取imei/meid只能通过 getDeviceId  方法去取
-                UtilKDeviceId.getMeid(context,slotIndex)?:""
+                UtilKDeviceId.getMeid( slotIndex,context) ?: ""
             }
         } catch (e: Exception) {
             e.printStackTrace()

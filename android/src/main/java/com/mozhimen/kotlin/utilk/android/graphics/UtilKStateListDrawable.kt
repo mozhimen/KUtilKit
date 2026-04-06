@@ -6,7 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INTERNET
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_INTERNET
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 
@@ -35,7 +35,7 @@ object UtilKStateListDrawable {
 
     @JvmStatic
     @RequiresPermission(CPermission.INTERNET)
-    @OPermission_INTERNET
+    @OUsesPermission_INTERNET
     fun getForStrUrls(strUrlDrawableNormal: String, strUrlDrawablePressed: String): Drawable? {
         val drawableNormal = UtilKDrawable.getDrawable_ofStrUrl(strUrlDrawableNormal)
         val drawablePressed = UtilKDrawable.getDrawable_ofStrUrl(strUrlDrawablePressed)

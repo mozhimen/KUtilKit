@@ -45,16 +45,16 @@ object UtilKInputMethodManager {
     @JvmStatic
     fun hideSoftInputFromWindow(view: View) {
         val windowToken = view.windowToken ?: return
-        hideSoftInputFromWindow(view.context, windowToken)
+        hideSoftInputFromWindow(windowToken, view.context)
     }
 
     @JvmStatic
-    fun hideSoftInputFromWindow(context: Context, windowToken: IBinder) {
-        hideSoftInputFromWindow(context, windowToken, 0)
+    fun hideSoftInputFromWindow(windowToken: IBinder, context: Context) {
+        hideSoftInputFromWindow(windowToken, 0, context)
     }
 
     @JvmStatic
-    fun hideSoftInputFromWindow(context: Context, windowToken: IBinder, flags: Int) {
+    fun hideSoftInputFromWindow(windowToken: IBinder, flags: Int, context: Context) {
         get(context).hideSoftInputFromWindow(windowToken, flags)
     }
 
@@ -62,11 +62,11 @@ object UtilKInputMethodManager {
 
     @JvmStatic
     fun toggleSoftInput(context: Context) {
-        toggleSoftInput(context, 0, 0)
+        toggleSoftInput(0, 0, context)
     }
 
     @JvmStatic
-    fun toggleSoftInput(context: Context, showFlags: Int, hideFlags: Int) {
+    fun toggleSoftInput(showFlags: Int, hideFlags: Int, context: Context) {
         get(context).toggleSoftInput(showFlags, hideFlags)
     }
 }

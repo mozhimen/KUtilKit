@@ -1,6 +1,5 @@
 package com.mozhimen.kotlin.utilk.android.hardware
 
-import android.content.Context
 import android.hardware.Camera
 import android.hardware.Camera.CameraInfo
 import com.mozhimen.kotlin.elemk.android.hardware.cons.CCamera
@@ -33,17 +32,17 @@ object UtilKCamera {
 
     //设备是否有前置摄像
     @JvmStatic
-    fun hasCamera_ofFront(context: Context): Boolean =
-        hasCamera_of(context, true)
+    fun hasCamera_ofFront(): Boolean =
+        hasCamera_of(true)
 
     //设备是否有后置摄像头
     @JvmStatic
-    fun hasCamera_ofBack(context: Context): Boolean =
-        hasCamera_of(context, false)
+    fun hasCamera_ofBack(): Boolean =
+        hasCamera_of(false)
 
     //是否含有相机
     @JvmStatic
-    fun hasCamera_of(context: Context, isFront: Boolean): Boolean {
+    fun hasCamera_of(isFront: Boolean): Boolean {
         if (UtilKBuildVersion.isAfterV_28_9_P()) {
             return if (isFront) UtilKPackage.hasFrontCamera() else UtilKPackage.hasBackCamera()
         } else {

@@ -18,7 +18,7 @@ object UtilKTypedValue {
         TypedValue.applyDimension(unit, value, metrics)
 
     @JvmStatic
-    fun complexToFloat(context: Context, intResId: Int): Float {
+    fun complexToFloat(intResId: Int, context: Context): Float {
         val typedValue = TypedValue()
         context.resources.getValue(intResId, typedValue, true)
         return complexToFloat(typedValue.data)

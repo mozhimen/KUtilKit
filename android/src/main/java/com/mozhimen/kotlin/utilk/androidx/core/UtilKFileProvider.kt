@@ -16,11 +16,11 @@ import java.io.File
 object UtilKFileProvider {
 
     @JvmStatic
-    fun getUriForStrFilePathName(context: Context, authority: String, strFilePathName: String): Uri? =
+    fun getUriForStrFilePathName(authority: String, strFilePathName: String, context: Context): Uri? =
         if (strFilePathName.isEmpty()) null
-        else getUriForFile(context, authority, strFilePathName.strFilePath2file())
+        else getUriForFile(authority, strFilePathName.strFilePath2file(), context)
 
     @JvmStatic
-    fun getUriForFile(context: Context, authority: String, file: File): Uri =
+    fun getUriForFile(authority: String, file: File, context: Context): Uri =
         FileProvider.getUriForFile(context, authority, file)
 }

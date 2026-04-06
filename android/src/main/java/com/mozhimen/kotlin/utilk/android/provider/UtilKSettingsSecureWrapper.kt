@@ -18,14 +18,14 @@ object UtilKSettingsSecureWrapper {
     fun isLocationModeOn(context: Context): Boolean {
         return if (UtilKBuildVersion.isAfterV_19_44_K()) {
             val locationMode = try {
-                UtilKSettingsSecure.getInt(context, CSettings.Secure.LOCATION_MODE)
+                UtilKSettingsSecure.getInt(CSettings.Secure.LOCATION_MODE, context)
             } catch (e: Settings.SettingNotFoundException) {
                 e.printStackTrace()
                 return false
             }
             locationMode != CSettings.Secure.LOCATION_MODE_OFF
         } else {
-            UtilKSettingsSecure.getString(context, CSettings.Secure.LOCATION_PROVIDERS_ALLOWED).isNotEmpty()
+            UtilKSettingsSecure.getString(CSettings.Secure.LOCATION_PROVIDERS_ALLOWED, context).isNotEmpty()
         }
     }
 }

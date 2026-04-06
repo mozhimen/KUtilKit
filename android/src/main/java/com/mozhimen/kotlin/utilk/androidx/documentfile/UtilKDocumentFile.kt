@@ -20,12 +20,12 @@ fun DocumentFile.isTypeZip(): Boolean =
 object UtilKDocumentFile {
 
     @JvmStatic
-    fun get(context: Context, strUriDocument: String): DocumentFile? =
-        fromTreeUri(context, strUriDocument.strUri2uri())
+    fun get(strUriDocument: String, context: Context): DocumentFile? =
+        fromTreeUri(strUriDocument.strUri2uri(), context)
 
     @JvmStatic
-    fun get(context: Context, uri: Uri): DocumentFile? =
-        fromTreeUri(context, uri)
+    fun get(uri: Uri, context: Context): DocumentFile? =
+        fromTreeUri(uri, context)
 
     ////////////////////////////////////////////////////////
 
@@ -36,10 +36,10 @@ object UtilKDocumentFile {
     ////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun fromTreeUri(context: Context, strUriDocument: String): DocumentFile? =
+    fun fromTreeUri(strUriDocument: String, context: Context): DocumentFile? =
         DocumentFile.fromTreeUri(context, strUriDocument.strUri2uri())
 
     @JvmStatic
-    fun fromTreeUri(context: Context, uri: Uri): DocumentFile? =
+    fun fromTreeUri(uri: Uri, context: Context): DocumentFile? =
         DocumentFile.fromTreeUri(context, uri)
 }

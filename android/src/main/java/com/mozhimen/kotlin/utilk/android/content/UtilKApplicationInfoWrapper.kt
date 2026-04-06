@@ -17,8 +17,8 @@ import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 object UtilKApplicationInfoWrapper {
 
     @JvmStatic
-    fun getMetaDataStr(context: Context, strPackageName: String, flags: Int, strMetaData: String): String =
-        getMetaDataStr(UtilKApplicationInfo.get_ofPackageManager(context, strPackageName, flags), strMetaData)
+    fun getMetaDataStr(strPackageName: String, flags: Int, strMetaData: String, context: Context): String =
+        getMetaDataStr(UtilKApplicationInfo.get_ofPackageManager(strPackageName, flags, context), strMetaData)
 
     @JvmStatic
     fun getMetaDataStr(applicationInfo: ApplicationInfo, strMetaDataName: String): String {
@@ -36,7 +36,7 @@ object UtilKApplicationInfoWrapper {
         try {
             val intResStr: Int = UtilKApplicationInfo.getLabelRes(context)
             if (intResStr == 0) return ""
-            return UtilKRes.getString_ofContext(context, intResStr)
+            return UtilKRes.getString_ofContext(intResStr, context)
         } catch (e: Exception) {
             e.printStackTrace()
             return ""
@@ -46,13 +46,13 @@ object UtilKApplicationInfoWrapper {
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun enabled_ofPackageManager_throw(context: Context, strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfo.enabled(UtilKApplicationInfo.get_ofPackageManager(context, strPackageName, flags))
+    fun enabled_ofPackageManager_throw(strPackageName: String, flags: Int, context: Context): Boolean =
+        UtilKApplicationInfo.enabled(UtilKApplicationInfo.get_ofPackageManager(strPackageName, flags, context))
 
     @JvmStatic
-    fun enabled_ofPackageManager(context: Context, strPackageName: String, flags: Int): Boolean {
+    fun enabled_ofPackageManager(strPackageName: String, flags: Int, context: Context): Boolean {
         return try {
-            enabled_ofPackageManager_throw(context, strPackageName, flags)
+            enabled_ofPackageManager_throw(strPackageName, flags, context)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             false
@@ -60,13 +60,13 @@ object UtilKApplicationInfoWrapper {
     }
 
     @JvmStatic
-    fun enabled_ofPackageInfo_throw(context: Context, strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfo.enabled(UtilKApplicationInfo.get_ofPackageManager(context, strPackageName, flags))
+    fun enabled_ofPackageInfo_throw(strPackageName: String, flags: Int, context: Context): Boolean =
+        UtilKApplicationInfo.enabled(UtilKApplicationInfo.get_ofPackageManager(strPackageName, flags, context))
 
     @JvmStatic
-    fun enabled_ofPackageInfo(context: Context, strPackageName: String, flags: Int): Boolean {
+    fun enabled_ofPackageInfo(strPackageName: String, flags: Int, context: Context): Boolean {
         return try {
-            enabled_ofPackageInfo_throw(context, strPackageName, flags)
+            enabled_ofPackageInfo_throw(strPackageName, flags, context)
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
             false

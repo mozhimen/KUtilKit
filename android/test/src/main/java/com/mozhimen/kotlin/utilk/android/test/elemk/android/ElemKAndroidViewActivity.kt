@@ -3,9 +3,9 @@ package com.mozhimen.kotlin.utilk.android.test.elemk.android
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mozhimen.basick.impls.proxys.ScreenOrientationOfSensorProxy
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiCall_BindViewLifecycle
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_BindViewLifecycle
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.kotlin.UtilKLazyJVM.lazy_ofNone
 
 /**

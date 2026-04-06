@@ -20,7 +20,7 @@ object UtilKDebug_MemoryInfo {
 
     @JvmStatic
     fun get_myPid(context: Context): MemoryInfo? =
-        UtilKActivityManager.getProcessMemoryInfo(context, intArrayOf(UtilKProcess.getMyPid()))?.get(0)
+        UtilKActivityManager.getProcessMemoryInfo(intArrayOf(UtilKProcess.getMyPid()), context)?.get(0)
 
     /////////////////////////////////////////////////////////////
 

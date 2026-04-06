@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Parcelable
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
@@ -41,22 +41,22 @@ object UtilKIntent : IUtilK {
         Intent(action, uri)
 
     @JvmStatic
-    fun get(context: Context, clazz: Class<*>): Intent =
+    fun get(clazz: Class<*>, context: Context): Intent =
         Intent(context, clazz)
 
     @JvmStatic
-    fun get(action: String, uri: Uri, context: Context, clazz: Class<*>): Intent =
+    fun get(action: String, uri: Uri, clazz: Class<*>, context: Context): Intent =
         Intent(action, uri, context, clazz)
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     inline fun <reified T> get(context: Context): Intent =
-        get(context, T::class.java)
+        get(T::class.java, context)
 
     @JvmStatic
     inline fun <reified T> get(context: Context, block: IExt_Listener<Intent>): Intent =
-        get(context, T::class.java).apply(block)
+        get(T::class.java, context).apply(block)
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
@@ -82,16 +82,16 @@ object UtilKIntent : IUtilK {
     ///////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun toURI(intent: Intent):String =
+    fun toURI(intent: Intent): String =
         intent.toURI()
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     fun resolveActivity(intent: Intent, context: Context): ComponentName? =
         resolveActivity(intent, UtilKPackageManager.get(context))
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     fun resolveActivity(intent: Intent, pm: PackageManager): ComponentName? =
         intent.resolveActivity(pm)
 

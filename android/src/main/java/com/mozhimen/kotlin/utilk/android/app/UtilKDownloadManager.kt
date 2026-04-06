@@ -19,6 +19,6 @@ object UtilKDownloadManager {
         UtilKContextGet.getSystemService_DOWNLOAD(context)
 
     @JvmStatic
-    fun getUriForDownloadedFile(context: Context, id: Long): Uri? =
+    fun getUriForDownloadedFile(id: Long, context: Context): Uri? =
         get(context).getUriForDownloadedFile(id)
 }

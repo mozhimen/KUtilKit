@@ -34,6 +34,6 @@ object UtilKImageDecoder {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_28_9_P)
-    fun decodeBitmap(context: Context, uri: Uri): Bitmap =
+    fun decodeBitmap(uri: Uri, context: Context): Bitmap =
         decodeBitmap(createSource(UtilKContentResolver.get(context), uri))
 }

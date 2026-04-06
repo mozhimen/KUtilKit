@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.java.net
 
 import androidx.annotation.WorkerThread
-import com.mozhimen.kotlin.lintk.optins.application.OApplication_USES_CLEAR_TEXT_TRAFFIC
+import com.mozhimen.kotlin.lintk.optins.manifest.application.OApplication_USES_CLEAR_TEXT_TRAFFIC
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.java.io.UtilKFileWrapper
 import com.mozhimen.kotlin.utilk.java.io.UtilKInputStream

@@ -219,6 +219,11 @@ object UtilKBuildVersion {
     fun isAfterV_34_14_UDC(): Boolean =
         isAfterVersion(CVersCode.V_34_14_UDC)
 
+    @JvmStatic
+    @ChecksSdkIntAtLeast(api = CVersCode.V_35_15_VIC)
+    fun isAfterV_35_15_VIC(): Boolean =
+        isAfterVersion(CVersCode.V_35_15_VIC)
+
     ///////////////////////////////////////////////////////////////////////
 
     @JvmStatic

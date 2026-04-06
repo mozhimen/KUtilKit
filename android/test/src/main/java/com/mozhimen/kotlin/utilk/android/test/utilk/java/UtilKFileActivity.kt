@@ -6,9 +6,9 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_WRITE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_WRITE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.permissionk.PermissionK
 import com.mozhimen.permissionk.annors.APermissionCheck
@@ -33,7 +33,7 @@ class UtilKFileActivity : BaseActivityVDB<ActivityUtilkFileBinding>() {
         UtilKFileLogBean(0, "start file process >>>>>")
     )
 
-    @OptIn(OPermission_WRITE_EXTERNAL_STORAGE::class, OPermission_READ_EXTERNAL_STORAGE::class, OPermission_MANAGE_EXTERNAL_STORAGE::class)
+    @OptIn(OUsesPermission_WRITE_EXTERNAL_STORAGE::class, OUsesPermission_READ_EXTERNAL_STORAGE::class, OUsesPermission_MANAGE_EXTERNAL_STORAGE::class)
     @SuppressLint("MissingPermission")
     override fun initData(savedInstanceState: Bundle?) {
         XXPermissionsRequestUtil.requestPermission_EXTERNAL_STORAGE(this, onGranted = {

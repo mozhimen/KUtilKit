@@ -18,6 +18,12 @@ import java.util.stream.Collectors
 fun <T> MutableCollection<T>.removeBy(predicate: IA_BListener<T, Boolean>): Boolean =
     UtilKCollections.removeBy(this, predicate)
 
+fun <T> MutableList<T>.removeFirstSafe(): T? =
+    UtilKCollections.removeFirstSafe(this)
+
+fun <T> MutableList<T>.removeLastSafe(): T? =
+    UtilKCollections.removeLastSafe(this)
+
 inline fun <T, K> Iterable<T>.associateByNotNull(keySelector: (T) -> K?): Map<K, T> =
     UtilKCollections.associateByNotNull(this, keySelector)
 
@@ -102,6 +108,30 @@ object UtilKCollections : IUtilK {
                 }
             }
             return removed
+        }
+    }
+
+    fun <T> removeFirstSafe(list: MutableList<T>): T? {
+        return if (UtilKBuildVersion.isAfterV_35_15_VIC()) {
+            list.removeFirst()
+        } else {
+            if (list.isEmpty()) {
+                null
+            } else {
+                list.removeAt(0)
+            }
+        }
+    }
+
+    fun <T> removeLastSafe(list: MutableList<T>): T? {
+        return if (UtilKBuildVersion.isAfterV_35_15_VIC()) {
+            list.removeLast()
+        } else {
+            if (list.isEmpty()) {
+                null
+            } else {
+                list.removeAt(list.size - 1)
+            }
         }
     }
 

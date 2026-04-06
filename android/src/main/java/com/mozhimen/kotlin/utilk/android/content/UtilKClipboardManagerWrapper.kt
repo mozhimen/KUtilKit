@@ -87,7 +87,7 @@ object UtilKClipboardManagerWrapper : BaseUtilK() {
      */
     @JvmStatic
     fun applyCopyUri(label: CharSequence, uri: Uri) {
-        UtilKClipboardManager.get(_context).setPrimaryClip(UtilKClipData.getNewUri(_context, label, uri))
+        UtilKClipboardManager.get(_context).setPrimaryClip(UtilKClipData.getNewUri(label, uri, _context))
     }
 
     /**

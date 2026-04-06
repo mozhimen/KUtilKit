@@ -27,8 +27,8 @@ object UtilKPackageInfoWrapper : IUtilK {
      * 获取程序包名
      */
     @JvmStatic
-    fun gainVersionName(context: Context, strPackageName: String, flags: Int): String =
-        UtilKPackageInfo.get(context, strPackageName, flags)?.let { gainVersionName(it) } ?: ""
+    fun gainVersionName(strPackageName: String, flags: Int, context: Context): String =
+        UtilKPackageInfo.get(strPackageName, flags, context)?.let { gainVersionName(it) } ?: ""
 
     @JvmStatic
     fun gainVersionName(packageInfo: PackageInfo?): String =
@@ -44,8 +44,8 @@ object UtilKPackageInfoWrapper : IUtilK {
      * 获取程序版本号
      */
     @JvmStatic
-    fun gainVersionCode(context: Context, strPackageName: String, flags: Int): Int =
-        UtilKPackageInfo.get(context, strPackageName, flags)?.let { gainVersionCode(it) } ?: 0
+    fun gainVersionCode(strPackageName: String, flags: Int, context: Context): Int =
+        UtilKPackageInfo.get(strPackageName, flags, context)?.let { gainVersionCode(it) } ?: 0
 
     @JvmStatic
     fun gainVersionCode(packageInfo: PackageInfo?): Int =
@@ -64,9 +64,9 @@ object UtilKPackageInfoWrapper : IUtilK {
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun hasPackage(context: Context, strPackageName: String, flags: Int): Boolean =
+    fun hasPackage(strPackageName: String, flags: Int, context: Context): Boolean =
         try {
-            UtilKPackageInfo.get(context, strPackageName, flags) != null
+            UtilKPackageInfo.get(strPackageName, flags, context) != null
         } catch (e: NameNotFoundException) {
             false
         }

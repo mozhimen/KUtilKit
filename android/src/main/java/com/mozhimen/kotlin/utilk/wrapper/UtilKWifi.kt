@@ -2,9 +2,9 @@ package com.mozhimen.kotlin.utilk.wrapper
 
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.net.cons.CWifiManager
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_NETWORK_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_WIFI_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.net.UtilKWifiInfo
 import com.mozhimen.kotlin.utilk.android.net.UtilKWifiManager
@@ -16,9 +16,9 @@ object UtilKWifi : BaseUtilK() {
 
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.ACCESS_WIFI_STATE, CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_NETWORK_STATE])
-    @OPermission_ACCESS_WIFI_STATE
-    @OPermission_ACCESS_NETWORK_STATE
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_WIFI_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_FINE_LOCATION
     fun getIpAddress(): String {
         var ipAddress = 0
         ipAddress = if (UtilKBuildVersion.isAfterV_29_10_Q()) {
@@ -30,8 +30,8 @@ object UtilKWifi : BaseUtilK() {
     }
 
     @JvmStatic
-    @OPermission_ACCESS_WIFI_STATE
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_WIFI_STATE
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_WIFI_STATE, CPermission.ACCESS_FINE_LOCATION])
     fun getName(): String {
         if (!UtilKWifiManager.isWifiEnabled(_context))

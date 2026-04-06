@@ -25,14 +25,14 @@ object UtilKAssetManager {
     /////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun openFd(context: Context, strAssetName: String): AssetFileDescriptor =
+    fun openFd(strAssetName: String, context: Context): AssetFileDescriptor =
         get_ofContext(context).openFd(strAssetName)
 
     @JvmStatic
-    fun open(context: Context, strAssetName: String): InputStream =
+    fun open(strAssetName: String, context: Context): InputStream =
         get_ofContext(context).open(strAssetName)
 
     @JvmStatic
-    fun list(context: Context, strAssetName: String): Array<String>? =
+    fun list(strAssetName: String, context: Context): Array<String>? =
         get_ofContext(context).list(strAssetName)
 }

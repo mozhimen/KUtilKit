@@ -19,7 +19,7 @@ object UtilKActionBar : BaseUtilK() {
         var actionBarHeight = 0
         val typedValue = TypedValue()
         if (context.getTheme().resolveAttribute(R.attr.actionBarSize, typedValue, true)) {
-            actionBarHeight = UtilKRes.getDimensionPixelSize_ofResources(context, typedValue.resourceId)
+            actionBarHeight = UtilKRes.getDimensionPixelSize_ofResources(typedValue.resourceId, context)
         }
         return actionBarHeight
     }

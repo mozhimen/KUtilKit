@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import com.mozhimen.kotlin.elemk.androidx.lifecycle.commons.ILifecycleOwner
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.androidx.lifecycle.handleLifecycleEventOnCreate
 import com.mozhimen.kotlin.utilk.androidx.lifecycle.handleLifecycleEventOnDestroy
 import com.mozhimen.kotlin.utilk.androidx.lifecycle.handleLifecycleEventOnPause

@@ -6,7 +6,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import android.widget.SeekBar
 import androidx.lifecycle.lifecycleScope
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INTERNET
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_INTERNET
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapDeal
 import com.mozhimen.kotlin.utilk.android.graphics.UtilKBitmapFormat
@@ -21,7 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class UtilKBitmapActivity : BaseActivityVDB<ActivityUtilkBitmapBinding>() {
-    @OptIn(OPermission_INTERNET::class)
+    @OptIn(OUsesPermission_INTERNET::class)
     override fun initView(savedInstanceState: Bundle?) {
         lifecycleScope.launch(Dispatchers.Main) {
             val bitmap: Bitmap?

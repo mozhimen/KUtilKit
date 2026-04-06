@@ -19,16 +19,16 @@ import com.mozhimen.kotlin.utilk.kotlin.intResDrawable2bitmapAny
  */
 object UtilKRoundedBitmapDrawable {
     @JvmStatic
-    fun get(context: Context, @DrawableRes intResDrawable: Int, @Px radius: Float): RoundedBitmapDrawable? =
+    fun get(@DrawableRes intResDrawable: Int, @Px radius: Float, context: Context): RoundedBitmapDrawable? =
         intResDrawable.intResDrawable2bitmapAny(context)?.let {
             get(UtilKResources.get_ofApp(context), it).apply { cornerRadius = radius }
         }
 
 
     @JvmStatic
-    fun get(context: Context, @DrawableRes intResDrawable: Int): RoundedBitmapDrawable? =
+    fun get(@DrawableRes intResDrawable: Int, context: Context): RoundedBitmapDrawable? =
         intResDrawable.intResDrawable2bitmapAny(context)?.let {
-            get(UtilKResources.get_ofApp(context),it)
+            get(UtilKResources.get_ofApp(context), it)
         }
 
     @JvmStatic

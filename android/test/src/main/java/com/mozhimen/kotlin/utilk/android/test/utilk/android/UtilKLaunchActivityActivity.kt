@@ -2,7 +2,7 @@ package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import android.view.View
 import com.mozhimen.uik.databinding.bases.viewdatabinding.activity.BaseActivityVDB
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkLaunchActivityBinding
 
@@ -14,7 +14,7 @@ import com.mozhimen.kotlin.utilk.android.test.databinding.ActivityUtilkLaunchAct
  * @Version 1.0
  */
 class UtilKLaunchActivityActivity : BaseActivityVDB<ActivityUtilkLaunchActivityBinding>() {
-    @OptIn(OPermission_MANAGE_EXTERNAL_STORAGE::class)
+    @OptIn(OUsesPermission_MANAGE_EXTERNAL_STORAGE::class)
     fun startManageAllFilesAccess(view: View) {
         UtilKActivityStart.startSettingsManageAllFilesAccessPermission(this)
     }

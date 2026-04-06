@@ -40,6 +40,6 @@ object UtilKResourcesCompat {
         ResourcesCompat.getFloat(res, intResDimen)
 
     @JvmStatic
-    fun getFont(context: Context, @FontRes intResFont: Int): Typeface? =
+    fun getFont(@FontRes intResFont: Int, context: Context): Typeface? =
         ResourcesCompat.getFont(context, intResFont)
 }

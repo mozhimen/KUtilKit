@@ -5,7 +5,7 @@ import android.content.Intent
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfoWrapper
@@ -34,25 +34,25 @@ object UtilKApp : BaseUtilK() {
 
     @JvmStatic
     fun getMetaDataStr(strMetaData: String, strPackageName: String = UtilKPackage.getPackageName(), flags: Int = CPackageManager.GET_META_DATA, context: Context = _context): String =
-        UtilKApplicationInfoWrapper.getMetaDataStr(context, strPackageName, flags, strMetaData)
+        UtilKApplicationInfoWrapper.getMetaDataStr(strPackageName, flags, strMetaData, context)
 
     /////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     @Throws(IllegalArgumentException::class)
-    fun isSystemApp(context: Context): Boolean =
+    fun isSystemApp(context: Context = _context): Boolean =
         UtilKApplicationInfoWrapper.isSystemApp(context)
 
     @JvmStatic
-    fun isSystemUpdateApp(context: Context): Boolean =
+    fun isSystemUpdateApp(context: Context = _context): Boolean =
         UtilKApplicationInfoWrapper.isSystemUpdateApp(context)
 
     @JvmStatic
-    fun isUserApp(context: Context): Boolean =
+    fun isUserApp(context: Context = _context): Boolean =
         UtilKApplicationInfoWrapper.isUserApp(context)
 
     @JvmStatic
-    fun isSystemOrSystemUpdateApp(context: Context): Boolean =
+    fun isSystemOrSystemUpdateApp(context: Context = _context): Boolean =
         UtilKApplicationInfoWrapper.isSystemOrSystemUpdateApp(context)
 
     /////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,25 @@ object UtilKApp : BaseUtilK() {
      * 重启App
      */
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun restartApp(isKillProcess: Boolean, isValid: Boolean = true, context: Context = _context) {
-        val intent: Intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_CLASSNAME(context, UtilKContext.getPackageName(context)) ?: run {
-            UtilKLogWrapper.e(TAG, "didn't exist launcher activity.");return
+    fun restartAppStrict(isKillProcess: Boolean, isValid: Boolean = true, context: Context = _context) {
+        val intent: Intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_CLASSNAME(UtilKContext.getPackageName(context), context) ?: run {
+            UtilKLogWrapper.e(TAG, "didn't exist launcher activity."); return
         }
+        restartApp(intent, isKillProcess, isValid, context)
+    }
+
+    @JvmStatic
+    fun restartApp(isKillProcess: Boolean, isValid: Boolean = true, context: Context = _context) {
+        val intent: Intent = context.packageManager.getLaunchIntentForPackage(context.packageName) ?: run {
+            UtilKLogWrapper.e(TAG, "didn't exist launcher activity."); return
+        }
+        restartApp(intent, isKillProcess, isValid, context)
+    }
+
+    @JvmStatic
+    fun restartApp(intent: Intent, isKillProcess: Boolean, isValid: Boolean = true, context: Context = _context) {
         intent.addFlags(CIntent.FLAG_ACTIVITY_CLEAR_TOP or CIntent.FLAG_ACTIVITY_CLEAR_TASK)
         context.startContext(intent)
         if (!isKillProcess) return

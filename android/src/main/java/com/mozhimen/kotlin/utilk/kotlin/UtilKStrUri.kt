@@ -21,7 +21,7 @@ fun String.strUri2uri(): Uri =
 object UtilKStrUri {
 
     @JvmStatic
-    fun getStrUri_ofRaw(context: Context, rawName: String): String =
+    fun getStrUri_ofRaw(rawName: String, context: Context): String =
         "${CContentResolver.SCHEME_ANDROID_RESOURCE}://${context.packageName}/raw/${rawName}"
 
     ////////////////////////////////////////////////////////////

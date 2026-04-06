@@ -88,13 +88,13 @@ object UtilKContext {
         context.theme
 
     @JvmStatic
-    fun getSharedPreferences(context: Context, name: String, mode: Int): SharedPreferences =
+    fun getSharedPreferences(name: String, mode: Int, context: Context): SharedPreferences =
         context.getSharedPreferences(name, mode)
 
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getDir(context: Context, name: String, mode: Int): File =
+    fun getDir(name: String, mode: Int, context: Context): File =
         context.getDir(name, mode)
 
     /**
@@ -132,14 +132,14 @@ object UtilKContext {
         context.noBackupFilesDir
 
     @JvmStatic
-    fun getFileStreamDir(context: Context, name: String): File =
+    fun getFileStreamDir(name: String, context: Context): File =
         context.getFileStreamPath(name)
 
     /**
      * 内部使用，外部程序无法访问。主要是 SQLite 数据库的目录
      */
     @JvmStatic
-    fun getDatabasePath(context: Context, name: String): File =
+    fun getDatabasePath(name: String, context: Context): File =
         context.getDatabasePath(name)
 
     @JvmStatic
@@ -155,59 +155,59 @@ object UtilKContext {
         context.externalCacheDir
 
     @JvmStatic
-    fun getExternalFilesDir(context: Context, type: String?): File? =
+    fun getExternalFilesDir(type: String?, context: Context): File? =
         context.getExternalFilesDir(type)
 
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getSystemService(context: Context, name: String): Any =
+    fun getSystemService(name: String, context: Context): Any =
         context.getSystemService(name)
 
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getString(context: Context, @StringRes intResStr: Int): String =
+    fun getString(@StringRes intResStr: Int, context: Context): String =
         context.getString(intResStr)
 
     @JvmStatic
-    fun getString(context: Context, @StringRes intResStr: Int, vararg formatArgs: Any): String =
+    fun getString(@StringRes intResStr: Int, context: Context, vararg formatArgs: Any): String =
         context.getString(intResStr, *formatArgs)
 
     @RequiresApi(CVersCode.V_23_6_M)
     @JvmStatic
-    fun getColor(context: Context, @ColorRes intResColor: Int): Int =
+    fun getColor(@ColorRes intResColor: Int, context: Context): Int =
         context.getColor(intResColor)
 
     @RequiresApi(CVersCode.V_23_6_M)
     @JvmStatic
-    fun getColorStateList(context: Context, @ColorRes intResColor: Int): ColorStateList =
+    fun getColorStateList(@ColorRes intResColor: Int, context: Context): ColorStateList =
         context.getColorStateList(intResColor)
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(CVersCode.V_21_5_L)
     @JvmStatic
-    fun getDrawable(context: Context, @DrawableRes intResDrawable: Int): Drawable? =
+    fun getDrawable(@DrawableRes intResDrawable: Int, context: Context): Drawable? =
         context.getDrawable(intResDrawable)
 
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun grantUriPermission(context: Context, uri: Uri, modeFlags: Int) {
-        grantUriPermission(context, getPackageName(context), uri, modeFlags)
+    fun grantUriPermission(uri: Uri, modeFlags: Int, context: Context) {
+        grantUriPermission(getPackageName(context), uri, modeFlags, context)
     }
 
     @JvmStatic
-    fun grantUriPermission(context: Context, strPackageName: String, uri: Uri, modeFlags: Int) {
+    fun grantUriPermission(strPackageName: String, uri: Uri, modeFlags: Int, context: Context) {
         context.grantUriPermission(strPackageName, uri, modeFlags)
     }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    fun checkSelfPermission(context: Context, permission: String): Int =
+    fun checkSelfPermission(permission: String, context: Context): Int =
         context.checkSelfPermission(permission)
 
     @JvmStatic
-    fun checkCallingOrSelfPermission(context: Context, permission: String): Int =
+    fun checkCallingOrSelfPermission(permission: String, context: Context): Int =
         context.checkCallingOrSelfPermission(permission)
 }

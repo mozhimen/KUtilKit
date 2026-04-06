@@ -2,7 +2,7 @@ package com.mozhimen.kotlin.utilk.wrapper
 
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.elemk.cons.CPath
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuild
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -24,7 +24,7 @@ object UtilKSys : IUtilK {
     //判断手机是否拥有Root权限:
     //有root权限返回true, 否则返回false
     @JvmStatic
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     fun isRoot(): Boolean =
             try {
                 isSuAvailable() || isBusyboxAvailable() || isWhichAvailable() || hasSuperuserApk() || isSystemBeta()
@@ -37,7 +37,7 @@ object UtilKSys : IUtilK {
     //是否存在su命令，并且有执行权限
     @JvmStatic
     @Throws(Exception::class)
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     fun isSuAvailable(): Boolean {
         var file: File
         val strFilePaths = arrayOf(
@@ -57,7 +57,7 @@ object UtilKSys : IUtilK {
     //系统是否包含busybox
     @JvmStatic
     @Throws(Exception::class)
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     fun isBusyboxAvailable(): Boolean {
         var file: File
         val strFilePaths = arrayOf(
@@ -77,13 +77,13 @@ object UtilKSys : IUtilK {
     //系统是否包含which
     @JvmStatic
     @Throws(Exception::class)
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     fun isWhichAvailable(): Boolean =
             UtilKRuntimeWrapper.exec_su_system_xbin_which()
 
     //检测系统内是否安装了Superuser.apk之类的App
     @JvmStatic
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     fun hasSuperuserApk(): Boolean =
         UtilKFileWrapper.isFileExist(File("/system/app/Superuser.apk")).also { UtilKLogWrapper.d(TAG, "hasSuperuserApk: $it") }
 

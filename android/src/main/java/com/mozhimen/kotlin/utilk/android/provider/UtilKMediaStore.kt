@@ -21,6 +21,6 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 object UtilKMediaStore : BaseUtilK() {
 
     @JvmStatic
-    fun getImagesMediaBitmap(context: Context, uri: Uri): Bitmap =
+    fun getImagesMediaBitmap( uri: Uri,context: Context): Bitmap =
         MediaStore.Images.Media.getBitmap(UtilKContentResolver.get(context), uri)
 }

@@ -22,38 +22,38 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
  */
 object UtilKPackageInfo : BaseUtilK() {
     @JvmStatic
-    fun get(context: Context, strPackageName: String, flags: Int): PackageInfo? =
-        UtilKPackageManagerWrapper.getPackageInfoSafe(context, strPackageName, flags)
+    fun get(strPackageName: String, flags: Int, context: Context = _context): PackageInfo? =
+        UtilKPackageManagerWrapper.getPackageInfoSafe(strPackageName, flags, context)
 
     /////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getApplicationInfo(context: Context, strPackageName: String, flags: Int): ApplicationInfo? =
-        getApplicationInfo(get(context, strPackageName, flags))
+    fun getApplicationInfo(strPackageName: String, flags: Int, context: Context): ApplicationInfo? =
+        getApplicationInfo(get(strPackageName, flags, context))
 
     @JvmStatic
     fun getApplicationInfo(packageInfo: PackageInfo?): ApplicationInfo? =
         packageInfo?.applicationInfo
 
     @JvmStatic
-    fun getRequestedPermissions(context: Context, strPackageName: String, flags: Int): Array<String>? =
-        getRequestedPermissions(get(context, strPackageName, flags))
+    fun getRequestedPermissions(strPackageName: String, flags: Int, context: Context): Array<String>? =
+        getRequestedPermissions(get(strPackageName, flags, context))
 
     @JvmStatic
     fun getRequestedPermissions(packageInfo: PackageInfo?): Array<String>? =
         packageInfo?.requestedPermissions
 
     @JvmStatic
-    fun getPackageName(context: Context, strPackageName: String, flags: Int): String? =
-        getPackageName(get(context, strPackageName, flags))
+    fun getPackageName(strPackageName: String, flags: Int, context: Context): String? =
+        getPackageName(get(strPackageName, flags, context))
 
     @JvmStatic
     fun getPackageName(packageInfo: PackageInfo?): String? =
         packageInfo?.packageName
 
     @JvmStatic
-    fun getVersionName(context: Context, strPackageName: String, flags: Int): String? =
-        getVersionName(get(context, strPackageName, flags))
+    fun getVersionName(strPackageName: String, flags: Int, context: Context): String? =
+        getVersionName(get(strPackageName, flags, context))
 
     @JvmStatic
     fun getVersionName(packageInfo: PackageInfo?): String? =
@@ -61,8 +61,8 @@ object UtilKPackageInfo : BaseUtilK() {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_28_9_P)
-    fun getLongVersionCode(context: Context, strPackageName: String, flags: Int): Long? =
-        getLongVersionCode(get(context, strPackageName, flags))
+    fun getLongVersionCode(strPackageName: String, flags: Int, context: Context): Long? =
+        getLongVersionCode(get(strPackageName, flags, context))
 
     @JvmStatic
     @RequiresApi(CVersCode.V_28_9_P)
@@ -70,8 +70,8 @@ object UtilKPackageInfo : BaseUtilK() {
         packageInfo?.longVersionCode
 
     @JvmStatic
-    fun getVersionCode(context: Context, strPackageName: String, flags: Int): Int? =
-        getVersionCode(get(context, strPackageName, flags))
+    fun getVersionCode(strPackageName: String, flags: Int, context: Context): Int? =
+        getVersionCode(get(strPackageName, flags, context))
 
     @JvmStatic
     fun getVersionCode(packageInfo: PackageInfo?): Int? =

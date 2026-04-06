@@ -14,10 +14,10 @@ import com.mozhimen.kotlin.utilk.bases.BaseUtilK
  */
 object UtilKPackageArchiveInfo : BaseUtilK() {
     @JvmStatic
-    fun get(context: Context, archiveFilePath: String, flags: Int): PackageInfo? =
-        UtilKPackageManager.getPackageArchiveInfo(context, archiveFilePath, flags)
+    fun get(archiveFilePath: String, flags: Int, context: Context): PackageInfo? =
+        UtilKPackageManager.getPackageArchiveInfo(archiveFilePath, flags, context)
 
     @JvmStatic
-    fun get_ofGET_ACTIVITIES(context: Context, archiveFilePath: String): PackageInfo? =
-        get(context, archiveFilePath, CPackageManager.GET_ACTIVITIES)
+    fun get_ofGET_ACTIVITIES(archiveFilePath: String, context: Context): PackageInfo? =
+        get(archiveFilePath, CPackageManager.GET_ACTIVITIES, context)
 }

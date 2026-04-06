@@ -14,7 +14,7 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.view.cons.CWindow
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntent
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -79,11 +79,11 @@ fun Activity.showAlertDialog(strMsg: String, strLabel: String, block: I_Listener
 object UtilKActivityWrapper : IUtilK {
     @JvmStatic
     fun get_ofContext(context: Context): Activity? =
-        get_ofContext(context, true).also { UtilKLogWrapper.d(TAG, "get_ofContext: $it") }
+        get_ofContext(true, context).also { UtilKLogWrapper.d(TAG, "get_ofContext: $it") }
 
     //判断context是否是Activity 这里注意一定要再Application中加入StackK并初始化
     @JvmStatic
-    fun get_ofContext(context: Context, returnTopIfNull: Boolean): Activity? {
+    fun get_ofContext(returnTopIfNull: Boolean, context: Context): Activity? {
         var tempContext = context
         if (tempContext is Activity) return tempContext
         var tryCount = 0
@@ -116,9 +116,9 @@ object UtilKActivityWrapper : IUtilK {
     fun get_ofObj(obj: Any, returnTopIfNull: Boolean): Activity? {
         var activity: Activity? = null
         when (obj) {
-            is Context -> activity = get_ofContext(obj, true)
+            is Context -> activity = get_ofContext(true, obj)
             is Fragment -> activity = obj.activity
-            is Dialog -> activity = get_ofContext(obj.context, true)
+            is Dialog -> activity = get_ofContext(true, obj.context)
         }
         if (activity == null && returnTopIfNull) {
             activity = getTop_ofReflect()
@@ -222,7 +222,7 @@ object UtilKActivityWrapper : IUtilK {
     /**
      * 判断这个意图的 Activity 是否存在
      */
-    fun hasActivity_ofIntent(context: Context, intent: Intent): Boolean {
+    fun hasActivity_ofIntent(intent: Intent, context: Context): Boolean {
         // 这里为什么不用 Intent.resolveActivity(intent) != null 来判断呢？
         // 这是因为在 OPPO R7 Plus （Android 5.0）会出现误判，明明没有这个 Activity，却返回了 ComponentName 对象
         val packageManager = context.packageManager

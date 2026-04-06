@@ -13,6 +13,6 @@ import androidx.core.app.ActivityOptionsCompat
  */
 object UtilKActivityOptionsCompat {
     @JvmStatic
-    fun makeCustomAnimation(context: Context, @AnimRes intAnimResEnter: Int, @AnimRes intAnimResExit: Int): ActivityOptionsCompat =
+    fun makeCustomAnimation(@AnimRes intAnimResEnter: Int, @AnimRes intAnimResExit: Int, context: Context): ActivityOptionsCompat =
         ActivityOptionsCompat.makeCustomAnimation(context, intAnimResEnter, intAnimResExit)
 }

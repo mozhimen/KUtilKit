@@ -7,10 +7,9 @@ import android.location.LocationManager
 import android.os.Looper
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.location.cons.CLocationManager
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_FINE_LOCATION
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.android.util.d
 import com.mozhimen.kotlin.utilk.commons.IUtilK
@@ -29,85 +28,85 @@ object UtilKLocationManager : IUtilK {
         UtilKContextGet.getSystemService_LOCATION(context)
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun getLastKnownLocation(context: Context, provider: String): Location? =
+    fun getLastKnownLocation(provider: String, context: Context): Location? =
         get(context).getLastKnownLocation(provider)
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
     fun getLastKnownLocation_ofGps(context: Context): Location? =
-        getLastKnownLocation(context, CLocationManager.GPS_PROVIDER)
+        getLastKnownLocation(CLocationManager.GPS_PROVIDER, context)
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
     fun getLastKnownLocation_ofNetwork(context: Context): Location? =
-        getLastKnownLocation(context, CLocationManager.NETWORK_PROVIDER)
+        getLastKnownLocation(CLocationManager.NETWORK_PROVIDER, context)
 
     @JvmStatic
-    fun getProviders(context: Context, enableOnly: Boolean): List<String> =
+    fun getProviders(enableOnly: Boolean, context: Context): List<String> =
         get(context).getProviders(enableOnly)
 
     /////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun isProviderEnabled(context: Context, provider: String): Boolean =
+    fun isProviderEnabled(provider: String, context: Context): Boolean =
         get(context).isProviderEnabled(provider)
 
     @JvmStatic
     fun isProviderEnabled_ofGps(context: Context): Boolean =
-        isProviderEnabled(context, CLocationManager.GPS_PROVIDER).also { "isProviderEnabledGps $it".d(TAG) }
+        isProviderEnabled(CLocationManager.GPS_PROVIDER, context).also { "isProviderEnabledGps $it".d(TAG) }
 
     @JvmStatic
     fun isProviderEnabled_ofNetwork(context: Context): Boolean =
-        isProviderEnabled(context, CLocationManager.NETWORK_PROVIDER).also { "isProviderEnabledNetwork $it".d(TAG) }
+        isProviderEnabled(CLocationManager.NETWORK_PROVIDER, context).also { "isProviderEnabledNetwork $it".d(TAG) }
 
     /////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun requestLocationUpdates(context: Context, provider: String, minTimeMs: Long, minDistanceM: Float, listener: LocationListener) {
+    fun requestLocationUpdates(provider: String, minTimeMs: Long, minDistanceM: Float, context: Context, listener: LocationListener) {
         get(context).requestLocationUpdates(provider, minTimeMs, minDistanceM, listener)
     }
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun requestLocationUpdates(context: Context, provider: String, minTimeMs: Long, minDistanceM: Float, listener: LocationListener, looper: Looper) {
+    fun requestLocationUpdates(provider: String, minTimeMs: Long, minDistanceM: Float, looper: Looper, context: Context, listener: LocationListener) {
         get(context).requestLocationUpdates(provider, minTimeMs, minDistanceM, listener, looper)
     }
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun requestLocationUpdates_ofNetwork(context: Context, minTimeMs: Long, minDistanceM: Float, listener: LocationListener) {
-        requestLocationUpdates(context, CLocationManager.NETWORK_PROVIDER, minTimeMs, minDistanceM, listener)
+    fun requestLocationUpdates_ofNetwork(minTimeMs: Long, minDistanceM: Float, context: Context, listener: LocationListener) {
+        requestLocationUpdates(CLocationManager.NETWORK_PROVIDER, minTimeMs, minDistanceM, context, listener)
     }
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun requestLocationUpdates_ofNetwork(context: Context, minTimeMs: Long, minDistanceM: Float, listener: LocationListener, looper: Looper) {
-        requestLocationUpdates(context, CLocationManager.NETWORK_PROVIDER, minTimeMs, minDistanceM, listener, looper)
+    fun requestLocationUpdates_ofNetwork(minTimeMs: Long, minDistanceM: Float, looper: Looper, context: Context, listener: LocationListener) {
+        requestLocationUpdates(CLocationManager.NETWORK_PROVIDER, minTimeMs, minDistanceM, looper, context, listener)
     }
 
     /////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION])
-    fun removeUpdates(context: Context, listener: LocationListener) {
+    fun removeUpdates(listener: LocationListener, context: Context) {
         get(context).removeUpdates(listener)
     }
 }

@@ -7,9 +7,9 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageInstaller
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.ODeviceRoot
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.device.ODeviceRoot
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityStart
 import com.mozhimen.kotlin.utilk.android.app.UtilKPendingIntentGet
@@ -30,17 +30,6 @@ import java.io.*
  * @Version 1.0
  */
 object UtilKAppInstall : BaseUtilK() {
-
-    /**
-     * 是否有包安装权限
-     */
-    @JvmStatic
-    @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
-    fun hasRequestInstallPackages(): Boolean =
-        UtilKPermission.hasRequestInstallPackages().also { "hasPackageInstalls: $it".d(TAG) }
-
-    ///////////////////////////////////////////////////////////////////////////
 
     /**
      * 打开包安装权限
@@ -64,9 +53,7 @@ object UtilKAppInstall : BaseUtilK() {
     @JvmStatic
     @Throws(Exception::class)
     @ODeviceRoot
-    @RequiresPermission(CPermission.INSTALL_PACKAGES)
-    @OPermission_INSTALL_PACKAGES
-    fun install_ofRuntime(strPathNameApk: String): Boolean =
+    fun install_ofRoot(strPathNameApk: String): Boolean =
         UtilKRuntimeWrapper.exec_su_pm_install(strPathNameApk)
 
     /**
@@ -74,18 +61,18 @@ object UtilKAppInstall : BaseUtilK() {
      */
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
-    fun install_ofView(strPathNameApk: String) :Boolean =
-        UtilKActivityStart.startViewApk(_context, strPathNameApk)
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
+    fun install_ofView(strPathNameApk: String): Boolean =
+        UtilKActivityStart.startViewApk(strPathNameApk, _context)
 
     /**
      * 手动安装 if sdk >= 24 add provider
      */
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun install_ofView(fileApk: File) {
-        UtilKActivityStart.startViewApk(_context, fileApk)
+        UtilKActivityStart.startViewApk(fileApk, _context)
     }
 
     /**
@@ -93,8 +80,8 @@ object UtilKAppInstall : BaseUtilK() {
      */
     @JvmStatic
     @RequiresPermission(allOf = [CPermission.INSTALL_PACKAGES, CPermission.REQUEST_INSTALL_PACKAGES])
-    @OPermission_INSTALL_PACKAGES
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun install_ofSilence(strPathNameApk: String, receiver: Class<*>) {
         if (UtilKBuildVersion.isAfterV_28_9_P()) install_ofSilence_after28(strPathNameApk, receiver)
         else UtilKRuntimeWrapper.exec_pm_install_before28(strPathNameApk)
@@ -106,8 +93,8 @@ object UtilKAppInstall : BaseUtilK() {
     @JvmStatic
     @RequiresApi(CVersCode.V_28_9_P)
     @RequiresPermission(allOf = [CPermission.INSTALL_PACKAGES, CPermission.REQUEST_INSTALL_PACKAGES])
-    @OPermission_INSTALL_PACKAGES
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun install_ofSilence_after28(strPathNameApk: String, receiverClazz: Class<*>) {
         "install_ofSilence_after28 pathApk $strPathNameApk".d(TAG)
         val fileApk = File(strPathNameApk)
@@ -122,7 +109,7 @@ object UtilKAppInstall : BaseUtilK() {
             val isCopySuccess = UtilKPackageInstaller.copyBaseApk(packageInstaller, sessionId, strPathNameApk)
             "install_ofSilence_after28 isCopySuccess $isCopySuccess".d(TAG)
             if (isCopySuccess)
-                UtilKPackageInstaller_Session.commit_use_ofBroadCast(packageInstaller, sessionId, UtilKIntent.get(_context, receiverClazz), 1,UtilKPendingIntentGet.getFlag_UPDATE_CURRENT())
+                UtilKPackageInstaller_Session.commit_use_ofBroadCast(packageInstaller, sessionId, UtilKIntent.get(receiverClazz, _context), 1, UtilKPendingIntentGet.getFlag_UPDATE_CURRENT())
         }
     }
 }

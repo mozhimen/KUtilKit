@@ -6,12 +6,12 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.elemk.android.provider.cons.CSettings
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_COARSE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_SYSTEM_ALERT_WINDOW
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_COARSE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_SYSTEM_ALERT_WINDOW
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContentResolver
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextCompat
@@ -49,7 +49,7 @@ object UtilKPermission : BaseUtilK() {
 
     @JvmStatic
     fun isSelfGranted(permission: String): Boolean =
-        UtilKContextCompat.isSelfPermissionGranted(_context, permission).also { UtilKLogWrapper.d(TAG, "isSelfGranted: permission $permission is $it") }
+        UtilKContextCompat.isSelfPermissionGranted( permission,_context).also { UtilKLogWrapper.d(TAG, "isSelfGranted: permission $permission is $it") }
 
     /////////////////////////////////////////////////////////////////////////
 
@@ -60,8 +60,8 @@ object UtilKPermission : BaseUtilK() {
         else true
 
     @JvmStatic
-    @OPermission_READ_EXTERNAL_STORAGE
-    @OPermission_MANAGE_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_MANAGE_EXTERNAL_STORAGE
     @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE])
     fun hasManageExternalStorage(): Boolean =
         if (UtilKBuildVersion.isAfterV_30_11_R())
@@ -69,10 +69,20 @@ object UtilKPermission : BaseUtilK() {
         else
             isSelfGranted(arrayOf(CPermission.READ_EXTERNAL_STORAGE, CPermission.WRITE_EXTERNAL_STORAGE))
 
+    @JvmStatic
+    @OUsesPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_MANAGE_EXTERNAL_STORAGE
+    @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE])
+    fun canReadExternalStorage(): Boolean =
+        if (UtilKBuildVersion.isAfterV_30_11_R())
+            UtilKEnvironment.isExternalStorageManager()
+        else
+            isSelfGranted(arrayOf(CPermission.READ_EXTERNAL_STORAGE))
+
     //是否有文件管理权限
     @JvmStatic
-    @OPermission_READ_EXTERNAL_STORAGE
-    @OPermission_MANAGE_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_MANAGE_EXTERNAL_STORAGE
     @RequiresPermission(allOf = [CPermission.MANAGE_EXTERNAL_STORAGE, CPermission.READ_EXTERNAL_STORAGE])
     fun hasReadExternalStorage(): Boolean =
         if (UtilKBuildVersion.isAfterV_30_11_R())
@@ -81,7 +91,7 @@ object UtilKPermission : BaseUtilK() {
 
     //是否有Overlay的权限
     @JvmStatic
-    @OPermission_SYSTEM_ALERT_WINDOW
+    @OUsesPermission_SYSTEM_ALERT_WINDOW
     @RequiresPermission(CPermission.SYSTEM_ALERT_WINDOW)
     @ADescription(CSettings.ACTION_MANAGE_OVERLAY_PERMISSION)
     fun hasSystemAlertWindow(): Boolean =
@@ -91,14 +101,14 @@ object UtilKPermission : BaseUtilK() {
 
     //是否有包安装权限
     @JvmStatic
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
     fun hasRequestInstallPackages(): Boolean =
         UtilKPackageManager.canRequestPackageInstalls(_context)
 
     @JvmStatic
-    @OPermission_ACCESS_COARSE_LOCATION
-    @OPermission_ACCESS_FINE_LOCATION
+    @OUsesPermission_ACCESS_COARSE_LOCATION
+    @OUsesPermission_ACCESS_FINE_LOCATION
     @RequiresPermission(allOf = [CPermission.ACCESS_FINE_LOCATION, CPermission.ACCESS_COARSE_LOCATION])
     fun hasAccessLocation(): Boolean =
         if (!isSelfGranted(arrayOf(CPermission.ACCESS_COARSE_LOCATION, CPermission.ACCESS_FINE_LOCATION))) {

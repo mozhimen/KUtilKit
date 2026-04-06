@@ -26,7 +26,7 @@ object UtilKContentResolver : IUtilK {
         UtilKContext.getContentResolver(context)
 
     @JvmStatic
-    fun getType(context: Context, uri: Uri): String? =
+    fun getType(uri: Uri, context: Context): String? =
         getType(get(context), uri)
 
     @JvmStatic
@@ -40,27 +40,27 @@ object UtilKContentResolver : IUtilK {
     ////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun query(context: Context, @RequiresPermission.Read uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?): Cursor? =
+    fun query(@RequiresPermission.Read uri: Uri, projection: Array<String>?, selection: String?, selectionArgs: Array<String>?, sortOrder: String?, context: Context): Cursor? =
         get(context).query(uri, projection, selection, selectionArgs, sortOrder)
 
     @JvmStatic
-    fun openInputStream(context: Context, uri: Uri): InputStream? =
+    fun openInputStream(uri: Uri, context: Context): InputStream? =
         get(context).openInputStream(uri)
 
     @JvmStatic
-    fun openOutputStream(context: Context, uri: Uri): OutputStream? =
+    fun openOutputStream(uri: Uri, context: Context): OutputStream? =
         get(context).openOutputStream(uri)
 
     @JvmStatic
-    fun openFileDescriptor(context: Context, uri: Uri, mode: String): ParcelFileDescriptor? =
+    fun openFileDescriptor(uri: Uri, mode: String, context: Context): ParcelFileDescriptor? =
         get(context).openFileDescriptor(uri, mode)
 
     @JvmStatic
-    fun insert(context: Context, @RequiresPermission.Write uri: Uri, values: ContentValues?): Uri? =
+    fun insert(@RequiresPermission.Write uri: Uri, values: ContentValues?, context: Context): Uri? =
         get(context).insert(uri, values)
 
     @JvmStatic
-    fun delete(context: Context, @RequiresPermission.Write uri: Uri, where: String?, selectionArgs: Array<String>?) {
+    fun delete(@RequiresPermission.Write uri: Uri, where: String?, selectionArgs: Array<String>?, context: Context) {
         get(context).delete(uri, where, selectionArgs)
     }
 }

@@ -11,7 +11,7 @@ import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.android.view.applyVisibleIfElseInVisible
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import java.lang.ref.WeakReference
@@ -43,7 +43,7 @@ class ViewProxy<T>(private val _viewRef: WeakReference<View>) {
     }
 
     fun setTextColor(@IdRes intResId: Int, @ColorRes intResColor: Int, context: Context): T {
-        _viewRef.get()?.findViewById<TextView>(intResId)?.setTextColor(UtilKRes.gainColor(context, intResColor))
+        _viewRef.get()?.findViewById<TextView>(intResId)?.setTextColor(UtilKRes.gainColor(intResColor, context))
         return this as T
     }
 

@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.elemk.androidx.fragment.impls
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.api.OApiInit_ByLazy
 import com.mozhimen.kotlin.utilk.androidx.fragment.UtilKFragmentWrapper
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 

@@ -16,32 +16,32 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
  */
 object UtilKPendingIntent {
     @JvmStatic
-    fun getActivity(context: Context, requestCode: Int, intent: Intent, flags: Int): PendingIntent =
+    fun getActivity(requestCode: Int, intent: Intent, flags: Int, context: Context): PendingIntent =
         PendingIntent.getActivity(context, requestCode, intent, flags)
 
     @JvmStatic
-    fun getActivity(context: Context, requestCode: Int, intent: Intent, flags: Int, opts: Bundle?): PendingIntent =
+    fun getActivity(requestCode: Int, intent: Intent, flags: Int, opts: Bundle?, context: Context): PendingIntent =
         PendingIntent.getActivity(context, requestCode, intent, flags, opts)
 
     @JvmStatic
-    fun getBroadcast(context: Context, requestCode: Int, intent: Intent, flags: Int): PendingIntent =
+    fun getBroadcast(requestCode: Int, intent: Intent, flags: Int, context: Context): PendingIntent =
         PendingIntent.getBroadcast(context, requestCode, intent, flags)
 
     @JvmStatic
-    fun getService(context: Context, requestCode: Int, intent: Intent, flags: Int): PendingIntent =
+    fun getService(requestCode: Int, intent: Intent, flags: Int, context: Context): PendingIntent =
         PendingIntent.getService(context, requestCode, intent, flags)
 
     @RequiresApi(CVersCode.V_26_8_O)
     @JvmStatic
-    fun getForegroundService(context: Context, requestCode: Int, intent: Intent, flags: Int): PendingIntent =
+    fun getForegroundService(requestCode: Int, intent: Intent, flags: Int, context: Context): PendingIntent =
         PendingIntent.getForegroundService(context, requestCode, intent, flags)
 
     @JvmStatic
-    fun getActivities(context: Context, requestCode: Int, intents: Array<Intent>, flags: Int): PendingIntent =
+    fun getActivities(requestCode: Int, intents: Array<Intent>, flags: Int, context: Context): PendingIntent =
         PendingIntent.getActivities(context, requestCode, intents, flags)
 
     @JvmStatic
-    fun getActivities(context: Context, requestCode: Int, intents: Array<Intent>, flags: Int, opts: Bundle?): PendingIntent =
+    fun getActivities(requestCode: Int, intents: Array<Intent>, flags: Int, opts: Bundle?, context: Context): PendingIntent =
         PendingIntent.getActivities(context, requestCode, intents, flags, opts)
 
 }

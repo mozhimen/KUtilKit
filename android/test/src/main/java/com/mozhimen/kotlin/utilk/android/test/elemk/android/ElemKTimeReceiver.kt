@@ -4,7 +4,7 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.elemk.android.content.bases.BaseTimeBroadcastReceiver
 import com.mozhimen.kotlin.elemk.android.content.bases.ITimeReceiverListener
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
-import com.mozhimen.kotlin.lintk.optins.OApiCall_RegisterDynamic
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_RegisterDynamic
 import com.mozhimen.kotlin.utilk.java.util.UtilKDate
 import com.mozhimen.kotlin.utilk.java.util.UtilKDateWrapper
 

@@ -33,14 +33,14 @@ object UtilKContentResolverWrapper : BaseUtilK() {
     @JvmStatic
     fun getString(uri: Uri, projection: Array<String>? = null, selection: String? = null, selectionArgs: Array<String>? = null): String? {
         try {
-            UtilKContentResolver.query(_context, uri, projection, selection, selectionArgs, null).use { cursor ->
+            UtilKContentResolver.query(uri, projection, selection, selectionArgs, null, _context).use { cursor ->
                 if (cursor == null || !cursor.moveToFirst())
                     return null
                 return cursor.getString(0)
             }
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
-            UtilKLogWrapper.e(TAG, "getString: ",e)
+            UtilKLogWrapper.e(TAG, "getString: ", e)
         }
         return null
     }
@@ -48,7 +48,7 @@ object UtilKContentResolverWrapper : BaseUtilK() {
     @JvmStatic
     fun getOpenableColumns(uri: Uri, projection: Array<String>? = null, selection: String? = null, selectionArgs: Array<String>? = null): String? {
         try {
-            UtilKContentResolver.query(_context, uri, projection, selection, selectionArgs, null).use { cursor ->
+            UtilKContentResolver.query(uri, projection, selection, selectionArgs, null, _context).use { cursor ->
                 if (cursor == null || !cursor.moveToFirst())
                     return null
                 val index = cursor.getColumnIndex(COpenableColumns.DISPLAY_NAME)
@@ -71,7 +71,7 @@ object UtilKContentResolverWrapper : BaseUtilK() {
     @JvmStatic
     fun getMediaColumns(uri: Uri, selection: String? = null, selectionArgs: Array<String>? = null): String? {
         try {
-            val cursor = UtilKContentResolver.query(_context, uri, arrayOf(CMediaStore.MediaColumns.DATA), selection, selectionArgs, null)
+            val cursor = UtilKContentResolver.query(uri, arrayOf(CMediaStore.MediaColumns.DATA), selection, selectionArgs, null, _context)
             cursor?.use {
                 if (cursor.moveToFirst()) {
                     val index = cursor.getColumnIndex(CMediaStore.MediaColumns.DATA)
@@ -90,12 +90,12 @@ object UtilKContentResolverWrapper : BaseUtilK() {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun insertImage_after29(context: Context, file: File): Uri? =
-        insertImage_after29(context, file.file2strFilePath())
+    fun insertImage_after29(file: File, context: Context): Uri? =
+        insertImage_after29(file.file2strFilePath(), context)
 
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun insertImage_after29(context: Context, strFilePathName: String): Uri? {
+    fun insertImage_after29(strFilePathName: String, context: Context): Uri? {
         val strFilePath = strFilePathName.getStrFileParentPath() ?: run {
             UtilKLogWrapper.w(TAG, "insertImageAfter29: strFilePath get fail")
             return null
@@ -109,16 +109,16 @@ object UtilKContentResolverWrapper : BaseUtilK() {
             return null
         }
         val strMineType = strFileExtension.strFileExtension2strMineTypeImage()
-        return insertImage_after29(context, strMineType, strFilePath, strFileName)
+        return insertImage_after29(strMineType, strFilePath, strFileName, context)
     }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun insertImage_after29(context: Context, mineType: String, strFilePath: String, strFileName: String): Uri? =
-        UtilKContentResolver.insert(context, CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, UtilKContentValues.get(strFileName, mineType, strFilePath))
+    fun insertImage_after29(mineType: String, strFilePath: String, strFileName: String, context: Context): Uri? =
+        UtilKContentResolver.insert(CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, UtilKContentValues.get(strFileName, mineType, strFilePath), context)
 
     @JvmStatic
     fun deleteImageFile(strFilePathName: String) {
-        UtilKContentResolver.delete(_context, CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, "${CMediaStore.Images.Media.DATA}='${strFilePathName}'", null)
+        UtilKContentResolver.delete(CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, "${CMediaStore.Images.Media.DATA}='${strFilePathName}'", null, _context)
     }
 }

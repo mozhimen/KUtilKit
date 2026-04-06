@@ -20,7 +20,7 @@ object UtilKActivityManagerWrapper : IUtilK {
      */
     @JvmStatic
     fun isTaskRunning(context: Context): Boolean {
-        val runningTaskInfos: List<ActivityManager.RunningTaskInfo> = UtilKActivityManager.getRunningTasks(context, Integer.MAX_VALUE) //获取当前所有存活task的信息
+        val runningTaskInfos: List<ActivityManager.RunningTaskInfo> = UtilKActivityManager.getRunningTasks(Integer.MAX_VALUE, context) //获取当前所有存活task的信息
         for (runningTaskInfo in runningTaskInfos) {
             if (runningTaskInfo.baseActivity?.packageName == context.packageName || runningTaskInfo.topActivity?.packageName == context.packageName) {
                 return true
@@ -34,8 +34,8 @@ object UtilKActivityManagerWrapper : IUtilK {
      * @return int 1:前台 2:后台 0:不存在
      */
     @JvmStatic
-    fun isTaskForeground(context: Context, maxNum: Int): Int {
-        val runningTaskInfos = UtilKActivityManager.getRunningTasks(context, maxNum)
+    fun isTaskForeground(maxNum: Int, context: Context): Int {
+        val runningTaskInfos = UtilKActivityManager.getRunningTasks(maxNum, context)
         if (runningTaskInfos[0].topActivity!!.packageName == context.packageName) {
             return 1
         } else {
@@ -54,12 +54,12 @@ object UtilKActivityManagerWrapper : IUtilK {
      * @param className 某个界面名称
      */
     @JvmStatic
-    fun isActivityForeground(context: Context, className: String): Boolean {
+    fun isActivityForeground(className: String, context: Context): Boolean {
         if (TextUtils.isEmpty(className)) {
             UtilKLogWrapper.d(TAG, "isActivityForeground: className is null")
             return false
         }
-        val runningTaskInfos = UtilKActivityManager.getRunningTasks(context,1)
+        val runningTaskInfos = UtilKActivityManager.getRunningTasks(1, context)
         if (runningTaskInfos.isNotEmpty()) {
             val component = runningTaskInfos[0].topActivity
             if (className == component?.className) {

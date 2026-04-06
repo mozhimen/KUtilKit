@@ -14,9 +14,8 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.provider.cons.CMediaStore
 import com.mozhimen.kotlin.elemk.android.provider.cons.CSettings
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_REQUEST_INSTALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_REQUEST_INSTALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.webkit.cons.EMineTypeMap_application
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityInfoWrapper
@@ -140,11 +139,11 @@ object UtilKIntentGet {
 
     //获取启动App的Intent
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_CLASSNAME(context: Context, strPackageName: String): Intent? {
-        val strLauncherActivityName: String = UtilKActivityInfoWrapper.getMainLauncherName(context, strPackageName)
-        if (UtilKStringWrapper.hasSpace(strLauncherActivityName) || strLauncherActivityName.isEmpty()) return UtilKPackageManager.getLaunchIntentForPackage(context, strPackageName)
+    fun getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_CLASSNAME(strPackageName: String, context: Context): Intent? {
+        val strLauncherActivityName: String = UtilKActivityInfoWrapper.getMainLauncherName(strPackageName, context)
+        if (UtilKStringWrapper.hasSpace(strLauncherActivityName) || strLauncherActivityName.isEmpty()) return UtilKPackageManager.getLaunchIntentForPackage(strPackageName, context)
         return getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_CLASSNAME(strPackageName, strLauncherActivityName)
     }
 
@@ -166,11 +165,11 @@ object UtilKIntentGet {
         }
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(context: Context, strPackageName: String): Intent? {
+    fun getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(strPackageName: String, context: Context): Intent? {
         val intent = getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_PACKAGE(strPackageName)
-        val resolveInfos = UtilKPackageManager.queryIntentActivities(context, intent, 0) //查询要启动的Activity
+        val resolveInfos = UtilKPackageManager.queryIntentActivities(intent, 0, context) //查询要启动的Activity
         return if (resolveInfos.isNotEmpty()) { //如果包名存在
             val resolveInfo = resolveInfos[0]
             intent.component = ComponentName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name)//组装包名和类名//设置给Intent
@@ -221,7 +220,7 @@ object UtilKIntentGet {
      */
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(uri: Uri): Intent =
         getIntent_ACTION_VIEW().apply {
             if (UtilKBuildVersion.isAfterV_24_7_N()) //判断安卓系统是否大于7.0  大于7.0使用以下方法
@@ -234,7 +233,7 @@ object UtilKIntentGet {
      */
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(strFilePathName: String): Intent? =
         UtilKStrFile.strFilePath2uri(strFilePathName)?.let { getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(it) }
 
@@ -243,7 +242,7 @@ object UtilKIntentGet {
      */
     @JvmStatic
     @RequiresPermission(CPermission.REQUEST_INSTALL_PACKAGES)
-    @OPermission_REQUEST_INSTALL_PACKAGES
+    @OUsesPermission_REQUEST_INSTALL_PACKAGES
     fun getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(fileApk: File): Intent? =
         fileApk.file2uri()?.let { getIntent_ACTION_VIEW_TYPE_APK_FLAGS_PERMISSION(it) }
 

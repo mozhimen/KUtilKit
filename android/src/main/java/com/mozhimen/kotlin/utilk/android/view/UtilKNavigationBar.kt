@@ -7,7 +7,7 @@ import android.view.View
 import com.mozhimen.kotlin.lintk.annors.ADescription
 import com.mozhimen.kotlin.elemk.android.view.cons.CView
 import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import com.mozhimen.kotlin.utilk.android.content.UtilKResources

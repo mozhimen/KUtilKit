@@ -3,9 +3,8 @@ package com.mozhimen.kotlin.utilk.android.os
 import android.content.Context
 import android.os.Vibrator
 import androidx.annotation.RequiresPermission
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_VIBRATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_VIBRATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 
 
@@ -30,9 +29,9 @@ object UtilKVibrator {
     ////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_VIBRATE
+    @OUsesPermission_VIBRATE
     @RequiresPermission(CPermission.VIBRATE)
-    fun vibrate(context: Context, milliseconds: Long) {
+    fun vibrate(milliseconds: Long, context: Context) {
         if (hasVibrator(context))
             get(context).vibrate(milliseconds)
     }
@@ -42,15 +41,15 @@ object UtilKVibrator {
      * long pattern[] = {1000, 20000, 10000, 10000, 30000};
      */
     @JvmStatic
-    @OPermission_VIBRATE
+    @OUsesPermission_VIBRATE
     @RequiresPermission(CPermission.VIBRATE)
-    fun vibrate(context: Context, pattern: LongArray, repeat: Int) {
+    fun vibrate(pattern: LongArray, repeat: Int, context: Context) {
         if (hasVibrator(context))
             get(context).vibrate(pattern, repeat)
     }
 
     @JvmStatic
-    @OPermission_VIBRATE
+    @OUsesPermission_VIBRATE
     @RequiresPermission(CPermission.VIBRATE)
     fun cancel(context: Context) {
         if (hasVibrator(context))

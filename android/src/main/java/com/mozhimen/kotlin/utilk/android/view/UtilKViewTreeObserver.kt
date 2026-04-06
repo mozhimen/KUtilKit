@@ -10,8 +10,7 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
 import com.mozhimen.kotlin.elemk.commons.IAB_Listener
 import com.mozhimen.kotlin.elemk.commons.IA_Listener
 import com.mozhimen.kotlin.elemk.commons.I_Listener
-import com.mozhimen.kotlin.elemk.cons.CCons
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper

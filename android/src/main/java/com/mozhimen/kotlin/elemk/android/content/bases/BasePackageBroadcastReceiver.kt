@@ -7,8 +7,8 @@ import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.OApiTarget_AtV_25_71_N1
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.api.OApiTarget_AtV_25_71_N1
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.wrapper.UtilKApp
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
@@ -41,7 +41,7 @@ android:exported="true">
  */
 @OApiTarget_AtV_25_71_N1
 @TargetApi(CVersCode.V_25_71_NM1)
-@OPermission_QUERY_ALL_PACKAGES
+@OUsesPermission_QUERY_ALL_PACKAGES
 open class BasePackageBroadcastReceiver : BaseBroadcastReceiver {
 
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)

@@ -14,6 +14,6 @@ import androidx.annotation.TransitionRes
  */
 object UtilKTransitionInflater {
     @JvmStatic
-    fun from_inflateTransition(context: Context, @TransitionRes intTransitionRes: Int): Transition =
+    fun from_inflateTransition(@TransitionRes intTransitionRes: Int, context: Context): Transition =
         TransitionInflater.from(context).inflateTransition(intTransitionRes)
 }

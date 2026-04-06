@@ -42,12 +42,12 @@ object UtilKDisplay {
     ///////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun getRealMatrics_ofDef(context: Context, displayMetrics: DisplayMetrics) {
+    fun getRealMatrics_ofDef(displayMetrics: DisplayMetrics, context: Context) {
         Display::class.java.getMethod("getRealMetrics", DisplayMetrics::class.java).invoke(get_ofDef(context), displayMetrics)
     }
 
     @JvmStatic
-    fun getMetrics_ofDef(context: Context, displayMetrics: DisplayMetrics) {
+    fun getMetrics_ofDef(displayMetrics: DisplayMetrics, context: Context) {
         get_ofDef(context).getMetrics(displayMetrics)
     }
 
@@ -67,14 +67,14 @@ object UtilKDisplay {
     }
 
     @JvmStatic
-    fun getSize_ofDef(context: Context, size: Point) {
+    fun getSize_ofDef(size: Point, context: Context) {
         get_ofDef(context).getSize(size)
     }
 
     @JvmStatic
     fun getSize_ofDef(context: Context): Point {
         val size = Point()
-        getSize_ofDef(context, size)
+        getSize_ofDef( size,context)
         return size
     }
 
@@ -94,14 +94,14 @@ object UtilKDisplay {
     }
 
     @JvmStatic
-    fun getRealSize_ofDef(context: Context, size: Point) {
+    fun getRealSize_ofDef(size: Point, context: Context) {
         get_ofDef(context).getRealSize(size)
     }
 
     @JvmStatic
     fun getRealSize_ofDef(context: Context): Point {
         val size = Point()
-        getRealSize_ofDef(context, size)
+        getRealSize_ofDef( size,context)
         return size
     }
 

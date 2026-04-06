@@ -9,8 +9,8 @@ import com.mozhimen.kotlin.elemk.android.content.commons.IBroadcastReceiver
 import com.mozhimen.kotlin.elemk.android.net.cons.CConnectivityManager
 import com.mozhimen.kotlin.elemk.commons.IConnectionListener
 import com.mozhimen.kotlin.elemk.android.net.cons.ENetType
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_INTERNET
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_NETWORK_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_INTERNET
 import com.mozhimen.kotlin.utilk.wrapper.UtilKNet
 import com.mozhimen.kotlin.utilk.android.util.w
 
@@ -39,8 +39,8 @@ android:exported="true">
  * @Author Mozhimen & Kolin Zhao
  * @Version 1.0
  */
-@OPermission_ACCESS_NETWORK_STATE
-@OPermission_INTERNET
+@OUsesPermission_ACCESS_NETWORK_STATE
+@OUsesPermission_INTERNET
 open class BaseConnectivityBroadcastReceiver : BaseBroadcastReceiver, IBroadcastReceiver {
 //    companion object {
 //        @JvmStatic

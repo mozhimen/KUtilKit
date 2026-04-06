@@ -94,18 +94,18 @@ object UtilKToastWrapper : BaseUtilK() {
     fun showToast(chars: CharSequence, duration: Int = CToast.LENGTH_SHORT, context: Context = _context) {
         if (context is Activity) {
             if (!context.isFinishingOrDestroyed())
-                UtilKToast.makeText_show(context, chars, duration)
+                UtilKToast.makeText_show(chars, duration, context)
         } else
-            UtilKToast.makeText_show(context, chars, duration)
+            UtilKToast.makeText_show(chars, duration, context)
     }
 
     @JvmStatic
     fun showToast(@StringRes intResStr: Int, duration: Int = CToast.LENGTH_SHORT, context: Context = _context) {
         if (context is Activity) {
             if (!context.isFinishingOrDestroyed())
-                UtilKToast.makeText_show(context, intResStr, duration)
+                UtilKToast.makeText_show(intResStr, duration, context)
         } else
-            UtilKToast.makeText_show(context, intResStr, duration)
+            UtilKToast.makeText_show(intResStr, duration, context)
     }
 
     @JvmStatic

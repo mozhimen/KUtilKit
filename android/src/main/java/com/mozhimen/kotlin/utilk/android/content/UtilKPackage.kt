@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.utilk.android.content
 import android.content.Context
 import android.content.pm.PackageInfo
 import androidx.annotation.RequiresPermission
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrClazz
@@ -19,17 +19,17 @@ import com.mozhimen.kotlin.utilk.kotlin.UtilKStrClazz
 object UtilKPackage : BaseUtilK() {
     @JvmStatic
     fun getPackageInfo(strPackageName: String, flags: Int): PackageInfo? =
-        UtilKPackageInfo.get(_context, strPackageName, flags)
+        UtilKPackageInfo.get(strPackageName, flags, _context)
 
     //////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getVersionCode(strPackageName: String, flags: Int): Int =
-        UtilKPackageInfoWrapper.gainVersionCode(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.gainVersionCode(strPackageName, flags, _context)
 
     @JvmStatic
     fun getVersionCode(flags: Int): Int =
-        UtilKPackageInfoWrapper.gainVersionCode(_context, getPackageName(), flags)
+        UtilKPackageInfoWrapper.gainVersionCode(getPackageName(), flags, _context)
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -39,21 +39,21 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun getVersionName(strPackageName: String, flags: Int): String =
-        UtilKPackageInfoWrapper.gainVersionName(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.gainVersionName(strPackageName, flags, _context)
 
     @JvmStatic
     fun getVersionName(flags: Int): String =
-        UtilKPackageInfoWrapper.gainVersionName(_context, getPackageName(), flags)
+        UtilKPackageInfoWrapper.gainVersionName(getPackageName(), flags, _context)
 
     //////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getRequestedPermissionsStr(strPackageName: String, flags: Int): String =
-        UtilKPackageInfo.getRequestedPermissions(_context, strPackageName, flags).contentToString()
+        UtilKPackageInfo.getRequestedPermissions(strPackageName, flags, _context).contentToString()
 
     @JvmStatic
     fun getRequestedPermissionsStr(flags: Int): String =
-        UtilKPackageInfo.getRequestedPermissions(_context, getPackageName(), flags).contentToString()
+        UtilKPackageInfo.getRequestedPermissions(getPackageName(), flags, _context).contentToString()
 
     //////////////////////////////////////////////////////////////////////////////////
 
@@ -61,15 +61,15 @@ object UtilKPackage : BaseUtilK() {
      * 获取所有安装程序包名
      */
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun getInstalledPackages(hasSystemPackages: Boolean): List<PackageInfo> =
-        UtilKPackageManagerWrapper.getInstalledPackages(_context, hasSystemPackages)
+        UtilKPackageManagerWrapper.getInstalledPackages(hasSystemPackages, _context)
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun hasPackage(strPackageName: String, flags: Int): Boolean =
         hasPackage_ofPackageManager_enabled(strPackageName, flags)
@@ -80,21 +80,21 @@ object UtilKPackage : BaseUtilK() {
 
     @JvmStatic
     fun hasPackage_ofPackageManager_enabled(strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfoWrapper.enabled_ofPackageManager(_context, strPackageName, flags)
+        UtilKApplicationInfoWrapper.enabled_ofPackageManager(strPackageName, flags, _context)
 
     @JvmStatic
     fun hasPackage_ofPackageInfo_enabled(strPackageName: String, flags: Int): Boolean =
-        UtilKApplicationInfoWrapper.enabled_ofPackageInfo(_context, strPackageName, flags)
+        UtilKApplicationInfoWrapper.enabled_ofPackageInfo(strPackageName, flags, _context)
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     fun hasPackage_ofPackageManager(strPackageName: String, flags: Int): Boolean =
-        UtilKPackageManager.queryIntentActivities(_context, UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_PACKAGE(strPackageName), flags).isNotEmpty()
+        UtilKPackageManager.queryIntentActivities(UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_PACKAGE(strPackageName), flags, _context).isNotEmpty()
 
     @JvmStatic
     fun hasPackage_ofPackageInfo(strPackageName: String, flags: Int): Boolean =
-        UtilKPackageInfoWrapper.hasPackage(_context, strPackageName, flags)
+        UtilKPackageInfoWrapper.hasPackage(strPackageName, flags, _context)
 
     @JvmStatic
     fun hasPackage_ofClazz(strPackageNameWithActivity: String): Boolean =
@@ -106,7 +106,7 @@ object UtilKPackage : BaseUtilK() {
      * 系统的下载组件是否可用
      */
     @JvmStatic
-    fun isDownloadComponentEnabled(context:Context = _context): Boolean =
+    fun isDownloadComponentEnabled(context: Context = _context): Boolean =
         UtilKPackageManagerWrapper.isDownloadComponentEnabled(context)
 
     //////////////////////////////////////////////////////////////////////////////////

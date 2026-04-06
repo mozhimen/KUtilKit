@@ -12,8 +12,8 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CConfiguration
 import com.mozhimen.kotlin.elemk.android.os.cons.CBuild
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.cons.CStrPackage
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKConfiguration
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
@@ -41,8 +41,8 @@ object UtilKDevice : BaseUtilK() {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getImei(): String =
         if (UtilKBuildVersion.isAfterV_23_6_M()) {
@@ -82,8 +82,8 @@ object UtilKDevice : BaseUtilK() {
      */
     @SuppressLint("HardwareIds")
     @JvmStatic
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getSerialNumber(): String = if (UtilKBuildVersion.isAfterV_29_10_Q()) {
         CBuild.UNKNOWN
@@ -97,8 +97,8 @@ object UtilKDevice : BaseUtilK() {
      * 短序列号
      */
     @JvmStatic
-    @OPermission_READ_PHONE_STATE
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
     @RequiresPermission(allOf = [CPermission.READ_PHONE_STATE, CPermission.READ_PRIVILEGED_PHONE_STATE])
     fun getSerialNumberShort(): String {
         var serial = getSerialNumber()
@@ -138,7 +138,7 @@ object UtilKDevice : BaseUtilK() {
 
     @JvmStatic
     fun hasFrontCamera(): Boolean =
-        UtilKCamera.hasCamera_ofFront(_context)
+        UtilKCamera.hasCamera_ofFront()
 
     @JvmStatic
     fun hasFrontCameraOfPackage(): Boolean =
@@ -146,7 +146,7 @@ object UtilKDevice : BaseUtilK() {
 
     @JvmStatic
     fun hasBackCamera(): Boolean =
-        UtilKCamera.hasCamera_ofBack(_context)
+        UtilKCamera.hasCamera_ofBack()
 
     @JvmStatic
     fun hasBackCameraOfPackage(): Boolean =
@@ -163,7 +163,7 @@ object UtilKDevice : BaseUtilK() {
      * 设备是否有USB外设
      */
     @JvmStatic
-    fun hasPid(context: Context, vendorId: Int, productId: Int): Boolean {
+    fun hasPid(vendorId: Int, productId: Int, context: Context): Boolean {
         val devices: Iterator<UsbDevice> = UtilKUsbDevice.getListValues(context).iterator()
         while (devices.hasNext()) {
             val usbDevice: UsbDevice = devices.next()

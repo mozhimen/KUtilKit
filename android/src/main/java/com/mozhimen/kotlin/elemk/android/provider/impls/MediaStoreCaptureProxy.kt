@@ -6,7 +6,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.RequiresPermission
 import androidx.fragment.app.Fragment
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKIntentGet
@@ -45,16 +45,16 @@ class MediaStoreCaptureProxy {
         _captureStrategy = strategy
     }
 
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded")
     fun dispatchCaptureIntent(context: Context, requestCode: Int) {
         var intent = UtilKIntentGet.getMediaStore_ACTION_IMAGE_CAPTURE()
 
-        if (intent.isIntentAvailable(context)&&_currentPhotoUri!=null) {
+        if (intent.isIntentAvailable(context) && _currentPhotoUri != null) {
             createCurrentPhotoUri()
             intent = UtilKIntentGet.getMediaStore_ACTION_IMAGE_CAPTURE(_currentPhotoUri!!)
-            UtilKContextWrapper.grantUriPermission_before21(context,intent, _currentPhotoUri!!)
+            UtilKContextWrapper.grantUriPermission_before21(intent, _currentPhotoUri!!, context)
             if (_fragmentRef != null) {
                 _fragmentRef?.get()?.startActivityForResult(intent, requestCode)
             } else {

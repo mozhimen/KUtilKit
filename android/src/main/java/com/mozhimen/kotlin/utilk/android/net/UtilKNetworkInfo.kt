@@ -7,7 +7,7 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.net.cons.CConnectivityManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.lintk.annors.ADescription
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_NETWORK_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_ACCESS_NETWORK_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 
 /**
@@ -19,41 +19,41 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
  */
 object UtilKNetworkInfo {
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
-    fun get(context: Context, networkType: Int): NetworkInfo? =
-        UtilKConnectivityManager.getNetworkInfo(context, networkType)
+    fun get(networkType: Int, context: Context): NetworkInfo? =
+        UtilKConnectivityManager.getNetworkInfo( networkType,context)
 
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     @JvmStatic
     fun get_ofActive(context: Context): NetworkInfo? =
         UtilKConnectivityManager.getActiveNetworkInfo(context)
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun get_ofMobile(context: Context): NetworkInfo? =
-        get(context, CConnectivityManager.TYPE_MOBILE)
+        get(CConnectivityManager.TYPE_MOBILE, context)
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun get_ofEthernet(context: Context): NetworkInfo? =
-        get(context, CConnectivityManager.TYPE_ETHERNET)
+        get(CConnectivityManager.TYPE_ETHERNET, context)
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun get_ofWifi(context: Context): NetworkInfo? =
-        get(context, CConnectivityManager.TYPE_WIFI)
+        get(CConnectivityManager.TYPE_WIFI, context)
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_21_5_L)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun get_ofVpn(context: Context): NetworkInfo? =
-        get(context, CConnectivityManager.TYPE_VPN)
+        get(CConnectivityManager.TYPE_VPN, context)
 
     //////////////////////////////////////////////////////////////////////////////
 
@@ -82,25 +82,25 @@ object UtilKNetworkInfo {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isAvailable_ofMobile(context: Context): Boolean =
         get_ofMobile(context)?.let { isAvailable(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isAvailable_ofEthernet(context: Context): Boolean =
         get_ofEthernet(context)?.let { isAvailable(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isAvailable_ofWifi(context: Context): Boolean =
         get_ofWifi(context)?.let { isAvailable(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_21_5_L)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isAvailable_ofVpn(context: Context): Boolean =
@@ -109,25 +109,25 @@ object UtilKNetworkInfo {
     //////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isConnected_ofMobile(context: Context): Boolean =
         get_ofMobile(context)?.let { isConnected(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isConnected_ofEthernet(context: Context): Boolean =
         get_ofEthernet(context)?.let { isConnected(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isConnected_ofWifi(context: Context): Boolean =
         get_ofWifi(context)?.let { isConnected(it) } ?: false
 
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresApi(CVersCode.V_21_5_L)
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun isConnected_ofVpn(context: Context): Boolean =
@@ -138,7 +138,7 @@ object UtilKNetworkInfo {
     //网络是否连接
     @ADescription("isNetAvailable", "isConnectionUseful")
     @JvmStatic
-    @OPermission_ACCESS_NETWORK_STATE
+    @OUsesPermission_ACCESS_NETWORK_STATE
     @RequiresPermission(CPermission.ACCESS_NETWORK_STATE)
     fun hasNetworkConnected(context: Context): Boolean {
         UtilKConnectivityManager.getAllNetworkInfo(context).forEach {

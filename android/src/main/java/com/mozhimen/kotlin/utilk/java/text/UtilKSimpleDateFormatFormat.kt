@@ -53,7 +53,7 @@ fun Date.date2strDate(strFormatDate: String, locale: Locale): String =
 fun Date.date2strDateUTC(strFormatDate: String, locale: Locale): String =
     UtilKSimpleDateFormatFormat.date2strDateUTC(this, strFormatDate, locale)
 
-fun Date.date2strDate(context: Context, @AFormatStyle style: Int): String =
+fun Date.date2strDate(@AFormatStyle style: Int, context: Context): String =
     UtilKSimpleDateFormatFormat.date2strDate(this, context, style)
 
 fun Date.date2strDate(locale: Locale, skeleton: String): String =
@@ -122,7 +122,7 @@ object UtilKSimpleDateFormatFormat {
 
     @JvmStatic
     fun date2strDate(date: Date, context: Context, @AFormatStyle style: Int): String =
-        date2strDate(date, UtilKSimpleDateFormat.toLocalizedPattern(UtilKSimpleDateFormatWrapper.get(context, style)))
+        date2strDate(date, UtilKSimpleDateFormat.toLocalizedPattern(UtilKSimpleDateFormatWrapper.get(style, context)))
 
     /**
      * @param skeleton "YYYYMMMMd"示例

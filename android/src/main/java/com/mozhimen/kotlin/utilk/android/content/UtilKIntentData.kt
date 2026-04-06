@@ -2,7 +2,7 @@ package com.mozhimen.kotlin.utilk.android.content
 
 import android.content.Intent
 import android.net.Uri
-import com.mozhimen.kotlin.lintk.optins.intent_filter.OIntentFilter_ACTION_VIEW_CATEGORY_DEFAULT_BROWSABLE
+import com.mozhimen.kotlin.lintk.optins.manifest.application.activity.intent_filter.OIntentFilter_ACTION_VIEW_CATEGORY_DEFAULT_BROWSABLE
 
 /**
  * @ClassName UtilKIntentData

@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.android.test.utilk.android
 
 import androidx.appcompat.app.AppCompatActivity
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.content.UtilKApplicationInfo
 import com.mozhimen.kotlin.utilk.android.content.UtilKPackage
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
@@ -19,7 +19,7 @@ class UtilKPackageActivity : AppCompatActivity() {
         private const val TAG = "UtilKPackageActivity>>>>>"
     }
 
-    @OptIn(OPermission_QUERY_ALL_PACKAGES::class)
+    @OptIn(OUsesPermission_QUERY_ALL_PACKAGES::class)
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         super.onCreate(savedInstanceState)
         UtilKLogWrapper.d(TAG, "onCreate: hasPackage_ofPackageManager_enabled ${UtilKPackage.hasPackage_ofPackageManager_enabled( STR_PACKAGE_NAME,0)}")

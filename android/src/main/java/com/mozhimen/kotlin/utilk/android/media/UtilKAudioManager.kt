@@ -19,10 +19,10 @@ object UtilKAudioManager {
         UtilKContextGet.getSystemService_AUDIO(context)
 
     @JvmStatic
-    fun getStreamVolume(context: Context, streamType: Int): Int =
+    fun getStreamVolume(streamType: Int, context: Context): Int =
         get(context).getStreamVolume(streamType)
 
     @JvmStatic
     fun getStreamVolume_ofSTREAM_MUSIC(context: Context): Int =
-        getStreamVolume(context, CAudioManager.STREAM_MUSIC)
+        getStreamVolume( CAudioManager.STREAM_MUSIC,context)
 }

@@ -40,7 +40,7 @@ object UtilKSnackbar {
         Snackbar.make(view, chars, duration)
 
     @JvmStatic
-    fun make(context: Context, view: View, chars: CharSequence, duration: Int): Snackbar =
+    fun make(view: View, chars: CharSequence, duration: Int, context: Context): Snackbar =
         Snackbar.make(context, view, chars, duration)
 
     /////////////////////////////////////////////////////////////////////////
@@ -56,8 +56,8 @@ object UtilKSnackbar {
     }
 
     @JvmStatic
-    fun show(context: Context, view: View, chars: CharSequence, duration: Int) {
-        make(context, view, chars, duration).show()
+    fun show(view: View, chars: CharSequence, duration: Int, context: Context) {
+        make(view, chars, duration, context).show()
     }
 
     /////////////////////////////////////////////////////////////////////////

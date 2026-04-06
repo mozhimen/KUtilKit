@@ -1,7 +1,7 @@
 package com.mozhimen.kotlin.utilk.java.net
 
 import com.mozhimen.kotlin.elemk.commons.IA_BListener
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_28_9_P
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.kotlin.utilk.commons.IUtilK

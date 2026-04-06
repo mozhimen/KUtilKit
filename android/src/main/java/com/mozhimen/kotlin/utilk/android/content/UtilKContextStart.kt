@@ -11,7 +11,7 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.commons.IExt_Listener
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.utilk.android.util.UtilKLogWrapper
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
@@ -26,22 +26,22 @@ import kotlin.jvm.Throws
  */
 @Throws(ActivityNotFoundException::class)
 fun Context.startContext_throw(intent: Intent) {
-    UtilKContextStart.startContext_throw(this, intent)
+    UtilKContextStart.startContext_throw(intent, this)
 }
 
 @Throws(ActivityNotFoundException::class)
 fun Context.startContext_throw(intent: Intent, options: Bundle?) {
-    UtilKContextStart.startContext_throw(this, intent, options)
+    UtilKContextStart.startContext_throw(intent, options, this)
 }
 
 fun Context.startContext(intent: Intent): Boolean =
-    UtilKContextStart.startContext(this, intent)
+    UtilKContextStart.startContext(intent, this)
 
 fun Context.startContext(intent: Intent, options: Bundle?): Boolean =
-    UtilKContextStart.startContext(this, intent, options)
+    UtilKContextStart.startContext(intent, options, this)
 
 fun Context.startContext(clazz: Class<*>): Boolean =
-    UtilKContextStart.startContext(this, clazz)
+    UtilKContextStart.startContext(clazz, this)
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -87,19 +87,19 @@ inline fun <reified T : Activity> Activity.startActivityForResult(requestCode: I
 
 /////////////////////////////////////////////////////////////////////////////////
 
-@OPermission_QUERY_ALL_PACKAGES
+@OUsesPermission_QUERY_ALL_PACKAGES
 @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
 fun Context.startContext_ofPackageName(strPackageName: String): Boolean =
-    UtilKContextStart.startContext_ofPackageName(this, strPackageName)
+    UtilKContextStart.startContext_ofPackageName(strPackageName, this)
 
 fun Context.startContext_ofPackageName(strPackageName: String, strActivityName: String): Boolean =
-    UtilKContextStart.startContext_ofPackageName(this, strPackageName, strActivityName)
+    UtilKContextStart.startContext_ofPackageName(strPackageName, strActivityName, this)
 
 /////////////////////////////////////////////////////////////////////////////////
 object UtilKContextStart : BaseUtilK() {
     @JvmStatic
     @Throws(ActivityNotFoundException::class)
-    fun startContext_throw(context: Context, intent: Intent) {
+    fun startContext_throw(intent: Intent, context: Context) {
         if (context !is Activity)
             intent.addFlags(CIntent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
@@ -107,16 +107,16 @@ object UtilKContextStart : BaseUtilK() {
 
     @JvmStatic
     @Throws(ActivityNotFoundException::class)
-    fun startContext_throw(context: Context, intent: Intent, options: Bundle?) {
+    fun startContext_throw(intent: Intent, options: Bundle?, context: Context) {
         if (context !is Activity)
             intent.addFlags(CIntent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent, options)
     }
 
     @JvmStatic
-    fun startContext(context: Context, intent: Intent): Boolean {
+    fun startContext(intent: Intent, context: Context): Boolean {
         try {
-            startContext_throw(context, intent)
+            startContext_throw(intent, context)
             return true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -126,9 +126,9 @@ object UtilKContextStart : BaseUtilK() {
     }
 
     @JvmStatic
-    fun startContext(context: Context, intent: Intent, options: Bundle?): Boolean {
+    fun startContext(intent: Intent, options: Bundle?, context: Context): Boolean {
         try {
-            startContext_throw(context, intent, options)
+            startContext_throw(intent, options, context)
             return true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -138,44 +138,44 @@ object UtilKContextStart : BaseUtilK() {
     }
 
     @JvmStatic
-    fun startContext(context: Context, clazz: Class<*>): Boolean =
-        startContext(context, UtilKIntent.get(context, clazz))
+    fun startContext(clazz: Class<*>, context: Context): Boolean =
+        startContext(UtilKIntent.get(clazz, context), context)
 
     /////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     inline fun <reified T : Context> startContext(context: Context): Boolean =
-        startContext(context, UtilKIntent.get<T>(context))
+        startContext(UtilKIntent.get<T>(context), context)
 
     @JvmStatic
     inline fun <reified T : Context> startContext(context: Context, block: IExt_Listener<Intent>): Boolean =
-        startContext(context, UtilKIntent.get<T>(context, block))
+        startContext(UtilKIntent.get<T>(context, block), context)
 
     /////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     inline fun <reified T : Activity> startActivityAndFinish(activity: Activity) {
-        startContext(activity, Intent(activity, T::class.java)).also { activity.finish() }
+        startContext(Intent(activity, T::class.java), activity).also { activity.finish() }
     }
 
     @JvmStatic
     inline fun <reified T : Activity> startActivityAndFinish(activity: Activity, block: IExt_Listener<Intent>): Boolean =
-        startContext(activity, Intent(activity, T::class.java).apply(block)).also { activity.finish() }
+        startContext(Intent(activity, T::class.java).apply(block), activity).also { activity.finish() }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
     inline fun <reified T : Activity> startActivityAndFinish(activity: Activity, options: Bundle?): Boolean =
-        startContext(activity, Intent(activity, T::class.java), options).also { activity.finish() }
+        startContext(Intent(activity, T::class.java), options, activity).also { activity.finish() }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
     inline fun <reified T : Activity> startActivityAndFinish(activity: Activity, options: Bundle?, block: IExt_Listener<Intent>): Boolean =
-        startContext(activity, Intent(activity, T::class.java).apply(block), options).also { activity.finish() }
+        startContext(Intent(activity, T::class.java).apply(block), options, activity).also { activity.finish() }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_21_5_L)
     inline fun <reified T : Activity> startActivityAndFinishAnimation_ofActivityOptions(activity: Activity, block: IExt_Listener<Intent>): Boolean =
-        startContext(activity, Intent(activity, T::class.java).apply(block), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle()).also { activity.finish() }
+        startContext(Intent(activity, T::class.java).apply(block), ActivityOptions.makeSceneTransitionAnimation(activity).toBundle(), activity).also { activity.finish() }
 
     /////////////////////////////////////////////////////////////////////////////////
 
@@ -203,30 +203,30 @@ object UtilKContextStart : BaseUtilK() {
     /////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
-    fun startContext_ofPackageName(context: Context, strPackageName: String): Boolean {
-        val intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(context, strPackageName) ?: return false
+    fun startContext_ofPackageName(strPackageName: String, context: Context): Boolean {
+        val intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(strPackageName, context) ?: return false
         return context.startContext(intent)
     }
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @Throws(ActivityNotFoundException::class)
-    fun startContext_ofPackageName_throw(context: Context, strPackageName: String): Boolean {
-        val intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(context, strPackageName) ?: return false
+    fun startContext_ofPackageName_throw(strPackageName: String, context: Context): Boolean {
+        val intent = UtilKIntentGet.getIntent_ACTION_MAIN_CATEGORY_LAUNCHER_COMPONENT(strPackageName, context) ?: return false
         return context.startContext(intent)
     }
 
 
     @JvmStatic
-    fun startContext_ofPackageName(context: Context, strPackageName: String, strActivityName: String): Boolean =
+    fun startContext_ofPackageName(strPackageName: String, strActivityName: String, context: Context): Boolean =
         context.startContext(UtilKIntentGet.get_COMPONENT(strPackageName, strActivityName))
 
     @JvmStatic
     @Throws(ActivityNotFoundException::class)
-    fun startContext_ofPackageName_throw(context: Context, strPackageName: String, strActivityName: String) {
+    fun startContext_ofPackageName_throw(strPackageName: String, strActivityName: String, context: Context) {
         context.startContext_throw(UtilKIntentGet.get_COMPONENT(strPackageName, strActivityName))
     }
 }

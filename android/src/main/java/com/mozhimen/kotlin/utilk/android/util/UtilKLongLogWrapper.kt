@@ -1,7 +1,6 @@
 package com.mozhimen.kotlin.utilk.android.util
 
 import com.mozhimen.kotlin.elemk.android.util.cons.CLog
-import com.mozhimen.kotlin.elemk.cons.CCons
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.utilk.java.lang.UtilKStackTraceElement
 import com.mozhimen.kotlin.utilk.kotlin.obj2str
@@ -19,6 +18,7 @@ object UtilKLongLogWrapper : BaseUtilK() {
 
     private val _isLogEnable = AtomicBoolean(true)
     private val _isLongLogSupport = AtomicBoolean(true)
+    private const val UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH = 4000//logcat最大长度为4*1024，此处取4000
 
     ///////////////////////////////////////////////////////////////////
 
@@ -116,11 +116,11 @@ object UtilKLongLogWrapper : BaseUtilK() {
             try {
                 var logCat = getLogCat(*msg)
                 val length = logCat.length.toLong()
-                if (length <= CCons.UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH) {
+                if (length <= UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH) {
                     log(level, tag, logCat)
                 } else {
-                    while (logCat.length > CCons.UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH) {
-                        val logContent = logCat.substring(0, CCons.UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH)
+                    while (logCat.length > UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH) {
+                        val logContent = logCat.substring(0, UTILK_LOG_PRO_MAX_LOG_MSG_LENGTH)
                         logCat = logCat.replace(logContent, "")
                         log(level, tag, logCat)
                     }

@@ -7,11 +7,10 @@ import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.telephony.cons.CTelephonyManager
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
-import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PHONE_STATE
 import com.mozhimen.kotlin.utilk.android.content.UtilKContextGet
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
@@ -33,12 +32,12 @@ object UtilKTelephonyManager : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
-    fun getDeviceId(context: Context, slotIndex: Int): String =
+    fun getDeviceId(slotIndex: Int, context: Context): String =
         get(context).getDeviceId(slotIndex)
 
     /**
@@ -46,8 +45,8 @@ object UtilKTelephonyManager : IUtilK {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_23_6_M)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     @SuppressLint("HardwareIds")
@@ -56,8 +55,8 @@ object UtilKTelephonyManager : IUtilK {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_26_8_O)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getImei(context: Context): String =
@@ -65,8 +64,8 @@ object UtilKTelephonyManager : IUtilK {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_26_8_O)
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
     fun getMeid(context: Context): String =

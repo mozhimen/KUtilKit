@@ -7,10 +7,10 @@ import androidx.annotation.RequiresPermission
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.java.util.cons.CDateFormat
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_25_71_NM1
-import com.mozhimen.kotlin.lintk.optins.OApiDeprecated_Official_AfterV_28_9_P
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PHONE_STATE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_PRIVILEGED_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_25_71_NM1
+import com.mozhimen.kotlin.lintk.optins.api.OApiDeprecated_Official_AfterV_28_9_P
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PHONE_STATE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_PRIVILEGED_PHONE_STATE
 import com.mozhimen.kotlin.utilk.kotlin.array2str
 import com.mozhimen.kotlin.utilk.java.text.longDate2strDate
 
@@ -28,8 +28,8 @@ object UtilKBuild {
      * 在API 23-25版本的设备上无需配置权限
      */
     @JvmStatic
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_25_71_NM1
     @SuppressLint("HardwareIds")
     fun get_SERIAL(): String =
@@ -160,8 +160,8 @@ object UtilKBuild {
     @JvmStatic
     @RequiresApi(CVersCode.V_26_8_O)
     @RequiresPermission(allOf = [CPermission.READ_PRIVILEGED_PHONE_STATE, CPermission.READ_PHONE_STATE])
-    @OPermission_READ_PRIVILEGED_PHONE_STATE
-    @OPermission_READ_PHONE_STATE
+    @OUsesPermission_READ_PRIVILEGED_PHONE_STATE
+    @OUsesPermission_READ_PHONE_STATE
     @OApiDeprecated_Official_AfterV_28_9_P
     fun getSerial(): String =
         Build.getSerial()

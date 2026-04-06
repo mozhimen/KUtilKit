@@ -12,6 +12,6 @@ import android.text.format.DateUtils
  */
 object UtilKDateUtils {
     @JvmStatic
-    fun formatDateTime(context: Context, millis: Long, flags: Int): String =
+    fun formatDateTime(millis: Long, flags: Int, context: Context): String =
         DateUtils.formatDateTime(context, millis, flags)
 }

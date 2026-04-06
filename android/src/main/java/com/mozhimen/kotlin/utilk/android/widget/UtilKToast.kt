@@ -15,21 +15,21 @@ import androidx.annotation.StringRes
 object UtilKToast {
     @SuppressLint("ShowToast")
     @JvmStatic
-    fun makeText(context: Context, chars: CharSequence, duration: Int): Toast =
+    fun makeText(chars: CharSequence, duration: Int, context: Context): Toast =
         Toast.makeText(context, chars, duration)
 
     @SuppressLint("ShowToast")
     @JvmStatic
-    fun makeText(context: Context, @StringRes intResStr: Int, duration: Int): Toast =
+    fun makeText(@StringRes intResStr: Int, duration: Int, context: Context): Toast =
         Toast.makeText(context, intResStr, duration)
 
     @JvmStatic
-    fun makeText_show(context: Context, chars: CharSequence, duration: Int) {
-        makeText(context, chars, duration).show()
+    fun makeText_show(chars: CharSequence, duration: Int, context: Context) {
+        makeText(chars, duration, context).show()
     }
 
     @JvmStatic
-    fun makeText_show(context: Context, @StringRes intResStr: Int, duration: Int) {
-        makeText(context, intResStr, duration).show()
+    fun makeText_show(@StringRes intResStr: Int, duration: Int, context: Context) {
+        makeText(intResStr, duration, context).show()
     }
 }

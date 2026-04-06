@@ -11,6 +11,7 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CApplicationInfo
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 import com.mozhimen.kotlin.utilk.wrapper.UtilKRes
 import com.mozhimen.kotlin.utilk.android.content.UtilKContext
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 
 /**
  * @ClassName UtilKApplicationInfo
@@ -19,19 +20,19 @@ import com.mozhimen.kotlin.utilk.android.content.UtilKContext
  * @Date 2023/4/18 11:24
  * @Version 1.0
  */
-object UtilKApplicationInfo : IUtilK {
+object UtilKApplicationInfo : BaseUtilK() {
 
     @JvmStatic
     fun get(context: Context): ApplicationInfo =
         UtilKContext.getApplicationInfo(context)
 
     @JvmStatic
-    fun get_ofPackageInfo(context: Context, strPackageName: String, flags: Int): ApplicationInfo? =
-        UtilKPackageInfo.getApplicationInfo(context, strPackageName, flags)
+    fun get_ofPackageInfo(strPackageName: String, flags: Int, context: Context): ApplicationInfo? =
+        UtilKPackageInfo.getApplicationInfo(strPackageName, flags, context)
 
     @JvmStatic
-    fun get_ofPackageManager(context: Context, strPackageName: String, flags: Int): ApplicationInfo =
-        UtilKPackageManager.getApplicationInfo(context, strPackageName, flags)
+    fun get_ofPackageManager(strPackageName: String, flags: Int, context: Context): ApplicationInfo =
+        UtilKPackageManager.getApplicationInfo(strPackageName, flags, context)
 
     //////////////////////////////////////////////////////////////////////
 
@@ -65,7 +66,7 @@ object UtilKApplicationInfo : IUtilK {
      * 和这个方法一样[UtilKPackageManager.getApplicationIcon]
      */
     @JvmStatic
-    fun loadIcon(context: Context, packageManager: PackageManager): Drawable? =
+    fun loadIcon(packageManager: PackageManager, context: Context): Drawable? =
         loadIcon(get(context), packageManager)
 
     /**
@@ -87,12 +88,12 @@ object UtilKApplicationInfo : IUtilK {
 
     //app的目标版本
     @JvmStatic
-    fun getTargetSdkVersion(context: Context): Int =
+    fun getTargetSdkVersion(context: Context = _context): Int =
         get(context).targetSdkVersion
 
     @JvmStatic
     @IdRes
-    fun getLabelRes(context: Context): Int =
+    fun getLabelRes(context: Context = _context): Int =
         get(context).labelRes
 }
 

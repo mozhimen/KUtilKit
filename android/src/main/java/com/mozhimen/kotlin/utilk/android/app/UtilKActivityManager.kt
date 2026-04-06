@@ -23,7 +23,7 @@ object UtilKActivityManager {
         UtilKContextGet.getSystemService_ACTIVITY(context)
 
     @JvmStatic
-    fun getMemoryInfo(context: Context, memoryInfo: MemoryInfo) {
+    fun getMemoryInfo(memoryInfo: MemoryInfo, context: Context) {
         get(context).getMemoryInfo(memoryInfo)
     }
 
@@ -36,7 +36,7 @@ object UtilKActivityManager {
         get(context).deviceConfigurationInfo
 
     @JvmStatic
-    fun getRunningTasks(context: Context, maxCount: Int): List<RunningTaskInfo> =
+    fun getRunningTasks(maxCount: Int, context: Context): List<RunningTaskInfo> =
         get(context).getRunningTasks(maxCount)
 
     /**
@@ -46,7 +46,7 @@ object UtilKActivityManager {
      * 缺点：安卓P以上限制频率，需要隔约5分钟（不同手机间隔不同）才能获取到新的值。而且获取的 PSS 不包括 Graphics。
      */
     @JvmStatic
-    fun getProcessMemoryInfo(context: Context, pids: IntArray): Array<out Debug.MemoryInfo>? =
+    fun getProcessMemoryInfo(pids: IntArray, context: Context): Array<out Debug.MemoryInfo>? =
         get(context).getProcessMemoryInfo(pids)
 
 //        try {

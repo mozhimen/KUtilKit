@@ -26,14 +26,14 @@ object UtilKTelephonyManagerWrapper {
 
     @JvmStatic
     @RequiresApi(CVersCode.V_26_8_O)
-    fun getImei(context: Context, slotIndex: Int): String {
+    fun getImei(slotIndex: Int, context: Context): String {
         val telephonyManager = get(context)
         return telephonyManager.javaClass.getMethod("getImei", Int::class.javaPrimitiveType).invoke(telephonyManager, slotIndex) as String// android 8 即以后建议用getImei 方法获取 不会获取到MEID
     }
 
     @JvmStatic
     @RequiresApi(CVersCode.V_26_8_O)
-    fun getMeid(context: Context, slotIndex: Int): String {
+    fun getMeid(slotIndex: Int, context: Context): String {
         val telephonyManager = get(context)
         return telephonyManager.javaClass.getMethod("getMeid", Int::class.javaPrimitiveType).invoke(telephonyManager, slotIndex) as String// android 8 即以后建议用getImei 方法获取 不会获取到MEID
     }
@@ -76,7 +76,7 @@ object UtilKTelephonyManagerWrapper {
      * @param slotId  slotId为卡槽Id，它的值为 0、1；
      */
     @JvmStatic
-    fun getDeviceId_ofReflect(context: Context, slotIndex: Int): String {
+    fun getDeviceId_ofReflect(slotIndex: Int, context: Context): String {
         try {
             val telephonyManager = get(context)
             val methodGetDeviceId: Method = telephonyManager.javaClass.getMethod("getDeviceId", Int::class.javaPrimitiveType)

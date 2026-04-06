@@ -12,9 +12,8 @@ import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
 import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_QUERY_ALL_PACKAGES
-import com.mozhimen.kotlin.utilk.android.app.UtilKActivityManager
+import com.mozhimen.kotlin.lintk.optins.api.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_QUERY_ALL_PACKAGES
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
 import com.mozhimen.kotlin.utilk.android.util.UtilKDisplayMetrics
@@ -89,15 +88,15 @@ object UtilKContextWrapper {
     ///////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    @OPermission_QUERY_ALL_PACKAGES
+    @OUsesPermission_QUERY_ALL_PACKAGES
     @RequiresPermission(CPermission.QUERY_ALL_PACKAGES)
     @SuppressLint("QueryPermissionsNeeded", "InlinedApi")
-    fun grantUriPermission_before21(context: Context, intent: Intent, uri: Uri) {
+    fun grantUriPermission_before21(intent: Intent, uri: Uri, context: Context) {
         if (UtilKBuildVersion.isBeforeVersion(CVersCode.V_21_5_L)) {
-            val resInfoList = UtilKPackageManager.queryIntentActivities(context, intent, CPackageManager.MATCH_DEFAULT_ONLY)
+            val resInfoList = UtilKPackageManager.queryIntentActivities(intent, CPackageManager.MATCH_DEFAULT_ONLY, context)
             for (resolveInfo in resInfoList) {
                 val strPackageName = resolveInfo.activityInfo.packageName
-                UtilKContext.grantUriPermission(context, strPackageName, uri, CIntent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                UtilKContext.grantUriPermission(strPackageName, uri, CIntent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION, context)
             }
         }
     }
@@ -106,9 +105,9 @@ object UtilKContextWrapper {
      * 这个方法虽然更新了资源但是只能以后的界面生效，之前没有finish的页面还是保留原来的语言
      */
     @JvmStatic
-    fun updateLocale(context: Context, locale: Locale) {
+    fun updateLocale(locale: Locale, context: Context) {
         val configuration: Configuration = UtilKConfiguration.get_ofApp(context)
         UtilKConfiguration.setLocale(configuration, locale)
-        UtilKResources.updateConfiguration_ofApp(context, configuration, UtilKDisplayMetrics.get_ofApp(context))
+        UtilKResources.updateConfiguration_ofApp(configuration, UtilKDisplayMetrics.get_ofApp(context), context)
     }
 }

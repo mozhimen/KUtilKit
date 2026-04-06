@@ -70,7 +70,7 @@ object UtilKUriFormat : BaseUtilK() {
             uri2strFilePathName_after29(uri)
         } else if (UtilKBuildVersion.isAfterV_24_7_N()) {
             uri2strFilePathName_after24(uri)
-        } else if (UtilKBuildVersion.isAfterV_19_44_K() && UtilKDocumentsContract.isDocumentUri(_context, uri)) {
+        } else if (UtilKBuildVersion.isAfterV_19_44_K() && UtilKDocumentsContract.isDocumentUri(uri, _context)) {
             uri2strFilePathName_after19(uri)
         } else if (uri.scheme == CContentResolver.SCHEME_CONTENT) {
             uri.getMediaColumns()
@@ -83,10 +83,9 @@ object UtilKUriFormat : BaseUtilK() {
             CContentResolver.SCHEME_FILE -> uri.path.also { UtilKLogWrapper.d(TAG, "uri2strFilePathName_after29: SCHEME_FILE $it") }
             CContentResolver.SCHEME_CONTENT -> {
                 //把文件保存到沙盒
-                val strFileName = UtilKContentResolverWrapper.getOpenableColumns(uri) ?:
-                "${UtilKStrFile.getStrFileName_ofNow()}.${UtilKMimeTypeMap.getExtensionFromMimeType(_context, uri)}"
+                val strFileName = UtilKContentResolverWrapper.getOpenableColumns(uri) ?: "${UtilKStrFile.getStrFileName_ofNow()}.${UtilKMimeTypeMap.getExtensionFromMimeType(uri, _context)}"
                 val strFilePathName = "${UtilKStrPath.Absolute.Internal.getCache().getStrFolderPath()}uri/$strFileName"
-                UtilKContentResolver.openInputStream(_context, uri)?.inputStream2file_use_fileUtils(strFilePathName)?.absolutePath
+                UtilKContentResolver.openInputStream(uri, _context)?.inputStream2file_use_fileUtils(strFilePathName)?.absolutePath
             }
 
             else -> null
@@ -150,7 +149,7 @@ object UtilKUriFormat : BaseUtilK() {
 
             //沙盒
 //            if (UtilKBuildVersion.isAfterV_29_10_Q()){
-//                return UtilKContentResolver.openInputStream(_context, uri)?.inputStream2file("$strFilePathNameDest.${UtilKMimeTypeMap.getExtensionFromMimeType(_context, uri)}")?.absolutePath
+//                return UtilKContentResolver.openInputStream( uri,_context)?.inputStream2file("$strFilePathNameDest.${UtilKMimeTypeMap.getExtensionFromMimeType( uri,_context)}")?.absolutePath
 //            }
         }
         return uri.getMediaColumns()
@@ -171,7 +170,7 @@ object UtilKUriFormat : BaseUtilK() {
     @JvmStatic
     fun uri2bitmap_ofDescriptor(uri: Uri, opts: BitmapFactory.Options? = null): Bitmap? =
         try {
-            UtilKContentResolver.openFileDescriptor(_context, uri, "r")?.use {// mode："r" 表示只读 "w"表示只写
+            UtilKContentResolver.openFileDescriptor(uri, "r", _context)?.use {// mode："r" 表示只读 "w"表示只写
                 UtilKBitmapFactory.decodeFileDescriptor(it.fileDescriptor, null, opts = opts)
             }
         } catch (e: Exception) {
@@ -181,11 +180,11 @@ object UtilKUriFormat : BaseUtilK() {
     @JvmStatic
     @RequiresApi(CVersCode.V_28_9_P)
     fun uri2bitmap_ofDecoder(uri: Uri): Bitmap =
-        UtilKImageDecoder.decodeBitmap(_context, uri)
+        UtilKImageDecoder.decodeBitmap(uri, _context)
 
     @JvmStatic
     fun uri2bitmap_ofMedia(uri: Uri): Bitmap =
-        UtilKMediaStore.getImagesMediaBitmap(_context, uri)
+        UtilKMediaStore.getImagesMediaBitmap(uri, _context)
 
     @JvmStatic
     fun uri2bitmap_ofStream(uri: Uri): Bitmap? {
@@ -193,7 +192,7 @@ object UtilKUriFormat : BaseUtilK() {
         var realInputStream: InputStream? = null
         try {
             //根据uri获取图片的流
-            contentSizeInputStream = UtilKContentResolver.openInputStream(_context, uri)
+            contentSizeInputStream = UtilKContentResolver.openInputStream(uri, _context)
             val options = BitmapFactory.Options()
             options.inJustDecodeBounds = true            //options的in系列的设置了，injustDecodeBound只解析图片的大小，而不加载到内存中去
             //1.如果通过options.outHeight获取图片的宽高，就必须通过decodeStream解析同options赋值
@@ -214,7 +213,7 @@ object UtilKUriFormat : BaseUtilK() {
             //解析到内存中去
             options.inJustDecodeBounds = false
             //根据uri重新获取流，inputStream在解析中发生改变了
-            realInputStream = UtilKContentResolver.openInputStream(_context, uri)
+            realInputStream = UtilKContentResolver.openInputStream(uri, _context)
             return realInputStream?.inputStream2bitmapAny_use(null, options)
         } catch (e: Exception) {
             e.printStackTrace()

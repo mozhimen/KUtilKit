@@ -3,7 +3,7 @@ package com.mozhimen.kotlin.elemk.android.content.bases
 import android.content.Context
 import android.content.Intent
 import com.mozhimen.kotlin.elemk.android.content.cons.CIntent
-import com.mozhimen.kotlin.lintk.optins.OApiCall_RegisterDynamic
+import com.mozhimen.kotlin.lintk.optins.api.OApiCall_RegisterDynamic
 import com.mozhimen.kotlin.utilk.commons.IUtilK
 
 /**

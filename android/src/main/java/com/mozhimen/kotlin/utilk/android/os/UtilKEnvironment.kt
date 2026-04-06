@@ -7,8 +7,8 @@ import com.mozhimen.kotlin.elemk.android.os.cons.CEnvironment
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
 import com.mozhimen.kotlin.elemk.android.provider.cons.CSettings
 import com.mozhimen.kotlin.lintk.annors.ADescription
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_MANAGE_EXTERNAL_STORAGE
-import com.mozhimen.kotlin.lintk.optins.permission.OPermission_READ_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_MANAGE_EXTERNAL_STORAGE
+import com.mozhimen.kotlin.lintk.optins.manifest.uses_permission.OUsesPermission_READ_EXTERNAL_STORAGE
 import com.mozhimen.kotlin.elemk.android.cons.CPermission
 import java.io.File
 
@@ -111,8 +111,8 @@ object UtilKEnvironment {
         Environment.getExternalStorageState() == CEnvironment.MEDIA_MOUNTED
 
     @JvmStatic
-    @OPermission_MANAGE_EXTERNAL_STORAGE
-    @OPermission_READ_EXTERNAL_STORAGE
+    @OUsesPermission_MANAGE_EXTERNAL_STORAGE
+    @OUsesPermission_READ_EXTERNAL_STORAGE
     @RequiresPermission(allOf = [CPermission.READ_EXTERNAL_STORAGE, CPermission.MANAGE_EXTERNAL_STORAGE])
     @ADescription(CSettings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
     @RequiresApi(CVersCode.V_30_11_R)

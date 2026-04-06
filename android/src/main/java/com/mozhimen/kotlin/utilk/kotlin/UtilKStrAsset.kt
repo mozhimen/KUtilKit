@@ -80,7 +80,7 @@ object UtilKStrAsset : BaseUtilK() {
     fun isAssetExists(strAssetName: String): Boolean {
         val parentPath = getStrAssetParentPath(strAssetName)
         UtilKLogWrapper.d(TAG, "isAssetExists: parentPath $parentPath")
-        val assets = UtilKAssetManager.list(_context, parentPath) ?: kotlin.run {
+        val assets = UtilKAssetManager.list(parentPath, _context) ?: kotlin.run {
             UtilKLogWrapper.d(TAG, "isAssetExists: assets null")
             return false
         }
@@ -98,7 +98,7 @@ object UtilKStrAsset : BaseUtilK() {
 
     @JvmStatic
     fun strAssetName2bytes_use(strAssetName: String): ByteArray =
-        UtilKAssetManager.open(_context, strAssetName).inputStream2bytes_use()
+        UtilKAssetManager.open(strAssetName, _context).inputStream2bytes_use()
 
     ///////////////////////////////////////////////////////////////////
 
@@ -108,7 +108,7 @@ object UtilKStrAsset : BaseUtilK() {
     @JvmStatic
     fun strAssetName2str_use_ofBufferedReader(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
-        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_bufferedReader()
+        else UtilKAssetManager.open(strAssetName, _context).inputStream2str_use_bufferedReader()
 
     /**
      * 获取文本文件内容: txt 最快的方法
@@ -124,7 +124,7 @@ object UtilKStrAsset : BaseUtilK() {
     @JvmStatic
     fun strAssetName2str_use_ofStream(strAssetName: String): String? =
         if (!isAssetExists(strAssetName)) null
-        else UtilKAssetManager.open(_context, strAssetName).inputStream2str_use_bytes()
+        else UtilKAssetManager.open(strAssetName, _context).inputStream2str_use_bytes()
 
     ///////////////////////////////////////////////////////////////////
 
@@ -133,7 +133,7 @@ object UtilKStrAsset : BaseUtilK() {
         if (!isAssetExists(strAssetName)) {
             UtilKLogWrapper.d(TAG, "strAssetName2file: dont exist")
             null
-        } else UtilKAssetManager.open(_context, strAssetName).inputStream2file_use(fileDest, isAppend, bufferSize, block)
+        } else UtilKAssetManager.open(strAssetName, _context).inputStream2file_use(fileDest, isAppend, bufferSize, block)
 
     /**
      * 从资产拷贝到文件
@@ -143,12 +143,12 @@ object UtilKStrAsset : BaseUtilK() {
         if (!isAssetExists(strAssetName)) {
             UtilKLogWrapper.d(TAG, "strAssetName2file: dont exist")
             null
-        } else UtilKAssetManager.open(_context, strAssetName).inputStream2file_use(strAssetName.getStrFilePathName(strFilePathNameDest), isAppend, bufferSize, block)
+        } else UtilKAssetManager.open(strAssetName, _context).inputStream2file_use(strAssetName.getStrFilePathName(strFilePathNameDest), isAppend, bufferSize, block)
 
     ///////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun strAssetName2bitmap_use(strAssetName: String): Bitmap? =
         if (!isAssetExists(strAssetName)) null
-        else UtilKAssetManager.open(_context, strAssetName).inputStream2bitmapAny_use()
+        else UtilKAssetManager.open(strAssetName, _context).inputStream2bitmapAny_use()
 }

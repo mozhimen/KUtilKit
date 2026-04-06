@@ -131,7 +131,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
         try {
             if (UtilKInputMethodManager.isActive(view.context))
                 UtilKInputMethodManager.hideSoftInputFromWindow(view)
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -185,11 +185,11 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      * 修复在RecyclerView中持有内存泄漏的问题
      */
     @JvmStatic
-    fun fixInputLeak(context: Context, tag: String) {
+    fun fixInputLeak(tag: String, context: Context) {
         if (UtilKBuildVersion.isAfterV_29_10_Q())
-            fixInputLeak_after29(context, tag)
+            fixInputLeak_after29(tag, context)
         else
-            fixInputLeak_before29(context, tag)
+            fixInputLeak_before29(tag, context)
     }
 
     /**
@@ -197,7 +197,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
      */
     @JvmStatic
     @RequiresApi(CVersCode.V_29_10_Q)
-    fun fixInputLeak_after29(context: Context, tag: String) {
+    fun fixInputLeak_after29(tag: String, context: Context) {
         val inputMethodManager = UtilKInputMethodManager.get(context)
         try {
             val fieldMCurRootView = UtilKField.get(inputMethodManager, "mCurRootView")
@@ -241,7 +241,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
 
     //修复在RecyclerView中持有内存泄漏的问题
     @JvmStatic
-    fun fixInputLeak_before29(context: Context, tag: String) {
+    fun fixInputLeak_before29(tag: String, context: Context) {
         if (UtilKBuildVersion.isAfterV_29_10_Q()) return
         val inputMethodManager = UtilKInputMethodManager.get(context)
         val leakViews = arrayOf("mCurRootView", "mServedView", "mNextServedView")
@@ -493,11 +493,11 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
 //     * @param context Context
 //     */
 //    @JvmStatic
-//    fun fixInputMethodLeak(context: Context, tag: String = TAG) {
+//    fun fixInputMethodLeak( tag: String = TAG,context: Context) {
 //        if (Build.VERSION.SDK_INT >= CVersionCode.V_29_10_Q) {
-//            fixInputMethodLeakAfterQ(context, tag)
+//            fixInputMethodLeakAfterQ( tag)
 //        } else {
-//            fixInputMethodLeakBeforeQ(context, tag)
+//            fixInputMethodLeakBeforeQ( tag)
 //        }
 //    }
 //
@@ -507,7 +507,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
 //     * @param tag String
 //     */
 //    @JvmStatic
-//    fun fixInputMethodLeakAfterQ(context: Context, tag: String) {
+//    fun fixInputMethodLeakAfterQ( tag: String,context: Context) {
 //        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //        val field: Field
 //        val fieldObj: Any?
@@ -563,7 +563,7 @@ object UtilKInputMethodManagerWrapper : BaseUtilK() {
 //     * @param tag String
 //     */
 //    @JvmStatic
-//    fun fixInputMethodLeakBeforeQ(context: Context, tag: String) {
+//    fun fixInputMethodLeakBeforeQ( tag: String,context: Context) {
 //        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //        val leakViews = arrayOf("mLastSrvView", "mCurRootView", "mServedView", "mNextServedView")
 //        var leakField: Field

@@ -58,15 +58,15 @@ object UtilKContextDir {
             UtilKContext.getNoBackupFilesDir(context)
 
         @JvmStatic
-        fun getFileStreamDir(context: Context, name: String): File =
-            UtilKContext.getFileStreamDir(context, name)
+        fun getFileStreamDir(name: String, context: Context): File =
+            UtilKContext.getFileStreamDir(name, context)
 
         /**
          * 内部使用，外部程序无法访问。主要是 SQLite 数据库的目录
          */
         @JvmStatic
-        fun getDatabaseDir(context: Context, name: String): File =
-            UtilKContext.getDatabasePath(context, name)
+        fun getDatabaseDir(name: String, context: Context): File =
+            UtilKContext.getDatabasePath(name, context)
 
         @JvmStatic
         fun getPackageCodeDir(context: Context): String =
@@ -78,11 +78,11 @@ object UtilKContextDir {
 
         @JvmStatic
         fun getPatchDir(context: Context): File =
-            UtilKContext.getDir(context, "patch", CContext.MODE_PRIVATE)
+            UtilKContext.getDir("patch", CContext.MODE_PRIVATE, context)
 
         @JvmStatic
         fun getDex2optDir(context: Context): File =
-            UtilKContext.getDir(context, "dex2opt", CContext.MODE_PRIVATE)
+            UtilKContext.getDir("dex2opt", CContext.MODE_PRIVATE, context)
     }
 
     /**
@@ -97,63 +97,63 @@ object UtilKContextDir {
 
         @JvmStatic
         fun getFilesDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, null)
+            UtilKContext.getExternalFilesDir(null, context)
 
         //////////////////////////////////////////////////////////////
 
         @JvmStatic
         fun getFilesMusicDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_MUSIC)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_MUSIC, context)
 
         @JvmStatic
         fun getFilesPodcastsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_PODCASTS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_PODCASTS, context)
 
         @JvmStatic
         fun getFilesRingtonesDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_RINGTONES)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_RINGTONES, context)
 
         @JvmStatic
         fun getFilesAlarmsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_ALARMS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_ALARMS, context)
 
         @JvmStatic
         fun getFilesNotificationsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_NOTIFICATIONS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_NOTIFICATIONS, context)
 
         @JvmStatic
         fun getFilesPicturesDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_PICTURES)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_PICTURES, context)
 
         @JvmStatic
         fun getFilesMoviesDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_MOVIES)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_MOVIES, context)
 
         @JvmStatic
         fun getFilesDownloadsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_DOWNLOADS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_DOWNLOADS, context)
 
         @JvmStatic
         fun getFilesDCIMDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_DCIM)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_DCIM, context)
 
         @JvmStatic
         fun getFilesDocumentsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_DOCUMENTS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_DOCUMENTS, context)
 
         @JvmStatic
         @RequiresApi(CVersCode.V_29_10_Q)
         fun getFilesScreenshotsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_SCREENSHOTS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_SCREENSHOTS, context)
 
         @JvmStatic
         @RequiresApi(CVersCode.V_29_10_Q)
         fun getFilesAudiobooksDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_AUDIOBOOKS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_AUDIOBOOKS, context)
 
         @JvmStatic
         @RequiresApi(CVersCode.V_31_12_S)
         fun getFilesRecordingsDir(context: Context): File? =
-            UtilKContext.getExternalFilesDir(context, CEnvironment.DIRECTORY_RECORDINGS)
+            UtilKContext.getExternalFilesDir(CEnvironment.DIRECTORY_RECORDINGS, context)
     }
 }

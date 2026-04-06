@@ -29,21 +29,21 @@ object UtilKDisplayMetrics {
 
     @JvmStatic
     fun get_ofDef(context: Context): DisplayMetrics =
-        get_ofDef(context, DisplayMetrics())
+        get_ofDef( DisplayMetrics(),context)
 
     @JvmStatic
-    fun get_ofDef(context: Context, displayMetrics: DisplayMetrics): DisplayMetrics {
-        UtilKDisplay.getMetrics_ofDef(context, displayMetrics)
+    fun get_ofDef(displayMetrics: DisplayMetrics, context: Context): DisplayMetrics {
+        UtilKDisplay.getMetrics_ofDef( displayMetrics,context)
         return displayMetrics
     }
 
     @JvmStatic
     fun get_ofReal(context: Context): DisplayMetrics =
-        get_ofReal(context, DisplayMetrics())
+        get_ofReal(DisplayMetrics(), context)
 
     @JvmStatic
-    fun get_ofReal(context: Context, displayMetrics: DisplayMetrics): DisplayMetrics {
-        UtilKDisplay.getRealMatrics_ofDef(context, displayMetrics)
+    fun get_ofReal(displayMetrics: DisplayMetrics, context: Context): DisplayMetrics {
+        UtilKDisplay.getRealMatrics_ofDef( displayMetrics,context)
         return displayMetrics
     }
 

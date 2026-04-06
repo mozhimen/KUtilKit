@@ -17,24 +17,24 @@ import com.mozhimen.kotlin.elemk.android.content.cons.CPackageManager
  */
 object UtilKContextCompat {
     @JvmStatic
-    fun getColor(context: Context, @ColorRes intResColor: Int): Int =
+    fun getColor(@ColorRes intResColor: Int, context: Context): Int =
         ContextCompat.getColor(context, intResColor)
 
     @JvmStatic
-    fun getColorStateList(context: Context, @ColorRes intResColor: Int): ColorStateList? =
+    fun getColorStateList(@ColorRes intResColor: Int, context: Context): ColorStateList? =
         ContextCompat.getColorStateList(context, intResColor)
 
     @JvmStatic
-    fun getDrawable(context: Context, @DrawableRes intResDrawable: Int): Drawable? =
+    fun getDrawable(@DrawableRes intResDrawable: Int, context: Context): Drawable? =
         ContextCompat.getDrawable(context, intResDrawable)
 
     ///////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
-    fun isSelfPermissionGranted(context: Context, permission: String): Boolean =
-        checkSelfPermission(context, permission) == CPackageManager.PERMISSION_GRANTED
+    fun isSelfPermissionGranted(permission: String, context: Context): Boolean =
+        checkSelfPermission(permission, context) == CPackageManager.PERMISSION_GRANTED
 
     @JvmStatic
-    fun checkSelfPermission(context: Context, permission: String): Int =
+    fun checkSelfPermission(permission: String, context: Context): Int =
         ContextCompat.checkSelfPermission(context, permission)
 }

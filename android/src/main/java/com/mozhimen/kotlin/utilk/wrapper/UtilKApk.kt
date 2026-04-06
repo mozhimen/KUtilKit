@@ -22,23 +22,23 @@ object UtilKApk : BaseUtilK() {
     //得到版本信息
     @JvmStatic
     fun getVersionName(strPathNameApk: String): String? =
-        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(_context, strPathNameApk)?.let { UtilKPackageInfoWrapper.gainVersionName(it) }
+        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(strPathNameApk, _context)?.let { UtilKPackageInfoWrapper.gainVersionName(it) }
 
     //得到版本号
     @JvmStatic
     fun getVersionCode(strPathNameApk: String): Int? =
-        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(_context, strPathNameApk)?.let { UtilKPackageInfoWrapper.gainVersionCode(it) }
+        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(strPathNameApk, _context)?.let { UtilKPackageInfoWrapper.gainVersionCode(it) }
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
     @JvmStatic
     fun getApplicationInfo(strPathNameApk: String): ApplicationInfo? =
-        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(_context, strPathNameApk)?.let { UtilKPackageInfo.getApplicationInfo(it) }
+        UtilKPackageArchiveInfo.get_ofGET_ACTIVITIES(strPathNameApk, _context)?.let { UtilKPackageInfo.getApplicationInfo(it) }
 
     //得到应用名
     @JvmStatic
     fun getApplicationLabel(strPathNameApk: String): String? =
-        getApplicationInfo(strPathNameApk)?.let { UtilKPackageManager.getApplicationLabel(_context, it) }
+        getApplicationInfo(strPathNameApk)?.let { UtilKPackageManager.getApplicationLabel(it, _context) }
 
     //得到包名
     @JvmStatic
@@ -53,7 +53,7 @@ object UtilKApk : BaseUtilK() {
                 sourceDir = strPathNameApk
                 publicSourceDir = strPathNameApk/* 必须加这两句，不然下面icon获取是default icon而不是应用包的icon */
             }
-            UtilKPackageManager.getApplicationIcon(_context, it)
+            UtilKPackageManager.getApplicationIcon(it, _context)
         }
 
     //得到图标信息2

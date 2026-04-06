@@ -13,7 +13,7 @@ import com.mozhimen.kotlin.elemk.android.view.cons.CWinMgr
 import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.kotlin.elemk.android.view.impls.ColorfulStatusBar
 import com.mozhimen.kotlin.elemk.cons.CPackage
-import com.mozhimen.kotlin.lintk.optins.OApiUse_BaseApplication
+import com.mozhimen.kotlin.lintk.optins.api.OApiUse_BaseApplication
 import com.mozhimen.kotlin.utilk.android.app.UtilKActivityWrapper
 import com.mozhimen.kotlin.utilk.android.content.UtilKResources
 import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
@@ -75,7 +75,7 @@ object UtilKStatusBar : BaseUtilK() {
     @OApiUse_BaseApplication
     @JvmStatic
     fun isVisible(context: Context): Boolean {
-        return isVisible(UtilKActivityWrapper.get_ofContext(context, true) ?: return true)
+        return isVisible(UtilKActivityWrapper.get_ofContext(true, context) ?: return true)
     }
 
     //状态栏是否可见
@@ -85,7 +85,7 @@ object UtilKStatusBar : BaseUtilK() {
 
     @JvmStatic
     fun isTranslucent(activity: Activity): Boolean {//检查主题中是否有透明的状态栏
-        var isStatusBarAvailable: Boolean = activity.obtainStyledAttributes(intArrayOf(CPackage.ANDROID_R_ATTR_WINDOWTRANSLUCENTSTATUS)).use { it.getBoolean(0,false) }
+        var isStatusBarAvailable: Boolean = activity.obtainStyledAttributes(intArrayOf(CPackage.ANDROID_R_ATTR_WINDOWTRANSLUCENTSTATUS)).use { it.getBoolean(0, false) }
         if (UtilKWindowManager_LayoutParamsWrapper.isFlagTranslucentStatus(activity)) isStatusBarAvailable = true
         return isStatusBarAvailable
     }

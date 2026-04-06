@@ -131,8 +131,8 @@ object UtilKBitmapFormat : BaseUtilK() {
                 put(CMediaStore.Images.ImageColumns.MIME_TYPE, CMediaFormat.MIMETYPE_IMAGE_JPEG)
                 put(CMediaStore.Images.ImageColumns.DATE_TAKEN, System.currentTimeMillis().toString())
             }
-            UtilKContentResolver.insert(_context, CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)?.let {
-                outputStream = UtilKContentResolver.openOutputStream(_context, it)
+            UtilKContentResolver.insert( CMediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues, _context)?.let {
+                outputStream = UtilKContentResolver.openOutputStream( it, _context)
                 sourceBitmap.applyBitmapAnyCompress(compressFormat, quality, outputStream!!)
                 return fileDest
             }
@@ -142,7 +142,7 @@ object UtilKBitmapFormat : BaseUtilK() {
         } finally {
             outputStream?.flushClose()
             try {
-                UtilKMediaScannerConnection.scanFile(_context, arrayOf(fileDest.absolutePath), arrayOf(CMediaFormat.MIMETYPE_IMAGE_JPEG)) { path, uri ->
+                UtilKMediaScannerConnection.scanFile( arrayOf(fileDest.absolutePath), arrayOf(CMediaFormat.MIMETYPE_IMAGE_JPEG), _context) { path, uri ->
                     "bitmapAny2fileImage: path $path, uri $uri".d(TAG)
                 }
             } catch (e: Exception) {

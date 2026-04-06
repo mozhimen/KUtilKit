@@ -42,8 +42,8 @@ object UtilKAnim : BaseUtilK() {
     fun applyActivityTransition(activity: Activity, @TransitionRes intEnterTransitionRes: Int?, @TransitionRes intExitTransitionRes: Int?, overlay: Boolean = true) {
         applyActivityTransition(
             activity,
-            intEnterTransitionRes?.let { UtilKTransitionInflater.from_inflateTransition(activity, it) },
-            intExitTransitionRes?.let { UtilKTransitionInflater.from_inflateTransition(activity,it) },
+            intEnterTransitionRes?.let { UtilKTransitionInflater.from_inflateTransition( it,activity) },
+            intExitTransitionRes?.let { UtilKTransitionInflater.from_inflateTransition(it,activity) },
             overlay
         )
     }
