@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        google()
+        mavenCentral()
         gradlePluginPortal()
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/google' }
@@ -10,8 +12,6 @@ buildscript {
         maven { url 'https://maven.aliyun.com/repository/grails-core' }
         maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
         maven { url 'https://www.jitpack.io' }
-        mavenCentral()
-        google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.6.1'

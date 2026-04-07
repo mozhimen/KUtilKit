@@ -31,7 +31,8 @@ android {
 }
 
 dependencies {
-    "com.gojuno.koptional:koptional-rxjava2-extensions:1.6.0"
+    api "com.gojuno.koptional:koptional-rxjava2-extensions:1.6.0"
+    api project(':koptional')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

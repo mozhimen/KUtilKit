@@ -3,6 +3,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url "https://jitpack.io" }
         maven { url 'https://maven.aliyun.com/repository/central' }
         maven { url 'https://maven.aliyun.com/repository/google' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
@@ -13,7 +14,6 @@ dependencyResolutionManagement {
         maven { url 'https://gitee.com/liuchaoya/libcommon/raw/master/repository/' }
         maven { url "https://repo.eclipse.org/content/repositories/paho-snapshots/" }
         maven { url 'https://developer.huawei.com/repo/' }
-        maven { url "https://jitpack.io" }
         maven { url 'https://www.jitpack.io' }
     }
 }
@@ -27,7 +27,7 @@ include ':ALibKit_Jetpack:navigation_common'
 include ':ALibKit_Jetpack:navigation_ui'
 include ':ALibKit_Jetpack:core'
 include ':ALibKit_Jetpack:annotation'
-include ':ALibKit_Jetpack:databinding'
+include ':ALibKit_Jetpack:databinding-bom'
 //ALibKit_Google
 include ":ALibKit_Google"
 project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
@@ -67,5 +67,5 @@ rootProject.name = "KUtilKit"
 include ':android'
 include ':android:test'
 include ':koptional'
-include ':koptional:koptional-rxjava2'
+include ':koptional-rxjava2'
 include ':kotlin'

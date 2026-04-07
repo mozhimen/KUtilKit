@@ -45,20 +45,19 @@ dependencies {
 //        api project(':ALibKit_Jetpack:core')
 //        api project(":ALibKit_Jetpack:annotation")
 //    }
-    api 'com.github.mozhimen.ALibKit_Jetpack:core:0.0.5'
-    api 'com.github.mozhimen.ALibKit_Jetpack:annotation:0.0.5'
-
 //    if (rootProject.name == "ALibKit_Google") {
 //        api project(':material')
 //    } else {
 //        api project(':ALibKit_Google:material')
 //    }
-    api 'com.github.mozhimen.ALibKit_Google:material:0.0.5'
-
 //    api project(':ALibKit_Jetbrains:kotlin_stdlib')
-    api 'com.github.mozhimen.ALibKit_Jetbrains:kotlin_stdlib:0.0.1'
 
     api project(project.path.replace(project.name, '') + ':kotlin')
+
+    api 'com.github.mozhimen.ALibKit_Jetpack:core-bom:0.0.7'
+    api 'com.github.mozhimen.ALibKit_Jetpack:annotation:0.0.7'
+    api 'com.github.mozhimen.ALibKit_Google:material:0.0.6'
+    api 'com.github.mozhimen.ALibKit_Jetbrains:kotlin-stdlib:0.0.2'
 
     //test
     testImplementation 'junit:junit:4.13.2'

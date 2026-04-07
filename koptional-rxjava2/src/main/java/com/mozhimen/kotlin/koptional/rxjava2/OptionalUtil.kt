@@ -1,4 +1,4 @@
-package com.mozhimen.kotlin.koptional.utils
+package com.mozhimen.kotlin.koptional.rxjava2
 
 import com.gojuno.koptional.None
 import com.gojuno.koptional.Optional
