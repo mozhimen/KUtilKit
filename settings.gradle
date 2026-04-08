@@ -19,30 +19,6 @@ dependencyResolutionManagement {
 }
 
 
-//ALibKit_Jetpack
-include ":ALibKit_Jetpack"
-project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
-include ':ALibKit_Jetpack:navigation_fragment'
-include ':ALibKit_Jetpack:navigation_common'
-include ':ALibKit_Jetpack:navigation_ui'
-include ':ALibKit_Jetpack:core'
-include ':ALibKit_Jetpack:annotation'
-include ':ALibKit_Jetpack:databinding-bom'
-//ALibKit_Google
-include ":ALibKit_Google"
-project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
-include ':ALibKit_Google:material'
-//ALibKit_Jetbrains
-include ":ALibKit_Jetbrains"
-project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
-include ':ALibKit_Jetbrains:kotlin_stdlib'
-include ':ALibKit_Jetbrains:kotlinx_coroutines'
-//ASwiftKit
-include ":ASwiftKit"
-project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
-include ':ASwiftKit:basick'
-include ':ASwiftKit:uik:databinding'
-include ':ASwiftKit:xmlk'
 //ATaskKit
 include ":ATaskKit"
 project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
