@@ -41,7 +41,7 @@ include ':APermissionKit:permissionk'
 //
 rootProject.name = "KUtilKit"
 include ':android'
-include ':android:test'
+//include ':android:test'
 include ':koptional'
 include ':koptional-rxjava2'
 include ':kotlin'
