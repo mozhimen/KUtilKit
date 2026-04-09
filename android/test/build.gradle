@@ -47,7 +47,7 @@ dependencies {
     implementation project(':APermissionKit:permissionk')
     implementation project(':AXmlKit:recyclerk:quick')
 
-    implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.0.3'
+    implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.0.4'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:navigation-common-bom:0.0.7'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:navigation-fragment-bom:0.0.7'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:navigation-ui-bom:0.0.7'
