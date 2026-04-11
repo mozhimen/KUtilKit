@@ -38,22 +38,7 @@ android {
 }
 
 dependencies {
-//    if (rootProject.name == "ALibKit_Jetpack") {
-//        api project(':core')
-//        api project(":annotation")
-//    } else {
-//        api project(':ALibKit_Jetpack:core')
-//        api project(":ALibKit_Jetpack:annotation")
-//    }
-//    if (rootProject.name == "ALibKit_Google") {
-//        api project(':material')
-//    } else {
-//        api project(':ALibKit_Google:material')
-//    }
-//    api project(':ALibKit_Jetbrains:kotlin_stdlib')
-
     api project(project.path.replace(project.name, '') + ':kotlin')
-
     api 'com.github.mozhimen.ALibKit_Jetpack:core-bom:0.0.7'
     api 'com.github.mozhimen.ALibKit_Jetpack:annotation:0.0.7'
     api 'com.github.mozhimen.ALibKit_Google:material:0.0.6'

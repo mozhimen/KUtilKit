@@ -45,7 +45,7 @@ dependencies {
     implementation project(':ATaskKit:executor')
     implementation project(':APermissionKit_XXPermissions:permissionk_xxpermissions')
     implementation project(':APermissionKit:permissionk')
-    implementation project(':AXmlKit:recyclerk:quick')
+    implementation 'com.github.mozhimen.AXmlKit:recyclerk-quick:0.0.1'
 
     implementation 'com.github.mozhimen.ASwiftKit:uik-databinding:2.0.4'
     implementation 'com.github.mozhimen.ALibKit_Jetpack:navigation-common-bom:0.0.7'
