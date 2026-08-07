@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.activity.ComponentActivity
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -13,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import com.mozhimen.kotlin.elemk.android.os.cons.CVersCode
+import com.mozhimen.kotlin.elemk.commons.I_AListener
 
 
 /**
@@ -165,4 +167,26 @@ object UtilKComponentActivity {
     ): ActivityResultLauncher<PickVisualMediaRequest> =
         componentActivity.registerForActivityResult(UtilKActivityResultContracts.get_PickMultipleVisualMedia(), callback)
 
+    ////////////////////////////////////////////////////////////////////////////////////
+
+    fun onBackPressed(componentActivity: ComponentActivity, onBackPressed: I_AListener<Boolean>){
+        componentActivity.onBackPressedDispatcher.addCallback(componentActivity, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (onBackPressed.invoke()){
+                    callSuper()
+                }
+            }
+
+            fun callSuper(){
+                // 暂时禁用当前回调，再交给下一个回调或系统默认行为。
+                // 如果不禁用，会再次进入 handleOnBackPressed()，造成递归。
+                isEnabled = false
+                try {
+                    componentActivity.onBackPressedDispatcher.onBackPressed()
+                } finally {
+                    isEnabled = true
+                }
+            }
+        })
+    }
 }
