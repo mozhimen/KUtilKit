@@ -55,8 +55,8 @@ fun <T> List<T>?.ifNotNullOrEmptyOr(onIf: IA_Listener<List<T>>, onElse: I_Listen
     UtilKCollections.ifNotNullOrEmptyOr(this, onIf, onElse)
 }
 
-fun <T> List<T>.list2str(): String =
-    UtilKCollections.list2str(this)
+fun <T> List<T>.list2str(defaultValue: String = "", splitChar: String = ","): String =
+    UtilKCollections.list2str(this,defaultValue,splitChar)
 
 ///////////////////////////////////////////////////////////////////////
 

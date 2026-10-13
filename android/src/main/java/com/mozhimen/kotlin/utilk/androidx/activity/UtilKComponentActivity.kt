@@ -169,6 +169,11 @@ object UtilKComponentActivity {
 
     ////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     *         UtilKComponentActivity.onBackPressed(this@MainActivity) {
+     *             _taskKBackPressedExit.onBackPressed()
+     *         }
+     */
     fun onBackPressed(componentActivity: ComponentActivity, onBackPressed: I_AListener<Boolean>){
         componentActivity.onBackPressedDispatcher.addCallback(componentActivity, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
